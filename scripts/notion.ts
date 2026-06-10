@@ -3,10 +3,125 @@ import { Client } from "@notionhq/client";
 import fs from "fs";
 import path from "path";
 import type { PostMetadata } from "./types";
+import https from "https";
+import http from "http";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
+
+// 下载单个图片文件
+async function downloadImage(
+  url: string,
+  destPath: string,
+): Promise<boolean> {
+  return new Promise((resolve) => {
+    const protocol = url.startsWith("https") ? https : http;
+    const file = fs.createWriteStream(destPath);
+
+    protocol
+      .get(url, (response) => {
+        // 处理重定向
+        if (
+          response.statusCode === 301 ||
+          response.statusCode === 302
+        ) {
+          const redirectUrl = response.headers.location;
+          if (redirectUrl) {
+            downloadImage(redirectUrl, destPath).then(resolve);
+            return;
+          }
+        }
+
+        if (response.statusCode !== 200) {
+          console.error(`Failed to download image: ${url}, status: ${response.statusCode}`);
+          resolve(false);
+          return;
+        }
+
+        response.pipe(file);
+        file.on("finish", () => {
+          file.close();
+          console.log(`  ↓ Downloaded: ${path.basename(destPath)}`);
+          resolve(true);
+        });
+      })
+      .on("error", (err) => {
+        fs.unlink(destPath, () => {}); // 删除失败的文件
+        console.error(`Error downloading image: ${url}`, err.message);
+        resolve(false);
+      });
+  });
+}
+
+// 从 Markdown 中提取所有图片链接
+function extractImageUrls(markdown: string): string[] {
+  // 匹配 Markdown 图片格式: ![alt](url)
+  const regex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  const urls: string[] = [];
+  let match;
+
+  while ((match = regex.exec(markdown)) !== null) {
+    urls.push(match[2]);
+  }
+
+  return [...new Set(urls)]; // 去重
+}
+
+// 生成安全的文件名
+function generateSafeFileName(url: string, index: number): string {
+  // 从 URL 中提取扩展名，如果没有则使用 .png 默认值
+  const extMatch = url.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i);
+  const ext = extMatch ? extMatch[1].toLowerCase() : "png";
+  return `image_${index}.${ext}`;
+}
+
+// 下载并替换 Markdown 中的图片链接
+async function downloadAndReplaceImages(
+  markdown: string,
+  imagesDir: string,
+  slug: string,
+): Promise<string> {
+  const imageUrls = extractImageUrls(markdown);
+
+  if (imageUrls.length === 0) {
+    return markdown;
+  }
+
+  console.log(`  Found ${imageUrls.length} image(s) in post`);
+
+  let processedMarkdown = markdown;
+  let imageIndex = 1;
+
+  for (const url of imageUrls) {
+    // 跳过非 Notion 的图片（可选）
+    if (!url.includes("notion.so") && !url.includes("amazonaws.com")) {
+      continue;
+    }
+
+    const fileName = generateSafeFileName(url, imageIndex);
+    const destPath = path.join(imagesDir, fileName);
+
+    // 如果文件已存在，跳过下载
+    if (fs.existsSync(destPath)) {
+      console.log(`  ⊘ Skipped (exists): ${fileName}`);
+    } else {
+      // 下载图片
+      const success = await downloadImage(url, destPath);
+      if (!success) {
+        console.log(`  ✗ Failed to download: ${url}`);
+        continue;
+      }
+    }
+
+    // 替换 Markdown 中的图片链接为本地路径
+    const localPath = `/notion-images/${fileName}`;
+    processedMarkdown = processedMarkdown.replace(url, localPath);
+    imageIndex++;
+  }
+
+  return processedMarkdown;
+}
 
 export async function fetchAllPages(
   databaseId: string,
@@ -114,9 +229,14 @@ export async function postsToMarkdown(posts: PostMetadata[]) {
         .join("\n");
 
       // 从 markdown 中读取图片链接，并下载图片到 public/notion-images 目录, 并替换 markdown 中的图片链接
+      const processedMarkdown = await downloadAndReplaceImages(
+        markdown,
+        imagesDir,
+        post.slug,
+      );
 
       // 组合 Frontmatter 和 Markdown 内容
-      const fullContent = `${frontmatter}\n\n${markdown}`;
+      const fullContent = `${frontmatter}\n\n${processedMarkdown}`;
 
       // 生成文件名
       const fileName = `${post.slug}.md`;

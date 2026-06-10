@@ -8,13 +8,16 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-
-    "fetchAll": "tsx scripts/notion.ts"
+    "fetchAll": "tsx scripts/notion-fetcher.ts"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
+    "@tailwindcss/typography": "^0.5.20",
     "dotenv": "^17.4.2",
+    "glob": "^13.0.6",
+    "gray-matter": "^4.0.3",
     "next": "16.2.7",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
