@@ -1,12 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
-import type { ReactNode } from "react";
+import ImageViewer from "@/components/ui/ImageViewer";
 import Prose from "@/components/ui/Prose";
 
 // 自定义组件（可选）
 const components = {
+  img: ({ src, alt, ...props }: { src: string; alt: string }) => {
+    // 从 props 中提取可能的宽高（MDX 可能传递 width/height 属性）
+    // 如果没有，提供默认值
+    return (
+      <ImageViewer
+        src={src}
+        alt={alt || ""}
+        className=""
+        width={800}
+        height={500}
+      />
+    );
+  },
   // // 使用 Next.js 的 Image 组件优化图片
   // img: ({ src, alt, ...props }: { src: string; alt: string }) => {
   //   // 本地图片路径以 / 开头，直接传给 next/image
