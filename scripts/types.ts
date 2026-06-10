@@ -1,6 +1,5 @@
 export type PostMetadata = {
-  id: string;
-  created_time: string;
+  page_id: string;
   last_edited_time: string;
   cover?: string;
   icon?: string;
