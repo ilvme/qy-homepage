@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
-import { serialize } from "next-mdx-remote/serialize";
-import MdxRenderer from "@/components/ui/MdxRenderer";
-import { fetchAllPosts, getPostBySlug } from "@/libs/content-loader";
+import { notFound } from 'next/navigation';
+import { serialize } from 'next-mdx-remote/serialize';
+import MdxRenderer from '@/components/ui/MdxRenderer';
+import { fetchAllPosts, getPostBySlug } from '@/libs/content-loader';
 
 export async function generateStaticParams() {
   const allPosts = await fetchAllPosts();

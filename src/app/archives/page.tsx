@@ -1,5 +1,5 @@
-import PostItem from "@/components/ui/PostItem";
-import { fetchAllPosts } from "@/libs/content-loader";
+import PostItem from '@/components/ui/PostItem';
+import { fetchAllPosts } from '@/libs/content-loader';
 
 export default async function Archives() {
   const posts = await fetchAllPosts();

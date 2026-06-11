@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
-import ImageViewer from "@/components/ui/ImageViewer";
-import Prose from "@/components/ui/Prose";
+import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
+import ImageViewer from '@/components/ui/ImageViewer';
+import Prose from '@/components/ui/Prose';
 
 // 自定义组件（可选）
 const components = {
@@ -12,7 +12,7 @@ const components = {
     return (
       <ImageViewer
         src={src}
-        alt={alt || ""}
+        alt={alt || ''}
         className=""
         width={800}
         height={500}
