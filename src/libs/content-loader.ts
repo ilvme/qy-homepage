@@ -2,6 +2,7 @@ import fs from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
 import path from 'path';
+import { cleanMarkdown, parseMdFromFile } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';
 
 export interface PostWithContent extends PostMetadata {
@@ -9,7 +10,11 @@ export interface PostWithContent extends PostMetadata {
 }
 
 const POSTS_DIR = path.join(process.cwd(), 'content/posts');
-export async function fetchAllPosts() {
+
+/**
+ * 获取所有文章
+ */
+export async function getAllPosts() {
   const pattern = path.join(POSTS_DIR, '*.md');
   const files = await glob(pattern);
 
@@ -24,19 +29,11 @@ export async function fetchAllPosts() {
   return posts;
 }
 
-function parseMdFromFile(filePath: string, withContent = false) {
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  if (!fileContent) return null;
-
-  try {
-    const { data, content } = matter(fileContent);
-    return withContent ? { postMeta: data, content } : { postMeta: data };
-  } catch (error) {
-    console.error(`Error parsing frontmatter in ${filePath}:`, error);
-    return null;
-  }
-}
-
+/**
+ * 获取指定 slug 的文章
+ *
+ * @param slug slug
+ */
 export async function getPostBySlug(slug: string) {
   const filePath = path.join(POSTS_DIR, `${slug}.md`);
   const parsed = parseMdFromFile(filePath, true);
@@ -45,27 +42,46 @@ export async function getPostBySlug(slug: string) {
   return { ...parsed.postMeta, content: cleanMarkdown(parsed.content ?? '') };
 }
 
-function cleanMarkdown(md: string) {
-  // 1. 移除所有 span 标签（保留内容）
-  md = md.replace(/<span\b[^>]*>(.*?)<\/span>/gis, '$1');
+/**
+ * 获取指定标签的文章
+ * @param tag 标签
+ */
+export async function getPostsByTag(tag: string) {
+  const posts = await getAllPosts();
+  return posts.filter((post) => post.tags.includes(tag));
+}
 
-  // 2. 修复 strong/em 嵌套问题：将 <strong> 转为 **，<em> 转为 *
-  md = md.replace(/<strong\b[^>]*>(.*?)<\/strong>/gis, '**$1**');
-  md = md.replace(/<em\b[^>]*>(.*?)<\/em>/gis, '*$1*');
-  md = md.replace(/<b\b[^>]*>(.*?)<\/b>/gis, '**$1**');
-  md = md.replace(/<i\b[^>]*>(.*?)<\/i>/gis, '*$1*');
+/**
+ * 获取所有标签
+ */
+export async function getAllTags(): Promise<
+  { label: string; count: number }[]
+> {
+  const posts = await getAllPosts();
+  const tagSet = new Set<string>();
+  posts.forEach((post) => post.tags.forEach((tag) => tagSet.add(tag)));
 
-  // 3. 移除 div 标签
-  md = md.replace(/<div\b[^>]*>(.*?)<\/div>/gis, '$1');
+  // 统计每个标签的文章数量
+  const tagCount = new Map<string, number>();
+  posts.forEach((post) => {
+    post.tags.forEach((tag) => {
+      tagCount.set(tag, (tagCount.get(tag) ?? 0) + 1);
+    });
+  });
+  return Array.from(tagSet)
+    .map((tag) => ({
+      label: tag,
+      count: tagCount.get(tag) ?? 0,
+    }))
+    .sort((a, b) => b.count - a.count);
+}
 
-  // 4. 将 <br> 转为两个空格 + 换行（或者直接删掉）
-  md = md.replace(/<br\s*\/?>/gi, '  \n');
-
-  // 5. 清理表格中可能导致问题的 align 属性
-  md = md.replace(/<(td|th)\s+align="[^"]*">/gi, '<$1>');
-
-  // 6. 移除空段落或孤立的标签
-  md = md.replace(/<p>\s*<\/p>/gi, '');
-
-  return md;
+/**
+ * 获取所有分类
+ */
+export async function getAllCategories() {
+  const posts = await getAllPosts();
+  const categorySet = new Set<string>();
+  posts.forEach((post) => categorySet.add(post.category));
+  return Array.from(categorySet).sort();
 }

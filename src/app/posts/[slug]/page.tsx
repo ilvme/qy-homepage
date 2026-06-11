@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { serialize } from 'next-mdx-remote/serialize';
 import MdxRenderer from '@/components/ui/MdxRenderer';
-import { fetchAllPosts, getPostBySlug } from '@/libs/content-loader';
+import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 
 export async function generateStaticParams() {
-  const allPosts = await fetchAllPosts();
+  const allPosts = await getAllPosts();
 
   return allPosts.map((post) => ({ slug: post.slug }));
 }
@@ -28,16 +29,21 @@ export default async function Post({ params }) {
 
   return (
     <div>
-      <h1 className="text-lg font-bold">{postWithContent.title}</h1>
+      <h1 className="text-xl font-bold mb-4">{postWithContent.title}</h1>
 
-      <figure className="flex gap-2">
+      <section className="flex gap-2 mb-4">
         <p>{postWithContent.date}</p>
+
+        <p>{postWithContent.category}</p>
+
         <p>
           {postWithContent.tags.map((tag) => (
-            <span key={tag}>#{tag}</span>
+            <Link href={`/tags/${tag}`} key={tag} className="hover:underline">
+              #{tag}
+            </Link>
           ))}
         </p>
-      </figure>
+      </section>
 
       <MdxRenderer source={mdxSource} />
     </div>

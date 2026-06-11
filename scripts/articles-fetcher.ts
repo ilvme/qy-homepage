@@ -42,9 +42,9 @@ type: "${postMeta.type}"
 last_fetch_time: "${postMeta.last_fetch_time}"
 last_edited_time: "${postMeta.last_edited_time}"
 page_id: "${postMeta.page_id}"
-summary: "${postMeta.summary}"
-cover: "${postMeta.cover}"
-icon: "${postMeta.icon}"
+summary: "${postMeta.summary ?? ''}"
+cover: "${postMeta.cover ?? ''}"
+icon: "${postMeta.icon ?? ''}"
 ---   
 
 ${content}`;

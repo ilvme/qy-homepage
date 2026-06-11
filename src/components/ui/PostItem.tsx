@@ -1,14 +1,25 @@
 import Link from 'next/link';
+import type { PostMetadata } from '../../../scripts/types';
 
-export default function PostItem({ postMetadata }) {
+export default function PostItem({
+  postMetadata,
+}: {
+  postMetadata: PostMetadata;
+}) {
   return (
     <div>
-      <Link href={`/posts/${postMetadata.slug}`}>
-        <div className="p-1">
-          <h2 className="text-base font-bold">{postMetadata.title}</h2>
-          <p className="text-gray-500">{postMetadata.summary}</p>
-        </div>
-      </Link>
+      <div className="">
+        <Link href={`/posts/${postMetadata.slug}`} className="hover:underline">
+          <h2 className="font-bold">{postMetadata.title}</h2>
+        </Link>
+
+        <section>
+          <span>{postMetadata.date}</span>
+          <span>{postMetadata.category}</span>
+          <span>{postMetadata.tags}</span>
+        </section>
+        <p className="text-sm">{postMetadata.summary}</p>
+      </div>
     </div>
   );
 }
