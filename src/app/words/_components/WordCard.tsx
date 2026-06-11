@@ -20,10 +20,14 @@ export default async function WordCard({ post }) {
   });
 
   return (
-    <div>
+    <div className="border mb-4 p-10">
       <section>
-        <span>{post.date ? post.date : post.last_edited_time}</span>
-        <span>{post.tags}</span>
+        <span>
+          {post.postMeta.date
+            ? post.postMeta.date
+            : post.postMeta.last_edited_time}
+        </span>
+        <span>#{post.postMeta.tags}</span>
       </section>
 
       <article>{hasContent && <MdxRenderer source={mdxSource} />}</article>

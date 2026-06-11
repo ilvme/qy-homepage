@@ -1,6 +1,4 @@
-import fs from 'fs';
 import { glob } from 'glob';
-import matter from 'gray-matter';
 import path from 'path';
 import { cleanMarkdown, parseMdFromFile } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';

@@ -15,7 +15,7 @@ export interface PostMetadata {
   last_fetch_time: string | null;
 }
 
-export interface ShuoShuoMetadata {
+export interface WordMetadata {
   page_id: string;
   last_edited_time: string;
   last_fetch_time: string | null;
