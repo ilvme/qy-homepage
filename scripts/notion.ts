@@ -1,56 +1,36 @@
 import "dotenv/config";
 import { Client } from "@notionhq/client";
+import axios from "axios";
 import fs from "fs";
+import http from "http";
+import https from "https";
 import path from "path";
 import type { PostMetadata } from "./types";
-import https from "https";
-import http from "http";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
 // 下载单个图片文件
-async function downloadImage(
-  url: string,
-  destPath: string,
-): Promise<boolean> {
-  return new Promise((resolve) => {
-    const protocol = url.startsWith("https") ? https : http;
-    const file = fs.createWriteStream(destPath);
+async function downloadImage(url: string, dest: string) {
+  // 确保目录存在
+  const dir = path.dirname(dest);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    protocol
-      .get(url, (response) => {
-        // 处理重定向
-        if (
-          response.statusCode === 301 ||
-          response.statusCode === 302
-        ) {
-          const redirectUrl = response.headers.location;
-          if (redirectUrl) {
-            downloadImage(redirectUrl, destPath).then(resolve);
-            return;
-          }
-        }
+  const writer = fs.createWriteStream(dest);
 
-        if (response.statusCode !== 200) {
-          console.error(`Failed to download image: ${url}, status: ${response.statusCode}`);
-          resolve(false);
-          return;
-        }
+  const response = await axios({
+    method: "get",
+    url: url,
+    responseType: "stream",
+    timeout: 30000,
+  });
 
-        response.pipe(file);
-        file.on("finish", () => {
-          file.close();
-          console.log(`  ↓ Downloaded: ${path.basename(destPath)}`);
-          resolve(true);
-        });
-      })
-      .on("error", (err) => {
-        fs.unlink(destPath, () => {}); // 删除失败的文件
-        console.error(`Error downloading image: ${url}`, err.message);
-        resolve(false);
-      });
+  response.data.pipe(writer);
+
+  return new Promise((resolve, reject) => {
+    writer.on("finish", resolve(dest));
+    writer.on("error", reject);
   });
 }
 
@@ -100,7 +80,7 @@ async function downloadAndReplaceImages(
     }
 
     const fileName = generateSafeFileName(url, imageIndex);
-    const destPath = path.join(imagesDir, fileName);
+    const destPath = path.join(imagesDir, slug, fileName);
 
     // 如果文件已存在，跳过下载
     if (fs.existsSync(destPath)) {
@@ -115,7 +95,7 @@ async function downloadAndReplaceImages(
     }
 
     // 替换 Markdown 中的图片链接为本地路径
-    const localPath = `/notion-images/${fileName}`;
+    const localPath = `/notion-images/${slug}/${fileName}`;
     processedMarkdown = processedMarkdown.replace(url, localPath);
     imageIndex++;
   }
@@ -218,7 +198,6 @@ export async function postsToMarkdown(posts: PostMetadata[]) {
         `last_fetch_time: "${post.last_fetch_time}"`,
         `last_edited_time: "${post.last_edited_time}"`,
         `page_id: "${pageId}"`,
-
         post.summary ? `summary: "${post.summary.replace(/"/g, '\\"')}"` : "",
         post.cover ? `cover: "${post.cover}"` : "",
         post.icon ? `icon: "${post.icon}"` : "",
