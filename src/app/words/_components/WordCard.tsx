@@ -20,8 +20,8 @@ export default async function WordCard({ post }) {
   });
 
   return (
-    <div className="border mb-4 p-10">
-      <section>
+    <article className="border mb-4 p-5">
+      <section className=" flex flex-wrap gap-x-4 gap-y-1 text-sm">
         <span>
           {post.postMeta.date
             ? post.postMeta.date
@@ -30,10 +30,12 @@ export default async function WordCard({ post }) {
         <span>#{post.postMeta.tags}</span>
       </section>
 
+      <hr className="mb-3 mt-2" />
+
       <article>{hasContent && <MdxRenderer source={mdxSource} />}</article>
 
       <WordImageGrid images={images} />
-    </div>
+    </article>
   );
 }
 
