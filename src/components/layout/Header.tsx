@@ -5,7 +5,7 @@ export default function Header() {
       <nav className="flex gap-2 text-lg">
         <a href="/posts">文章</a>
         <a href="/archives">归档</a>
-        <a href="/shuoshuo">说说</a>
+        <a href="/words">说说</a>
       </nav>
     </header>
   );
