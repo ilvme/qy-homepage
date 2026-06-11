@@ -1,4 +1,4 @@
-export type PostMetadata = {
+export interface PostMetadata {
   page_id: string;
   last_edited_time: string;
   cover?: string;
@@ -13,4 +13,17 @@ export type PostMetadata = {
   summary?: string;
   status: string;
   last_fetch_time: string | null;
-};
+}
+
+export interface ShuoShuoMetadata {
+  page_id: string;
+  last_edited_time: string;
+  last_fetch_time: string | null;
+
+  from: string;
+
+  title: string;
+  tags: string[];
+  date: string;
+  status: string;
+}
