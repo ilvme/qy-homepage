@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Client } from '@notionhq/client';
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import type { PostMetadata } from './types';
+import type { PostMetadata } from '../types';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,

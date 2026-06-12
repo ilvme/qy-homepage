@@ -1,7 +1,7 @@
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type { PostMetadata } from '../types';
 import { toLocalMarkdown } from './md-handler';
 import { fetchAllPages } from './notion-supports';
-import type { PostMetadata } from './types';
 
 function extractArticleMeta(page: PageObjectResponse): PostMetadata {
   return {

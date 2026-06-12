@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
+import type { PostMetadata } from '../types';
 import { generateArticleMdContent } from './articles-fetcher';
 import { downloadAndReplaceImages } from './images-handler';
 import { fetchPagePureMdContent } from './notion-supports';
-import type { PostMetadata } from './types';
 
 /**
  * 将 Notion 页面转换为 Markdown

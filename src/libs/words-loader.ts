@@ -12,7 +12,11 @@ export async function getAllWords() {
     .map((file) => parseMdFromFile(file, true))
     // .map((item) => item?.postMeta)
     .filter((item) => item !== null)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort(
+      (a, b) =>
+        new Date(a.last_edited_time).getTime() -
+        new Date(b.last_edited_time).getTime(),
+    );
 
   console.log('本地所有文章：', words.length);
 
