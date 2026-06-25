@@ -22,8 +22,8 @@ export default async function Archives() {
   return (
     <div className="py-8">
       <header className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">文章</h1>
-        <p className="text-secondary text-sm mt-1">
+        <h1 className="text-3xl font-bold tracking-tight">文章</h1>
+        <p className="text-secondary text-base mt-1">
           共 {stats.totalPosts} 篇文章
           {stats.totalWords > 0 && (
             <> ，约 {stats.totalWords} 字</>
@@ -34,7 +34,7 @@ export default async function Archives() {
       <div className="space-y-6">
         {sortedYears.map((year) => (
           <section key={year}>
-            <h2 className="text-base font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-2">
               {year}
             </h2>
             <ul className="space-y-0.5">

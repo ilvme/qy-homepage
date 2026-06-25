@@ -10,11 +10,11 @@ export default function PostItemLite({
     <div className="flex justify-between items-baseline py-1">
       <Link
         href={`/posts/${postMetadata.slug}`}
-        className="text-sm font-medium truncate pr-4 hover:text-foreground hover:underline underline-offset-2 transition-colors"
+        className="text-base font-medium truncate pr-4 hover:text-foreground hover:underline underline-offset-2 transition-colors"
       >
         {postMetadata.title}
       </Link>
-      <time className="shrink-0 text-sm text-secondary tabular-nums">
+      <time className="shrink-0 text-base text-secondary tabular-nums">
         {postMetadata.date?.substring(5)}
       </time>
     </div>
