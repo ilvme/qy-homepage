@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeSlug from 'rehype-slug';
+import rehypeShiki from '@shikijs/rehype';
 import BackToTop from '@/components/ui/BackToTop';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
@@ -25,7 +26,14 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   const mdxSource = await serialize(postWithContent.content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [rehypeSlug],
+      rehypePlugins: [
+        [rehypeShiki, {
+          themes: { light: 'github-light', dark: 'github-dark' },
+          defaultColor: false,
+          addLanguageClass: true,
+        }],
+        rehypeSlug,
+      ],
     },
   });
 

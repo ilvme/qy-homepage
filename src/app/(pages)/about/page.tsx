@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import rehypeSlug from 'rehype-slug';
+import rehypeShiki from '@shikijs/rehype';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
 
@@ -16,7 +17,14 @@ export default async function AboutMe() {
   const mdxSource = await serialize(fileContent.content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [rehypeSlug],
+      rehypePlugins: [
+        [rehypeShiki, {
+          themes: { light: 'github-light', dark: 'github-dark' },
+          defaultColor: false,
+          addLanguageClass: true,
+        }],
+        rehypeSlug,
+      ],
     },
   });
   return <MdxRenderer source={mdxSource}></MdxRenderer>;
