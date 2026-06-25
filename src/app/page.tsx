@@ -14,7 +14,7 @@ export default async function Home() {
         </p>
         <div className="flex gap-3 pt-2">
           <Link
-            href="/archives"
+            href="/posts"
             className="inline-flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
           >
             浏览文章
