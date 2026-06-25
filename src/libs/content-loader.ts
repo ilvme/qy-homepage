@@ -75,6 +75,30 @@ export async function getAllTags(): Promise<
 }
 
 /**
+ * 统计文章总数和总字数
+ */
+export async function getPostStats() {
+  const pattern = path.join(POSTS_DIR, '*.md');
+  const files = await glob(pattern);
+
+  let totalPosts = 0;
+  let totalWords = 0;
+
+  for (const file of files) {
+    const parsed = parseMdFromFile(file, true);
+    if (!parsed) continue;
+    totalPosts++;
+    // 统计中文字符 + 英文单词
+    const content = parsed.content as string;
+    const chineseChars = (content.match(/[一-鿿]/g) || []).length;
+    const englishWords = (content.match(/[a-zA-Z]+/g) || []).length;
+    totalWords += chineseChars + englishWords;
+  }
+
+  return { totalPosts, totalWords };
+}
+
+/**
  * 获取所有分类
  */
 export async function getAllCategories() {
