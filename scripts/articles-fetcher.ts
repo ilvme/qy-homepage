@@ -1,9 +1,11 @@
-import type { PostMetadata } from '../types';
-import { toLocalMarkdown } from './md-handler';
-import { fetchAllPages } from './notion-supports';
+import type { PostMetadata } from './types';
+import { fetchAllPages } from './lib/notion-client';
+import { createMdHandler } from './lib/md-handler';
 
-function extractArticleMeta(page: any): PostMetadata {
-  // 处理 cover 和 icon 的类型安全访问
+/**
+ * 将 Notion 原始 page 对象映射为 PostMetadata
+ */
+function mapArticlePage(page: any): PostMetadata {
   const coverUrl =
     page.cover?.type === 'external'
       ? page.cover.external.url
@@ -32,9 +34,7 @@ function extractArticleMeta(page: any): PostMetadata {
 }
 
 /**
- * Markdown 文件内容构建
- * @param postMeta
- * @param content
+ * 生成文章 MD 文件内容（frontmatter + 正文）
  */
 export function generateArticleMdContent(
   postMeta: PostMetadata,
@@ -54,10 +54,18 @@ page_id: "${postMeta.page_id}"
 summary: "${postMeta.summary ?? ''}"
 cover: "${postMeta.cover ?? ''}"
 icon: "${postMeta.icon ?? ''}"
----   
+---
 
 ${content}`;
 }
+
+const toLocalMarkdown = createMdHandler<PostMetadata>({
+  contentDir: 'content/posts',
+  imagesDir: 'public/notion-images/posts',
+  imageUrlPath: '/notion-images/posts',
+  getFileKey: (item) => item.slug,
+  generateContent: generateArticleMdContent,
+});
 
 export async function main() {
   if (!process.env.NOTION_ARTICLES_DATABASE_ID) {
@@ -68,7 +76,17 @@ export async function main() {
   }
 
   console.log('[Articles] Fetching posts from Notion...');
-  const posts = await fetchAllPages(process.env.NOTION_ARTICLES_DATABASE_ID);
+  const posts = await fetchAllPages(
+    process.env.NOTION_ARTICLES_DATABASE_ID,
+    mapArticlePage,
+    {
+      filter: {
+        property: 'status',
+        select: { equals: 'published' },
+      },
+      sorts: [{ property: 'date', direction: 'descending' }],
+    },
+  );
 
   if (!posts || posts.length === 0) {
     console.log('[Articles] No posts found.');

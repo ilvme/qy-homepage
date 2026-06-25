@@ -9,8 +9,8 @@ import 'dotenv/config';
  *   tsx scripts/fetch-all.ts --force # 强制全量同步（忽略增量检查）
  */
 
-import { main as fetchArticles } from './articles/articles-fetcher';
-import { main as fetchWords } from './words/words-fetcher';
+import { main as fetchArticles } from './articles-fetcher';
+import { main as fetchWords } from './words-fetcher';
 
 const forceMode = process.argv.includes('--force');
 

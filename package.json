@@ -9,8 +9,8 @@
     "lint": "biome check",
     "format": "biome format --write",
     "fetchAll": "tsx scripts/fetch-all.ts",
-    "fetchArticles": "tsx scripts/articles/articles-fetcher.ts",
-    "fetchWords": "tsx scripts/words/words-fetcher.ts"
+    "fetchArticles": "tsx scripts/articles-fetcher.ts",
+    "fetchWords": "tsx scripts/words-fetcher.ts"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
