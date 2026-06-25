@@ -13,7 +13,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="relative flex items-center justify-between py-6 border-b border-border mb-8">
+    <header className="relative flex items-center justify-between py-6 border-b border-border mb-6">
       <Link
         href="/"
         className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"

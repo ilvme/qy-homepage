@@ -10,6 +10,22 @@ interface WordCardProps {
   };
 }
 
+/**
+ * 格式化日期为更友好的显示格式
+ */
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+
+  // 格式化：2026年6月12日 周五
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  const weekDay = weekDays[date.getDay()];
+
+  return `${year}/${month}/${day} ${weekDay}`;
+}
+
 export default async function WordCard({ post }: WordCardProps) {
   const { images, cleanedContent } = extractImagesFromMdx(post.content);
   const hasContent = cleanedContent.length > 0;
@@ -24,25 +40,46 @@ export default async function WordCard({ post }: WordCardProps) {
     },
   });
 
+  // 获取并格式化显示日期
+  const dateStr = post.postMeta.date || post.postMeta.last_edited_time || '';
+  const displayDate = formatDate(dateStr);
+
   return (
     <article className="border border-border rounded-xl p-5 mb-4 bg-card">
-      <section className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
-        <time>
-          {post.postMeta.date
-            ? post.postMeta.date
-            : post.postMeta.last_edited_time?.substring(0, 10)}
-        </time>
-        {post.postMeta.tags.length > 0 && (
-          <div className="flex gap-1">
-            {post.postMeta.tags.map((tag) => (
-              <span key={tag} className="text-xs">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
+      <section className="flex items-center flex-wrap justify-between   text-secondary">
+        <div className="flex items-center gap-x-4">
+          <time dateTime={dateStr} className="flex items-center gap-2">
+            {/* 日历图标 */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="shrink-0 text-muted-foreground"
+            >
+              <title>日期</title>
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+              <line x1="16" x2="16" y1="2" y2="6" />
+              <line x1="8" x2="8" y1="2" y2="6" />
+              <line x1="3" x2="21" y1="10" y2="10" />
+            </svg>
+            <span className="font-medium">{displayDate}</span>
+          </time>
+          {post.postMeta.tags.length > 0 && (
+            <div className="flex gap-1">
+              {post.postMeta.tags.map((tag) => (
+                <span key={tag} className="text-sm">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
         {post.postMeta.from && (
-          <span className="text-xs px-2 py-0.5 rounded-full bg-muted">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-muted">
             来自: {post.postMeta.from}
           </span>
         )}
