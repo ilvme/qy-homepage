@@ -18,8 +18,8 @@ export async function getAllPosts() {
 
   const posts = files
     .map((file) => parseMdFromFile(file))
-    .map((item) => item?.postMeta)
-    .filter((item) => item !== null)
+    .filter((item): item is NonNullable<typeof item> => item != null)
+    .map((item) => item.postMeta as PostMetadata)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   console.log('本地文章数：', posts.length);
@@ -32,12 +32,15 @@ export async function getAllPosts() {
  *
  * @param slug slug
  */
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<PostWithContent | null> {
   const filePath = path.join(POSTS_DIR, `${slug}.md`);
   const parsed = parseMdFromFile(filePath, true);
-  if (!parsed) return null;
+  if (!parsed?.postMeta) return null;
 
-  return { ...parsed.postMeta, content: cleanMarkdown(parsed.content ?? '') };
+  return {
+    ...(parsed.postMeta as PostMetadata),
+    content: cleanMarkdown(parsed.content ?? ''),
+  };
 }
 
 /**

@@ -34,12 +34,12 @@ export async function fetchAllPages<T>(
     database_id: databaseId,
   });
 
-  if (!dbs.data_sources || dbs.data_sources.length === 0) {
+  if (!(dbs as any).data_sources || (dbs as any).data_sources.length === 0) {
     console.error('No data sources found for this database.');
     return [];
   }
 
-  const dataSourceId = dbs.data_sources[0].id;
+  const dataSourceId = (dbs as any).data_sources[0].id;
 
   // 2. 分页查询
   const allResults: any[] = [];

@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
 import MdxRenderer from '@/components/ui/MdxRenderer';
-import type { WordMetadata } from '../../../scripts/types';
+import type { WordMetadata } from '../../../../scripts/types';
 
 interface WordCardProps {
   post: {

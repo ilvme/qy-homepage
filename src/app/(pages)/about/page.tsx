@@ -13,6 +13,7 @@ export default async function AboutMe() {
   // 读取文件文本
   const filePath = path.join(CONTENT_DIR, 'about.md');
   const fileContent = parseMdFromFile(filePath, true);
+  if (!fileContent?.content) return <p>内容加载失败。</p>;
 
   const mdxSource = await serialize(fileContent.content, {
     mdxOptions: {
