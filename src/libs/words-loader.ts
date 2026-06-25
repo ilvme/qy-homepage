@@ -14,8 +14,8 @@ export async function getAllWords() {
     .filter((item) => item !== null)
     .sort(
       (a, b) =>
-        new Date(b.last_edited_time).getTime() -
-        new Date(a.last_edited_time).getTime(),
+        new Date(b?.postMeta.last_edited_time).getTime() -
+        new Date(a?.postMeta.last_edited_time).getTime(),
     );
 
   console.log('本地说说数：', words.length);

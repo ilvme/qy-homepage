@@ -26,17 +26,12 @@ export default async function WordCard({ post }: WordCardProps) {
 
   return (
     <article className="border border-border rounded-xl p-5 mb-4 bg-card">
-      <section className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
+      <section className="flex items-center flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
         <time>
           {post.postMeta.date
             ? post.postMeta.date
             : post.postMeta.last_edited_time?.substring(0, 10)}
         </time>
-        {post.postMeta.from && (
-          <span className="text-xs px-2 py-0.5 rounded-full bg-muted">
-            来自: {post.postMeta.from}
-          </span>
-        )}
         {post.postMeta.tags.length > 0 && (
           <div className="flex gap-1">
             {post.postMeta.tags.map((tag) => (
@@ -45,6 +40,11 @@ export default async function WordCard({ post }: WordCardProps) {
               </span>
             ))}
           </div>
+        )}
+        {post.postMeta.from && (
+          <span className="text-xs px-2 py-0.5 rounded-full bg-muted">
+            来自: {post.postMeta.from}
+          </span>
         )}
       </section>
 

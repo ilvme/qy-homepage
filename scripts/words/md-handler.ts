@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
+import path from 'path';
 import type { WordMetadata } from '../types';
 import { downloadAndReplaceImages } from './images-handler';
 import { fetchPagePureMdContent } from './notion-supports';
@@ -13,7 +13,9 @@ const IMAGES_DIR = path.join(process.cwd(), 'public', 'notion-images', 'words');
 /**
  * 从本地 MD 文件读取上次同步的元信息
  */
-function readLocalMeta(pageId: string): { last_fetch_time: string | null; last_edited_time: string | null } | null {
+function readLocalMeta(
+  pageId: string,
+): { last_fetch_time: string | null; last_edited_time: string | null } | null {
   const filePath = path.join(CONTENT_DIR, `${pageId}.md`);
   if (!fs.existsSync(filePath)) return null;
 
@@ -85,7 +87,10 @@ export async function toLocalMarkdown(posts: WordMetadata[]) {
       const postWithFetchTime = { ...post, last_fetch_time: now };
 
       // 组合 Frontmatter 和 Markdown 内容
-      const fullContent = generateWordMdContent(postWithFetchTime, processedMarkdown);
+      const fullContent = generateWordMdContent(
+        postWithFetchTime,
+        processedMarkdown,
+      );
 
       // 生成文件名
       const fileName = `${post.page_id}.md`;
@@ -100,5 +105,7 @@ export async function toLocalMarkdown(posts: WordMetadata[]) {
     }
   }
 
-  console.log(`\nDone: ${updated} updated, ${skipped} skipped, ${posts.length} total`);
+  console.log(
+    `\nDone: ${updated} updated, ${skipped} skipped, ${posts.length} total`,
+  );
 }

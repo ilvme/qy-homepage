@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Client } from '@notionhq/client';
-import type { PostMetadata } from '../types';
+import type { WordMetadata } from '../types';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -70,7 +70,7 @@ export async function fetchAllPages(
  * 获取指定页面的纯 Markdown 内容
  * @param post 文章信息
  */
-export async function fetchPagePureMdContent(post: PostMetadata) {
+export async function fetchPagePureMdContent(post: WordMetadata) {
   try {
     const { markdown } = await notion.pages.retrieveMarkdown({
       page_id: post.page_id,
