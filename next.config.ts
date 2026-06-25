@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // next-mdx-remote 需要 transpilePackages 才能在 Turbopack 下正常工作
+  transpilePackages: ['next-mdx-remote'],
   images: {
     remotePatterns: [
       {
