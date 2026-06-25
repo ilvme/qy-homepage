@@ -7,43 +7,42 @@ export default function PostItem({
   postMetadata: PostMetadata;
 }) {
   return (
-    <article className="py-4 border-b border-border last:border-b-0">
-      <Link href={`/posts/${postMetadata.slug}`} className="group block space-y-2">
-        <h2 className="font-semibold text-lg group-hover:underline underline-offset-2 transition-all">
+    <article className="py-4 border-b border-border last:border-b-0 space-y-2">
+      <Link href={`/posts/${postMetadata.slug}`}>
+        <h2 className="font-semibold text-lg hover:underline underline-offset-2 transition-all">
           {postMetadata.title}
         </h2>
+      </Link>
 
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-secondary">
-          <time dateTime={postMetadata.date}>{postMetadata.date}</time>
+      {postMetadata.summary && (
+        <p className="text-sm text-secondary line-clamp-2">{postMetadata.summary}</p>
+      )}
 
-          {postMetadata.category && (
-            <span className="px-2 py-0.5 rounded-full bg-muted text-xs">
+      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-secondary">
+        <time dateTime={postMetadata.date} className="tabular-nums">
+          {postMetadata.date}
+        </time>
+
+        {postMetadata.category && (
+          <>
+            <span aria-hidden="true" className="text-border select-none">·</span>
+            <span className="font-medium text-foreground/80">
               {postMetadata.category}
             </span>
-          )}
-
-          {postMetadata.type && (
-            <span className="text-xs text-muted-foreground">{postMetadata.type}</span>
-          )}
-        </div>
-
-        {postMetadata.summary && (
-          <p className="text-sm text-secondary line-clamp-2">{postMetadata.summary}</p>
+          </>
         )}
 
         {postMetadata.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
+          <>
+            <span aria-hidden="true" className="text-border select-none">·</span>
             {postMetadata.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs px-2 py-0.5 rounded-full bg-muted text-secondary"
-              >
+              <span key={tag} className="text-xs text-secondary">
                 #{tag}
               </span>
             ))}
-          </div>
+          </>
         )}
-      </Link>
+      </div>
     </article>
   );
 }
