@@ -27,8 +27,7 @@ pnpm fetchWords       # 仅同步说说
 - `NOTION_TOKEN` — Notion Integration Token
 - `NOTION_ARTICLES_DATABASE_ID` — 文章数据库 ID
 - `NOTION_WORDS_DATABASE_ID` — 说说数据库 ID
-- `NOTION_MEDIA_DATABASE_ID` — 书影音数据库 ID（尚未使用）
-- `NOTION_COLLECTIONS_DATABASE_ID` — 收藏数据库 ID（尚未使用）
+- `NOTION_SHARE_DATABASE_ID` — 书影音收藏数据库 ID（尚未使用）
 
 ## 架构
 
@@ -50,17 +49,17 @@ pnpm fetchWords       # 仅同步说说
 
 ### 路由表
 
-| 路由 | 文件 | 说明 |
-|---|---|---|
-| `/` | `app/page.tsx` | 首页，含 Hero 区域和导航网格 |
-| `/posts` | `app/posts/page.tsx` | 文章列表，按年份分组 |
-| `/posts/[slug]` | `app/posts/[slug]/page.tsx` | 单篇文章，含目录 + MDX 渲染 |
-| `/words` | `app/words/page.tsx` | 说说流 |
-| `/share` | `app/share/page.tsx` | 书影音分享（占位页） |
-| `/about` | `app/(pages)/about/page.tsx` | 渲染 `content/about.md` 为 MDX |
-| `/tags/[tag]` | `app/(pages)/tags/[tag]/page.tsx` | 按标签筛选文章 |
-| `/friends` | `app/(pages)/friends/page.tsx` | 友链页（静态数据） |
-| `/sponsor` | `app/(pages)/sponsor/page.tsx` | 赞赏页（占位） |
+| 路由            | 文件                              | 说明                           |
+| --------------- | --------------------------------- | ------------------------------ |
+| `/`             | `app/page.tsx`                    | 首页，含 Hero 区域和导航网格   |
+| `/posts`        | `app/posts/page.tsx`              | 文章列表，按年份分组           |
+| `/posts/[slug]` | `app/posts/[slug]/page.tsx`       | 单篇文章，含目录 + MDX 渲染    |
+| `/words`        | `app/words/page.tsx`              | 说说流                         |
+| `/share`        | `app/share/page.tsx`              | 书影音分享（占位页）           |
+| `/about`        | `app/(pages)/about/page.tsx`      | 渲染 `content/about.md` 为 MDX |
+| `/tags/[tag]`   | `app/(pages)/tags/[tag]/page.tsx` | 按标签筛选文章                 |
+| `/friends`      | `app/(pages)/friends/page.tsx`    | 友链页（静态数据）             |
+| `/sponsor`      | `app/(pages)/sponsor/page.tsx`    | 赞赏页（占位）                 |
 
 `(pages)` 是 Next.js 路由组，不影响 URL 路径，仅用于将非核心页面组织在一起。
 
