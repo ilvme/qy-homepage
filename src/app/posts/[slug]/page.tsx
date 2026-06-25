@@ -36,34 +36,35 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
       {/* 文章内容 - 保持原有布局不受影响 */}
       <article>
-        <header className="mb-8 space-y-3">
+        <header className="mb-8 space-y-4">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
             {postWithContent.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-secondary">
-            <time dateTime={postWithContent.date}>{postWithContent.date}</time>
+          {/* 元信息行：时间 · 分类 · 类型 */}
+          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-secondary">
+            <time dateTime={postWithContent.date} className="tabular-nums">
+              {postWithContent.date}
+            </time>
 
             {postWithContent.category && (
-              <span className="px-2 py-0.5 rounded-full bg-muted text-xs">
-                {postWithContent.category}
-              </span>
+              <>
+                <span aria-hidden="true" className="text-border select-none">·</span>
+                <span className="font-medium text-foreground/80">
+                  {postWithContent.category}
+                </span>
+              </>
             )}
 
-            {postWithContent.type && (
-              <span className="px-2 py-0.5 rounded-full bg-muted text-xs">
-                {postWithContent.type}
-              </span>
+            {postWithContent.tags.length > 0 && (
+              <>
+                <span aria-hidden="true" className="text-border select-none">·</span>
+                {postWithContent.tags.map((tag: string) => (
+                  <Tag key={tag} tag={tag} count={0} />
+                ))}
+              </>
             )}
           </div>
-
-          {postWithContent.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {postWithContent.tags.map((tag: string) => (
-                <Tag key={tag} tag={tag} count={0} />
-              ))}
-            </div>
-          )}
 
           {postWithContent.summary && (
             <blockquote className="border-l-2 border-border pl-4 text-secondary italic">
