@@ -8,6 +8,21 @@ export interface TocHeading {
 }
 
 /**
+ * 清理标题中的 markdown 格式标记（粗体、斜体、代码、链接等）
+ */
+function cleanHeadingText(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')       // **bold**
+    .replace(/__(.+?)__/g, '$1')           // __bold__
+    .replace(/\*(.+?)\*/g, '$1')           // *italic*
+    .replace(/_(.+?)_/g, '$1')             // _italic_
+    .replace(/~~(.+?)~~/g, '$1')           // ~~strikethrough~~
+    .replace(/`(.+?)`/g, '$1')             // `code`
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1')    // [text](url)
+    .trim();
+}
+
+/**
  * 从 Markdown 内容中提取标题，用于生成目录
  */
 export function extractHeadings(md: string): TocHeading[] {
@@ -17,11 +32,12 @@ export function extractHeadings(md: string): TocHeading[] {
 
   while ((match = headingRegex.exec(md)) !== null) {
     const level = match[1].length;
-    const text = match[2].trim();
-    // 生成与 rehype-slug 一致的 slugify ID
+    const rawText = match[2].trim();
+    const text = cleanHeadingText(rawText);
+    // 生成与 rehype-slug 一致的 slugify ID（使用清理后的文本）
     const id = text
       .toLowerCase()
-      .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
+      .replace(/[^\w一-鿿\s-]/g, '')
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');

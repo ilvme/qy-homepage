@@ -44,13 +44,14 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
       {/* 文章内容 - 保持原有布局不受影响 */}
       <article>
-        <header className="mb-8 space-y-4">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
+        <header className="mb-10">
+          {/* 标题 */}
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">
             {postWithContent.title}
           </h1>
 
-          {/* 元信息行：时间 · 分类 · 类型 */}
-          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-secondary">
+          {/* 元信息行 */}
+          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-secondary mb-6">
             <time dateTime={postWithContent.date} className="tabular-nums">
               {postWithContent.date}
             </time>
@@ -74,8 +75,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
             )}
           </div>
 
+          {/* 摘要 */}
           {postWithContent.summary && (
-            <blockquote className="border-l-2 border-border pl-4 text-secondary italic">
+            <blockquote className="border-l-[3px] border-foreground bg-muted rounded-r-md px-4 py-3 mt-6 text-secondary italic">
               {postWithContent.summary}
             </blockquote>
           )}
