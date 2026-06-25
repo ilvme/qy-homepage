@@ -3,6 +3,8 @@ import 'lxgw-wenkai-screen-webfont/lxgwwenkaigbscreen.css';
 import '@/assets/globals.css';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: '和光同尘',
@@ -20,6 +22,9 @@ export default function RootLayout({
         <Header />
         <main className="min-h-[calc(100vh-200px)]">{children}</main>
         <Footer />
+
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
