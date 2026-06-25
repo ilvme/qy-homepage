@@ -57,8 +57,8 @@ export default function FriendsPage() {
   return (
     <div className="py-8 space-y-8">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">友情链接</h1>
-        <p className="text-secondary text-sm mt-1">
+        <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>
+        <p className="text-secondary text-base mt-1">
           那些在数字世界中相遇的朋友们。
         </p>
       </header>

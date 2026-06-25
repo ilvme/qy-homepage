@@ -7,8 +7,8 @@ export default async function ShuoShuo() {
   return (
     <div className="py-8 space-y-4">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight">说说</h1>
-        <p className="text-secondary text-sm mt-1">
+        <h1 className="text-3xl font-bold tracking-tight">说说</h1>
+        <p className="text-secondary text-base mt-1">
           随笔心情、生活碎片、一闪而过的念头。
         </p>
       </header>
