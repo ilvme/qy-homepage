@@ -51,6 +51,7 @@ export default async function Home() {
             { href: '/posts', label: '文章', desc: '博文笔记' },
             { href: '/words', label: '说说', desc: '随笔心情' },
             { href: '/share', label: '分享', desc: '书影收藏' },
+            { href: '/about', label: '关于', desc: '我与小站' },
             { href: '/friends', label: '友链', desc: '朋友小站' },
             { href: '/sponsor', label: '赞赏', desc: '一杯咖啡' },
           ].map((item) => (
