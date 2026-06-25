@@ -10,7 +10,6 @@ import 'dotenv/config';
  */
 
 import { main as fetchArticles } from './articles/articles-fetcher';
-import { main as fetchCollections } from './share/collections-fetcher';
 import { main as fetchWords } from './words/words-fetcher';
 
 const forceMode = process.argv.includes('--force');
@@ -30,8 +29,6 @@ async function main() {
   const tasks = [
     { name: 'Articles', fn: fetchArticles },
     { name: 'Words', fn: fetchWords },
-    { name: 'Media', fn: fetchMedia },
-    { name: 'Collections', fn: fetchCollections },
   ];
 
   for (const task of tasks) {
