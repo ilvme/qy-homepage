@@ -22,7 +22,7 @@ export async function getAllPosts() {
     .filter((item) => item !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  console.log('本地所有文章：', posts.length);
+  console.log('本地文章数：', posts.length);
 
   return posts;
 }

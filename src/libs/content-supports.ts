@@ -1,6 +1,36 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 
+export interface TocHeading {
+  id: string;
+  text: string;
+  level: number;
+}
+
+/**
+ * 从 Markdown 内容中提取标题，用于生成目录
+ */
+export function extractHeadings(md: string): TocHeading[] {
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  const headings: TocHeading[] = [];
+  let match;
+
+  while ((match = headingRegex.exec(md)) !== null) {
+    const level = match[1].length;
+    const text = match[2].trim();
+    // 生成与 rehype-slug 一致的 slugify ID
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    headings.push({ id, text, level });
+  }
+
+  return headings;
+}
+
 /**
  * 从本地路径解析 markdown 文件
  *

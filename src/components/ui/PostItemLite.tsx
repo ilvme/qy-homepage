@@ -8,11 +8,13 @@ export default function PostItemLite({
 }) {
   return (
     <div>
-      <Link href={`/posts/${postMetadata.slug}`}>
-        <div className="p-1 flex justify-between">
-          <h2 className="">{postMetadata.title}</h2>
-          <p>{postMetadata.date.substring(5)}</p>
-        </div>
+      <Link href={`/posts/${postMetadata.slug}`} className="flex justify-between items-baseline py-1 hover:text-foreground transition-colors group">
+        <h2 className="text-sm font-medium truncate pr-4 group-hover:underline underline-offset-2">
+          {postMetadata.title}
+        </h2>
+        <time className="shrink-0 text-sm text-secondary tabular-nums">
+          {postMetadata.date?.substring(5)}
+        </time>
       </Link>
     </div>
   );

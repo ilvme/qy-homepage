@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import { Client } from '@notionhq/client';
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import type { PostMetadata } from '../types';
 
 const notion = new Client({
@@ -53,12 +52,21 @@ export async function fetchAllPages(
     );
   } while (startCursor);
 
-  return allResults.map((page: PageObjectResponse) => {
+  return allResults.map((page: any) => {
+    const coverUrl =
+      page.cover?.type === 'external'
+        ? page.cover.external.url
+        : undefined;
+    const iconUrl =
+      page.icon?.type === 'external'
+        ? page.icon.external.url
+        : undefined;
+
     return {
       page_id: page.id,
       last_edited_time: page.last_edited_time,
-      cover: page.cover?.external?.url,
-      icon: page.icon?.external?.url,
+      cover: coverUrl,
+      icon: iconUrl,
 
       title: page.properties.title.title[0].plain_text,
       type: page.properties.type.select?.name,

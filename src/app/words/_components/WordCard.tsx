@@ -1,38 +1,56 @@
 import { serialize } from 'next-mdx-remote/serialize';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
 import MdxRenderer from '@/components/ui/MdxRenderer';
+import type { WordMetadata } from '../../../scripts/types';
 
-export default async function WordCard({ post }) {
+interface WordCardProps {
+  post: {
+    postMeta: WordMetadata;
+    content: string;
+  };
+}
+
+export default async function WordCard({ post }: WordCardProps) {
   const { images, cleanedContent } = extractImagesFromMdx(post.content);
   const hasContent = cleanedContent.length > 0;
 
-  const waitToRender = hasContent ? cleanedContent : post.title;
+  const waitToRender = hasContent ? cleanedContent : post.postMeta.title;
 
   // 将 Markdown 序列化为可渲染的格式
-  const mdxSource = await serialize(waitToRender, {
+  const mdxSource = await serialize(waitToRender ?? '', {
     mdxOptions: {
-      // 使用 remark 插件处理 Markdown 内容
       remarkPlugins: [],
-
-      // 可添加 rehype 插件，例如 rehype-highlight 实现代码高亮
       rehypePlugins: [],
     },
   });
 
   return (
-    <article className="border mb-4 p-5">
-      <section className=" flex flex-wrap gap-x-4 gap-y-1 text-sm">
-        <span>
+    <article className="border border-border rounded-xl p-5 mb-4 bg-card">
+      <section className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
+        <time>
           {post.postMeta.date
             ? post.postMeta.date
-            : post.postMeta.last_edited_time}
-        </span>
-        <span>#{post.postMeta.tags}</span>
+            : post.postMeta.last_edited_time?.substring(0, 10)}
+        </time>
+        {post.postMeta.from && (
+          <span className="text-xs px-2 py-0.5 rounded-full bg-muted">
+            来自: {post.postMeta.from}
+          </span>
+        )}
+        {post.postMeta.tags.length > 0 && (
+          <div className="flex gap-1">
+            {post.postMeta.tags.map((tag) => (
+              <span key={tag} className="text-xs">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
       </section>
 
-      <hr className="mb-3 mt-2" />
+      <hr className="mb-3 mt-2 border-border" />
 
-      <article>{hasContent && <MdxRenderer source={mdxSource} />}</article>
+      <div>{hasContent && <MdxRenderer source={mdxSource} />}</div>
 
       <WordImageGrid images={images} />
     </article>

@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "fetchAll": "tsx scripts/words/words-fetcher.ts"
+    "fetchAll": "tsx scripts/fetch-all.ts",
+    "fetchArticles": "tsx scripts/articles/articles-fetcher.ts",
+    "fetchWords": "tsx scripts/words/words-fetcher.ts",
+    "fetchMedia": "tsx scripts/media/media-fetcher.ts",
+    "fetchCollections": "tsx scripts/collections/collections-fetcher.ts"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
@@ -20,7 +24,8 @@
     "next": "16.2.7",
     "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "rehype-slug": "^6.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",

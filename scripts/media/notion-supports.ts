@@ -1,20 +1,17 @@
 import 'dotenv/config';
 import { Client } from '@notionhq/client';
-import type { PostMetadata } from '../types';
+import type { MediaMetadata } from '../types';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
 /**
- * 获取指定数据库下所有文章页面
- *
- * @param databaseId 数据源 ID
+ * 获取指定数据库下所有书影音页面
  */
 export async function fetchAllPages(
   databaseId: string,
-): Promise<WordMetadata[] | undefined> {
-  // 1. 获取数据源ID
+): Promise<MediaMetadata[] | undefined> {
   const dbs = await notion.databases.retrieve({
     database_id: databaseId,
   });
@@ -24,31 +21,28 @@ export async function fetchAllPages(
     return;
   }
 
-  // 2. 选择数据源（如果数据库内有多个数据源，可能需要逻辑选择，这里取第一个）
   const dataSourceId = dbs.data_sources[0].id;
 
-  // 3. 递归查询数据源，获取所有文章页面（处理分页）
-  // 注意：Notion API 每次最多返回 100 条，需要使用 start_cursor 分页获取
   const allResults: any[] = [];
   let startCursor: string | undefined;
 
   do {
     const response = await notion.dataSources.query({
       data_source_id: dataSourceId,
-      // filter: {
-      //   property: 'status',
-      //   select: { equals: 'published' },
-      // },
+      filter: {
+        property: 'status',
+        select: { does_not_equal: 'private' },
+      },
       sorts: [{ property: 'date', direction: 'descending' }],
       start_cursor: startCursor,
-      page_size: 100, // 每次最多获取 100 条
+      page_size: 100,
     });
 
     allResults.push(...response.results);
     startCursor = response.next_cursor || undefined;
 
     console.log(
-      `Fetched ${response.results.length} posts, total: ${allResults.length}`,
+      `Fetched ${response.results.length} media items, total: ${allResults.length}`,
     );
   } while (startCursor);
 
@@ -56,21 +50,25 @@ export async function fetchAllPages(
     return {
       page_id: page.id,
       last_edited_time: page.last_edited_time,
-      title: page.properties.title?.title[0]?.plain_text,
-      tags: page.properties.tags.multi_select.map((tag) => tag.name),
-      date: page.properties.date.date?.start,
-      status: page.properties.status.select?.name,
-      from: page.properties.from.select?.name,
-      last_fetch_time: page.properties.last_fetch_time.date?.start,
+      title: page.properties.title?.title[0]?.plain_text ?? '',
+      type: page.properties.type?.select?.name ?? '',
+      creator: page.properties.creator?.rich_text[0]?.plain_text ?? '',
+      rating: page.properties.rating?.number ?? 0,
+      status: page.properties.status?.select?.name ?? '',
+      date: page.properties.date?.date?.start ?? '',
+      tags: page.properties.tags?.multi_select?.map((t) => t.name) ?? [],
+      cover: page.properties.cover?.url ?? (page.cover?.type === 'external' ? page.cover.external.url : '') ?? '',
+      comment: page.properties.comment?.rich_text[0]?.plain_text ?? '',
+      link: page.properties.link?.url ?? '',
+      last_fetch_time: page.properties.last_fetch_time?.date?.start ?? null,
     };
   });
 }
 
 /**
  * 获取指定页面的纯 Markdown 内容
- * @param post 文章信息
  */
-export async function fetchPagePureMdContent(post: PostMetadata) {
+export async function fetchPagePureMdContent(post: MediaMetadata) {
   try {
     const { markdown } = await notion.pages.retrieveMarkdown({
       page_id: post.page_id,

@@ -3,14 +3,22 @@ import { getAllWords } from '@/libs/words-loader';
 
 export default async function ShuoShuo() {
   const words = await getAllWords();
-  console.log(words[0]);
+
   return (
-    <div>
-      <h1>ShuoShuo</h1>
-      这里是 ShuoShuo 页面
-      <div>
+    <div className="py-8 space-y-4">
+      <header>
+        <h1 className="text-2xl font-bold tracking-tight">说说</h1>
+        <p className="text-secondary text-sm mt-1">
+          随笔心情、生活碎片、一闪而过的念头。
+        </p>
+      </header>
+
+      <div className="space-y-4">
         {words.map((word) => (
-          <WordCard key={word?.postMeta.page_id} post={word} />
+          <WordCard
+            key={word?.postMeta.page_id}
+            post={word as { postMeta: any; content: string }}
+          />
         ))}
       </div>
     </div>

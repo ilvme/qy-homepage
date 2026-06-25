@@ -67,7 +67,7 @@ async function downloadImage(url: string, dest: string) {
   response.data.pipe(writer);
 
   return new Promise((resolve, reject) => {
-    writer.on('finish', resolve(dest));
+    writer.on('finish', () => resolve(dest));
     writer.on('error', reject);
   });
 }

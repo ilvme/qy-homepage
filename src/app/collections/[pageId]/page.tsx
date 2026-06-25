@@ -5,24 +5,27 @@ import rehypeSlug from 'rehype-slug';
 import BackToTop from '@/components/ui/BackToTop';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
-import Tag from '@/components/ui/Tag';
-import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
+import { getAllCollections, getCollectionByPageId } from '@/libs/collections-loader';
 import { extractHeadings } from '@/libs/content-supports';
 
 export async function generateStaticParams() {
-  const allPosts = await getAllPosts();
-  return allPosts.map((post) => ({ slug: post.slug }));
+  const all = await getAllCollections();
+  return all.map((item) => ({ pageId: item.page_id }));
 }
 
-export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function CollectionDetail({
+  params,
+}: {
+  params: Promise<{ pageId: string }>;
+}) {
+  const { pageId } = await params;
 
-  const postWithContent = await getPostBySlug(slug);
-  if (!postWithContent) notFound();
+  const item = await getCollectionByPageId(pageId);
+  if (!item) notFound();
 
-  const headings = extractHeadings(postWithContent.content);
+  const headings = extractHeadings(item.content);
 
-  const mdxSource = await serialize(postWithContent.content, {
+  const mdxSource = await serialize(item.content, {
     mdxOptions: {
       remarkPlugins: [],
       rehypePlugins: [rehypeSlug],
@@ -31,43 +34,40 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
   return (
     <div className="relative py-8">
-      {/* 目录 - 绝对定位在主体区域左侧外部 */}
       <TableOfContents headings={headings} />
 
-      {/* 文章内容 - 保持原有布局不受影响 */}
       <article>
         <header className="mb-8 space-y-3">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
-            {postWithContent.title}
+            {item.title}
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-secondary">
-            <time dateTime={postWithContent.date}>{postWithContent.date}</time>
+            {item.date && <time dateTime={item.date}>{item.date}</time>}
 
-            {postWithContent.category && (
+            {item.category && (
               <span className="px-2 py-0.5 rounded-full bg-muted text-xs">
-                {postWithContent.category}
-              </span>
-            )}
-
-            {postWithContent.type && (
-              <span className="px-2 py-0.5 rounded-full bg-muted text-xs">
-                {postWithContent.type}
+                {item.category}
               </span>
             )}
           </div>
 
-          {postWithContent.tags.length > 0 && (
+          {item.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {postWithContent.tags.map((tag: string) => (
-                <Tag key={tag} tag={tag} count={0} />
+              {item.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs px-2 py-0.5 rounded-full bg-muted text-secondary"
+                >
+                  #{tag}
+                </span>
               ))}
             </div>
           )}
 
-          {postWithContent.summary && (
+          {item.summary && (
             <blockquote className="border-l-2 border-border pl-4 text-secondary italic">
-              {postWithContent.summary}
+              {item.summary}
             </blockquote>
           )}
         </header>
@@ -76,14 +76,14 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
         <div className="mt-12 pt-6 border-t border-border">
           <Link
-            href="/posts"
+            href="/share"
             className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <title>返回</title>
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
             </svg>
-            返回文章列表
+            返回分享
           </Link>
         </div>
       </article>

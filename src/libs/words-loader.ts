@@ -14,11 +14,11 @@ export async function getAllWords() {
     .filter((item) => item !== null)
     .sort(
       (a, b) =>
-        new Date(a.last_edited_time).getTime() -
-        new Date(b.last_edited_time).getTime(),
+        new Date(b.last_edited_time).getTime() -
+        new Date(a.last_edited_time).getTime(),
     );
 
-  console.log('本地所有文章：', words.length);
+  console.log('本地说说数：', words.length);
 
   return words;
 }
