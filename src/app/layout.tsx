@@ -1,18 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import 'lxgw-wenkai-screen-webfont/lxgwwenkaigbscreen.css';
 import '@/assets/globals.css';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: '和光同尘',
@@ -25,15 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="zh-CN" className="h-full antialiased">
       <body className="min-h-full max-w-[800px] mx-auto px-4 sm:px-6">
         <Header />
-
         <main className="min-h-[calc(100vh-200px)]">{children}</main>
-
         <Footer />
       </body>
     </html>
