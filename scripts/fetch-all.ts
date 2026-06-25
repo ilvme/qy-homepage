@@ -10,9 +10,8 @@ import 'dotenv/config';
  */
 
 import { main as fetchArticles } from './articles/articles-fetcher';
+import { main as fetchCollections } from './share/collections-fetcher';
 import { main as fetchWords } from './words/words-fetcher';
-import { main as fetchMedia } from './media/media-fetcher';
-import { main as fetchCollections } from './collections/collections-fetcher';
 
 const forceMode = process.argv.includes('--force');
 

@@ -12,7 +12,7 @@
     "fetchArticles": "tsx scripts/articles/articles-fetcher.ts",
     "fetchWords": "tsx scripts/words/words-fetcher.ts",
     "fetchMedia": "tsx scripts/media/media-fetcher.ts",
-    "fetchCollections": "tsx scripts/collections/collections-fetcher.ts"
+    "fetchCollections": "tsx scripts/share/collections-fetcher.ts"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",

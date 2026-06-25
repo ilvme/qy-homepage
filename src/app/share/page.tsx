@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllMedia } from '@/libs/media-loader';
 import { getAllCollections } from '@/libs/collections-loader';
-import type { MediaMetadata, CollectionMetadata } from '../../scripts/types';
+import { getAllMedia } from '@/libs/media-loader';
+import type { CollectionMetadata, MediaMetadata } from '../../scripts/types';
 
 function RatingStars({ rating }: { rating: number }) {
   return (
@@ -110,7 +110,7 @@ function MediaCard({ item }: { item: MediaMetadata }) {
 function CollectionCard({ item }: { item: CollectionMetadata }) {
   return (
     <Link
-      href={`/collections/${item.page_id}`}
+      href={`/share/${item.page_id}`}
       className="block p-5 rounded-xl border border-border hover:bg-muted/50 transition-colors group"
     >
       <div className="flex items-start justify-between gap-3">
