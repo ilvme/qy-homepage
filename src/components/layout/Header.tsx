@@ -23,7 +23,7 @@ export default function Header() {
       </Link>
 
       {/* 桌面端导航 */}
-      <nav className="hidden sm:flex items-center gap-1 text-sm">
+      <nav className="hidden sm:flex items-center gap-1">
         {navLinks.map((link) => (
           <Link
             key={link.href}

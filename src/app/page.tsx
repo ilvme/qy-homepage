@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteConfig } from '@/site.config';
+import Typewriter from '@/components/ui/Typewriter';
 
 export default async function Home() {
   return (
@@ -7,7 +8,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="space-y-4">
         <h1 className="text-3xl font-bold tracking-tight">
-          {siteConfig.hero.greeting}
+          <Typewriter text={siteConfig.hero.greeting} />
         </h1>
         <p className="text-secondary leading-relaxed text-base max-w-xl">
           {siteConfig.hero.intro}
