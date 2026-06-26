@@ -24,7 +24,7 @@ function mapWordPage(page: any): WordMetadata {
 export function generateWordMdContent(postMeta: WordMetadata, content: string) {
   return `---
 title: "${postMeta.title.replace(/"/g, '\\"')}"
-date: "${postMeta.date ?? ''}"
+date: "${postMeta.date ?? postMeta.last_edited_time}"
 tags: [${postMeta.tags.map((tag) => `"${tag}"`).join(', ')}]
 status: "${postMeta.status}"
 from: "${postMeta.from ?? ''}"
