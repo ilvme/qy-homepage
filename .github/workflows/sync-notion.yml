@@ -1,55 +1,55 @@
-name: Sync Notion Content
-
-on:
-  schedule:
-    # 每小时同步一次
-    - cron: "0 * * * *"
-  # 手动触发
-  workflow_dispatch:
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: '9.1.1'
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Sync content from Notion
-        run: pnpm fetchAll
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_ARTICLES_DATABASE_ID: ${{ secrets.NOTION_ARTICLES_DATABASE_ID }}
-          NOTION_WORDS_DATABASE_ID: ${{ secrets.NOTION_WORDS_DATABASE_ID }}
-          NOTION_SHARE_DATABASE_ID: ${{ secrets.NOTION_SHARE_DATABASE_ID }}
-
-      - name: Commit and push if changed
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-          git add content/ public/notion-images/ 2>/dev/null || true
-
-          if git diff --staged --quiet; then
-            echo "No content changes, skipping commit."
-          else
-            git commit -m "chore: sync content from Notion"
-            git push
-            echo "Content synced and pushed."
-          fi
+#name: Sync Notion Content
+#
+#on:
+#  schedule:
+#    # 每小时同步一次
+#    - cron: "0 * * * *"
+#  # 手动触发
+#  workflow_dispatch:
+#
+#jobs:
+#  sync:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: write
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Setup pnpm
+#        uses: pnpm/action-setup@v4
+#        with:
+#          version: '9.1.1'
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: "20"
+#          cache: "pnpm"
+#
+#      - name: Install dependencies
+#        run: pnpm install --frozen-lockfile
+#
+#      - name: Sync content from Notion
+#        run: pnpm fetchAll
+#        env:
+#          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+#          NOTION_ARTICLES_DATABASE_ID: ${{ secrets.NOTION_ARTICLES_DATABASE_ID }}
+#          NOTION_WORDS_DATABASE_ID: ${{ secrets.NOTION_WORDS_DATABASE_ID }}
+#          NOTION_SHARE_DATABASE_ID: ${{ secrets.NOTION_SHARE_DATABASE_ID }}
+#
+#      - name: Commit and push if changed
+#        run: |
+#          git config user.name 'github-actions[bot]'
+#          git config user.email 'github-actions[bot]@users.noreply.github.com'
+#
+#          git add content/ public/notion-images/ 2>/dev/null || true
+#
+#          if git diff --staged --quiet; then
+#            echo "No content changes, skipping commit."
+#          else
+#            git commit -m "chore: sync content from Notion"
+#            git push
+#            echo "Content synced and pushed."
+#          fi
