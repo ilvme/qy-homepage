@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import path from 'path';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
 import { serializeMdx } from '@/libs/mdx-serializer';
+
+export const metadata: Metadata = {
+  title: '友情链接',
+  description: '那些在数字世界中相遇的朋友们',
+};
 
 export default async function FriendsPage() {
   const CONTENT_DIR = path.resolve(process.cwd(), 'content');

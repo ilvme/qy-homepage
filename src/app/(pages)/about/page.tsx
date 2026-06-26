@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import path from 'path';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
 import { serializeMdx } from '@/libs/mdx-serializer';
+
+export const metadata: Metadata = {
+  title: '关于',
+  description: '关于我和这个站点',
+};
 
 export default async function AboutMe() {
   const CONTENT_DIR = path.resolve(process.cwd(), 'content');

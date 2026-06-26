@@ -1,7 +1,25 @@
+import type { Metadata } from 'next';
 import PostItem from '@/components/ui/PostItem';
 import { getPostsByTag } from '@/libs/content-loader';
 
-export default async function Tags({ params }: { params: Promise<{ tag: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}): Promise<Metadata> {
+  const { tag } = await params;
+  const decoded = tag.includes('%') ? decodeURIComponent(tag) : tag;
+  return {
+    title: `#${decoded}`,
+    description: `带有标签「${decoded}」的文章列表`,
+  };
+}
+
+export default async function Tags({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
   let { tag } = await params;
 
   tag = tag.includes('%') ? decodeURIComponent(tag) : tag;

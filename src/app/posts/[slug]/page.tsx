@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import BackToTop from '@/components/ui/BackToTop';
@@ -7,6 +8,27 @@ import Tag from '@/components/ui/Tag';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 import { extractHeadings } from '@/libs/content-supports';
 import { serializeMdx } from '@/libs/mdx-serializer';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    description: post.summary || post.title,
+    openGraph: {
+      title: post.title,
+      description: post.summary || undefined,
+      type: 'article',
+      publishedTime: post.date,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts();

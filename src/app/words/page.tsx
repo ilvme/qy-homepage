@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import WordCard from '@/app/words/_components/WordCard';
 import { getAllWords } from '@/libs/words-loader';
+
+export const metadata: Metadata = {
+  title: '说说',
+  description: '碎片化的思考与记录',
+};
 
 export default async function ShuoShuo() {
   const words = await getAllWords();
