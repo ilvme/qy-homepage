@@ -3,16 +3,16 @@ title: "康佳的简历"
 slug: "resume"
 date: "2026-06-01"
 page_id: "38ac485e-f356-8079-bb96-d6b7e60f26e7"
-last_edited_time: "2026-06-26T05:03:00.000Z"
-last_fetch_time: "2026-06-26T06:44:55.353Z"
+last_edited_time: "2026-06-26T12:14:00.000Z"
+last_fetch_time: "2026-06-26T13:04:33.044Z"
 type: "page"
 ---
 
 # 康佳的简历
 ## **个人信息**
 ---
-- \*我：\*\*康佳 \| 男 \| Base 天津
-- \*教育水平：\*\*本科 \| 河北大学 \| 计算机科学与技术专业 \| 2019 年毕业
+- **我：** 康佳 \| 男 \| Base 天津
+- **教育水平：**本科 \| 河北大学 \| 计算机科学与技术专业 \| 2019 年毕业
 - **手机 & 微信：**+86 18232110170
 - **邮箱：**[**ikangjia.cn@outlook.com**](mailto:ikangjia.cn@outlook.com)
 - **个人主页：**[**https://ikangjia.cn**](https://ikangjia.cn/)
@@ -28,8 +28,7 @@ type: "page"
 - 掌握 HTML + CSS + JavaScript 基本特性，熟练使用 ES6+ 语法
 - 熟练使用 Vue 全家桶，包括但不限于 Vuex, Vue Router, Pinia
 - 熟练使用主流前端工具库，如 ESLint, Element Plus, NaiveUI, ECharts...
-- 了解 React & Next.js 相关生态，在个人项目有应用
-- 了解 Node.js 及相关生态，在个人项目有应用
+- 熟悉 React & Next.js 相关生态
 ### 团队协作
 - 熟练使用 Git，能够践行 Git Flow 工作流；熟练使用 GitHub, GitLab
 - 熟练使用 IDEA、Navicat、Postman、XShell、Typora、XMind、ProcessOn 等工具
