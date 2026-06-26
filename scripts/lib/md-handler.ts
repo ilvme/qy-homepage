@@ -24,6 +24,8 @@ export interface MdHandlerConfig<T extends BaseMeta> {
   getFileKey: (item: T) => string;
   /** 生成完整 MD 文件内容（frontmatter + 正文） */
   generateContent: (item: T, markdown: string) => string;
+  /** 当 markdown 内容为空时的回退函数，返回替代内容或 null 跳过 */
+  emptyContentFallback?: (item: T) => string | null;
 }
 
 /**
@@ -32,7 +34,7 @@ export interface MdHandlerConfig<T extends BaseMeta> {
  * 返回的函数负责：增量检查 → 获取 Markdown → 下载图片 → 写文件
  */
 export function createMdHandler<T extends BaseMeta>(config: MdHandlerConfig<T>) {
-  const { imageUrlPath, getFileKey, generateContent } = config;
+  const { imageUrlPath, getFileKey, generateContent, emptyContentFallback } = config;
   // 将相对路径解析为基于项目根目录的绝对路径
   const contentDir = path.resolve(process.cwd(), config.contentDir);
   const imagesDir = path.resolve(process.cwd(), config.imagesDir);
@@ -85,10 +87,16 @@ export function createMdHandler<T extends BaseMeta>(config: MdHandlerConfig<T>) 
 
         console.log(`→ Fetching: ${item.title}`);
 
-        const markdown = await fetchPageMarkdown(item.page_id);
+        let markdown = await fetchPageMarkdown(item.page_id);
         if (!markdown) {
-          console.error(`✗ No content returned for: ${item.title}`);
-          continue;
+          const fallback = emptyContentFallback?.(item);
+          if (fallback) {
+            console.log(`→ Content empty, using fallback for: ${item.title}`);
+            markdown = fallback;
+          } else {
+            console.error(`✗ No content returned for: ${item.title}`);
+            continue;
+          }
         }
 
         const processedMarkdown = await downloadAndReplaceImages(

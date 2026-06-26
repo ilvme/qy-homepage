@@ -42,6 +42,7 @@ const toLocalMarkdown = createMdHandler<WordMetadata>({
   imageUrlPath: '/notion-images/words',
   getFileKey: (item) => item.page_id,
   generateContent: generateWordMdContent,
+  emptyContentFallback: (item) => item.title || null,
 });
 
 export async function main() {

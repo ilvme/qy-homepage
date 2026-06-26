@@ -2,6 +2,10 @@ import { serialize } from 'next-mdx-remote/serialize';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import type { WordMetadata } from '../../../../scripts/types';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+
+dayjs.locale('zh-cn');
 
 interface WordCardProps {
   post: {
@@ -11,19 +15,10 @@ interface WordCardProps {
 }
 
 /**
- * 格式化日期为更友好的显示格式
+ * 格式化日期为更友好的显示格式：2026/6/12 14:30 周五
  */
 function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-
-  // 格式化：2026年6月12日 周五
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-  const weekDay = weekDays[date.getDay()];
-
-  return `${year}/${month}/${day} ${weekDay}`;
+  return dayjs(dateStr).format('YYYY/M/D HH:mm ddd');
 }
 
 export default async function WordCard({ post }: WordCardProps) {
