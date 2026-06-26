@@ -69,19 +69,30 @@ export function parseMdFromFile(filePath: string, withContent = false) {
 }
 
 export function cleanMarkdown(md: string) {
-  // 1. <empty-block/> → 段落分隔
-  md = md.replace(/<empty-block\/>/g, '\n\n');
+  // 1. <empty-block/> 序列 → 等比空行
+  //    1 个 → \n\n（段落分隔，即 1 个空行）
+  //    2 个 → \n\n<br />\n\n（2 个空行）
+  //    N 个 → \n\n + (N-1) 个 <br /> + \n\n
+  md = md.replace(/(<empty-block\/>\n?)+/g, (match) => {
+    const count = (match.match(/<empty-block\/>/g) || []).length;
+    if (count === 1) return '\n\n';
+    return '\n\n' + '<br />\n'.repeat(count - 1) + '\n';
+  });
 
-  // 2. {color="..."} → Notion 内联颜色标记，移除
+  // 2. Notion 文本块之间用单个 \n 分隔，标准 Markdown 会忽略它
+  //    添加两个尾随空格使其变成硬换行（Markdown line break）
+  md = md.replace(/([^\n])\n(?=[^\n])/g, '$1  \n');
+
+  // 3. {color="..."} → Notion 内联颜色标记，移除
   md = md.replace(/\s*\{color="[^"]*"\}/g, '');
 
-  // 3. <span> → 移除标签保留内容（避免 rehype-raw 嵌套解析冲突）
+  // 4. <span> → 移除标签保留内容（避免 rehype-raw 嵌套解析冲突）
   md = md.replace(/<span\b[^>]*>(.*?)<\/span>/gis, '$1');
 
-  // 4. 清理表格 align 属性
+  // 5. 清理表格 align 属性
   md = md.replace(/<(td|th)\s+align="[^"]*">/gi, '<$1>');
 
-  // 4. 移除空段落
+  // 6. 移除空段落
   md = md.replace(/<p>\s*<\/p>/gi, '');
 
   return md;

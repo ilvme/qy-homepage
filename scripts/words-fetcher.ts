@@ -1,6 +1,6 @@
-import type { WordMetadata } from './types';
-import { fetchAllPages } from './lib/notion-client';
 import { createMdHandler } from './lib/md-handler';
+import { fetchAllPages } from './lib/notion-client';
+import type { WordMetadata } from './types';
 
 /**
  * 将 Notion 原始 page 对象映射为 WordMetadata
@@ -10,7 +10,9 @@ function mapWordPage(page: any): WordMetadata {
     page_id: page.id,
     last_edited_time: page.last_edited_time,
     title: page.properties.title?.title[0]?.plain_text,
-    tags: page.properties.tags.multi_select.map((tag: { name: string }) => tag.name),
+    tags: page.properties.tags.multi_select.map(
+      (tag: { name: string }) => tag.name,
+    ),
     date: page.properties.date.date?.start,
     status: page.properties.status.select?.name,
     from: page.properties.from.select?.name,
@@ -40,16 +42,14 @@ const toLocalMarkdown = createMdHandler<WordMetadata>({
   contentDir: 'content/words',
   imagesDir: 'public/notion-images/words',
   imageUrlPath: '/notion-images/words',
-  getFileKey: (item) => item.page_id,
+  getFileKey: (item) => item.title,
   generateContent: generateWordMdContent,
   emptyContentFallback: (item) => item.title || null,
 });
 
 export async function main() {
   if (!process.env.NOTION_WORDS_DATABASE_ID) {
-    console.error(
-      'Error: NOTION_WORDS_DATABASE_ID is not set in .env',
-    );
+    console.error('Error: NOTION_WORDS_DATABASE_ID is not set in .env');
     process.exit(1);
   }
 
