@@ -1,13 +1,13 @@
 ---
 title: "摸鱼儿 提笔画相思"
 slug: "ti-bi-hua-xiang-si"
-date: "2015-01-10"
+date: "2015-03-31"
 category: "poetry"
 tags: ["相思"]
 status: "published"
 type: "article"
-last_fetch_time: "2026-06-26T06:44:54.293Z"
-last_edited_time: "2026-06-26T05:26:00.000Z"
+last_fetch_time: "2026-06-26T16:08:18.860Z"
+last_edited_time: "2026-06-26T13:18:00.000Z"
 page_id: "37bc485e-f356-8023-9861-d8579f2ad0aa"
 summary: ""
 cover: ""
@@ -19,7 +19,10 @@ icon: ""
 那一年，我们高四。
 这一年，依旧记你清晰模样。
 <empty-block/>
+<empty-block/>
 **摸鱼儿 提笔画相思**
+<empty-block/>
 天凄凄空阶雨滴，知是谁家丝缕。双飞燕儿屋檐低，窗前依稀言语。欢乐趣，离别苦，此中相思无所寄。少年情事，无端起妒意。闲时销魂，竟思传心语。
 西风疾，问卿是否添衣。苦恨三墙隔你。情至深处似无情，相知更比初遇。天已许，流年度，传情却道填词苦。卿应有语，念西方红衣。风凉难敌，提笔画相思。
- 2015.3.31 夜
+<empty-block/>
+2015.3.31 夜
