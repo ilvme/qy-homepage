@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import BackToTop from '@/components/ui/BackToTop';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
 import Tag from '@/components/ui/Tag';
@@ -101,7 +102,7 @@ export default async function Post({
 
         <MdxRenderer source={mdxSource} className="text-base xl:text-lg" />
 
-        <div className="mt-12 pt-6 border-t border-border">
+        <div className="mt-12 pt-6 border-t border-border flex items-center justify-between">
           <Link
             href="/posts"
             className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
@@ -123,6 +124,7 @@ export default async function Post({
             </svg>
             返回文章列表
           </Link>
+          <ScrollToTop />
         </div>
       </article>
 
