@@ -13,8 +13,8 @@ interface TypewriterProps {
 
 export default function Typewriter({
   text,
-  speed = 120,
-  delay = 300,
+  speed = 160,
+  delay = 500,
   className,
 }: TypewriterProps) {
   const [displayed, setDisplayed] = useState('');
