@@ -28,5 +28,5 @@ export default async function AboutMe() {
       ],
     },
   });
-  return <MdxRenderer source={mdxSource} className="text-lg lg:text-xl"></MdxRenderer>;
+  return <MdxRenderer source={mdxSource} className="text-base lg:text-lg"></MdxRenderer>;
 }
