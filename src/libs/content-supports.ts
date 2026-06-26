@@ -72,10 +72,13 @@ export function cleanMarkdown(md: string) {
   // 1. <empty-block/> → 段落分隔
   md = md.replace(/<empty-block\/>/g, '\n\n');
 
-  // 2. <span> → 移除标签保留内容（避免 rehype-raw 嵌套解析冲突）
+  // 2. {color="..."} → Notion 内联颜色标记，移除
+  md = md.replace(/\s*\{color="[^"]*"\}/g, '');
+
+  // 3. <span> → 移除标签保留内容（避免 rehype-raw 嵌套解析冲突）
   md = md.replace(/<span\b[^>]*>(.*?)<\/span>/gis, '$1');
 
-  // 3. 清理表格 align 属性
+  // 4. 清理表格 align 属性
   md = md.replace(/<(td|th)\s+align="[^"]*">/gi, '<$1>');
 
   // 4. 移除空段落
