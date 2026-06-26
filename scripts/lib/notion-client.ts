@@ -66,6 +66,43 @@ export async function fetchAllPages<T>(
 }
 
 /**
+ * 获取数据库中符合条件的单个页面
+ * 适用于 resume、friends 等只有一个页面的类型
+ *
+ * @param databaseId - Notion 数据库 ID
+ * @param mapPage    - 将原始 page 对象映射为元数据类型 T
+ * @param filter     - 过滤条件，如 { property: 'type', select: { equals: 'resume' } }
+ */
+export async function fetchSinglePage<T>(
+  databaseId: string,
+  mapPage: (page: any) => T,
+  filter: Record<string, unknown>,
+): Promise<T | null> {
+  const dbs = await notion.databases.retrieve({
+    database_id: databaseId,
+  });
+
+  if (!(dbs as any).data_sources || (dbs as any).data_sources.length === 0) {
+    console.error('No data sources found for this database.');
+    return null;
+  }
+
+  const dataSourceId = (dbs as any).data_sources[0].id;
+
+  const response = await notion.dataSources.query({
+    data_source_id: dataSourceId,
+    filter: filter as any,
+    page_size: 1,
+  });
+
+  if (!response.results || response.results.length === 0) {
+    return null;
+  }
+
+  return mapPage(response.results[0]);
+}
+
+/**
  * 获取指定页面的纯 Markdown 内容
  */
 export async function fetchPageMarkdown(

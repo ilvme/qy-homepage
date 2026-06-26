@@ -1,18 +1,18 @@
 import { createHandler, fetchByType } from './lib/article-utils';
 
-/** 文章（技术笔记 + 生活博客）→ content/posts */
+/** 分享 → content/shares */
 const handler = createHandler(
-  'content/posts',
-  'public/notion-images/posts',
-  '/notion-images/posts',
+  'content/shares',
+  'public/notion-images/shares',
+  '/notion-images/shares',
 );
 
-export async function fetchArticles() {
-  await fetchByType('article', handler, 'Articles');
+export async function fetchShares() {
+  await fetchByType('share', handler, 'Shares');
 }
 
 export async function main() {
-  await fetchArticles();
+  await fetchShares();
 }
 
 // 支持独立运行

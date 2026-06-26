@@ -1,8 +1,8 @@
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
-import { fetchPageMarkdown } from './notion-client';
+import path from 'path';
 import { downloadAndReplaceImages } from './images-handler';
+import { fetchPageMarkdown } from './notion-client';
 
 /** 基础元数据 —— 所有类型至少包含这些字段 */
 export interface BaseMeta {
@@ -33,15 +33,21 @@ export interface MdHandlerConfig<T extends BaseMeta> {
  *
  * 返回的函数负责：增量检查 → 获取 Markdown → 下载图片 → 写文件
  */
-export function createMdHandler<T extends BaseMeta>(config: MdHandlerConfig<T>) {
-  const { imageUrlPath, getFileKey, generateContent, emptyContentFallback } = config;
+export function createMdHandler<T extends BaseMeta>(
+  config: MdHandlerConfig<T>,
+) {
+  const { imageUrlPath, getFileKey, generateContent, emptyContentFallback } =
+    config;
   // 将相对路径解析为基于项目根目录的绝对路径
   const contentDir = path.resolve(process.cwd(), config.contentDir);
   const imagesDir = path.resolve(process.cwd(), config.imagesDir);
 
   function readLocalMeta(
     key: string,
-  ): { last_fetch_time: string | null; last_edited_time: string | null } | null {
+  ): {
+    last_fetch_time: string | null;
+    last_edited_time: string | null;
+  } | null {
     const filePath = path.join(contentDir, `${key}.md`);
     if (!fs.existsSync(filePath)) return null;
 
@@ -58,6 +64,9 @@ export function createMdHandler<T extends BaseMeta>(config: MdHandlerConfig<T>) 
   }
 
   function needsUpdate(item: T): boolean {
+    // --force 模式：强制重新拉取
+    if (process.env.FORCE_SYNC === 'true') return true;
+
     const key = getFileKey(item);
     const local = readLocalMeta(key);
     if (!local) return true;
@@ -109,7 +118,10 @@ export function createMdHandler<T extends BaseMeta>(config: MdHandlerConfig<T>) 
         const now = new Date().toISOString();
         const itemWithFetchTime = { ...item, last_fetch_time: now };
 
-        const fullContent = generateContent(itemWithFetchTime, processedMarkdown);
+        const fullContent = generateContent(
+          itemWithFetchTime,
+          processedMarkdown,
+        );
         const fileName = `${key}.md`;
         const filePath = path.join(contentDir, fileName);
 
