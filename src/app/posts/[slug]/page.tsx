@@ -83,7 +83,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
           )}
         </header>
 
-        <MdxRenderer source={mdxSource} />
+        <MdxRenderer source={mdxSource} className="text-lg" />
 
         <div className="mt-12 pt-6 border-t border-border">
           <Link

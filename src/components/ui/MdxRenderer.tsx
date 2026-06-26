@@ -20,11 +20,12 @@ const components = {
 
 interface MdxRendererProps {
   source: MDXRemoteSerializeResult;
+  className?: string;
 }
 
-export default function MdxRenderer({ source }: MdxRendererProps) {
+export default function MdxRenderer({ source, className }: MdxRendererProps) {
   return (
-    <Prose>
+    <Prose className={className}>
       <MDXRemote {...source} components={components} />
     </Prose>
   );

@@ -87,7 +87,7 @@ export default async function WordCard({ post }: WordCardProps) {
 
       <hr className="mb-3 mt-2 border-border" />
 
-      <div>{hasContent && <MdxRenderer source={mdxSource} />}</div>
+      <div>{hasContent && <MdxRenderer source={mdxSource} className="text-base" />}</div>
 
       <WordImageGrid images={images} />
     </article>
