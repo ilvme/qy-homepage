@@ -1,21 +1,23 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { serialize } from 'next-mdx-remote/serialize';
-import rehypeSlug from 'rehype-slug';
-import rehypeShiki from '@shikijs/rehype';
 import BackToTop from '@/components/ui/BackToTop';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
 import Tag from '@/components/ui/Tag';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 import { extractHeadings } from '@/libs/content-supports';
+import { serializeMdx } from '@/libs/mdx-serializer';
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts();
   return allPosts.map((post) => ({ slug: post.slug }));
 }
 
-export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
 
   const postWithContent = await getPostBySlug(slug);
@@ -23,19 +25,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
   const headings = extractHeadings(postWithContent.content);
 
-  const mdxSource = await serialize(postWithContent.content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [
-        [rehypeShiki, {
-          themes: { light: 'github-light', dark: 'github-dark' },
-          defaultColor: false,
-          addLanguageClass: true,
-        }],
-        rehypeSlug,
-      ],
-    },
-  });
+  const mdxSource = await serializeMdx(postWithContent.content);
 
   return (
     <div className="relative py-8">
@@ -58,7 +48,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
             {postWithContent.category && (
               <>
-                <span aria-hidden="true" className="text-border select-none">·</span>
+                <span aria-hidden="true" className="text-border select-none">
+                  ·
+                </span>
                 <span className="font-medium text-foreground/80">
                   {postWithContent.category}
                 </span>
@@ -67,7 +59,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
 
             {postWithContent.tags.length > 0 && (
               <>
-                <span aria-hidden="true" className="text-border select-none">·</span>
+                <span aria-hidden="true" className="text-border select-none">
+                  ·
+                </span>
                 {postWithContent.tags.map((tag: string) => (
                   <Tag key={tag} tag={tag} count={0} />
                 ))}
@@ -90,9 +84,20 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
             href="/posts"
             className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <title>返回</title>
-              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
             </svg>
             返回文章列表
           </Link>

@@ -3,6 +3,7 @@ import matter from 'gray-matter';
 import path from 'path';
 import { downloadAndReplaceImages } from './images-handler';
 import { fetchPageMarkdown } from './notion-client';
+import { cleanNotionMarkdown } from './notion-utils';
 
 /** 基础元数据 —— 所有类型至少包含这些字段 */
 export interface BaseMeta {
@@ -42,9 +43,7 @@ export function createMdHandler<T extends BaseMeta>(
   const contentDir = path.resolve(process.cwd(), config.contentDir);
   const imagesDir = path.resolve(process.cwd(), config.imagesDir);
 
-  function readLocalMeta(
-    key: string,
-  ): {
+  function readLocalMeta(key: string): {
     last_fetch_time: string | null;
     last_edited_time: string | null;
   } | null {
@@ -97,6 +96,7 @@ export function createMdHandler<T extends BaseMeta>(
         console.log(`→ Fetching: ${item.title}`);
 
         let markdown = await fetchPageMarkdown(item.page_id);
+        // if (markdown) markdown = cleanNotionMarkdown(markdown);
         if (!markdown) {
           const fallback = emptyContentFallback?.(item);
           if (fallback) {

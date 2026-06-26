@@ -112,6 +112,7 @@ export async function fetchPageMarkdown(
     const { markdown } = await notion.pages.retrieveMarkdown({
       page_id: pageId,
     });
+
     return markdown;
   } catch (error) {
     console.error(`✗ Failed to obtain markdown for [${pageId}]:`, error);

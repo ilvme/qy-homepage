@@ -1,32 +1,30 @@
-import rehypeShiki from '@shikijs/rehype';
-import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
-import rehypeSlug from 'rehype-slug';
 import MdxRenderer from '@/components/ui/MdxRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
+import { serializeMdx } from '@/libs/mdx-serializer';
 
 export default async function FriendsPage() {
   const CONTENT_DIR = path.resolve(process.cwd(), 'content');
   const filePath = path.join(CONTENT_DIR, 'pages', 'friends.md');
   const fileContent = parseMdFromFile(filePath, true);
-  if (!fileContent?.content) return <p>内容加载失败。</p>;
+  if (!fileContent?.content) {
+    return (
+      <div className="py-8 space-y-8">
+        <header>
+          <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>
+        </header>
+        <div className="py-16 text-center text-secondary">
+          <p className="text-4xl mb-4">🤝</p>
+          <p>暂无内容</p>
+          <p className="text-xs mt-2">
+            请在 Notion 中配置「友情链接」页面后拉取。
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-  const mdxSource = await serialize(fileContent.content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [
-        [
-          rehypeShiki,
-          {
-            themes: { light: 'github-light', dark: 'github-dark' },
-            defaultColor: false,
-            addLanguageClass: true,
-          },
-        ],
-        rehypeSlug,
-      ],
-    },
-  });
+  const mdxSource = await serializeMdx(fileContent.content);
 
   return (
     <div className="py-8 space-y-8">

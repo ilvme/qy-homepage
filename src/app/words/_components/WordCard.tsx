@@ -1,8 +1,8 @@
-import { serialize } from 'next-mdx-remote/serialize';
+import dayjs from 'dayjs';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
 import MdxRenderer from '@/components/ui/MdxRenderer';
+import { serializeMdxLite } from '@/libs/mdx-serializer';
 import type { WordMetadata } from '../../../../scripts/types';
-import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 
 dayjs.locale('zh-cn');
@@ -28,12 +28,7 @@ export default async function WordCard({ post }: WordCardProps) {
   const waitToRender = hasContent ? cleanedContent : post.postMeta.title;
 
   // 将 Markdown 序列化为可渲染的格式
-  const mdxSource = await serialize(waitToRender ?? '', {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
-  });
+  const mdxSource = await serializeMdxLite(waitToRender ?? '');
 
   // 获取并格式化显示日期
   const dateStr = post.postMeta.date || post.postMeta.last_edited_time || '';
@@ -82,7 +77,9 @@ export default async function WordCard({ post }: WordCardProps) {
 
       <hr className="mb-3 mt-2 border-border" />
 
-      <div>{hasContent && <MdxRenderer source={mdxSource} className="text-base 2xl:text-lg" />}</div>
+      <div>
+        {<MdxRenderer source={mdxSource} className="text-base 2xl:text-lg" />}
+      </div>
 
       <WordImageGrid images={images} />
     </article>
@@ -105,5 +102,8 @@ function extractImagesFromMdx(content: string): {
   // Collapse 3+ consecutive newlines into 2 (one blank line)
   const cleanedContent = withoutImages.replace(/\n{3,}/g, '\n\n').trim();
 
-  return { images, cleanedContent };
+  // 判断是否有实质文字内容：去掉所有 HTML 标签后检查
+  const hasText = cleanedContent.replace(/<[^>]+>/g, '').trim().length > 0;
+
+  return { images, cleanedContent: hasText ? cleanedContent : '' };
 }

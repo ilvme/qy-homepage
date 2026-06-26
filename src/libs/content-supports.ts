@@ -12,13 +12,13 @@ export interface TocHeading {
  */
 function cleanHeadingText(text: string): string {
   return text
-    .replace(/\*\*(.+?)\*\*/g, '$1')       // **bold**
-    .replace(/__(.+?)__/g, '$1')           // __bold__
-    .replace(/\*(.+?)\*/g, '$1')           // *italic*
-    .replace(/_(.+?)_/g, '$1')             // _italic_
-    .replace(/~~(.+?)~~/g, '$1')           // ~~strikethrough~~
-    .replace(/`(.+?)`/g, '$1')             // `code`
-    .replace(/\[(.+?)\]\(.+?\)/g, '$1')    // [text](url)
+    .replace(/\*\*(.+?)\*\*/g, '$1') // **bold**
+    .replace(/__(.+?)__/g, '$1') // __bold__
+    .replace(/\*(.+?)\*/g, '$1') // *italic*
+    .replace(/_(.+?)_/g, '$1') // _italic_
+    .replace(/~~(.+?)~~/g, '$1') // ~~strikethrough~~
+    .replace(/`(.+?)`/g, '$1') // `code`
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // [text](url)
     .trim();
 }
 
@@ -54,6 +54,8 @@ export function extractHeadings(md: string): TocHeading[] {
  * @param withContent 是否返回内容
  */
 export function parseMdFromFile(filePath: string, withContent = false) {
+  if (!fs.existsSync(filePath)) return null;
+
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   if (!fileContent) return null;
 
@@ -67,25 +69,16 @@ export function parseMdFromFile(filePath: string, withContent = false) {
 }
 
 export function cleanMarkdown(md: string) {
-  // 1. 移除所有 span 标签（保留内容）
+  // 1. <empty-block/> → 段落分隔
+  md = md.replace(/<empty-block\/>/g, '\n\n');
+
+  // 2. <span> → 移除标签保留内容（避免 rehype-raw 嵌套解析冲突）
   md = md.replace(/<span\b[^>]*>(.*?)<\/span>/gis, '$1');
 
-  // 2. 修复 strong/em 嵌套问题：将 <strong> 转为 **，<em> 转为 *
-  md = md.replace(/<strong\b[^>]*>(.*?)<\/strong>/gis, '**$1**');
-  md = md.replace(/<em\b[^>]*>(.*?)<\/em>/gis, '*$1*');
-  md = md.replace(/<b\b[^>]*>(.*?)<\/b>/gis, '**$1**');
-  md = md.replace(/<i\b[^>]*>(.*?)<\/i>/gis, '*$1*');
-
-  // 3. 移除 div 标签
-  md = md.replace(/<div\b[^>]*>(.*?)<\/div>/gis, '$1');
-
-  // 4. 将 <br> 转为两个空格 + 换行（或者直接删掉）
-  md = md.replace(/<br\s*\/?>/gi, '  \n');
-
-  // 5. 清理表格中可能导致问题的 align 属性
+  // 3. 清理表格 align 属性
   md = md.replace(/<(td|th)\s+align="[^"]*">/gi, '<$1>');
 
-  // 6. 移除空段落或孤立的标签
+  // 4. 移除空段落
   md = md.replace(/<p>\s*<\/p>/gi, '');
 
   return md;
