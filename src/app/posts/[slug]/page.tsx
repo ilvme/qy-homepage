@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import BackToTop from '@/components/ui/BackToTop';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import MdxRenderer from '@/components/ui/MdxRenderer';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 import TableOfContents from '@/components/ui/TableOfContents';
 import Tag from '@/components/ui/Tag';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
@@ -93,11 +93,11 @@ export default async function Post({
           </div>
 
           {/* 摘要 */}
-          {postWithContent.summary && (
-            <blockquote className="border-l-[3px] border-foreground bg-muted rounded-r-md px-4 py-3 mt-6 text-secondary italic">
-              {postWithContent.summary}
-            </blockquote>
-          )}
+          {/*{postWithContent.summary && (*/}
+          {/*  <blockquote className="border-l-[3px] border-foreground bg-muted rounded-r-md px-4 py-3 mt-6 text-secondary italic">*/}
+          {/*    {postWithContent.summary}*/}
+          {/*  </blockquote>*/}
+          {/*)}*/}
         </header>
 
         <MdxRenderer source={mdxSource} className="text-base xl:text-lg" />
