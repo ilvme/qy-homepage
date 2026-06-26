@@ -1,0 +1,30 @@
+---
+title: "严惩"
+slug: "yan-cheng"
+date: "2015-01-10"
+category: "poetry"
+tags: ["高中", "青春"]
+status: "published"
+type: "article"
+last_fetch_time: "2026-06-26T16:26:45.319Z"
+last_edited_time: "2026-06-26T13:27:00.000Z"
+page_id: "38bc485e-f356-8042-9111-c29c6edf9582"
+summary: ""
+cover: ""
+icon: ""
+---
+
+**严惩**
+<empty-block/>
+好吧，算我侵入你的圣地
+你这，神一般的存在
+等待，你对我的审判
+地狱，不过隔着你与天堂两望，还有
+这炽热的如火一样的魂灵
+也要封存，与冰山一起凝结
+<empty-block/>
+时光匆匆，来不及念及你的愚蠢
+苍颜白发，怕死亡 悄已逼近
+你进入了入轮回，而我获得了永生
+<empty-block/>
+高中 林深时觉寒
