@@ -9,6 +9,11 @@ import { Analytics } from "@vercel/analytics/next"
 export const metadata: Metadata = {
   title: '和光同尘',
   description: '个人主页 - 记录生活与技术',
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
+  },
 };
 
 export default function RootLayout({
