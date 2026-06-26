@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { siteConfig } from '@/site.config';
 
 const navLinks = [
   { href: '/posts', label: '文章' },
@@ -18,7 +19,7 @@ export default function Header() {
         href="/"
         className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
       >
-        和光同尘
+        {siteConfig.title}
       </Link>
 
       {/* 桌面端导航 */}

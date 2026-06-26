@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteConfig } from '@/site.config';
 
 export default async function Home() {
   return (
@@ -6,11 +7,10 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="space-y-4">
         <h1 className="text-3xl font-bold tracking-tight">
-          你好，我是林深时觉寒
+          {siteConfig.hero.greeting}
         </h1>
         <p className="text-secondary leading-relaxed text-base max-w-xl">
-          欢迎来到我的小站。这里是我记录生活感悟、技术笔记、读书观影心得的地方。
-          希望在数字世界里，找到一片属于自己的宁静角落。
+          {siteConfig.hero.intro}
         </p>
         <div className="flex gap-3 pt-2">
           <Link
