@@ -12,7 +12,7 @@ export default function PostItem({
   return (
     <article className="py-5 border-b border-border last:border-b-0">
       <Link
-        href={`/src/app/(blogs)/posts/${slug}`}
+        href={`/posts/${slug}`}
         className="block space-y-2 group"
       >
         <h2 className="font-semibold text-lg group-hover:underline underline-offset-4">

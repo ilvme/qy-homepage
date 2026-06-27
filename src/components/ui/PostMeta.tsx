@@ -42,7 +42,7 @@ export default function PostMeta({
 
       {category && (
         <Link
-          href={`/src/app/(blogs)/categories/${category}`}
+          href={`/categories/${category}`}
           className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 hover:underline underline-offset-4"
         >
           <svg
@@ -67,7 +67,7 @@ export default function PostMeta({
           {tags.map((tag) => (
             <Link
               key={tag}
-              href={`/src/app/(blogs)/tags/${tag}`}
+              href={`/tags/${tag}`}
               className="hover:underline underline-offset-4"
             >
               #{tag}

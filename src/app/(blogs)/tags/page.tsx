@@ -21,7 +21,7 @@ export default async function TagsPage() {
         {tags.map((tag) => (
           <Link
             key={tag.label}
-            href={`/src/app/(blogs)/tags/${tag.label}`}
+            href={`/tags/${tag.label}`}
             className="hover:underline"
           >
             <span className="">#</span>

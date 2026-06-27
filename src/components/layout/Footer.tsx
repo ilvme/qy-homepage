@@ -33,7 +33,7 @@ export default function Footer() {
           </Link>
           <span>·</span>
           <a
-            href="/src/app/(blogs)/rss.xml"
+            href="/rss.xml"
             className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
           >
             RSS

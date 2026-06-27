@@ -9,7 +9,7 @@ export default function PostItemLite({
   return (
     <div className="flex justify-between items-baseline py-1">
       <Link
-        href={`/src/app/(blogs)/posts/${postMetadata.slug}`}
+        href={`/posts/${postMetadata.slug}`}
         className="text-base font-medium truncate pr-4 hover:underline underline-offset-4"
       >
         {postMetadata.title}
