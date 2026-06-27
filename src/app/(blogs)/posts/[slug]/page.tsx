@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import PostMeta from '@/app/(blogs)/_components/PostMeta';
 import BackToTop from '@/components/ui/BackToTop';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
-import PostMeta from '@/components/ui/PostMeta';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import TableOfContents from '@/components/ui/TableOfContents';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';

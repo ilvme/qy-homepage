@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import PostItemLite from '@/components/ui/PostItemLite';
+import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 
 export const metadata: Metadata = {

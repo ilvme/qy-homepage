@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import PostItem from '@/components/ui/PostItem';
+import PostItem from '@/app/(blogs)/_components/PostItem';
 import { getPostsByTag } from '@/libs/content-loader';
 
 export async function generateMetadata({

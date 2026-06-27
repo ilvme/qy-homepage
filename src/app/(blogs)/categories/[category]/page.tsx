@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import PostItem from '@/components/ui/PostItem';
+import PostItem from '@/app/(blogs)/_components/PostItem';
 import { getPostsByCategory } from '@/libs/content-loader';
 
 export async function generateMetadata({
@@ -8,7 +8,9 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
-  const decoded = category.includes('%') ? decodeURIComponent(category) : category;
+  const decoded = category.includes('%')
+    ? decodeURIComponent(category)
+    : category;
   return {
     title: `📁 ${decoded}`,
     description: `分类「${decoded}」下的文章列表`,

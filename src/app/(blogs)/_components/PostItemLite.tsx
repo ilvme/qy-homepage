@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { PostMetadata } from '../../../scripts/types';
+import type { PostMetadata } from '../../../../scripts/types';
 
 export default function PostItemLite({
   postMetadata,

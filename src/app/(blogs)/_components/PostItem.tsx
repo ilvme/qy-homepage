@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import PostMeta from '@/components/ui/PostMeta';
-import type { PostMetadata } from '../../../scripts/types';
+import PostMeta from '@/app/(blogs)/_components/PostMeta';
+import type { PostMetadata } from '../../../../scripts/types';
 
 export default function PostItem({
   postMetadata,
