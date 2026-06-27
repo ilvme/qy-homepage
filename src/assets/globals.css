@@ -181,7 +181,7 @@ body {
 /* 图片 */
 .prose img {
   border-radius: 0.375rem;
-  margin: 1rem auto;
+  margin: 0.8rem auto;
 }
 
 /* 任务列表 */
@@ -198,7 +198,7 @@ body {
   appearance: none;
   width: 1rem;
   height: 1rem;
-  border: 1.5px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 0.1875rem;
   margin-top: 0.3rem;
   flex-shrink: 0;
@@ -219,7 +219,7 @@ body {
   width: 5px;
   height: 8px;
   border: solid var(--background);
-  border-width: 0 1.5px 1.5px 0;
+  border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
 

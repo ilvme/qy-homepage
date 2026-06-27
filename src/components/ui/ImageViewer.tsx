@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface ImageViewerProps {
@@ -19,20 +18,16 @@ export default function ImageViewer({
   className = '',
 }: ImageViewerProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const caption = alt && alt !== 'Image' ? alt : '';
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
-  // ESC 键关闭
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) closeModal();
+      if (e.key === 'Escape' && isOpen) setIsOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  // 阻止背景滚动
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -46,23 +41,31 @@ export default function ImageViewer({
 
   return (
     <>
-      {/* 缩略图 */}
-      <div className="relative cursor-pointer" onClick={openModal}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={`rounded-lg object-cover ${className}`}
-          unoptimized // 如果是本地已优化图片可以不加，视情况
-        />
-      </div>
+      <figure className={`my-4 ${className}`}>
+        <div
+          className="relative cursor-pointer overflow-hidden rounded-lg"
+          onClick={() => setIsOpen(true)}
+        >
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        {caption && (
+          <figcaption className="-mt-1.5 text-center text-sm text-secondary">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
 
-      {/* 全屏模态框 */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
-          onClick={closeModal}
+          onClick={() => setIsOpen(false)}
         >
           <div
             className="relative max-w-[90vw] max-h-[90vh]"
@@ -74,8 +77,8 @@ export default function ImageViewer({
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
             />
             <button
-              className="absolute top-4 right-2 text-white bg-black/50 rounded-full p-3 hover:bg-black/70 transition"
-              onClick={closeModal}
+              className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-3 hover:bg-black/70 transition"
+              onClick={() => setIsOpen(false)}
               aria-label="关闭"
             >
               <svg
@@ -92,9 +95,9 @@ export default function ImageViewer({
                 />
               </svg>
             </button>
-            {alt && (
-              <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm bg-black/50 py-1 px-2 mx-auto w-fit rounded">
-                {alt}
+            {caption && (
+              <div className="absolute bottom-4 left-0 right-0 text-center text-white text-sm bg-black/50 py-2 px-3 mx-auto w-fit rounded">
+                {caption}
               </div>
             )}
           </div>

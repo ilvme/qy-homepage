@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import Callout from '@/components/ui/Callout';
 import CodeBlock from '@/components/ui/CodeBlock';
+import { Column, Columns } from '@/components/ui/Columns';
 import ImageViewer from '@/components/ui/ImageViewer';
 import Prose from '@/components/ui/Prose';
 
@@ -17,8 +18,10 @@ interface MarkdownRendererProps {
 
 const components = {
   Callout,
+  Columns,
+  Column,
   img: ({ src, alt }: any) => (
-    <ImageViewer src={src ?? ''} alt={alt ?? ''} width={800} height={500} />
+    <ImageViewer src={src ?? ''} alt={alt ?? ''} />
   ),
   pre: (props: any) => <CodeBlock {...props} />,
 };
