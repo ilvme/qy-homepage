@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { cleanMarkdown, parseMdFromFile } from '@/libs/content-supports';
+import { parseMdFromFile } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';
 
 export interface PostWithContent extends PostMetadata {
@@ -39,7 +39,7 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
 
   return {
     ...(parsed.postMeta as PostMetadata),
-    content: cleanMarkdown(parsed.content ?? ''),
+    content: parsed.content ?? '',
   };
 }
 

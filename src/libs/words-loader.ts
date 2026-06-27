@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { cleanMarkdown, parseMdFromFile } from '@/libs/content-supports';
+import { parseMdFromFile } from '@/libs/content-supports';
 
 const WORDS_DIR = path.join(process.cwd(), 'content/words');
 
@@ -13,7 +13,7 @@ export async function getAllWords() {
     .filter((item) => item !== null)
     .map((item) => ({
       ...item,
-      content: cleanMarkdown(item.content ?? ''),
+      content: item.content ?? '',
     }))
     .sort(
       (a, b) =>

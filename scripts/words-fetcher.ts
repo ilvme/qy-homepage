@@ -40,8 +40,7 @@ ${content}`;
 
 const toLocalMarkdown = createMdHandler<WordMetadata>({
   contentDir: 'content/words',
-  imagesDir: 'public/notion-images/words',
-  imageUrlPath: '/notion-images/words',
+  media: { mediaDir: 'public/notion-images/words', mediaUrlPath: '/notion-images/words' },
   getFileKey: (item) => item.title,
   generateContent: generateWordMdContent,
   emptyContentFallback: (item) => item.title || null,

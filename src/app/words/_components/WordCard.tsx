@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
-import MdxRenderer from '@/components/ui/MdxRenderer';
-import { serializeMdxLite } from '@/libs/mdx-serializer';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import type { WordMetadata } from '../../../../scripts/types';
 import 'dayjs/locale/zh-cn';
 
@@ -26,9 +25,6 @@ export default async function WordCard({ post }: WordCardProps) {
   const hasContent = cleanedContent.length > 0;
 
   const waitToRender = hasContent ? cleanedContent : post.postMeta.title;
-
-  // 将 Markdown 序列化为可渲染的格式
-  const mdxSource = await serializeMdxLite(waitToRender ?? '');
 
   // 获取并格式化显示日期
   const dateStr = post.postMeta.date || post.postMeta.last_edited_time || '';
@@ -78,7 +74,7 @@ export default async function WordCard({ post }: WordCardProps) {
       <hr className="mb-3 mt-2 border-border" />
 
       <div>
-        {<MdxRenderer source={mdxSource} className="text-base 2xl:text-lg" />}
+        <MarkdownRenderer content={waitToRender ?? ''} highlight={false} slug={false} className="text-base 2xl:text-lg" />
       </div>
 
       <WordImageGrid images={images} />

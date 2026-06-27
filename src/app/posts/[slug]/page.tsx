@@ -2,13 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import BackToTop from '@/components/ui/BackToTop';
-import MdxRenderer from '@/components/ui/MdxRenderer';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import TableOfContents from '@/components/ui/TableOfContents';
 import Tag from '@/components/ui/Tag';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 import { extractHeadings } from '@/libs/content-supports';
-import { serializeMdx } from '@/libs/mdx-serializer';
 
 export async function generateMetadata({
   params,
@@ -47,8 +46,6 @@ export default async function Post({
   if (!postWithContent) notFound();
 
   const headings = extractHeadings(postWithContent.content);
-
-  const mdxSource = await serializeMdx(postWithContent.content);
 
   return (
     <div className="relative py-8">
@@ -100,7 +97,7 @@ export default async function Post({
           {/*)}*/}
         </header>
 
-        <MdxRenderer source={mdxSource} className="text-base xl:text-lg" />
+        <MarkdownRenderer content={postWithContent.content} className="text-base xl:text-lg" />
 
         <div className="mt-12 pt-6 border-t border-border flex items-center justify-between">
           <Link
