@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import path from 'path';
-import MdxRenderer from '@/components/ui/MdxRenderer';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
-import { serializeMdx } from '@/libs/mdx-serializer';
 
 export const metadata: Metadata = {
   title: '简历',
@@ -28,14 +27,12 @@ export default async function ResumePage() {
     );
   }
 
-  const mdxSource = await serializeMdx(fileContent.content);
-
   return (
     <div className="py-8 space-y-8">
       {/*<header>*/}
       {/*  <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>*/}
       {/*</header>*/}
-      <MdxRenderer source={mdxSource} className="text-base lg:text-lg" />
+      <MarkdownRenderer content={fileContent.content} className="text-base lg:text-lg" />
     </div>
   );
 }

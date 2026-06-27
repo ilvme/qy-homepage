@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { cleanMarkdown, parseMdFromFile } from '@/libs/content-supports';
+import { parseMdFromFile } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';
 
 export interface PostWithContent extends PostMetadata {
@@ -39,17 +39,24 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
 
   return {
     ...(parsed.postMeta as PostMetadata),
-    content: cleanMarkdown(parsed.content ?? ''),
+    content: parsed.content ?? '',
   };
 }
 
 /**
  * 获取指定标签的文章
- * @param tag 标签
  */
 export async function getPostsByTag(tag: string) {
   const posts = await getAllPosts();
   return posts.filter((post) => post.tags.includes(tag));
+}
+
+/**
+ * 获取指定分类的文章
+ */
+export async function getPostsByCategory(category: string) {
+  const posts = await getAllPosts();
+  return posts.filter((post) => post.category === category);
 }
 
 /**

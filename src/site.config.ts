@@ -17,6 +17,11 @@ export const siteConfig = {
     cacheMaxAge: 3600,
   },
 
+  /** 分页 */
+  pagination: {
+    pageSize: 7,
+  },
+
   /** 首页 Hero 文案 */
   hero: {
     greeting: '你好，我是林深时觉寒',

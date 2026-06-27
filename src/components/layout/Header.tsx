@@ -7,6 +7,7 @@ import { siteConfig } from '@/site.config';
 const navLinks = [
   { href: '/posts', label: '文章' },
   { href: '/words', label: '说说' },
+  { href: '/archives', label: '归档' },
   { href: '/share', label: '分享' },
 ];
 

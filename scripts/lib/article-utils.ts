@@ -100,13 +100,12 @@ export async function fetchByType(
  */
 export function createHandler(
   contentDir: string,
-  imagesDir: string,
-  imageUrlPath: string,
+  mediaDir: string,
+  mediaUrlPath: string,
 ) {
   return createMdHandler<PostMetadata>({
     contentDir,
-    imagesDir,
-    imageUrlPath,
+    media: { mediaDir, mediaUrlPath },
     getFileKey: (item) => item.slug,
     generateContent: generateMdContent,
   });

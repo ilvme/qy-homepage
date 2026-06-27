@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
-import MdxRenderer from '@/components/ui/MdxRenderer';
-import { serializeMdxLite } from '@/libs/mdx-serializer';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import type { WordMetadata } from '../../../../scripts/types';
 import 'dayjs/locale/zh-cn';
 
@@ -27,17 +26,14 @@ export default async function WordCard({ post }: WordCardProps) {
 
   const waitToRender = hasContent ? cleanedContent : post.postMeta.title;
 
-  // 将 Markdown 序列化为可渲染的格式
-  const mdxSource = await serializeMdxLite(waitToRender ?? '');
-
   // 获取并格式化显示日期
   const dateStr = post.postMeta.date || post.postMeta.last_edited_time || '';
   const displayDate = formatDate(dateStr);
 
   return (
     <article className="border border-border rounded-xl p-5 mb-4 bg-card">
-      <section className="flex items-center flex-wrap justify-between   text-secondary">
-        <div className="flex items-center gap-x-4">
+      <section className="flex items-center flex-wrap justify-between gap-y-2 text-secondary">
+        <div className="flex items-center gap-x-4 flex-wrap gap-y-2">
           <time dateTime={dateStr} className="flex items-center gap-2">
             {/* 日历图标 */}
             <svg
@@ -59,7 +55,7 @@ export default async function WordCard({ post }: WordCardProps) {
             <span className="font-medium">{displayDate}</span>
           </time>
           {post.postMeta.tags.length > 0 && (
-            <div className="flex gap-1">
+            <div className="flex gap-2">
               {post.postMeta.tags.map((tag) => (
                 <span key={tag} className="text-sm">
                   #{tag}
@@ -78,7 +74,12 @@ export default async function WordCard({ post }: WordCardProps) {
       <hr className="mb-3 mt-2 border-border" />
 
       <div>
-        {<MdxRenderer source={mdxSource} className="text-base 2xl:text-lg" />}
+        <MarkdownRenderer
+          content={waitToRender ?? ''}
+          highlight={false}
+          slug={false}
+          className="text-base 2xl:text-lg"
+        />
       </div>
 
       <WordImageGrid images={images} />

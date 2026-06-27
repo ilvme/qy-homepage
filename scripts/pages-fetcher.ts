@@ -22,8 +22,7 @@ ${content}`;
 /** 独立页面（简历 + 友情链接 + 书影音）→ content/pages */
 const handler = createMdHandler<PostMetadata>({
   contentDir: 'content/pages',
-  imagesDir: 'public/notion-images/pages',
-  imageUrlPath: '/notion-images/pages',
+  media: { mediaDir: 'public/notion-images/pages', mediaUrlPath: '/notion-images/pages' },
   getFileKey: (item) => item.slug,
   generateContent: generatePageMdContent,
 });

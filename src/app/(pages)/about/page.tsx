@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import path from 'path';
-import MdxRenderer from '@/components/ui/MdxRenderer';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { parseMdFromFile } from '@/libs/content-supports';
-import { serializeMdx } from '@/libs/mdx-serializer';
 
 export const metadata: Metadata = {
   title: '关于',
@@ -23,6 +22,5 @@ export default async function AboutMe() {
     );
   }
 
-  const mdxSource = await serializeMdx(fileContent.content);
-  return <MdxRenderer source={mdxSource} className="text-base lg:text-lg" />;
+  return <MarkdownRenderer content={fileContent.content} className="text-base lg:text-lg" />;
 }

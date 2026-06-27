@@ -1,9 +1,11 @@
 import fs from 'fs';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import path from 'path';
-import { downloadAndReplaceImages } from './images-handler';
-import { fetchPageMarkdown } from './notion-client';
-import { cleanNotionMarkdown } from './notion-utils';
+import { notion } from './notion-client';
+import {
+  convertPageToMarkdown,
+  type ConverterConfig,
+} from './notion-md-converter';
 
 /** 基础元数据 —— 所有类型至少包含这些字段 */
 export interface BaseMeta {
@@ -17,10 +19,8 @@ export interface BaseMeta {
 export interface MdHandlerConfig<T extends BaseMeta> {
   /** 内容输出目录，如 content/posts */
   contentDir: string;
-  /** 图片输出目录，如 public/notion-images/posts */
-  imagesDir: string;
-  /** 图片 URL 路径前缀，如 /notion-images/posts */
-  imageUrlPath: string;
+  /** 图片配置 */
+  media: ConverterConfig;
   /** 从元数据中提取文件标识符（文章用 slug，说说用 page_id） */
   getFileKey: (item: T) => string;
   /** 生成完整 MD 文件内容（frontmatter + 正文） */
@@ -32,16 +32,13 @@ export interface MdHandlerConfig<T extends BaseMeta> {
 /**
  * 工厂：创建 toLocalMarkdown 函数
  *
- * 返回的函数负责：增量检查 → 获取 Markdown → 下载图片 → 写文件
+ * 返回的函数负责：增量检查 → notion-to-md 转换（含图片下载） → 写文件
  */
 export function createMdHandler<T extends BaseMeta>(
   config: MdHandlerConfig<T>,
 ) {
-  const { imageUrlPath, getFileKey, generateContent, emptyContentFallback } =
-    config;
-  // 将相对路径解析为基于项目根目录的绝对路径
+  const { media, getFileKey, generateContent, emptyContentFallback } = config;
   const contentDir = path.resolve(process.cwd(), config.contentDir);
-  const imagesDir = path.resolve(process.cwd(), config.imagesDir);
 
   function readLocalMeta(key: string): {
     last_fetch_time: string | null;
@@ -63,7 +60,6 @@ export function createMdHandler<T extends BaseMeta>(
   }
 
   function needsUpdate(item: T): boolean {
-    // --force 模式：强制重新拉取
     if (process.env.FORCE_SYNC === 'true') return true;
 
     const key = getFileKey(item);
@@ -75,9 +71,6 @@ export function createMdHandler<T extends BaseMeta>(
   return async function toLocalMarkdown(items: T[]) {
     if (!fs.existsSync(contentDir)) {
       fs.mkdirSync(contentDir, { recursive: true });
-    }
-    if (!fs.existsSync(imagesDir)) {
-      fs.mkdirSync(imagesDir, { recursive: true });
     }
 
     let updated = 0;
@@ -95,12 +88,18 @@ export function createMdHandler<T extends BaseMeta>(
 
         console.log(`→ Fetching: ${item.title}`);
 
-        let markdown = await fetchPageMarkdown(item.page_id);
-        // if (markdown) markdown = cleanNotionMarkdown(markdown);
+        let markdown = await convertPageToMarkdown(
+          notion,
+          item.page_id,
+          key,
+          media,
+        );
         if (!markdown) {
           const fallback = emptyContentFallback?.(item);
           if (fallback) {
-            console.log(`→ Content empty, using fallback for: ${item.title}`);
+            console.log(
+              `→ Content empty, using fallback for: ${item.title}`,
+            );
             markdown = fallback;
           } else {
             console.error(`✗ No content returned for: ${item.title}`);
@@ -108,20 +107,10 @@ export function createMdHandler<T extends BaseMeta>(
           }
         }
 
-        const processedMarkdown = await downloadAndReplaceImages(
-          markdown,
-          imagesDir,
-          key,
-          imageUrlPath,
-        );
-
         const now = new Date().toISOString();
         const itemWithFetchTime = { ...item, last_fetch_time: now };
 
-        const fullContent = generateContent(
-          itemWithFetchTime,
-          processedMarkdown,
-        );
+        const fullContent = generateContent(itemWithFetchTime, markdown);
         const fileName = `${key}.md`;
         const filePath = path.join(contentDir, fileName);
 

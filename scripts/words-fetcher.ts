@@ -40,8 +40,7 @@ ${content}`;
 
 const toLocalMarkdown = createMdHandler<WordMetadata>({
   contentDir: 'content/words',
-  imagesDir: 'public/notion-images/words',
-  imageUrlPath: '/notion-images/words',
+  media: { mediaDir: 'public/notion-images/words', mediaUrlPath: '/notion-images/words' },
   getFileKey: (item) => item.title,
   generateContent: generateWordMdContent,
   emptyContentFallback: (item) => item.title || null,
@@ -58,6 +57,10 @@ export async function main() {
     process.env.NOTION_WORDS_DATABASE_ID,
     mapWordPage,
     {
+      filter: {
+        property: 'status',
+        select: { equals: 'published' },
+      },
       sorts: [{ property: 'date', direction: 'descending' }],
     },
   );
