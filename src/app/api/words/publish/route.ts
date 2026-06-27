@@ -1,16 +1,24 @@
 import { Client } from '@notionhq/client';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   // 1. 鉴权
   const auth = request.headers.get('authorization');
   const secret = process.env.PUBLISH_SECRET;
-  if (!secret || auth !== `Bearer ${secret}`) {
+  if (!secret) {
+    return NextResponse.json(
+      { error: 'PUBLISH_SECRET not set in env' },
+      { status: 500 },
+    );
+  }
+  if (auth !== `Bearer ${secret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   // 2. 解析请求
-  let body: { text?: string; tags?: string[]; from?: string };
+  let body: { text?: string; tags?: string[]; from?: string; date?: string };
   try {
     body = await request.json();
   } catch {
@@ -23,7 +31,8 @@ export async function POST(request: Request) {
   }
 
   const tags = body.tags ?? [];
-  const from = body.from ?? 'Web';
+  const from = body.from ?? '快捷指令';
+  const date = body.date ?? new Date().toISOString();
 
   // 3. 校验环境变量
   const token = process.env.NOTION_TOKEN;
@@ -56,7 +65,7 @@ export async function POST(request: Request) {
       parent: { data_source_id: dataSourceId },
       properties: {
         title: { title: [{ text: { content: text } }] },
-        // date: { date: { start: now } },
+        date: { date: { start: date } },
         status: { select: { name: 'published' } },
         from: { select: { name: from } },
         tags: { multi_select: tags.map((t) => ({ name: t })) },
