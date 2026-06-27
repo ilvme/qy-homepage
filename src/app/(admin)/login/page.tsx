@@ -1,18 +1,37 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 function LoginForm() {
   const searchParams = useSearchParams();
-  const [password, setPassword] = useState('');
+  const saved = useRef(typeof window !== 'undefined' ? localStorage.getItem('manage_password') : null);
+  const [password, setPassword] = useState(saved.current ?? '');
   const [error, setError] = useState(searchParams.get('error') === '1');
+
+  const doLogin = (pwd: string) => {
+    document.cookie = `manage_token=${pwd}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    localStorage.setItem('manage_password', pwd);
+    const redirect = searchParams.get('redirect') || '/manage';
+    window.location.href = redirect;
+  };
+
+  // 已记住密码且不是密码错误回退 → 自动提交
+  useEffect(() => {
+    if (saved.current && searchParams.get('error') !== '1') {
+      doLogin(saved.current);
+    }
+    // 密码错误回退时，清除记住的错误密码
+    if (searchParams.get('error') === '1') {
+      localStorage.removeItem('manage_password');
+      setPassword('');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    document.cookie = `manage_token=${password}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
-    const redirect = searchParams.get('redirect') || '/manage';
-    window.location.href = redirect;
+    doLogin(password);
   };
 
   return (
