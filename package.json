@@ -5,7 +5,7 @@
   "packageManager": "pnpm@9.1.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm fetchWords && next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",

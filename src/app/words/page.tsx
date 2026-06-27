@@ -19,7 +19,7 @@ export default async function ShuoShuo() {
         </p>
       </header>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mt-10">
         {words.map((word) => (
           <WordCard
             key={word?.postMeta.page_id}

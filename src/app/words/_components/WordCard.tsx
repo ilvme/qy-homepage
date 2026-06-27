@@ -55,7 +55,7 @@ export default async function WordCard({ post }: WordCardProps) {
             <span className="font-medium">{displayDate}</span>
           </time>
           {post.postMeta.tags.length > 0 && (
-            <div className="flex gap-1">
+            <div className="flex gap-2">
               {post.postMeta.tags.map((tag) => (
                 <span key={tag} className="text-sm">
                   #{tag}

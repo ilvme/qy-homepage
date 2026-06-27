@@ -57,6 +57,10 @@ export async function main() {
     process.env.NOTION_WORDS_DATABASE_ID,
     mapWordPage,
     {
+      filter: {
+        property: 'status',
+        select: { equals: 'published' },
+      },
       sorts: [{ property: 'date', direction: 'descending' }],
     },
   );
