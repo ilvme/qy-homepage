@@ -16,17 +16,26 @@ export default function Footer() {
           <span>·</span>
           <span>2012 - PRESENT</span>
           <span>·</span>
-          <Link href="/" className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+          <Link
+            href="/"
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+          >
             林深时觉寒
           </Link>
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href="/sponsor" className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+          <Link
+            href="/sponsor"
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+          >
             赞赏
           </Link>
           <span>·</span>
-          <a href="/rss.xml" className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+          <a
+            href="/src/app/(blogs)/rss.xml"
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+          >
             RSS
           </a>
         </div>

@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import type { PostMetadata } from '../../../scripts/types';
 
 interface PostMetaProps {
   date: string;
   category?: string;
-  tags: string[];
+  tags?: string[];
   /** 紧凑模式（列表页用） */
   compact?: boolean;
 }
@@ -43,8 +42,8 @@ export default function PostMeta({
 
       {category && (
         <Link
-          href={`/categories/${category}`}
-          className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 hover:underline underline-offset-2"
+          href={`/src/app/(blogs)/categories/${category}`}
+          className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 hover:underline underline-offset-4"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,13 +62,13 @@ export default function PostMeta({
         </Link>
       )}
 
-      {tags.length > 0 && (
+      {tags && tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
             <Link
               key={tag}
-              href={`/tags/${tag}`}
-              className="hover:underline underline-offset-2"
+              href={`/src/app/(blogs)/tags/${tag}`}
+              className="hover:underline underline-offset-4"
             >
               #{tag}
             </Link>
