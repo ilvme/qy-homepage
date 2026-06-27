@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import PostItemLite from '@/components/ui/PostItemLite';
+import PostItem from '@/components/ui/PostItem';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -9,21 +9,6 @@ export const metadata: Metadata = {
 
 export default async function Archives() {
   const [posts, stats] = await Promise.all([getAllPosts(), getPostStats()]);
-
-  // 按年份分组
-  const postsByYear = posts.reduce(
-    (acc, post) => {
-      const year = new Date(post.date).getFullYear().toString();
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(post);
-      return acc;
-    },
-    {} as Record<string, typeof posts>,
-  );
-
-  const sortedYears = Object.keys(postsByYear).sort(
-    (a, b) => Number(b) - Number(a),
-  );
 
   return (
     <div className="py-8">
@@ -36,18 +21,13 @@ export default async function Archives() {
       </header>
 
       <div className="space-y-6">
-        {sortedYears.map((year) => (
-          <section key={year}>
-            <h2 className="text-lg font-semibold mb-2">{year}</h2>
-            <ul className="space-y-0.5">
-              {postsByYear[year]?.map((post) => (
-                <li key={post.slug}>
-                  <PostItemLite postMetadata={post} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <ul className="space-y-0.5">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <PostItem postMetadata={post} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

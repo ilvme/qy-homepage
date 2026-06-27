@@ -11,16 +11,13 @@ export default function PostItem({
 
   return (
     <article className="py-5 border-b border-border last:border-b-0">
-      <Link
-        href={`/posts/${slug}`}
-        className="block space-y-2 group"
-      >
+      <Link href={`/posts/${slug}`} className="block space-y-2 group">
         <h2 className="font-semibold text-lg group-hover:underline underline-offset-4">
           {title}
         </h2>
       </Link>
       {summary && (
-        <p className="text-sm text-secondary line-clamp-2 leading-relaxed">
+        <p className="text-sm text-secondary line-clamp-2 leading-relaxed mt-2">
           {summary}
         </p>
       )}
