@@ -4,10 +4,10 @@ export default function Tag({ tag, count }: { tag: string; count: number }) {
   return (
     <Link
       href={`/tags/${tag}`}
-      className="inline-block rounded bg-muted px-2 py-1 text-xs transition-colors hover:bg-accent"
+      className="inline-flex items-center rounded-md px-2 py-0.5 text-sm hover:underline"
     >
       #{tag}
-      {count > 0 && <span className="ml-0.5 text-secondary">{count}</span>}
+      {count > 0 && <span className="ml-1 text-secondary">{count}</span>}
     </Link>
   );
 }
