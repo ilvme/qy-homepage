@@ -23,7 +23,8 @@ export default function BackToTop() {
     <button
       onClick={scrollToTop}
       aria-label="回到顶部"
-      className="fixed bottom-4 left-4 z-40 w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center text-secondary hover:text-foreground transition-colors"
+      className="fixed bottom-8 z-40 w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center text-secondary hover:text-foreground transition-colors"
+      style={{ left: 'min(calc(50% + 416px), calc(100vw - 3rem))' }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

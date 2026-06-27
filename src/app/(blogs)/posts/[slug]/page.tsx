@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
-import BackToTop from '@/components/ui/BackToTop';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import TableOfContents from '@/components/ui/TableOfContents';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 import { extractHeadings } from '@/libs/content-supports';
@@ -97,11 +95,8 @@ export default async function Post({
             </svg>
             返回文章列表
           </Link>
-          <ScrollToTop />
         </div>
       </article>
-
-      <BackToTop />
     </div>
   );
 }

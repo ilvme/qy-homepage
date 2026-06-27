@@ -32,8 +32,8 @@ export default async function WordCard({ post }: WordCardProps) {
 
   return (
     <article className="border border-border rounded-xl p-5 mb-4 bg-card">
-      <section className="flex items-center flex-wrap justify-between   text-secondary">
-        <div className="flex items-center gap-x-4">
+      <section className="flex items-center flex-wrap justify-between gap-y-2 text-secondary">
+        <div className="flex items-center gap-x-4 flex-wrap gap-y-2">
           <time dateTime={dateStr} className="flex items-center gap-2">
             {/* 日历图标 */}
             <svg
@@ -74,7 +74,12 @@ export default async function WordCard({ post }: WordCardProps) {
       <hr className="mb-3 mt-2 border-border" />
 
       <div>
-        <MarkdownRenderer content={waitToRender ?? ''} highlight={false} slug={false} className="text-base 2xl:text-lg" />
+        <MarkdownRenderer
+          content={waitToRender ?? ''}
+          highlight={false}
+          slug={false}
+          className="text-base 2xl:text-lg"
+        />
       </div>
 
       <WordImageGrid images={images} />
