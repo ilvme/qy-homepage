@@ -61,7 +61,7 @@ export default async function Post({
           </h1>
 
           {/* 元信息行 */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-secondary mb-6">
+          <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm text-secondary mb-6">
             <time
               dateTime={postWithContent.date}
               className="flex items-center gap-1.5 tabular-nums"
@@ -86,7 +86,10 @@ export default async function Post({
             </time>
 
             {postWithContent.category && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full  text-sm font-medium">
+              <Link
+                href={`/categories/${postWithContent.category}`}
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full  text-sm font-medium hover:underline"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -101,11 +104,11 @@ export default async function Post({
                   <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                 </svg>
                 {postWithContent.category}
-              </span>
+              </Link>
             )}
 
             {postWithContent.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap">
                 {postWithContent.tags.map((tag: string) => (
                   <Tag key={tag} tag={tag} count={0} />
                 ))}

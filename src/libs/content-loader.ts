@@ -45,11 +45,18 @@ export async function getPostBySlug(slug: string): Promise<PostWithContent | nul
 
 /**
  * 获取指定标签的文章
- * @param tag 标签
  */
 export async function getPostsByTag(tag: string) {
   const posts = await getAllPosts();
   return posts.filter((post) => post.tags.includes(tag));
+}
+
+/**
+ * 获取指定分类的文章
+ */
+export async function getPostsByCategory(category: string) {
+  const posts = await getAllPosts();
+  return posts.filter((post) => post.category === category);
 }
 
 /**

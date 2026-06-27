@@ -30,10 +30,10 @@ export default async function Tags({
     <div className="py-8 space-y-6">
       <header>
         <h1 className="text-3xl font-bold tracking-tight">
-          <span className=""># {tag}</span>
+          <span className="">#{tag}</span>
         </h1>
         <p className="text-secondary text-base mt-1">
-          共 {posts.length} 篇文章带有此标签。
+          共 {posts.length} 篇文章。
         </p>
       </header>
 
