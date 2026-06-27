@@ -9,7 +9,11 @@ export function Columns({ cols = 2, children }: ColumnsProps) {
   return (
     <div
       className="my-5"
-      style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: '1rem' }}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
+        gap: '.6rem',
+      }}
     >
       {children}
     </div>
