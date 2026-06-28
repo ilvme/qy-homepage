@@ -19,9 +19,7 @@ export function mapArticlePage(page: any): PostMetadata {
   let iconUrl: string | undefined;
   if (iconObj) {
     iconUrl =
-      iconObj.type === 'external'
-        ? iconObj.external?.url
-        : iconObj.file?.url;
+      iconObj.type === 'external' ? iconObj.external?.url : iconObj.file?.url;
   }
 
   return {
@@ -103,7 +101,8 @@ export function createHandler(
       fm.push(`slug: "${meta.slug}"`);
       fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
       if (meta.category) fm.push(`category: "${meta.category}"`);
-      if (meta.tags.length) fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+      if (meta.tags.length)
+        fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
       fm.push(`status: "${meta.status}"`);
       fm.push(`type: "${meta.type}"`);
       fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);

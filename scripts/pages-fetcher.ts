@@ -5,7 +5,10 @@ import type { PostMetadata } from './types';
 /** 独立页面（简历 + 友情链接 + 书影音）→ content/pages */
 const handler = createMdHandler<PostMetadata>({
   contentDir: 'content/pages',
-  media: { mediaDir: 'public/notion-images/pages', mediaUrlPath: '/notion-images/pages' },
+  media: {
+    mediaDir: 'public/notion-images/pages',
+    mediaUrlPath: '/notion-images/pages',
+  },
   getFileKey: (item) => item.slug,
   generateContent: (meta, content) => {
     const fm: string[] = [];

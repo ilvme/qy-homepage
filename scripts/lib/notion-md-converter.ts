@@ -159,10 +159,13 @@ export async function convertPageToMarkdown(
     const result = await converter.convert(pageId);
 
     // 保留多个空行
-    const content = result.content.replace(/\n\n(\n+)/g, (_, extras: string) => {
-      const brCount = Math.floor(extras.length / 2);
-      return '\n\n' + '<br />\n'.repeat(brCount) + '\n';
-    });
+    const content = result.content.replace(
+      /\n\n(\n+)/g,
+      (_, extras: string) => {
+        const brCount = Math.floor(extras.length / 2);
+        return '\n\n' + '<br />\n'.repeat(brCount) + '\n';
+      },
+    );
 
     return content;
   } catch (error) {

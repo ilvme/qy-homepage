@@ -85,7 +85,10 @@ export default function PublishPage() {
       <PageHero title="发布说说">
         <p className="text-secondary text-sm mt-1">
           输入内容后 Ctrl+Enter 发布 ·{' '}
-          <Link href="/manage" className="underline underline-offset-2 hover:text-foreground">
+          <Link
+            href="/manage"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
             返回管理
           </Link>
         </p>

@@ -20,9 +20,7 @@ const components = {
   Callout,
   Columns,
   Column,
-  img: ({ src, alt }: any) => (
-    <ImageViewer src={src ?? ''} alt={alt ?? ''} />
-  ),
+  img: ({ src, alt }: any) => <ImageViewer src={src ?? ''} alt={alt ?? ''} />,
   pre: (props: any) => <CodeBlock {...props} />,
 };
 

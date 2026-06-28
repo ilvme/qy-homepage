@@ -98,9 +98,7 @@ export function createMdHandler<T extends BaseMeta>(
         if (!markdown) {
           const fallback = emptyContentFallback?.(item);
           if (fallback) {
-            console.log(
-              `→ Content empty, using fallback for: ${item.title}`,
-            );
+            console.log(`→ Content empty, using fallback for: ${item.title}`);
             markdown = fallback;
           } else {
             console.error(`✗ No content returned for: ${item.title}`);
@@ -111,11 +109,7 @@ export function createMdHandler<T extends BaseMeta>(
         // 下载 cover 图片到本地（处理 Notion 文件上传的过期 URL）
         const cover = (item as any).cover as string | undefined;
         if (cover) {
-          const coverDir = path.resolve(
-            process.cwd(),
-            media.mediaDir,
-            key,
-          );
+          const coverDir = path.resolve(process.cwd(), media.mediaDir, key);
           const coverUrlPath = `${media.mediaUrlPath}/${key}`;
           if (!fs.existsSync(coverDir)) {
             fs.mkdirSync(coverDir, { recursive: true });

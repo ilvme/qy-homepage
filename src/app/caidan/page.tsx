@@ -19,7 +19,10 @@ const eggs = [
 export default function CaidanPage() {
   return (
     <div className="py-8 max-w-2xl">
-      <PageHero title="🥚 彩蛋" description="这里藏着一些不对外开放但我觉得有趣的东西。" />
+      <PageHero
+        title="🥚 彩蛋"
+        description="这里藏着一些不对外开放但我觉得有趣的东西。"
+      />
 
       <ul className="space-y-3">
         {eggs.map((egg) => (

@@ -22,13 +22,17 @@ function mapWordPage(page: any): WordMetadata {
 
 const toLocalMarkdown = createMdHandler<WordMetadata>({
   contentDir: 'content/words',
-  media: { mediaDir: 'public/notion-images/words', mediaUrlPath: '/notion-images/words' },
+  media: {
+    mediaDir: 'public/notion-images/words',
+    mediaUrlPath: '/notion-images/words',
+  },
   getFileKey: (item) => item.title,
   generateContent: (meta, content) => {
     const fm: string[] = [];
     fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
     fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
-    if (meta.tags.length) fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+    if (meta.tags.length)
+      fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
     fm.push(`status: "${meta.status}"`);
     if (meta.from) fm.push(`from: "${meta.from}"`);
     fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);

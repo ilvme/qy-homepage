@@ -32,7 +32,10 @@ export default async function ResumePage() {
       {/*<header>*/}
       {/*  <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>*/}
       {/*</header>*/}
-      <MarkdownRenderer content={fileContent.content} className="text-base lg:text-lg" />
+      <MarkdownRenderer
+        content={fileContent.content}
+        className="text-base lg:text-lg"
+      />
     </div>
   );
 }

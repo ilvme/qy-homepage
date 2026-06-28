@@ -16,7 +16,8 @@ const toLocalMarkdown = createMdHandler<PostMetadata>({
     fm.push(`slug: "${meta.slug}"`);
     fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
     if (meta.category) fm.push(`category: "${meta.category}"`);
-    if (meta.tags.length) fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+    if (meta.tags.length)
+      fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
     fm.push(`status: "${meta.status}"`);
     fm.push(`type: "${meta.type}"`);
     fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);

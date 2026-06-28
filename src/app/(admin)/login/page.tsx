@@ -5,7 +5,11 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 
 function LoginForm() {
   const searchParams = useSearchParams();
-  const saved = useRef(typeof window !== 'undefined' ? localStorage.getItem('manage_password') : null);
+  const saved = useRef(
+    typeof window !== 'undefined'
+      ? localStorage.getItem('manage_password')
+      : null,
+  );
   const [password, setPassword] = useState(saved.current ?? '');
   const [error, setError] = useState(searchParams.get('error') === '1');
 
