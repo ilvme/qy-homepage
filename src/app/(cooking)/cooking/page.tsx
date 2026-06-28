@@ -51,7 +51,7 @@ export default async function CookingPage({
     <div className="py-8">
       <PageHero
         title="食者"
-        description={`自己动手做的好吃的 · 共 ${items.length} 道`}
+        description={`自己动手做的好吃的，共 ${items.length} 道`}
       />
 
       {/* 分类 Tab */}
