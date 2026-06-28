@@ -2,9 +2,9 @@ import fs from 'fs';
 import matter from '@11ty/gray-matter';
 
 /**
- * 解析日期字符串为 Date 对象
- * 纯日期（YYYY-MM-DD）JS 会当 UTC 零点，手动按本地时间构造
- * 带时间的 ISO 字符串自带时区，直接交给 Date 解析
+ * 解析日期字符串为 Date
+ * 纯日期（YYYY-MM-DD）手动构造避免 UTC 偏差
+ * ISO 字符串自带时区，直接交给 Date
  */
 export function parseDate(dateStr: string): Date {
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
