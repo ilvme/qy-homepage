@@ -25,10 +25,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const text = body.text?.trim();
-  if (!text) {
+  const rawText = body.text?.trim();
+  if (!rawText) {
     return NextResponse.json({ error: 'text is required' }, { status: 400 });
   }
+
+  // 第一个空格前作为 title，其余作为页面正文
+  const spaceIndex = rawText.indexOf(' ');
+  const title = spaceIndex === -1 ? rawText : rawText.slice(0, spaceIndex);
+  const content = spaceIndex === -1 ? '' : rawText.slice(spaceIndex + 1).trim();
 
   const tags = body.tags ?? [];
   const from = body.from ?? '快捷指令';
@@ -61,16 +66,23 @@ export async function POST(request: Request) {
       );
     }
 
-    const page = await notion.pages.create({
+    const pageParams: any = {
       parent: { data_source_id: dataSourceId },
       properties: {
-        title: { title: [{ text: { content: text } }] },
+        title: { title: [{ text: { content: title } }] },
         date: { date: { start: date } },
         status: { select: { name: 'published' } },
         from: { select: { name: from } },
         tags: { multi_select: tags.map((t) => ({ name: t })) },
       },
-    });
+    };
+
+    // 有正文内容时写入页面 markdown
+    if (content) {
+      pageParams.markdown = content;
+    }
+
+    const page = await notion.pages.create(pageParams);
     pageId = page.id;
   } catch (error: any) {
     console.error('Notion API error:', error);
