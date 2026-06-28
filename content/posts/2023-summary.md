@@ -6,8 +6,8 @@ category: "生活日志"
 tags: []
 status: "published"
 type: "article"
-last_fetch_time: "2026-06-28T07:51:58.791Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetch_time: "2026-06-28T12:14:56.003Z"
+last_edited_time: "2026-06-28T11:34:00.000Z"
 page_id: "1b8c485e-f356-80a4-9862-e8f45cd52908"
 summary: "一人两地三餐四季，继续等下一年到来。"
 cover: ""
@@ -29,14 +29,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![老夫也有少女心（一）](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/%E5%B0%91%E5%A5%B3%E5%BF%831.jpeg)
+![老夫也有少女心（一）](/notion-images/posts/2023-summary/col_1782648891298_rlemhd.png)
 
 <br />
 
 </Column>
 <Column>
 
-![老夫也有少女心（二）](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/%E5%B0%91%E5%A5%B3%E5%BF%832.jpeg)
+![老夫也有少女心（二）](/notion-images/posts/2023-summary/col_1782648889944_ofjhd2.png)
 
 <br />
 
@@ -46,7 +46,7 @@ icon: ""
 
 下面俯瞰一下我最新的工作台图
 
-![工作台](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/%E5%B7%A5%E4%BD%9C%E5%8F%B0.jpeg)
+![工作台](/notion-images/posts/2023-summary/工作台_38dc485e-f356-8056-850a-f9f2fd4fc47a.webp)
 
 
 #  **流水零碎** 
@@ -54,36 +54,26 @@ icon: ""
 
 就偷个懒，只放些图吧。
 
-<details>
-<summary>
-<strong>为表诚意，丑图敬上：</strong>
-</summary>
-
-![Image](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/me.jpeg)
-
-<br />
-
-</details>
-
+我的乡愁是一碗板面，1.18 和毅兄在北国
 
 <Columns cols={3}>
 <Column>
 
-![我的乡愁是一碗板面，1.18 和毅兄在北国](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/banmian.jpeg)
+![我的乡愁是一碗板面，1.18 和毅兄在北国](/notion-images/posts/2023-summary/col_1782648891469_z3nt5r.png)
 
 <br />
 
 </Column>
 <Column>
 
-![今年也有花花](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/flowers.jpeg)
+![今年也有花花](/notion-images/posts/2023-summary/col_1782648891468_3q738z.png)
 
 <br />
 
 </Column>
 <Column>
 
-![十月一回家，兄弟们给买的生日蛋糕å](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/dangao.jpeg)
+![十月一回家，兄弟们给买的生日蛋糕](/notion-images/posts/2023-summary/col_1782648891484_hxqn7v.png)
 
 <br />
 
@@ -94,22 +84,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![2023.2.18 于南开文园，就这绘画水平😮‍💨](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/paint1.jpeg)
-
-<br />
-<br />
-
-</Column>
-<Column>
-
-![乐高之三个多小时的苦功夫](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/legao.jpeg)
+![海河边，左到右，弟弟、我、妹妹](/notion-images/posts/2023-summary/col_1782648891832_8vwy69.png)
 
 <br />
 
 </Column>
 <Column>
 
-![主打清淡饮食，高端的食材](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/ynshiqingdan.jpeg)
+![北京动物园看国宝](/notion-images/posts/2023-summary/col_1782648891834_lebek9.png)
+
+<br />
+
+</Column>
+<Column>
+
+![2023.7.29 南开文园 与毅兄居家火锅与二锅头](/notion-images/posts/2023-summary/col_1782648892107_qtg71n.png)
 
 <br />
 
@@ -120,21 +109,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![海河边，左到右，弟弟、我、妹妹](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/brother-river.jpeg)
+![2023.2.18 于南开文园，就这绘画水平😮‍💨](/notion-images/posts/2023-summary/col_1782648892281_6kia47.png)
 
 <br />
 
 </Column>
 <Column>
 
-![北京动物园看国宝](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/xiongmao.jpeg)
+![乐高之三个多小时的苦功夫](/notion-images/posts/2023-summary/col_1782648892290_7nyewh.png)
 
 <br />
 
 </Column>
 <Column>
 
-![2023.7.29 南开文园 与毅兄居家火锅与二锅头](https://ikangjia.cn/images/article/2023%20%E5%B0%8F%E7%BB%93%EF%BC%88%E5%BE%88%E7%9F%AD%EF%BC%8C%E5%BE%88%E6%97%A0%E8%81%8A%EF%BC%89/erguotou.jpeg)
+![主打清淡饮食，高端的食材](/notion-images/posts/2023-summary/col_1782648895919_24r27h.png)
 
 <br />
 

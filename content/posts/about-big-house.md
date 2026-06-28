@@ -6,8 +6,8 @@ category: "生活日志"
 tags: ["牛马生活", "日常"]
 status: "published"
 type: "article"
-last_fetch_time: "2026-06-28T07:51:43.320Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetch_time: "2026-06-28T12:14:41.308Z"
+last_edited_time: "2026-06-28T11:21:00.000Z"
 page_id: "38bc485e-f356-8027-8037-dfd90dff55e3"
 summary: "自去年婚后到如今发生了太多事，一切恍如梦中。此刻就试着写写天津这六年多的「租房」经历，以后想起也能当做个纪念。"
 cover: ""
@@ -48,7 +48,7 @@ icon: ""
 
 到 2021 年在家过完春节，我又返津，准备找工作。之前上班一年挣的钱早已空空，不得已提取出自己的 2 万多的公积金做生活费（注：当时天津这边政策是公积金账户封存半年之后可一次性提取，现在政策不知道）。 我直接选了媳妇儿同小区的自如租房，四室的主卧，有个大阳台。大概一周，找到了后端开发的工作。我这条线终于算是回到了正轨。
 
-![Image](https://ikangjia.cn/_astro/xiangjugongyu.DQ_BDYrJ_2vJPAV.webp)
+![Image](/notion-images/posts/about-big-house/image_38dc485e-f356-8087-ae0f-da6923882de4.png)
 
 
 ###  **西青中北镇 && 南开王顶堤** 
@@ -56,7 +56,7 @@ icon: ""
 
 到了 2022 年教培行业大地震，媳妇儿也被裁员，被迫喜提大礼包。后来又找的工作，租房也搬到了西青中北镇，离公司更近的正荣润璟湾。 同期间，我找了个离公司更近的自如租房——南开王顶堤翰雅园，印象中的日日核算检测都是从这里，大早上排队核酸检测，然后领一个小纸片后来是健康码。 有健康码才能去上班。小区对面是南开法院，每天都有小黄车骑，到上班也就骑二十多分钟。
 
-![Image](https://ikangjia.cn/_astro/hanyayuan.CBsBrxU7_ZqigWI.webp)
+![Image](/notion-images/posts/about-big-house/image_38dc485e-f356-8052-9656-dbe7f0525ebc.png)
 
 
 ###  **西青侯台** 
@@ -64,7 +64,7 @@ icon: ""
 
 2023 年 8 月，翰雅园这边房东收房，我又搬到了侯台这边，开始步行上下班。后续就承接到文章刚开始了。
 
-![Image](https://ikangjia.cn/_astro/houtaihuayuan.E7ljNQlc_Z2dPWYx.webp)
+![Image](/notion-images/posts/about-big-house/image_38dc485e-f356-8027-9fab-ec121d03b5d1.png)
 
 
 ###  **南开华苑** 
@@ -72,7 +72,7 @@ icon: ""
 
 截止到今年 8 月份，住了整整两年。今年房东要收房自住，而看房进展也不顺利，遂决定再短租一段时间。 贝壳看了两周个人整租，无一满意，期间还被津洲花园（无产权还迁房）TMD 二房东坑了 500 块钱。 可能是因为这边学区，和陪读租房的群体重合上了，租房颇不顺利。眼看租期将尽，不得已再选了天杀的坑爹自如，贵是贵，好在省心。 一番探索，选了华苑地铁站对面的日华里，因为可以短租到今年 12 月 20 号，四个月的时间过渡，足够看房了。三室合租，对于合租其他室友来说，我们也算是叠满了 Buff——情侣 + 猫。 好在咱素质较高，猫也听话。租的是阴面，好在屋子较大 18 平，勉强容得下两人一猫和墙边堆砌到屋顶的是个大纸箱子。 通勤和之前在侯台没啥变化，对我而言，上班走路 15 分钟。媳妇儿开车去中北镇，二十分钟。
 
-![Image](https://ikangjia.cn/_astro/rihuali.Df8bou8x_yW27l.webp)
+![Image](/notion-images/posts/about-big-house/image_38dc485e-f356-8043-bf4f-e7c23b83adf8.png)
 
 
 以上租房经历俩人累积搬家不下七八次，下一次真得想也必须得搬进自己的家。
@@ -90,7 +90,7 @@ icon: ""
 
 2025 年 11 月 29 日，星期六，农历十月初十，搬迁新房！
 
-![Image](https://ikangjia.cn/_astro/our-new-house.UnYXYXeP_Z15eAic.webp)
+![Image](/notion-images/posts/about-big-house/image_38dc485e-f356-80ec-a648-f61728605b2a.png)
 
 
 ###  **通勤上班** 

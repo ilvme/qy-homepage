@@ -6,8 +6,8 @@ category: "生活日志"
 tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetch_time: "2026-06-28T07:51:43.087Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetch_time: "2026-06-28T12:14:40.798Z"
+last_edited_time: "2026-06-28T11:18:00.000Z"
 page_id: "38bc485e-f356-8014-92ae-cb6f5279181d"
 summary: "如果说 2024 是脚步落地，走进了现实，那 2025 年就是再更进一步。"
 cover: ""
@@ -49,11 +49,14 @@ icon: ""
 
 写到这儿才发现，好像现在越来越入了华为的坑了。其实自小米台灯 Pro 坏掉以及米家显示器挂灯 1S 使用时多次罢工，我就对小米的产品不再信任。还有罗技，因为 MX Master 2s 在使用第三年的时候，出了两个大毛病。一是大拇指底部按压失灵，按下去就卡在下面，很难自己恢复，这还是玩 LOL 发现的，当时还以为没电了。后来只能把底部按压整块都扣掉，目前还在凑活用着；还有个更无语的问题是大拇指可以波动转的那个位置，外层的橡胶层竟然掉渣，手指轻轻一扣就掉一块儿，三百多大洋的货啊，是我特么手里汗多腐蚀的？？？
 
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8079-83a0-cb32d53221d2.png)
+
+
 想起我这 iPhone 13 Pro 将近 4 年了，电池掉到 78%，算了，凑活凑活继续用吧。 其实现在看看家里的电子产品，很是分明，我是果系，媳妇儿是华为系。打算后面继续观望下华为的电子产品以及鸿蒙系统的发展，要是稳定，打算继续入坑。
 
 一个颜值超高的钟表 52￥，是静音的，目前摆在客厅电视上方柜子里。
 
-![Image](https://ikangjia.cn/_astro/img_2.DifKEvzs_18Uh1d.webp)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80c5-8e5d-ed3a59752f17.png)
 
 
 厨房
@@ -86,7 +89,7 @@ icon: ""
 
 春节假期期间，去县里刚新建完的英雄纪念馆转了转，里面有不少土枪、土炮、旧信件等战争遗留下来的物迹。 纪念馆这一块儿原来是光路山寨，现在改造的大了许多。纪念馆中心是一尊英雄纪念碑，再往上是山，山上修了石板阶梯路，每逢周末或佳节都有不少爬山观光之人。 纪念馆下也是游玩之地。有歌舞表演、养马场，甚至有个动物园。里面除了各种花色的鸡、鸭、鹅，还有一奇葩景观：山羊与狗同圈。
 
-![Image](https://ikangjia.cn/_astro/img_3.B39i3ma0_2Jpjg.webp)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-803c-a9eb-f3f426b9b196.png)
 
 
 ---
@@ -105,20 +108,30 @@ icon: ""
 
 酷狗概念版、QQ 音乐、滴答清单报告：
 
-![Image](https://ikangjia.cn/_astro/img_5.CqWZbLyb_12pEnQ.webp)
+<Columns cols={3}>
+<Column>
 
+![酷狗概念版年度报告](/notion-images/posts/2025-summary/col_1782648878537_fecltg.png)
 
-酷狗概念版
+<br />
 
-![Image](https://ikangjia.cn/_astro/img_7.CmY1K9Dq_Z1wHGDH.webp)
+</Column>
+<Column>
 
+![QQ 音乐年度报告](/notion-images/posts/2025-summary/col_1782648878531_y44ext.png)
 
-QQ 音乐
+<br />
 
-![Image](https://ikangjia.cn/_astro/img_6.LOpmr9a0_1nHpoK.webp)
+</Column>
+<Column>
 
+![滴答清单年度报告](/notion-images/posts/2025-summary/col_1782648880684_jvf2yn.png)
 
-滴答清单
+<br />
+
+</Column>
+</Columns>
+
 
 今年的网络氛围依旧乌烟瘴气，西方伪史论愈演愈真、以民族史观为基础的 1644 史观冲击着原有的 1840 史观、未见好改的性别对立以及殖狗好似垂死挣扎般的乱叫。 最近爆火的吃瓜蒙主带了一波抨击满遗、追念大明的节奏，关于《红楼梦》的各种解读，胡某人为始的考据派和网络上兴起的索隐派究竟哪个是真？ 这股风究竟是高级黑还是低级红我是难以分明，可能只是昙花一现也可能这股风将经久不息，且看后续吧。
 
@@ -137,7 +150,7 @@ QQ 音乐
 
 发布了四篇非技术博客、两条朋友圈说说、123 条吐槽。
 
-![Image](https://ikangjia.cn/_astro/img_1.DSa5h6VU_1xopn1.webp)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8065-a099-f8e51ae2c1a4.png)
 
 
 ##  **工作** 
@@ -145,7 +158,7 @@ QQ 音乐
 
 公司园区的山楂又红了一次，工作还是老样子，平平无奇。和去年一样，下半年后几个月让加班，工资迟发…
 
-![Image](https://ikangjia.cn/_astro/img_4.DDZxwjcV_Z2vqA0L.webp)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80ad-ac44-f9ed40d9270e.png)
 
 
 ##  **总结** 

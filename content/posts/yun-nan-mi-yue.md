@@ -6,8 +6,8 @@ category: "生活日志"
 tags: ["日常", "旅行"]
 status: "published"
 type: "article"
-last_fetch_time: "2026-06-28T07:51:53.267Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetch_time: "2026-06-28T12:14:45.983Z"
+last_edited_time: "2026-06-28T11:25:00.000Z"
 page_id: "38bc485e-f356-807e-b1b8-d924167bfab2"
 summary: "有人说人生的第一次远游最好不要是云南或新疆，否则就有点曾经沧海难为水的感觉，此话我深表赞同。"
 cover: ""
@@ -36,21 +36,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![云南异域风情街景](/notion-images/posts/yun-nan-mi-yue/col_1782633111395_8fzy46.webp)
+![云南异域风情街景](/notion-images/posts/yun-nan-mi-yue/col_1782648885504_5xfqr1.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![南强街巷的夜晚](/notion-images/posts/yun-nan-mi-yue/col_1782633111387_mbzzs7.webp)
+![南强街巷的夜晚](/notion-images/posts/yun-nan-mi-yue/col_1782648885486_255dzy.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![滇池海鸥](/notion-images/posts/yun-nan-mi-yue/col_1782633111376_do7kuc.webp)
+![滇池海鸥](/notion-images/posts/yun-nan-mi-yue/col_1782648885461_yek5nc.webp)
 
 <br />
 
@@ -97,21 +97,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![即将出现的雪山](/notion-images/posts/yun-nan-mi-yue/col_1782633111791_osqizv.webp)
+![即将出现的雪山](/notion-images/posts/yun-nan-mi-yue/col_1782648885897_mdfs7l.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![我在牦牛坪很想你](/notion-images/posts/yun-nan-mi-yue/col_1782633111784_rw7br1.webp)
+![我在牦牛坪很想你](/notion-images/posts/yun-nan-mi-yue/col_1782648885882_qn88p2.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![雪山](/notion-images/posts/yun-nan-mi-yue/col_1782633113197_oa6xeh.webp)
+![雪山](/notion-images/posts/yun-nan-mi-yue/col_1782648885879_9xzjra.webp)
 
 <br />
 <br />
@@ -146,8 +146,11 @@ icon: ""
 「石家庄-昆明-大理-丽江-昆明-天津」，这趟云南之旅，不只是两步一个鲜花饼，三步一个菌子火锅。更多的是来自多年前学生时期便深扎根心里的执念：高海拔、低纬度的地方最宜居。上学时我就很喜欢地理，也喜欢看地图。这带给我的不只是精准喊出哪个省的省会、著名城市，著名景点等地理常识也算熟悉。不比石家庄，更不比干燥的天津，昆明冬日的清晨冷风只是有一点凉，冷得不带一点侵略性。
 
 有人说人生的第一次远游最好不要是云南或新疆，否则就有点曾经沧海难为水的感觉，此话我深表赞同。
+
 云南旅游推荐指数：⭐⭐⭐⭐⭐
+
 必备物品：防晒措施、墨镜
+
 建议：有照相机的带上，很容易出片。
 
 2025 年 1 月 19 日，于天津侯台所记。
