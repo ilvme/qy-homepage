@@ -2,29 +2,22 @@ import { fetchByType } from './lib/article-utils';
 import { createMdHandler } from './lib/md-handler';
 import type { PostMetadata } from './types';
 
-/**
- * 生成独立页面的 MD 文件内容（精简 frontmatter）
- */
-function generatePageMdContent(pageMeta: PostMetadata, content: string) {
-  return `---
-title: "${pageMeta.title.replace(/"/g, '\\"')}"
-slug: "${pageMeta.slug}"
-date: "${pageMeta.date}"
-page_id: "${pageMeta.page_id}"
-last_edited_time: "${pageMeta.last_edited_time}"
-last_fetch_time: "${pageMeta.last_fetch_time}"
-type: "${pageMeta.type}"
----
-
-${content}`;
-}
-
 /** 独立页面（简历 + 友情链接 + 书影音）→ content/pages */
 const handler = createMdHandler<PostMetadata>({
   contentDir: 'content/pages',
   media: { mediaDir: 'public/notion-images/pages', mediaUrlPath: '/notion-images/pages' },
   getFileKey: (item) => item.slug,
-  generateContent: generatePageMdContent,
+  generateContent: (meta, content) => {
+    const fm: string[] = [];
+    fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
+    fm.push(`slug: "${meta.slug}"`);
+    fm.push(`date: "${meta.date}"`);
+    fm.push(`page_id: "${meta.page_id}"`);
+    fm.push(`last_edited_time: "${meta.last_edited_time}"`);
+    fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);
+    fm.push(`type: "${meta.type}"`);
+    return `---\n${fm.join('\n')}\n---\n\n${content}`;
+  },
 });
 
 export async function fetchPages() {

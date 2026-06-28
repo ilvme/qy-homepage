@@ -20,29 +20,22 @@ function mapWordPage(page: any): WordMetadata {
   };
 }
 
-/**
- * 生成说说 MD 文件内容（frontmatter + 正文）
- */
-export function generateWordMdContent(postMeta: WordMetadata, content: string) {
-  return `---
-title: "${postMeta.title.replace(/"/g, '\\"')}"
-date: "${postMeta.date ?? postMeta.last_edited_time}"
-tags: [${postMeta.tags.map((tag) => `"${tag}"`).join(', ')}]
-status: "${postMeta.status}"
-from: "${postMeta.from ?? ''}"
-last_fetch_time: "${postMeta.last_fetch_time}"
-last_edited_time: "${postMeta.last_edited_time}"
-page_id: "${postMeta.page_id}"
----
-
-${content}`;
-}
-
 const toLocalMarkdown = createMdHandler<WordMetadata>({
   contentDir: 'content/words',
   media: { mediaDir: 'public/notion-images/words', mediaUrlPath: '/notion-images/words' },
   getFileKey: (item) => item.title,
-  generateContent: generateWordMdContent,
+  generateContent: (meta, content) => {
+    const fm: string[] = [];
+    fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
+    fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
+    if (meta.tags.length) fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+    fm.push(`status: "${meta.status}"`);
+    if (meta.from) fm.push(`from: "${meta.from}"`);
+    fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);
+    fm.push(`last_edited_time: "${meta.last_edited_time}"`);
+    fm.push(`page_id: "${meta.page_id}"`);
+    return `---\n${fm.join('\n')}\n---\n\n${content}`;
+  },
   emptyContentFallback: (item) => item.title || null,
 });
 

@@ -45,29 +45,6 @@ export function mapArticlePage(page: any): PostMetadata {
 }
 
 /**
- * 生成 MD 文件内容（frontmatter + 正文）
- */
-export function generateMdContent(postMeta: PostMetadata, content: string) {
-  return `---
-title: "${postMeta.title.replace(/"/g, '\\"')}"
-slug: "${postMeta.slug}"
-date: "${postMeta.date ?? postMeta.last_edited_time}"
-category: "${postMeta.category}"
-tags: [${postMeta.tags.map((tag) => `"${tag}"`).join(', ')}]
-status: "${postMeta.status}"
-type: "${postMeta.type}"
-last_fetch_time: "${postMeta.last_fetch_time}"
-last_edited_time: "${postMeta.last_edited_time}"
-page_id: "${postMeta.page_id}"
-summary: "${postMeta.summary ?? ''}"
-cover: "${postMeta.cover ?? ''}"
-icon: "${postMeta.icon ?? ''}"
----
-
-${content}`;
-}
-
-/**
  * 获取并校验 articles 数据库 ID
  */
 export function getArticlesDatabaseId(): string {
@@ -120,6 +97,22 @@ export function createHandler(
     contentDir,
     media: { mediaDir, mediaUrlPath },
     getFileKey: (item) => item.slug,
-    generateContent: generateMdContent,
+    generateContent: (meta, content) => {
+      const fm: string[] = [];
+      fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
+      fm.push(`slug: "${meta.slug}"`);
+      fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
+      if (meta.category) fm.push(`category: "${meta.category}"`);
+      if (meta.tags.length) fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+      fm.push(`status: "${meta.status}"`);
+      fm.push(`type: "${meta.type}"`);
+      fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);
+      fm.push(`last_edited_time: "${meta.last_edited_time}"`);
+      fm.push(`page_id: "${meta.page_id}"`);
+      if (meta.summary) fm.push(`summary: "${meta.summary}"`);
+      if (meta.cover) fm.push(`cover: "${meta.cover}"`);
+      if (meta.icon) fm.push(`icon: "${meta.icon}"`);
+      return `---\n${fm.join('\n')}\n---\n\n${content}`;
+    },
   });
 }
