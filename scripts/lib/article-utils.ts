@@ -32,7 +32,7 @@ export function mapArticlePage(page: any): PostMetadata {
     type: page.properties.type.select?.name,
     slug: page.properties.slug.rich_text[0].plain_text,
     category: page.properties.category.select?.name,
-    tags: page.properties.tags.multi_select.map(
+    tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
     date: page.properties.date?.date?.start ?? page.created_time,
@@ -101,7 +101,7 @@ export function createHandler(
       fm.push(`slug: "${meta.slug}"`);
       fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
       if (meta.category) fm.push(`category: "${meta.category}"`);
-      if (meta.tags.length)
+      if (meta.tags?.length)
         fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
       fm.push(`status: "${meta.status}"`);
       fm.push(`type: "${meta.type}"`);

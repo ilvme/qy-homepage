@@ -54,8 +54,8 @@ export default async function CookingDetailPage({
               </time>
             )}
             {post.category && <span>{post.category}</span>}
-            {post.tags.length > 0 && (
-              <span>{post.tags.map((t) => `#${t}`).join(' ')}</span>
+            {post.tags?.length > 0 && (
+              <span>{post.tags?.map((t) => `#${t}`).join(' ')}</span>
             )}
           </div>
         </header>

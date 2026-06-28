@@ -10,7 +10,7 @@ function mapWordPage(page: any): WordMetadata {
     page_id: page.id,
     last_edited_time: page.last_edited_time,
     title: page.properties.title?.title[0]?.plain_text,
-    tags: page.properties.tags.multi_select.map(
+    tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
     date: page.properties.date?.date?.start ?? page.created_time,
@@ -31,8 +31,8 @@ const toLocalMarkdown = createMdHandler<WordMetadata>({
     const fm: string[] = [];
     fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
     fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
-    if (meta.tags.length)
-      fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+    if (meta.tags?.length)
+      fm.push(`tags: [${meta.tags?.map((t: string) => `"${t}"`).join(', ')}]`);
     fm.push(`status: "${meta.status}"`);
     if (meta.from) fm.push(`from: "${meta.from}"`);
     fm.push(`last_fetch_time: "${meta.last_fetch_time}"`);

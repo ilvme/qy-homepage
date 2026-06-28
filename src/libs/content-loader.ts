@@ -116,6 +116,6 @@ export async function getPostStats() {
 export async function getAllCategories() {
   const posts = await getAllPosts();
   const categorySet = new Set<string>();
-  posts.forEach((post) => categorySet.add(post.category));
+  posts.forEach((post) => { if (post.category) categorySet.add(post.category); });
   return Array.from(categorySet).sort();
 }
