@@ -50,7 +50,7 @@ export async function getPostBySlug(
  */
 export async function getPostsByTag(tag: string) {
   const posts = await getAllPosts();
-  return posts.filter((post) => post.tags.includes(tag));
+  return posts.filter((post) => post.tags?.includes(tag));
 }
 
 /**
@@ -69,12 +69,12 @@ export async function getAllTags(): Promise<
 > {
   const posts = await getAllPosts();
   const tagSet = new Set<string>();
-  posts.forEach((post) => post.tags.forEach((tag) => tagSet.add(tag)));
+  posts.forEach((post) => post.tags?.forEach((tag: string) => tagSet.add(tag)));
 
   // 统计每个标签的文章数量
   const tagCount = new Map<string, number>();
   posts.forEach((post) => {
-    post.tags.forEach((tag) => {
+    post.tags?.forEach((tag: string) => {
       tagCount.set(tag, (tagCount.get(tag) ?? 0) + 1);
     });
   });
