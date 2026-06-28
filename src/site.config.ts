@@ -20,6 +20,7 @@ export const siteConfig = {
   /** 分页 */
   pagination: {
     pageSize: 7,
+    cookingPageSize: 1,
   },
 
   /** 导航 */

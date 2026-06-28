@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ImageGallery } from '@/app/(cooking)/_components/ImageGallery';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
+import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
   title: '下厨',
@@ -10,17 +12,36 @@ export const metadata: Metadata = {
 export default async function CookingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; page?: string }>;
 }) {
   const [items, categories] = await Promise.all([
     getAllCooking(),
     getAllCookingCategories(),
   ]);
-  const { category: activeCategory } = await searchParams;
+  const { category: activeCategory, page: pageParam } = await searchParams;
+
+  // 统计各分类数量
+  const categoryCounts = new Map<string, number>();
+  for (const item of items) {
+    if (item.category) {
+      categoryCounts.set(item.category, (categoryCounts.get(item.category) ?? 0) + 1);
+    }
+  }
 
   const filtered = activeCategory
     ? items.filter((i) => i.category === activeCategory)
     : items;
+
+  const pageSize = siteConfig.pagination.cookingPageSize;
+  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
+  const totalPages = Math.ceil(filtered.length / pageSize);
+  const pagedItems = filtered.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  );
+
+  // 分类切换时跳回第一页
+  const categoryQS = activeCategory ? `category=${activeCategory}&` : '';
 
   return (
     <div className="py-8">
@@ -42,7 +63,7 @@ export default async function CookingPage({
                 : 'border-border bg-card text-secondary hover:border-foreground/30'
             }`}
           >
-            全部
+            全部（{items.length}）
           </Link>
           {categories.map((cat) => (
             <Link
@@ -54,52 +75,44 @@ export default async function CookingPage({
                   : 'border-border bg-card text-secondary hover:border-foreground/30'
               }`}
             >
-              {cat}
+              {cat}（{categoryCounts.get(cat) ?? 0}）
             </Link>
           ))}
         </nav>
       )}
 
       {/* 图片网格 */}
-      {filtered.length === 0 ? (
-        <p className="text-secondary text-sm py-16 text-center">暂无内容</p>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {filtered.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/cooking/${item.slug}`}
-              className="group block border border-border rounded-lg overflow-hidden bg-card hover:border-foreground/20 transition-colors"
-            >
-              {/* 封面图 */}
-              <div className="aspect-square bg-muted overflow-hidden">
-                {item.cover ? (
-                  <img
-                    src={item.cover}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">
-                    暂无图片
-                  </div>
-                )}
-              </div>
-              {/* 标题 */}
-              <div className="px-2.5 py-2">
-                <span className="font-medium text-xs group-hover:text-foreground transition-colors">
-                  {item.title}
-                </span>
-                {item.date && (
-                  <span className="text-xs text-muted-foreground block mt-0.5">
-                    {new Date(item.date).toLocaleDateString('zh-CN')}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
+      <ImageGallery items={pagedItems} baseUrl="/cooking" />
+
+      {/* 分页 */}
+      {totalPages > 1 && (
+        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
+          <div className="w-16">
+            {currentPage > 1 && (
+              <Link
+                href={`/cooking?${categoryQS}page=${currentPage - 1}`}
+                className="text-sm text-secondary hover:text-foreground transition-colors"
+              >
+                ← 上一页
+              </Link>
+            )}
+          </div>
+
+          <span className="text-sm text-secondary">
+            {currentPage} / {totalPages}
+          </span>
+
+          <div className="w-16 text-right">
+            {currentPage < totalPages && (
+              <Link
+                href={`/cooking?${categoryQS}page=${currentPage + 1}`}
+                className="text-sm text-secondary hover:text-foreground transition-colors"
+              >
+                下一页 →
+              </Link>
+            )}
+          </div>
+        </nav>
       )}
     </div>
   );
