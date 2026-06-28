@@ -4,13 +4,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { siteConfig } from '@/site.config';
 
-const navLinks = [
-  { href: '/posts', label: '文章' },
-  { href: '/words', label: '说说' },
-  { href: '/archives', label: '归档' },
-  { href: '/share', label: '分享' },
-];
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -25,7 +18,7 @@ export default function Header() {
 
       {/* 桌面端导航 */}
       <nav className="hidden sm:flex items-center gap-1">
-        {navLinks.map((link) => (
+        {siteConfig.navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -81,7 +74,7 @@ export default function Header() {
       {menuOpen && (
         <nav className="absolute top-full left-0 right-0 z-50 bg-background border-b border-border shadow-lg sm:hidden">
           <div className="flex flex-col py-2 px-4">
-            {navLinks.map((link) => (
+            {siteConfig.navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

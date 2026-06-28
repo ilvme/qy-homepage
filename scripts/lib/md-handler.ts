@@ -4,6 +4,7 @@ import path from 'path';
 import { notion } from './notion-client';
 import {
   convertPageToMarkdown,
+  downloadImage,
   type ConverterConfig,
 } from './notion-md-converter';
 
@@ -105,6 +106,22 @@ export function createMdHandler<T extends BaseMeta>(
             console.error(`✗ No content returned for: ${item.title}`);
             continue;
           }
+        }
+
+        // 下载 cover 图片到本地（处理 Notion 文件上传的过期 URL）
+        const cover = (item as any).cover as string | undefined;
+        if (cover) {
+          const coverDir = path.resolve(
+            process.cwd(),
+            media.mediaDir,
+            key,
+          );
+          const coverUrlPath = `${media.mediaUrlPath}/${key}`;
+          if (!fs.existsSync(coverDir)) {
+            fs.mkdirSync(coverDir, { recursive: true });
+          }
+          const localCover = await downloadImage(cover, coverDir, coverUrlPath);
+          (item as any).cover = localCover;
         }
 
         const now = new Date().toISOString();

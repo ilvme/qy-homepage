@@ -12,7 +12,7 @@ export interface ConverterConfig {
 }
 
 /** 下载图片到本地，返回本地相对 URL 路径 */
-async function downloadImage(
+export async function downloadImage(
   url: string,
   outputDir: string,
   urlPath: string,

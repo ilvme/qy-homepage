@@ -22,6 +22,15 @@ export const siteConfig = {
     pageSize: 7,
   },
 
+  /** 导航 */
+  navLinks: [
+    { href: '/posts', label: '文章' },
+    { href: '/archives', label: '归档' },
+    { href: '/words', label: '说说' },
+    { href: '/cooking', label: '品尝' },
+    { href: '/share', label: '分享' },
+  ],
+
   /** 首页 Hero 文案 */
   hero: {
     greeting: '你好，我是林深时觉寒',

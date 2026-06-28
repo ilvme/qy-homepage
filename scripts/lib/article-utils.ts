@@ -6,10 +6,23 @@ import { fetchAllPages } from './notion-client';
  * 将 Notion 原始 page 对象映射为 PostMetadata
  */
 export function mapArticlePage(page: any): PostMetadata {
-  const coverUrl =
-    page.cover?.type === 'external' ? page.cover.external.url : undefined;
-  const iconUrl =
-    page.icon?.type === 'external' ? page.icon.external.url : undefined;
+  const coverObj = page.cover;
+  let coverUrl: string | undefined;
+  if (coverObj) {
+    coverUrl =
+      coverObj.type === 'external'
+        ? coverObj.external?.url
+        : coverObj.file?.url;
+  }
+
+  const iconObj = page.icon;
+  let iconUrl: string | undefined;
+  if (iconObj) {
+    iconUrl =
+      iconObj.type === 'external'
+        ? iconObj.external?.url
+        : iconObj.file?.url;
+  }
 
   return {
     page_id: page.id,
@@ -24,7 +37,7 @@ export function mapArticlePage(page: any): PostMetadata {
     tags: page.properties.tags.multi_select.map(
       (tag: { name: string }) => tag.name,
     ),
-    date: page.properties.date.date?.start,
+    date: page.properties.date?.date?.start ?? page.created_time,
     summary: page.properties.summary.rich_text[0]?.plain_text,
     status: page.properties.status.select?.name,
     last_fetch_time: page.properties.last_fetch_time.date?.start,
@@ -38,7 +51,7 @@ export function generateMdContent(postMeta: PostMetadata, content: string) {
   return `---
 title: "${postMeta.title.replace(/"/g, '\\"')}"
 slug: "${postMeta.slug}"
-date: "${postMeta.date}"
+date: "${postMeta.date ?? postMeta.last_edited_time}"
 category: "${postMeta.category}"
 tags: [${postMeta.tags.map((tag) => `"${tag}"`).join(', ')}]
 status: "${postMeta.status}"

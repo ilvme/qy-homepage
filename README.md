@@ -146,6 +146,7 @@ Notion 中 `date` 字段设为未来时间 → 渲染时自动过滤，时间到
 | `NOTION_ARTICLES_DATABASE_ID` | 文章数据库 ID | 同上 |
 | `NOTION_WORDS_DATABASE_ID` | 说说数据库 ID | 同上 |
 | `NOTION_SHARE_DATABASE_ID` | 分享数据库 ID | 同上 |
+| `NOTION_COOKING_DATABASE_ID` | 做饭数据库 ID | 同上 |
 | `NEXT_PUBLIC_SITE_URL` | 站点 URL | 仅 Vercel |
 | `PUBLISH_SECRET` | 说说发布 API 密钥 | Vercel + 本地 `.env` |
 | `MANAGE_PASSWORD` | 管理后台登录口令 | Vercel + 本地 `.env` |

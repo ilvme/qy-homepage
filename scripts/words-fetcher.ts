@@ -13,7 +13,7 @@ function mapWordPage(page: any): WordMetadata {
     tags: page.properties.tags.multi_select.map(
       (tag: { name: string }) => tag.name,
     ),
-    date: page.properties.date.date?.start,
+    date: page.properties.date?.date?.start ?? page.created_time,
     status: page.properties.status.select?.name,
     from: page.properties.from.select?.name,
     last_fetch_time: page.properties.last_fetch_time.date?.start,

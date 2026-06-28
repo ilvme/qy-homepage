@@ -10,6 +10,7 @@ import 'dotenv/config';
  */
 
 import { main as fetchArticles } from './articles-fetcher';
+import { main as fetchCooking } from './cooking-fetcher';
 import { main as fetchPages } from './pages-fetcher';
 import { main as fetchShares } from './shares-fetcher';
 import { main as fetchWords } from './words-fetcher';
@@ -32,6 +33,7 @@ async function main() {
     { name: 'Articles', fn: fetchArticles },
     { name: 'Pages', fn: fetchPages },
     { name: 'Shares', fn: fetchShares },
+    { name: 'Cooking', fn: fetchCooking },
     { name: 'Words', fn: fetchWords },
   ];
 

@@ -38,6 +38,7 @@ jobs:
           NOTION_ARTICLES_DATABASE_ID: ${{ secrets.NOTION_ARTICLES_DATABASE_ID }}
           NOTION_WORDS_DATABASE_ID: ${{ secrets.NOTION_WORDS_DATABASE_ID }}
           NOTION_SHARE_DATABASE_ID: ${{ secrets.NOTION_SHARE_DATABASE_ID }}
+          NOTION_COOKING_DATABASE_ID: ${{ secrets.NOTION_COOKING_DATABASE_ID }}
 
       - name: Commit and push if changed
         run: |

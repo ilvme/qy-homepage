@@ -14,6 +14,7 @@
     "fetchArticles": "tsx scripts/articles-fetcher.ts",
     "fetchPages": "tsx scripts/pages-fetcher.ts",
     "fetchShares": "tsx scripts/shares-fetcher.ts",
+    "fetchCooking": "tsx scripts/cooking-fetcher.ts",
     "fetchWords": "tsx scripts/words-fetcher.ts",
     "importWords": "tsx scripts/words/import-csv.ts",
     "cleanWordsCsv": "tsx scripts/words/clean-csv.ts"
