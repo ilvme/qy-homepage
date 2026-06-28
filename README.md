@@ -47,6 +47,9 @@ Notion 数据库 (唯一数据源)
 | `/tags` | 标签列表 |
 | `/tags/[tag]` | 按标签筛选 |
 | `/words` | 说说流 |
+| `/cooking` | 下厨画廊，分页 |
+| `/cooking/[slug]` | 下厨详情 |
+| `/share` | 分享（占位） |
 | `/about` | 关于页 |
 | `/friends` | 友链 |
 | `/resume` | 简历 |
@@ -180,6 +183,9 @@ pnpm format                  # biome format --write
 ```bash
 pnpm fetchAll                # 全量
 pnpm fetchArticles           # 仅文章
+pnpm fetchPages              # 仅页面
+pnpm fetchShares             # 仅分享
+pnpm fetchCooking            # 仅下厨
 pnpm fetchWords              # 仅说说
 ```
 
