@@ -3,7 +3,7 @@ import Link from 'next/link';
 import PostItem from '@/app/(blogs)/_components/PostItem';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
-import { getAllPosts, getPostStats } from '@/libs/content-loader';
+import { getAllPosts } from '@/libs/content-loader';
 import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default async function Archives({
 }: {
   searchParams: Promise<{ page?: string }>;
 }) {
-  const [posts, stats] = await Promise.all([getAllPosts(), getPostStats()]);
+  const [posts] = await Promise.all([getAllPosts()]);
   const { page: pageParam } = await searchParams;
 
   const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
@@ -29,10 +29,7 @@ export default async function Archives({
   return (
     <div className="py-8">
       <PageHero title="文章">
-        <p className="text-secondary text-base mt-1">
-          共 {stats.totalPosts} 篇文章
-          {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
-        </p>
+        <p className="text-secondary text-base mt-1">人穷龌龊事，尽揽一箩筐</p>
       </PageHero>
 
       {posts.length === 0 ? (
