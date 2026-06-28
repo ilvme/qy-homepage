@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -28,31 +29,30 @@ export default async function Archives() {
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">归档</h1>
+      <PageHero title="归档">
         <p className="text-secondary text-base mt-1">
           共 {stats.totalPosts} 篇文章
           {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
         </p>
-      </header>
+      </PageHero>
 
       {posts.length === 0 ? (
-        <EmptyState message="还没有文章" />
+        <EmptyShower />
       ) : (
         <div className="space-y-6">
           {sortedYears.map((year) => (
-          <section key={year}>
-            <h2 className="text-lg font-semibold mb-2">{year}</h2>
-            <ul className="space-y-0.5">
-              {postsByYear[year]?.map((post) => (
-                <li key={post.slug}>
-                  <PostItemLite postMetadata={post} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
+            <section key={year}>
+              <h2 className="text-lg font-semibold mb-2">{year}</h2>
+              <ul className="space-y-0.5">
+                {postsByYear[year]?.map((post) => (
+                  <li key={post.slug}>
+                    <PostItemLite postMetadata={post} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       )}
     </div>
   );

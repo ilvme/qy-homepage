@@ -2,6 +2,7 @@ import fs from 'fs';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import path from 'path';
+import { PageHero } from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
   title: '旧版说说',
@@ -102,12 +103,10 @@ export default async function DailyWordsPage({
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">旧版说说</h1>
-        <p className="text-secondary text-base mt-1">
-          往日时光机 · 共 {words.length} 条碎碎念
-        </p>
-      </header>
+      <PageHero
+        title="旧版说说"
+        description={`往日时光机 · 共 ${words.length} 条碎碎念`}
+      />
 
       <div className="space-y-4">
         {pagedWords.map((word, i) => (

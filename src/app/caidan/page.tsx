@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { PageHero } from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
   title: '彩蛋',
@@ -18,12 +19,7 @@ const eggs = [
 export default function CaidanPage() {
   return (
     <div className="py-8 max-w-2xl">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">🥚 彩蛋</h1>
-        <p className="text-secondary text-base mt-1">
-          这里藏着一些不对外开放但我觉得有趣的东西。
-        </p>
-      </header>
+      <PageHero title="🥚 彩蛋" description="这里藏着一些不对外开放但我觉得有趣的东西。" />
 
       <ul className="space-y-3">
         {eggs.map((egg) => (

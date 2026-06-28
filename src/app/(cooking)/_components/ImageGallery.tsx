@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
 import type { PostMetadata } from '../../../../scripts/types';
 
 interface ImageGalleryProps {
@@ -8,7 +9,7 @@ interface ImageGalleryProps {
 }
 
 export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
-  if (items.length === 0) return <EmptyState />;
+  if (items.length === 0) return <EmptyShower />;
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -20,7 +21,7 @@ export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
         >
           <div className="aspect-square bg-muted overflow-hidden">
             {item.cover ? (
-              <img
+              <Image
                 src={item.cover}
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

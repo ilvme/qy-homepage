@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import WordCard from '@/app/words/_components/WordCard';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllWords } from '@/libs/words-loader';
 
 export const metadata: Metadata = {
@@ -13,15 +14,13 @@ export default async function ShuoShuo() {
 
   return (
     <div className="py-8 space-y-4">
-      <header>
-        <h1 className="text-3xl font-bold tracking-tight">说说</h1>
-        <p className="text-secondary text-base mt-1">
-          随笔心情、生活碎片、一闪而过的念头。
-        </p>
-      </header>
+      <PageHero
+        title="说说"
+        description="随笔心情、生活碎片、一闪而过的念头。"
+      />
 
       {words.length === 0 ? (
-        <EmptyState message="还没有说说" />
+        <EmptyShower />
       ) : (
         <div className="space-y-4 mt-10">
           {words.map((word) => (

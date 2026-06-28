@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ImageGallery } from '@/app/(cooking)/_components/ImageGallery';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
 import { siteConfig } from '@/site.config';
 
@@ -45,12 +46,10 @@ export default async function CookingPage({
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">下厨</h1>
-        <p className="text-secondary text-base mt-1">
-          自己动手做的好吃的 · 共 {items.length} 道
-        </p>
-      </header>
+      <PageHero
+        title="下厨"
+        description={`自己动手做的好吃的 · 共 ${items.length} 道`}
+      />
 
       {/* 分类 Tab */}
       {categories.length > 0 && (

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import path from 'path';
+import { EmptyShower } from '@/components/ui/EmptyShower';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
+import { PageHero } from '@/components/ui/PageHero';
 import { parseMdFromFile } from '@/libs/content-supports';
 
 export const metadata: Metadata = {
@@ -15,16 +17,9 @@ export default async function FriendsPage() {
   if (!fileContent?.content) {
     return (
       <div className="py-8 space-y-8">
-        <header>
-          <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>
-        </header>
-        <div className="py-16 text-center text-secondary">
-          <p className="text-4xl mb-4">🤝</p>
-          <p>暂无内容</p>
-          <p className="text-xs mt-2">
-            请在 Notion 中配置「友情链接」页面后拉取。
-          </p>
-        </div>
+        <PageHero title="友情链接" />
+
+        <EmptyShower />
       </div>
     );
   }
@@ -34,7 +29,10 @@ export default async function FriendsPage() {
       <header>
         <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>
       </header>
-      <MarkdownRenderer content={fileContent.content} className="text-base lg:text-lg" />
+      <MarkdownRenderer
+        content={fileContent.content}
+        className="text-base lg:text-lg"
+      />
     </div>
   );
 }

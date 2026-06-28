@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PostItem from '@/app/(blogs)/_components/PostItem';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 import { siteConfig } from '@/site.config';
 
@@ -27,16 +28,15 @@ export default async function Archives({
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">文章</h1>
+      <PageHero title="文章">
         <p className="text-secondary text-base mt-1">
           共 {stats.totalPosts} 篇文章
           {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
         </p>
-      </header>
+      </PageHero>
 
       {posts.length === 0 ? (
-        <EmptyState message="还没有文章" />
+        <EmptyShower />
       ) : (
         <div className="space-y-6">
           <ul className="space-y-0.5">

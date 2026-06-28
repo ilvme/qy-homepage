@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { PageHero } from '@/components/ui/PageHero';
 
 const TAG_OPTIONS = [
   '万千思绪',
@@ -81,18 +82,14 @@ export default function PublishPage() {
 
   return (
     <div className="py-8 max-w-xl">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">发布说说</h1>
+      <PageHero title="发布说说">
         <p className="text-secondary text-sm mt-1">
           输入内容后 Ctrl+Enter 发布 ·{' '}
-          <Link
-            href="/manage"
-            className="underline underline-offset-2 hover:text-foreground"
-          >
+          <Link href="/manage" className="underline underline-offset-2 hover:text-foreground">
             返回管理
           </Link>
         </p>
-      </header>
+      </PageHero>
 
       <div className="space-y-5">
         {/* 密钥 */}

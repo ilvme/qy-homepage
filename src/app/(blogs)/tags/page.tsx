@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllTags } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -13,27 +14,24 @@ export default async function TagsPage() {
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Tags</h1>
-        <p className="text-secondary text-base mt-1">共 {tags.length} 个标签</p>
-      </header>
+      <PageHero title="Tags" description={`共 ${tags.length} 个标签`} />
 
       {tags.length === 0 ? (
-        <EmptyState message="还没有标签" />
+        <EmptyShower />
       ) : (
         <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
           {tags.map((tag) => (
-          <Link
-            key={tag.label}
-            href={`/tags/${tag.label}`}
-            className="hover:underline"
-          >
-            <span className="">#</span>
-            {tag.label}
-            <span className="pl-1 text-secondary">{tag.count}</span>
-          </Link>
-        ))}
-      </div>
+            <Link
+              key={tag.label}
+              href={`/tags/${tag.label}`}
+              className="hover:underline"
+            >
+              <span className="">#</span>
+              {tag.label}
+              <span className="pl-1 text-secondary">{tag.count}</span>
+            </Link>
+          ))}
+        </div>
       )}
     </div>
   );

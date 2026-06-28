@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { PageHero } from '@/components/ui/PageHero';
 import { DeployButton } from './_components/DeployButton';
 
 export const metadata: Metadata = {
@@ -18,10 +19,7 @@ const tools = [
 export default function ManagePage() {
   return (
     <div className="py-8 max-w-xl">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">管理</h1>
-        <p className="text-secondary text-sm mt-1">选择一个功能</p>
-      </header>
+      <PageHero title="管理" description="选择一个功能" />
 
       <ul className="space-y-3">
         {tools.map((tool) => (

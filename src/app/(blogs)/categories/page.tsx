@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyShower } from '@/components/ui/EmptyShower';
+import { PageHero } from '@/components/ui/PageHero';
 import { getAllCategories, getAllPosts } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -23,30 +24,25 @@ export default async function CategoriesPage() {
 
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">分类</h1>
-        <p className="text-secondary text-base mt-1">
-          共 {categories.length} 个分类
-        </p>
-      </header>
+      <PageHero title="分类" description={`共 ${categories.length} 个分类`} />
 
       {categories.length === 0 ? (
-        <EmptyState message="还没有分类" />
+        <EmptyShower />
       ) : (
         <div className="flex flex-wrap gap-3">
           {categories.map((cat) => (
-          <Link
-            key={cat}
-            href={`/categories/${cat}`}
-            className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1.5 text-sm hover:bg-accent transition-colors"
-          >
-            {cat}
-            <span className="text-xs text-secondary">
-              {categoryCounts.get(cat) ?? 0}
-            </span>
-          </Link>
-        ))}
-      </div>
+            <Link
+              key={cat}
+              href={`/categories/${cat}`}
+              className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1.5 text-sm hover:bg-accent transition-colors"
+            >
+              {cat}
+              <span className="text-xs text-secondary">
+                {categoryCounts.get(cat) ?? 0}
+              </span>
+            </Link>
+          ))}
+        </div>
       )}
     </div>
   );
