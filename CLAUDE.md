@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 pnpm dev              # 启动开发服务器（端口 3000）
-pnpm build            # 生产构建（自动先跑 fetchAll）
+pnpm build            # 生产构建
 pnpm lint             # Biome 检查（linter + formatter）
 pnpm format           # Biome 格式化并写入
 pnpm fetchAll         # 从 Notion 同步所有内容

@@ -204,15 +204,6 @@ GitHub (代码 + 内容备份)
                     │
                     └── 内容变更时才 push（增量检查）
 
-Vercel
-    │
-    ├── 静态页面 (/) 
-    ├── 服务端渲染 (文章、说说)
-    ├── API Route (/api/words/publish, /api/deploy)
-    │       │
-    │       ├── Notion API (写数据)
-    │       └── Deploy Hook (触发构建)
-    │
-    └── Middleware (/manage/*)
-            └── Cookie 鉴权
+发布 API 写 Notion 后会等下一次 Action 同步上线（最长 1 小时）。
+手动 /manage 点「更新」可触发 Deploy Hook 即时构建。
 ```
