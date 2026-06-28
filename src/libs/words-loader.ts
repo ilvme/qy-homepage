@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { parseMdFromFile } from '@/libs/content-supports';
+import { parseDate, parseMdFromFile } from '@/libs/content-supports';
 
 const WORDS_DIR = path.join(process.cwd(), 'content/words');
 
@@ -17,7 +17,7 @@ export async function getAllWords() {
       // 有 date 字段则过滤掉未来的（预发布），无 date 字段原样保留
       const dateStr = item?.postMeta.date;
       if (!dateStr) return true;
-      const d = new Date(dateStr);
+      const d = parseDate(dateStr);
       return !isNaN(d.getTime()) && d <= now;
     })
     .map((item) => ({
@@ -26,8 +26,8 @@ export async function getAllWords() {
     }))
     .sort(
       (a, b) =>
-        new Date(b?.postMeta.date).getTime() -
-        new Date(a?.postMeta.date).getTime(),
+        parseDate(b?.postMeta.date).getTime() -
+        parseDate(a?.postMeta.date).getTime(),
     );
 
   console.log('本地说说数：', words.length);

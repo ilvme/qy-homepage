@@ -15,8 +15,12 @@ interface WordCardProps {
 
 /**
  * 格式化日期为更友好的显示格式：2026/6/12 14:30 周五
+ * 纯日期字符串显式指定格式避免被当 UTC 解析（偏差 8 小时）
  */
 function formatDate(dateStr: string): string {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return dayjs(dateStr, 'YYYY-MM-DD').format('YYYY/M/D ddd');
+  }
   return dayjs(dateStr).format('YYYY/M/D HH:mm ddd');
 }
 

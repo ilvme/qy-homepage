@@ -1,6 +1,17 @@
 import fs from 'fs';
 import matter from '@11ty/gray-matter';
 
+/**
+ * 解析日期字符串为 Date 对象
+ * 纯日期（YYYY-MM-DD）显式按本地时间解析，避免被 JS 当成 UTC（偏差 8 小时）
+ */
+export function parseDate(dateStr: string): Date {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return new Date(dateStr + 'T00:00:00');
+  }
+  return new Date(dateStr);
+}
+
 export interface TocHeading {
   id: string;
   text: string;

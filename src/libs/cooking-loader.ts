@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { parseMdFromFile } from '@/libs/content-supports';
+import { parseDate, parseMdFromFile } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';
 
 export interface PostWithContent extends PostMetadata {
@@ -18,7 +18,9 @@ export async function getAllCooking() {
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as PostMetadata)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort(
+      (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime(),
+    );
 
   return items;
 }
