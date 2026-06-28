@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getAllTags } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -17,8 +18,11 @@ export default async function TagsPage() {
         <p className="text-secondary text-base mt-1">共 {tags.length} 个标签</p>
       </header>
 
-      <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 ">
-        {tags.map((tag) => (
+      {tags.length === 0 ? (
+        <EmptyState message="还没有标签" />
+      ) : (
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
+          {tags.map((tag) => (
           <Link
             key={tag.label}
             href={`/tags/${tag.label}`}
@@ -30,6 +34,7 @@ export default async function TagsPage() {
           </Link>
         ))}
       </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getAllCategories, getAllPosts } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -29,8 +30,11 @@ export default async function CategoriesPage() {
         </p>
       </header>
 
-      <div className="flex flex-wrap gap-3">
-        {categories.map((cat) => (
+      {categories.length === 0 ? (
+        <EmptyState message="还没有分类" />
+      ) : (
+        <div className="flex flex-wrap gap-3">
+          {categories.map((cat) => (
           <Link
             key={cat}
             href={`/categories/${cat}`}
@@ -43,6 +47,7 @@ export default async function CategoriesPage() {
           </Link>
         ))}
       </div>
+      )}
     </div>
   );
 }

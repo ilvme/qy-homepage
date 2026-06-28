@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
@@ -35,8 +36,11 @@ export default async function Archives() {
         </p>
       </header>
 
-      <div className="space-y-6">
-        {sortedYears.map((year) => (
+      {posts.length === 0 ? (
+        <EmptyState message="还没有文章" />
+      ) : (
+        <div className="space-y-6">
+          {sortedYears.map((year) => (
           <section key={year}>
             <h2 className="text-lg font-semibold mb-2">{year}</h2>
             <ul className="space-y-0.5">
@@ -49,6 +53,7 @@ export default async function Archives() {
           </section>
         ))}
       </div>
+      )}
     </div>
   );
 }

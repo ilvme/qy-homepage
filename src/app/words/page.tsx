@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import WordCard from '@/app/words/_components/WordCard';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getAllWords } from '@/libs/words-loader';
 
 export const metadata: Metadata = {
@@ -19,14 +20,18 @@ export default async function ShuoShuo() {
         </p>
       </header>
 
-      <div className="space-y-4 mt-10">
-        {words.map((word) => (
-          <WordCard
-            key={word?.postMeta.page_id}
-            post={word as { postMeta: any; content: string }}
-          />
-        ))}
-      </div>
+      {words.length === 0 ? (
+        <EmptyState message="还没有说说" />
+      ) : (
+        <div className="space-y-4 mt-10">
+          {words.map((word) => (
+            <WordCard
+              key={word?.postMeta.page_id}
+              post={word as { postMeta: any; content: string }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

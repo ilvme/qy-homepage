@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { EmptyState } from '@/components/ui/EmptyState';
 import type { PostMetadata } from '../../../../scripts/types';
 
 interface ImageGalleryProps {
@@ -7,11 +8,7 @@ interface ImageGalleryProps {
 }
 
 export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
-  if (items.length === 0) {
-    return (
-      <p className="text-secondary text-sm py-16 text-center">暂无内容</p>
-    );
-  }
+  if (items.length === 0) return <EmptyState />;
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">

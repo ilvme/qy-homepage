@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PostItem from '@/app/(blogs)/_components/PostItem';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 import { siteConfig } from '@/site.config';
 
@@ -34,15 +35,19 @@ export default async function Archives({
         </p>
       </header>
 
-      <div className="space-y-6">
-        <ul className="space-y-0.5">
-          {pagedPosts.map((post) => (
-            <li key={post.slug}>
-              <PostItem postMetadata={post} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {posts.length === 0 ? (
+        <EmptyState message="还没有文章" />
+      ) : (
+        <div className="space-y-6">
+          <ul className="space-y-0.5">
+            {pagedPosts.map((post) => (
+              <li key={post.slug}>
+                <PostItem postMetadata={post} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {totalPages > 1 && (
         <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
