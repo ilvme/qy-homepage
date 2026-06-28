@@ -21,7 +21,7 @@ export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
         >
           <div className="aspect-square bg-muted overflow-hidden">
             {item.cover ? (
-              <Image
+              <img
                 src={item.cover}
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

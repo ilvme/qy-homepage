@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ImageGallery } from '@/app/(cooking)/_components/ImageGallery';
 import { PageHero } from '@/components/ui/PageHero';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
@@ -25,7 +25,10 @@ export default async function CookingPage({
   const categoryCounts = new Map<string, number>();
   for (const item of items) {
     if (item.category) {
-      categoryCounts.set(item.category, (categoryCounts.get(item.category) ?? 0) + 1);
+      categoryCounts.set(
+        item.category,
+        (categoryCounts.get(item.category) ?? 0) + 1,
+      );
     }
   }
 
@@ -47,19 +50,19 @@ export default async function CookingPage({
   return (
     <div className="py-8">
       <PageHero
-        title="下厨"
+        title="食者"
         description={`自己动手做的好吃的 · 共 ${items.length} 道`}
       />
 
       {/* 分类 Tab */}
       {categories.length > 0 && (
-        <nav className="flex flex-wrap gap-2 mb-8">
+        <nav className="flex flex-wrap gap-x-4 gap-y-1 mb-4">
           <Link
             href="/cooking"
-            className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+            className={`text-sm transition-colors ${
               !activeCategory
-                ? 'bg-foreground text-background border-foreground'
-                : 'border-border bg-card text-secondary hover:border-foreground/30'
+                ? 'text-foreground font-semibold'
+                : 'text-secondary hover:text-foreground'
             }`}
           >
             全部（{items.length}）
@@ -68,10 +71,10 @@ export default async function CookingPage({
             <Link
               key={cat}
               href={`/cooking?category=${cat}`}
-              className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+              className={`text-sm transition-colors ${
                 activeCategory === cat
-                  ? 'bg-foreground text-background border-foreground'
-                  : 'border-border bg-card text-secondary hover:border-foreground/30'
+                  ? 'text-foreground font-semibold'
+                  : 'text-secondary hover:text-foreground'
               }`}
             >
               {cat}（{categoryCounts.get(cat) ?? 0}）
