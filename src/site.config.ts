@@ -21,6 +21,8 @@ export const siteConfig = {
   pagination: {
     pageSize: 7,
     cookingPageSize: 8,
+    tastePageSize: 12,
+    awakenPageSize: 10,
   },
 
   /** 导航 */
@@ -29,7 +31,8 @@ export const siteConfig = {
     { href: '/archives', label: '归档' },
     { href: '/words', label: '说说' },
     { href: '/cooking', label: '品尝' },
-    { href: '/share', label: '分享' },
+    { href: '/taste', label: '书影音' },
+    { href: '/awaken', label: '分享' },
   ],
 
   /** 首页 Hero 文案 */

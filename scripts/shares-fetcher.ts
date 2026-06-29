@@ -1,8 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import { notion, fetchAllPages } from './lib/notion-client';
+import { fetchAllPages, notion } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { syncCover, toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
+import {
+  loadSyncState,
+  needsStateSync,
+  nowLocal,
+  saveSyncState,
+  syncCover,
+  toLocalTime,
+} from './lib/sync-utils';
 import type { ShareMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/shares');
@@ -11,10 +18,20 @@ const MEDIA_URL = '/notion-images/shares';
 
 /** 将 Notion 分享数据库的 page 映射为 ShareMetadata */
 function mapSharePage(page: any): ShareMetadata {
+  // cover 优先取自定义属性，否则用 Notion 页面封面
   const coverUrl =
-    page.cover?.type === 'external' ? page.cover.external.url : undefined;
-  const iconUrl =
-    page.icon?.type === 'external' ? page.icon.external.url : undefined;
+    page.properties.cover?.url ||
+    page.properties.cover?.rich_text?.[0]?.plain_text ||
+    (page.cover?.type === 'external'
+      ? page.cover.external?.url
+      : page.cover?.file?.url);
+
+  const iconObj = page.icon;
+  let iconUrl: string | undefined;
+  if (iconObj) {
+    iconUrl =
+      iconObj.type === 'external' ? iconObj.external?.url : iconObj.file?.url;
+  }
 
   return {
     page_id: page.id,
@@ -23,7 +40,7 @@ function mapSharePage(page: any): ShareMetadata {
     icon: iconUrl,
 
     title: page.properties.title?.title[0]?.plain_text ?? '',
-    type: 'share',
+    type: page.properties.type?.select?.name ?? 'taste',
     slug:
       page.properties.slug?.rich_text[0]?.plain_text ||
       page.id.replace(/-/g, ''),
@@ -39,7 +56,8 @@ function mapSharePage(page: any): ShareMetadata {
     author: page.properties.author?.rich_text[0]?.plain_text,
     link: page.properties.link?.url,
     status: page.properties.status?.select?.name ?? 'published',
-    last_fetched_time: toLocalTime(page.properties.last_fetched_time?.date?.start) ?? null,
+    last_fetched_time:
+      toLocalTime(page.properties.last_fetched_time?.date?.start) ?? null,
   };
 }
 
@@ -49,19 +67,18 @@ function formatFrontmatter(meta: ShareMetadata, lastFetchTime: string): string {
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`slug: "${meta.slug}"`);
   fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
-  if (meta.category) fm.push(`category: "${meta.category}"`);
-  if (meta.tags?.length)
-    fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`category: "${meta.category || ''}"`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
-  if (meta.author) fm.push(`author: "${meta.author}"`);
-  if (meta.link) fm.push(`link: "${meta.link}"`);
+  fm.push(`author: "${meta.author || ''}"`);
+  fm.push(`link: "${meta.link || ''}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
-  if (meta.summary) fm.push(`summary: "${meta.summary}"`);
-  if (meta.cover) fm.push(`cover: "${meta.cover}"`);
-  if (meta.icon) fm.push(`icon: "${meta.icon}"`);
+  fm.push(`summary: "${meta.summary || ''}"`);
+  fm.push(`cover: "${meta.cover || ''}"`);
+  fm.push(`icon: "${meta.icon || ''}"`);
   return fm.join('\n');
 }
 
@@ -94,38 +111,44 @@ export async function fetchShares() {
   let skipped = 0;
 
   for (const item of items) {
-    const key = `shares/${item.slug}`;
+    const fileKey = item.title;
+    const key = `shares/${fileKey}`;
     if (!needsStateSync(state, key, item.last_edited_time)) {
       skipped++;
-      console.log(`⊘ Skipped (up-to-date): ${item.slug}`);
+      console.log(`⊘ Skipped (up-to-date): ${fileKey}`);
       continue;
     }
 
     console.log(`→ Fetching: ${item.title}`);
 
-    const markdown = await convertPageToMarkdown(notion, item.page_id, item.slug, {
-      mediaDir: 'public/notion-images/shares',
-      mediaUrlPath: MEDIA_URL,
-    });
+    const markdown = await convertPageToMarkdown(
+      notion,
+      item.page_id,
+      fileKey,
+      {
+        mediaDir: 'public/notion-images/shares',
+        mediaUrlPath: MEDIA_URL,
+      },
+    );
     if (!markdown) {
       console.error(`✗ No content returned for: ${item.title}`);
       continue;
     }
 
     // 下载封面图
-    item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, item.slug);
+    item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, fileKey);
 
     const now = nowLocal();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 
     fs.writeFileSync(
-      path.join(CONTENT_DIR, `${item.slug}.md`),
+      path.join(CONTENT_DIR, `${fileKey}.md`),
       fullContent,
       'utf-8',
     );
     state[key] = item.last_edited_time;
-    console.log(`✓ Saved: ${item.slug}.md`);
+    console.log(`✓ Saved: ${fileKey}.md`);
     updated++;
   }
 

@@ -47,7 +47,7 @@ export default async function Home() {
       {/* Site Sections */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">探索</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             {
               href: '/posts',
@@ -72,11 +72,19 @@ export default async function Home() {
               ),
             },
             {
-              href: '/share',
-              label: '分享',
-              desc: '书影收藏',
+              href: '/taste',
+              label: '风味',
+              desc: '书影音收藏',
               icon: (
                 <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+              ),
+            },
+            {
+              href: '/awaken',
+              label: '唤醒',
+              desc: '语录与感悟',
+              icon: (
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               ),
             },
             {

@@ -32,10 +32,9 @@ function formatFrontmatter(meta: WordMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
-  if (meta.tags?.length)
-    fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
-  if (meta.from) fm.push(`from: "${meta.from}"`);
+  fm.push(`from: "${meta.from || ''}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);

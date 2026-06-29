@@ -55,17 +55,16 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`slug: "${meta.slug}"`);
   fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
-  if (meta.category) fm.push(`category: "${meta.category}"`);
-  if (meta.tags?.length)
-    fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`category: "${meta.category || ''}"`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
-  if (meta.summary) fm.push(`summary: "${meta.summary}"`);
-  if (meta.cover) fm.push(`cover: "${meta.cover}"`);
-  if (meta.icon) fm.push(`icon: "${meta.icon}"`);
+  fm.push(`summary: "${meta.summary || ''}"`);
+  fm.push(`cover: "${meta.cover || ''}"`);
+  fm.push(`icon: "${meta.icon || ''}"`);
   return fm.join('\n');
 }
 

@@ -70,7 +70,7 @@ export function needsStateSync(
 
 /**
  * 下载封面图片到本地，返回本地 URL 路径
- * 非 Notion 图片（如外部 URL）直接返回原 URL
+ * 非 Notion 图片也会尝试下载到本地，避免防盗链等问题
  */
 export async function syncCover(
   url: string | undefined,
@@ -87,5 +87,28 @@ export async function syncCover(
     fs.mkdirSync(coverDir, { recursive: true });
   }
 
-  return downloadImage(url, coverDir, coverUrlPath);
+  // 先尝试 downloadImage（处理 Notion 图片），失败则尝试通用下载
+  const result = await downloadImage(url, coverDir, coverUrlPath);
+
+  // downloadImage 对非 Notion URL 会原样返回，此时尝试直接下载
+  if (result === url) {
+    const ext =
+      url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'jpg';
+    const fileName = `cover.${ext}`;
+    const filePath = path.join(coverDir, fileName);
+
+    try {
+      const res = await fetch(url, {
+        headers: { Referer: new URL(url).origin },
+      });
+      if (!res.ok) return url;
+      const buf = Buffer.from(await res.arrayBuffer());
+      fs.writeFileSync(filePath, buf);
+      return `${coverUrlPath}/${fileName}`;
+    } catch {
+      return url;
+    }
+  }
+
+  return result;
 }
