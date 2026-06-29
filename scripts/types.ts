@@ -12,7 +12,7 @@ export interface PostMetadata {
   date: string;
   summary?: string;
   status: string;
-  last_fetch_time: string | null;
+  last_fetched_time: string | null;
 }
 
 export interface ShareMetadata extends PostMetadata {
@@ -23,7 +23,7 @@ export interface ShareMetadata extends PostMetadata {
 export interface WordMetadata {
   page_id: string;
   last_edited_time: string;
-  last_fetch_time: string | null;
+  last_fetched_time: string | null;
 
   from: string;
 

@@ -91,15 +91,15 @@ scripts/
 └── lib/
     ├── notion-client.ts      # fetchAllPages() 分页查询 + data_source 解析
     ├── notion-md-converter.ts # convertPageToMarkdown() + downloadImage()
-    ├── md-handler.ts         # createMdHandler() 工厂：增量检查 → 转换 → 下载 cover → 写文件
-    └── article-utils.ts      # mapArticlePage() / fetchByType() / createHandler()
+    ├── sync-utils.ts         # needsSync() 增量检查 + syncCover() 封面下载
+    └── mappers.ts            # mapArticlePage() + getArticlesDatabaseId()
 ```
 
-`article-utils.ts` 只被 articles-fetcher、pages-fetcher、cooking-fetcher 使用（共用 `mapArticlePage` 和 `createHandler`）。shares 和 words 各自独立映射。
+每个 fetcher 完全自包含：自己查库、自己循环处理、自己写文件。仅通过 `lib/` 中的几个纯函数共享基础设施。
 
 ### 增量同步
 
-比对 `last_edited_time`，一致则跳过。`--force` 模式设置 `FORCE_SYNC=true` 绕过。Cover 图片也会在同步时下载到本地（`md-handler.ts`）。
+比对 `last_edited_time`，一致则跳过。`--force` 模式设置 `FORCE_SYNC=true` 绕过。Cover 图片也会通过 `syncCover()` 下载到本地。
 
 ### Date 解析
 

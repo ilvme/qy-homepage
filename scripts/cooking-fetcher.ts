@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { needsSync, syncCover } from './lib/sync-utils';
+import { syncCover, toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/cooking');
@@ -29,7 +29,7 @@ function mapCookingPage(page: any): PostMetadata {
 
   return {
     page_id: page.id,
-    last_edited_time: page.last_edited_time,
+    last_edited_time: toLocalTime(page.last_edited_time)!,
     cover: coverUrl,
     icon: iconUrl,
 
@@ -40,10 +40,12 @@ function mapCookingPage(page: any): PostMetadata {
     tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
-    date: page.properties.date?.date?.start ?? page.created_time,
+    date:
+      toLocalTime(page.properties.date?.date?.start) ??
+      toLocalTime(page.created_time)!,
     summary: page.properties.summary.rich_text[0]?.plain_text,
     status: page.properties.status.select?.name,
-    last_fetch_time: page.properties.last_fetch_time.date?.start,
+    last_fetched_time: toLocalTime(page.properties.last_fetched_time.date?.start) ?? null,
   };
 }
 
@@ -58,7 +60,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
     fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
-  fm.push(`last_fetch_time: "${lastFetchTime}"`);
+  fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   if (meta.summary) fm.push(`summary: "${meta.summary}"`);
@@ -91,11 +93,13 @@ export async function fetchCooking() {
     fs.mkdirSync(CONTENT_DIR, { recursive: true });
   }
 
+  const state = loadSyncState();
   let updated = 0;
   let skipped = 0;
 
   for (const item of items) {
-    if (!needsSync(CONTENT_DIR, item.slug, item.last_edited_time)) {
+    const key = `cooking/${item.slug}`;
+    if (!needsStateSync(state, key, item.last_edited_time)) {
       skipped++;
       console.log(`⊘ Skipped (up-to-date): ${item.slug}`);
       continue;
@@ -115,7 +119,7 @@ export async function fetchCooking() {
     // 下载封面图
     item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, item.slug);
 
-    const now = new Date().toISOString();
+    const now = nowLocal();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 
@@ -124,9 +128,12 @@ export async function fetchCooking() {
       fullContent,
       'utf-8',
     );
+    state[key] = item.last_edited_time;
     console.log(`✓ Saved: ${item.slug}.md`);
     updated++;
   }
+
+  saveSyncState(state);
 
   console.log(
     `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,

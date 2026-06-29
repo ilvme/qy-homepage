@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { needsSync } from './lib/sync-utils';
+import { toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
 import type { WordMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/words');
@@ -13,15 +13,17 @@ const MEDIA_URL = '/notion-images/words';
 function mapWordPage(page: any): WordMetadata {
   return {
     page_id: page.id,
-    last_edited_time: page.last_edited_time,
+    last_edited_time: toLocalTime(page.last_edited_time)!,
     title: page.properties.title?.title[0]?.plain_text,
     tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
-    date: page.properties.date?.date?.start ?? page.created_time,
+    date:
+      toLocalTime(page.properties.date?.date?.start) ??
+      toLocalTime(page.created_time)!,
     status: page.properties.status.select?.name,
     from: page.properties.from.select?.name,
-    last_fetch_time: page.properties.last_fetch_time.date?.start,
+    last_fetched_time: toLocalTime(page.properties.last_fetched_time.date?.start) ?? null,
   };
 }
 
@@ -34,7 +36,7 @@ function formatFrontmatter(meta: WordMetadata, lastFetchTime: string): string {
     fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   if (meta.from) fm.push(`from: "${meta.from}"`);
-  fm.push(`last_fetch_time: "${lastFetchTime}"`);
+  fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   return fm.join('\n');
@@ -64,26 +66,28 @@ export async function fetchWords() {
     fs.mkdirSync(CONTENT_DIR, { recursive: true });
   }
 
+  const state = loadSyncState();
   let updated = 0;
   let skipped = 0;
 
   for (const item of items) {
     // 说说以 title 作为文件标识符
-    const key = item.title;
-    if (!key) {
+    const fileKey = item.title;
+    if (!fileKey) {
       console.log('⊘ Skipped: empty title');
       continue;
     }
 
-    if (!needsSync(CONTENT_DIR, key, item.last_edited_time)) {
+    const key = `words/${fileKey}`;
+    if (!needsStateSync(state, key, item.last_edited_time)) {
       skipped++;
-      console.log(`⊘ Skipped (up-to-date): ${key}`);
+      console.log(`⊘ Skipped (up-to-date): ${fileKey}`);
       continue;
     }
 
     console.log(`→ Fetching: ${item.title}`);
 
-    const markdown = await convertPageToMarkdown(notion, item.page_id, key, {
+    const markdown = await convertPageToMarkdown(notion, item.page_id, fileKey, {
       mediaDir: 'public/notion-images/words',
       mediaUrlPath: MEDIA_URL,
     });
@@ -95,18 +99,21 @@ export async function fetchWords() {
       continue;
     }
 
-    const now = new Date().toISOString();
+    const now = nowLocal();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${content}`;
 
     fs.writeFileSync(
-      path.join(CONTENT_DIR, `${key}.md`),
+      path.join(CONTENT_DIR, `${fileKey}.md`),
       fullContent,
       'utf-8',
     );
-    console.log(`✓ Saved: ${key}.md`);
+    state[key] = item.last_edited_time;
+    console.log(`✓ Saved: ${fileKey}.md`);
     updated++;
   }
+
+  saveSyncState(state);
 
   console.log(
     `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,

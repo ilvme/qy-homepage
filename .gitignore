@@ -12,6 +12,9 @@
 
 .notion-to-md
 
+# sync state cache
+content/sync-state.json
+
 # testing
 /coverage
 

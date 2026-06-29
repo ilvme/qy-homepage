@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { needsSync, syncCover } from './lib/sync-utils';
+import { syncCover, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/posts');
@@ -21,7 +21,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
     fm.push(`tags: [${meta.tags.map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
-  fm.push(`last_fetch_time: "${lastFetchTime}"`);
+  fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   if (meta.summary) fm.push(`summary: "${meta.summary}"`);
@@ -55,11 +55,13 @@ export async function fetchArticles() {
     fs.mkdirSync(CONTENT_DIR, { recursive: true });
   }
 
+  const state = loadSyncState();
   let updated = 0;
   let skipped = 0;
 
   for (const item of items) {
-    if (!needsSync(CONTENT_DIR, item.slug, item.last_edited_time)) {
+    const key = `posts/${item.slug}`;
+    if (!needsStateSync(state, key, item.last_edited_time)) {
       skipped++;
       console.log(`⊘ Skipped (up-to-date): ${item.slug}`);
       continue;
@@ -79,7 +81,7 @@ export async function fetchArticles() {
     // 下载封面图
     item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, item.slug);
 
-    const now = new Date().toISOString();
+    const now = nowLocal();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 
@@ -88,9 +90,12 @@ export async function fetchArticles() {
       fullContent,
       'utf-8',
     );
+    state[key] = item.last_edited_time;
     console.log(`✓ Saved: ${item.slug}.md`);
     updated++;
   }
+
+  saveSyncState(state);
 
   console.log(
     `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,

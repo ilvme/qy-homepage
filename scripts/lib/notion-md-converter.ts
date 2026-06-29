@@ -156,7 +156,11 @@ export async function convertPageToMarkdown(
       })
       .withRenderer(renderer);
 
+    // notion-to-md v4 内部大量 console.debug，抑制输出
+    const _debug = console.debug;
+    console.debug = () => {};
     const result = await converter.convert(pageId);
+    console.debug = _debug;
 
     // 保留多个空行
     const content = result.content.replace(

@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { needsSync } from './lib/sync-utils';
+import { nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/pages');
@@ -18,7 +18,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   fm.push(`date: "${meta.date}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
-  fm.push(`last_fetch_time: "${lastFetchTime}"`);
+  fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`type: "${meta.type}"`);
   return fm.join('\n');
 }
@@ -48,11 +48,13 @@ export async function fetchPages() {
     fs.mkdirSync(CONTENT_DIR, { recursive: true });
   }
 
+  const state = loadSyncState();
   let updated = 0;
   let skipped = 0;
 
   for (const item of items) {
-    if (!needsSync(CONTENT_DIR, item.slug, item.last_edited_time)) {
+    const key = `pages/${item.slug}`;
+    if (!needsStateSync(state, key, item.last_edited_time)) {
       skipped++;
       console.log(`⊘ Skipped (up-to-date): ${item.slug}`);
       continue;
@@ -69,7 +71,7 @@ export async function fetchPages() {
       continue;
     }
 
-    const now = new Date().toISOString();
+    const now = nowLocal();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 
@@ -78,9 +80,12 @@ export async function fetchPages() {
       fullContent,
       'utf-8',
     );
+    state[key] = item.last_edited_time;
     console.log(`✓ Saved: ${item.slug}.md`);
     updated++;
   }
+
+  saveSyncState(state);
 
   console.log(
     `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,
