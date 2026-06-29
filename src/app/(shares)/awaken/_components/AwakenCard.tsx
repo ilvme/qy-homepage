@@ -1,22 +1,27 @@
 import Link from 'next/link';
 import type { ShareMetadata } from '../../../../../scripts/types';
 
-export default function AwakenCard({ item }: { item: ShareMetadata }) {
+interface AwakenCardProps {
+  item: ShareMetadata;
+  /** 正文内容预览，优先于 summary */
+  contentPreview?: string;
+}
+
+export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
   const { title } = item;
+  const preview = contentPreview || item.summary;
 
   return (
     <article className="py-5">
-      <Link
-        href={`/src/app/(shares)/awaken/${title}`}
-        className="block space-y-2 group"
-      >
+      <Link href={`/awaken/${title}`} className="block space-y-2 group">
         <h2 className="font-semibold text-lg xl:text-xl group-hover:underline underline-offset-4">
           {title}
         </h2>
       </Link>
-      {item.summary && (
-        <p className="text-sm text-secondary line-clamp-2 leading-relaxed mt-1 max-w-5/6">
-          {item.summary}
+
+      {preview && (
+        <p className="text-sm text-secondary line-clamp-2 leading-relaxed mt-1">
+          {preview}
         </p>
       )}
 

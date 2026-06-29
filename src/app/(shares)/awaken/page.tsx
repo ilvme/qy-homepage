@@ -1,123 +1,128 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import AwakenCard from '@/app/(shares)/awaken/_components/AwakenCard';
+import CopyButton from '@/app/(shares)/awaken/_components/CopyButton';
+import ExpandableContent from '@/app/(shares)/awaken/_components/ExpandableContent';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { PageHero } from '@/components/ui/PageHero';
-import { getAllAwaken, getAllAwakenCategories } from '@/libs/awaken-loader';
-import { siteConfig } from '@/site.config';
+import { getAllAwaken, getAwakenBySlug } from '@/libs/awaken-loader';
 
 export const metadata: Metadata = {
-  title: '分享',
-  description: '绵薄之力',
+  title: '唤醒',
+  description: '台词、句子、古诗词古文',
 };
 
-export default async function AwakenPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string; page?: string }>;
-}) {
-  const [items, categories] = await Promise.all([
-    getAllAwaken(),
-    getAllAwakenCategories(),
-  ]);
-  const { category: activeCategory, page: pageParam } = await searchParams;
+export const dynamic = 'force-dynamic';
 
-  // 统计各分类数量
-  const categoryCounts = new Map<string, number>();
-  for (const item of items) {
-    if (item.category) {
-      categoryCounts.set(
-        item.category,
-        (categoryCounts.get(item.category) ?? 0) + 1,
-      );
-    }
-  }
+/** 去除 markdown 标记，获取纯文本用于复制 */
+function stripMarkdown(md: string): string {
+  return md
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/[*_~`[\]()>#+\-.!|{}]/g, '')
+    .replace(/\n{2,}/g, '\n\n')
+    .trim();
+}
 
-  const filtered = activeCategory
-    ? items.filter((i) => i.category === activeCategory)
-    : items;
+export default async function AwakenPage() {
+  const items = await getAllAwaken();
 
-  const pageSize = siteConfig.pagination.awakenPageSize;
-  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(filtered.length / pageSize);
-  const pagedItems = filtered.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
-  );
+  // 随机选取一条，并加载正文
+  const randomMeta = items[Math.floor(Math.random() * items.length)];
+  const randomItem = randomMeta
+    ? await getAwakenBySlug(randomMeta.title)
+    : null;
 
-  const categoryQS = activeCategory ? `category=${activeCategory}&` : '';
+  const plainText = randomItem ? stripMarkdown(randomItem.content) : '';
 
   return (
     <div className="py-8">
-      <PageHero
-        title="唤醒"
-        description={`台词、句子、古文诗词，共 ${items.length} 篇`}
-      />
+      <Link
+        href="/awaken/all"
+        className="text-sm text-foreground font-medium hover:underline"
+      >
+        全部（{items.length}）
+      </Link>
 
-      {/* 分类 Tab */}
-      {categories.length > 0 && (
-        <nav className="flex flex-wrap gap-x-4 gap-y-1 mb-4">
-          <Link
-            href="/awaken"
-            className={`text-sm transition-colors ${
-              !activeCategory
-                ? 'text-foreground font-semibold'
-                : 'text-secondary hover:text-foreground'
-            }`}
-          >
-            全部（{items.length}）
-          </Link>
-          {categories.map((cat) => (
+      {/* 随机卡片 — 用留白替代边框 */}
+      {randomItem && (
+        <div className="max-w-lg mx-auto">
+          {/* 换一条 — 卡片上方 */}
+          <div className="text-center mb-4">
             <Link
-              key={cat}
-              href={`/awaken?category=${cat}`}
-              className={`text-sm transition-colors ${
-                activeCategory === cat
-                  ? 'text-foreground font-semibold'
-                  : 'text-secondary hover:text-foreground'
-              }`}
+              href="/awaken"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm border border-border/40 rounded-full hover:border-border hover:bg-muted/50 text-secondary hover:text-foreground transition-all duration-200"
             >
-              {cat}（{categoryCounts.get(cat) ?? 0}）
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <title>换一条</title>
+                <polyline points="23 4 23 10 17 10" />
+                <polyline points="1 20 1 14 7 14" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg>
+              随机一条
             </Link>
-          ))}
-        </nav>
-      )}
-
-      {/* 文字列表 */}
-      <div className="divide-y divide-border">
-        {pagedItems.map((item) => (
-          <AwakenCard key={item.title} item={item} />
-        ))}
-      </div>
-
-      {/* 分页 */}
-      {totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-          <div className="w-16">
-            {currentPage > 1 && (
-              <Link
-                href={`/awaken?${categoryQS}page=${currentPage - 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                ← 上一页
-              </Link>
-            )}
           </div>
 
-          <span className="text-sm text-secondary">
-            {currentPage} / {totalPages}
-          </span>
+          <article className="relative px-4 py-8 sm:px-8 sm:py-10 rounded-lg bg-muted/30">
+            {/* 装饰引号 */}
+            <span
+              className="absolute top-4 left-4 sm:top-5 sm:left-6 text-7xl text-muted-foreground/8 leading-none select-none"
+              aria-hidden
+            >
+              “
+            </span>
 
-          <div className="w-16 text-right">
-            {currentPage < totalPages && (
-              <Link
-                href={`/awaken?${categoryQS}page=${currentPage + 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                下一页 →
-              </Link>
-            )}
-          </div>
-        </nav>
+            {/* 正文 */}
+            <ExpandableContent contentLength={randomItem.content.length}>
+              <MarkdownRenderer
+                content={randomItem.content}
+                slug={false}
+                highlight={false}
+                className="text-base xl:text-lg leading-relaxed tracking-wide"
+              />
+            </ExpandableContent>
+
+            {/* 出处 + 复制 */}
+            <div className="mt-6 pt-4 border-t border-border/30 flex items-end justify-between">
+              <div>
+                <Link
+                  href={`/awaken/${randomItem.title}`}
+                  className="inline-block group"
+                >
+                  <span className="text-sm font-medium group-hover:underline underline-offset-4">
+                    {randomItem.title}
+                  </span>
+                </Link>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-muted-foreground">
+                  {randomItem.author && <span>{randomItem.author}</span>}
+                  {randomItem.category && <span>· {randomItem.category}</span>}
+                </div>
+                {randomItem.tags && randomItem.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    {randomItem.tags.map((tag: string) => (
+                      <span
+                        key={tag}
+                        className="text-xs text-muted-foreground/40"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <CopyButton text={plainText} />
+            </div>
+          </article>
+        </div>
       )}
     </div>
   );
