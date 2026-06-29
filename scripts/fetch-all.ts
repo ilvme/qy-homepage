@@ -18,7 +18,6 @@ import { main as fetchWords } from './words-fetcher';
 const forceMode = process.argv.includes('--force');
 
 if (forceMode) {
-  // 设置环境变量，各 fetcher 可根据此跳过增量检查
   process.env.FORCE_SYNC = 'true';
   console.log('⚡ Force sync mode enabled\n');
 }
