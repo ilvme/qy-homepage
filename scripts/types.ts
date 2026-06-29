@@ -1,18 +1,20 @@
-export interface PostMetadata {
+export interface PageMetadata {
   page_id: string;
   last_edited_time: string;
+  last_fetched_time: string | null;
+  title: string;
+  tags: string[];
+  date: string;
+  status: string;
+}
+
+export interface PostMetadata extends PageMetadata {
   cover?: string;
   icon?: string;
-
-  title: string;
   type: string;
   slug: string;
   category: string;
-  tags: string[];
-  date: string;
   summary?: string;
-  status: string;
-  last_fetched_time: string | null;
 }
 
 export interface ShareMetadata extends PostMetadata {
@@ -20,15 +22,6 @@ export interface ShareMetadata extends PostMetadata {
   link?: string;
 }
 
-export interface WordMetadata {
-  page_id: string;
-  last_edited_time: string;
-  last_fetched_time: string | null;
-
+export interface WordMetadata extends PageMetadata {
   from: string;
-
-  title: string;
-  tags: string[];
-  date: string;
-  status: string;
 }
