@@ -36,8 +36,6 @@ pnpm fetchWords       # 仅同步说说
 | `NOTION_COOKING_DATABASE_ID` | 下厨数据库 | 同上 |
 | `NEXT_PUBLIC_SITE_URL` | 站点 URL | 仅 Vercel |
 | `PUBLISH_SECRET` | 说说发布 API 密钥 | Vercel + 本地 |
-| `MANAGE_PASSWORD` | 管理后台登录口令 | Vercel + 本地 |
-| `VERCEL_DEPLOY_HOOK` | Vercel Deploy Hook URL | Vercel + 本地 |
 
 ## 目录约定
 
@@ -45,9 +43,13 @@ pnpm fetchWords       # 仅同步说说
 - `src/components/` — 通用 UI 组件
 - `src/libs/` — 服务端工具：内容加载、frontmatter 解析、日期处理
 - `scripts/` — Notion 同步脚本（`tsx` 执行）
-- `content/` — 生成的 MD 文件
+- `content/` — 生成的 MD 文件（`posts/`、`pages/`、`words/`、`shares/`、`cooking/`、`old-words/`）
 - `public/notion-images/` — 从 Notion 下载的图片
-- Node 20，ES2022 target，tsconfig `strict: true`
+- Node 20，ES2022 target，tsconfig `strict: true`，`moduleResolution: bundler`
+
+## Biome 配置
+
+`biome.json`：缩进 2 空格，单引号，`organizeImports: on`。`content/` 目录排除（含 YAML frontmatter 的 MD 文件 Biome 无法解析）。`suspicious.noUnknownAtRules: off` 以兼容 Tailwind v4 的 `@theme`/`@plugin` 等指令。启用 `next: recommended` 和 `react: recommended` 领域规则。
 
 ## 架构
 
@@ -56,15 +58,12 @@ pnpm fetchWords       # 仅同步说说
 ```
 Notion 数据库（4 个独立库：articles, words, shares, cooking）
         │
-        ├── GitHub Action（每小时）──→ fetchAll → commit → GitHub 备份
-        │                                        └── push 触发 Vercel 构建
-        │
-        └── /manage 手动触发 ──→ Deploy Hook ──→ Vercel 构建时 fetchAll ──→ 上线
+        └── GitHub Action（每小时）──→ fetchAll → commit → push 触发 Vercel 构建
 ```
 
 1. **同步脚本**（`scripts/`）：每个内容类型一个独立 fetcher，查各自的 Notion 数据库（2026 API 通过 data_source 层），用 `notion-to-md` v4 转换页面为 Markdown（图片下载到 `public/notion-images/`、callout → `<Callout>`、column_list → `<Columns>`），生成带 YAML frontmatter 的 `.md` 文件。
 2. **加载器**（`src/libs/`）：`content-loader.ts`、`words-loader.ts`、`cooking-loader.ts` 通过 `glob` + `gray-matter` 读取本地 MD，解析 frontmatter 返回。
-3. **MDX 渲染**（`MarkdownRenderer`）：服务端组件，用 `@mdx-js/mdx` 的 `evaluate()` 渲染，`remarkGfm` + `rehypeShiki` + `rehypeSlug`，映射 `img` → `ImageViewer`、`pre` → `CodeBlock`。
+3. **MDX 渲染**（`MarkdownRenderer`）：服务端组件，用 `@mdx-js/mdx` 的 `evaluate()` 渲染（非 `compile()`），`remarkGfm` + `rehypeShiki`（`github-light`/`monokai` 双主题）+ `rehypeSlug`，映射 `img` → `ImageViewer`、`pre` → `CodeBlock`。支持 `highlight` 和 `slug` boolean props 禁用语法高亮或标题锚点。
 4. **页面** 通过 `MarkdownRenderer` 或 `ImageGallery` 渲染内容。
 
 ### 四个内容类型
@@ -104,20 +103,35 @@ scripts/
 
 ### Date 解析
 
-`content-supports.ts` 导出 `parseDate()`：纯日期字符串（`YYYY-MM-DD`）追加 `T00:00:00` 强制本地时间解析，避免 JS 当 UTC 处理导致 8 小时偏差。所有 loader 的排序和过滤统一使用此函数。WordCard 显示端用 `dayjs` 显式指定格式。
+`content-supports.ts` 导出 `parseDate()`：纯日期字符串（`YYYY-MM-DD`）手动构造 `new Date(y, m-1, d)` 强制本地时间，避免 JS 当 UTC 处理导致 8 小时偏差。所有 loader 的排序和过滤统一使用此函数。WordCard 显示端用 `dayjs` 显式指定格式。
 
-### 鉴权
+该文件还导出：
+- `parseMdFromFile(filePath, withContent?)` — 读取 MD 文件，解析 frontmatter + 正文
+- `extractHeadings(md)` — 从 Markdown 提取 h2/h3 标题，返回 `TocHeading[]`（`{id, text, level}`）
+- `slugify(text)` — 与 rehype-slug 一致的 ID 生成（支持中文）
 
-`src/proxy.ts` 拦截 `/manage/*`，检查 `manage_token` cookie 是否等于 `MANAGE_PASSWORD`。未登录跳 `/login`，登录页输口令后写 cookie（365 天有效），同时存 `localStorage` 实现后续自动登录。
+### Content Loader API
+
+`content-loader.ts` 完整导出：
+| 函数 | 返回值 | 说明 |
+|------|--------|------|
+| `getAllPosts()` | `PostMetadata[]` | 按日期倒序排列所有文章 |
+| `getPostBySlug(slug)` | `PostWithContent \| null` | 单篇文章（含正文） |
+| `getPostsByTag(tag)` | `PostMetadata[]` | 按标签过滤 |
+| `getPostsByCategory(cat)` | `PostMetadata[]` | 按分类过滤 |
+| `getAllTags()` | `{label, count}[]` | 所有标签 + 文章数，按 count 降序 |
+| `getAllCategories()` | `string[]` | 所有分类，按字母排序 |
+| `getPostStats()` | `{totalPosts, totalWords}` | 文章总数 + 总字数 |
+
+`cooking-loader.ts` 提供对应的 `getAllCooking()`、`getCookingBySlug()`、`getAllCookingCategories()`、`getCookingByCategory()`。
 
 ### API 路由
 
 | 端点 | 用途 |
 |------|------|
 | `POST /api/words/publish` | 写说说到 Notion → 触发部署。支持 text 字段按首个空格拆分为 title + markdown 正文 |
-| `POST /api/deploy` | 触发 Vercel Deploy Hook 重新构建 |
 
-均需 `Authorization: Bearer <PUBLISH_SECRET>`。
+需要 `Authorization: Bearer <PUBLISH_SECRET>`。
 
 ### 路由表
 
@@ -134,8 +148,6 @@ scripts/
 | `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
 | `(pages)` | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
 | — | `/caidan`、`/caidan/daily-words` | 彩蛋 + 旧版说说 |
-| `(admin)` | `/login` | 登录口 |
-| `(admin)` | `/manage`、`/manage/publish` | 管理后台 + 说说发布 |
 | — | 404 | `not-found.tsx` |
 
 ### 组件
@@ -152,11 +164,23 @@ scripts/
 
 ### 设计系统
 
-Tailwind v4 + `@tailwindcss/typography`，CSS 变量定义暖中性色调（stone），支持亮色/暗色模式。字体：霞鶜文楷屏幕版（直接导入 CSS，不用 `next/font`），回退 `system-ui`。`next.config.ts` 允许 Notion 和 Unsplash 远程图片。集成 `@vercel/analytics` 和 `@vercel/speed-insights`。
+Tailwind v4 + `@tailwindcss/typography`，CSS 变量定义暖中性色调（stone），支持亮色/暗色模式（`prefers-color-scheme: dark`）。字体：霞鶜文楷屏幕版（直接导入 CSS，不用 `next/font`），回退 `system-ui`。集成 `@vercel/analytics` 和 `@vercel/speed-insights`。
+
+`next.config.ts` 当前为空对象（无自定义配置）。若生产环境加载 Notion/Unsplash 外部图片遇到问题，需要添加 `images.remotePatterns` 配置。
+
+`globals.css` 中 `.prose` 有大量覆盖：代码块、表格、引用块、任务列表、10 色 callout、`<details>/<summary>`、多栏布局（`md-columns-2/3/4`）。Shiki 双主题通过 CSS 变量（`--shiki-light`/`--shiki-dark`）切换。
+
+### Root Layout
+
+`src/app/layout.tsx`：`<html lang="zh-CN">`，`max-w-[800px] mx-auto` 居中，`<main>` 最小高度 `calc(100vh-200px)`。全局注入 `<Analytics>`、`<SpeedInsights>`、`<BackToTop>`。Metadata 含 OpenGraph（`locale: zh_CN`）、Twitter Card、RSS alternate link。
 
 ### CI/CD
 
-`.github/workflows/sync-notion.yml` — 每小时自动 `pnpm fetchAll`，有变更时 commit + push，触发 Vercel 构建。也可手动 `workflow_dispatch` 触发。
+`.github/workflows/sync-notion.yml` — 每小时（`cron: "0 * * * *"`）自动 `pnpm fetchAll`，有变更时 commit + push，触发 Vercel 构建。也可 `workflow_dispatch` 手动触发。使用 Node 20 + pnpm 9.1.1，`pnpm install --frozen-lockfile`。提交信息：`chore: sync content from Notion`（Co-Authored-By: Claude）。需要 5 个 GitHub Secrets（`NOTION_TOKEN` + 4 个数据库 ID）。
+
+### 测试
+
+项目当前无测试框架（无 jest/vitest 配置，无测试文件）。
 
 ### 依赖注意事项
 
