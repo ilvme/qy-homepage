@@ -13,21 +13,73 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 静态页面
   const staticPages: MetadataRoute.Sitemap = [
-    { url: '/', changeFrequency: 'daily', priority: 1.0 },
-    { url: '/posts', changeFrequency: 'daily', priority: 0.9 },
-    { url: '/archives', changeFrequency: 'weekly', priority: 0.6 },
-    { url: '/tags', changeFrequency: 'weekly', priority: 0.5 },
-    { url: '/categories', changeFrequency: 'weekly', priority: 0.5 },
-    { url: '/words', changeFrequency: 'daily', priority: 0.8 },
-    { url: '/cooking', changeFrequency: 'weekly', priority: 0.7 },
-    { url: '/about', changeFrequency: 'monthly', priority: 0.7 },
-    { url: '/friends', changeFrequency: 'monthly', priority: 0.5 },
-    { url: '/resume', changeFrequency: 'monthly', priority: 0.5 },
-    { url: '/sponsor', changeFrequency: 'monthly', priority: 0.3 },
-    { url: '/awaken', changeFrequency: 'weekly', priority: 0.6 },
-    { url: '/awaken/all', changeFrequency: 'weekly', priority: 0.6 },
-    { url: '/taste', changeFrequency: 'weekly', priority: 0.6 },
-  ].map((entry) => ({ ...entry, url: `${baseUrl}${entry.url}` }));
+    { url: `${baseUrl}/`, changeFrequency: 'daily' as const, priority: 1.0 },
+    {
+      url: `${baseUrl}/posts`,
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/archives`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/tags`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/categories`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/words`,
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/cooking`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/friends`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/resume`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/sponsor`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/awaken`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/awaken/all`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/taste`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+  ];
 
   // 文章详情页
   const posts = await getAllPosts();
