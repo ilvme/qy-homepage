@@ -6,7 +6,7 @@ category: "生活日志"
 tags: ["日常", "旅行"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T17:51:49"
+last_fetched_time: "2026-06-30T17:59:18"
 last_edited_time: "2026-06-28T19:25:00"
 page_id: "38bc485e-f356-807e-b1b8-d924167bfab2"
 summary: "有人说人生的第一次远游最好不要是云南或新疆，否则就有点曾经沧海难为水的感觉，此话我深表赞同。"
@@ -36,21 +36,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![云南异域风情街景](/notion-images/posts/yun-nan-mi-yue/col_1782813107739_xvx0ev.webp)
+![云南异域风情街景](/notion-images/posts/yun-nan-mi-yue/col_1782813557088_uz4jwy.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![南强街巷的夜晚](/notion-images/posts/yun-nan-mi-yue/col_1782813109006_uzv81r.webp)
+![南强街巷的夜晚](/notion-images/posts/yun-nan-mi-yue/col_1782813557135_l6r4jd.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![滇池海鸥](/notion-images/posts/yun-nan-mi-yue/col_1782813107744_wvwo70.webp)
+![滇池海鸥](/notion-images/posts/yun-nan-mi-yue/col_1782813557099_pj3n4a.webp)
 
 <br />
 
@@ -97,21 +97,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![即将出现的雪山](/notion-images/posts/yun-nan-mi-yue/col_1782813109240_z78ibw.webp)
+![即将出现的雪山](/notion-images/posts/yun-nan-mi-yue/col_1782813557972_jhpk8p.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![我在牦牛坪很想你](/notion-images/posts/yun-nan-mi-yue/col_1782813109232_rv67ct.webp)
+![我在牦牛坪很想你](/notion-images/posts/yun-nan-mi-yue/col_1782813557976_da9ncl.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![雪山](/notion-images/posts/yun-nan-mi-yue/col_1782813109269_33z1wp.webp)
+![雪山](/notion-images/posts/yun-nan-mi-yue/col_1782813557990_t5mypg.webp)
 
 <br />
 <br />

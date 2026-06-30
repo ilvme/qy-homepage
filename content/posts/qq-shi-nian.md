@@ -6,7 +6,7 @@ category: "Thoughts"
 tags: ["青春"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T17:52:13"
+last_fetched_time: "2026-06-30T17:59:39"
 last_edited_time: "2026-06-28T00:24:00"
 page_id: "38bc485e-f356-80e5-9605-fa093d118816"
 summary: ""

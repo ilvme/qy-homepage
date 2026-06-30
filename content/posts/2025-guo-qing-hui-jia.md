@@ -6,7 +6,7 @@ category: "生活日志"
 tags: ["日常"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T17:51:42"
+last_fetched_time: "2026-06-30T17:59:12"
 last_edited_time: "2026-06-28T19:24:00"
 page_id: "38bc485e-f356-8023-a031-ea32204162a3"
 summary: "我一直觉得结婚这个词过于中性，不如「成亲」二字显得亲切。"
@@ -57,14 +57,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![清秋里的冶河风光](/notion-images/posts/2025-guo-qing-hui-jia/col_1782813102526_yazp4e.png)
+![清秋里的冶河风光](/notion-images/posts/2025-guo-qing-hui-jia/col_1782813552093_gg6gok.png)
 
 <br />
 
 </Column>
 <Column>
 
-![河州里吃草的牛羊](/notion-images/posts/2025-guo-qing-hui-jia/col_1782813102517_3g6pf5.png)
+![河州里吃草的牛羊](/notion-images/posts/2025-guo-qing-hui-jia/col_1782813552140_fooxko.png)
 
 <br />
 
