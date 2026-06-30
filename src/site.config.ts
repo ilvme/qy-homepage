@@ -31,8 +31,8 @@ export const siteConfig = {
     // { href: '/archives', label: '归档' },
     { href: '/words', label: '说说' },
     { href: '/cooking', label: '食者' },
-    { href: '/taste', label: '书影音' },
-    { href: '/awaken', label: '分享' },
+    // { href: '/taste', label: '书影音' },
+    // { href: '/awaken', label: '分享' },
   ],
 
   /** 首页 Hero 文案 */
