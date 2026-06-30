@@ -4,7 +4,7 @@ slug: "resume"
 date: "2026-06-01"
 page_id: "38ac485e-f356-8079-bb96-d6b7e60f26e7"
 last_edited_time: "2026-06-27T16:24:00.000Z"
-last_fetched_time: "2026-06-30T17:03:18.946Z"
+last_fetched_time: "2026-06-30T19:48:47.827Z"
 type: "page"
 ---
 
