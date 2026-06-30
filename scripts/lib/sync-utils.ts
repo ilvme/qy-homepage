@@ -69,6 +69,49 @@ export function needsStateSync(
 }
 
 /**
+ * 清理 Notion 中已删除的本地孤儿文件
+ *
+ * - 删除不在 knownIds 中的 .md 文件
+ * - 移除对应的 sync-state 条目
+ * - 同时清理关联的封面图片目录
+ *
+ * @returns 删除的文件数
+ */
+export function cleanOrphanedFiles(
+  contentDir: string,
+  knownIds: Set<string>,
+  state: SyncState,
+  statePrefix: string,
+  mediaDir?: string,
+): number {
+  if (!fs.existsSync(contentDir)) return 0;
+
+  const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.md'));
+  let deleted = 0;
+
+  for (const file of files) {
+    const id = file.replace(/\.md$/, '');
+    if (!knownIds.has(id)) {
+      // 删除 MD 文件
+      fs.unlinkSync(path.join(contentDir, file));
+      // 删除同步状态
+      delete state[`${statePrefix}${id}`];
+      // 删除关联的封面图片目录
+      if (mediaDir) {
+        const coverDir = path.join(mediaDir, id);
+        if (fs.existsSync(coverDir)) {
+          fs.rmSync(coverDir, { recursive: true });
+        }
+      }
+      console.log(`🗑 Deleted: ${file}`);
+      deleted++;
+    }
+  }
+
+  return deleted;
+}
+
+/**
  * 下载封面图片到本地，返回本地 URL 路径
  * 非 Notion 图片也会尝试下载到本地，避免防盗链等问题
  */

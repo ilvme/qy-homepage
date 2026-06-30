@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
+import { toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { WordMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/words');
@@ -112,10 +112,14 @@ export async function fetchWords() {
     updated++;
   }
 
+  // 清理 Notion 中已删除的本地文件（words 以 title 为文件标识）
+  const knownIds = new Set(items.map((i) => i.title).filter(Boolean));
+  const deleted = cleanOrphanedFiles(CONTENT_DIR, knownIds, state, 'words/', MEDIA_DIR);
+
   saveSyncState(state);
 
   console.log(
-    `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,
+    `\nDone: ${updated} updated, ${skipped} skipped, ${deleted} cleaned, ${items.length} total`,
   );
 }
 

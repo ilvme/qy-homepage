@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { syncCover, nowLocal, loadSyncState, saveSyncState, needsStateSync } from './lib/sync-utils';
+import { syncCover, nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/posts');
@@ -94,10 +94,14 @@ export async function fetchArticles() {
     updated++;
   }
 
+  // 清理 Notion 中已删除的本地文件
+  const knownIds = new Set(items.map((i) => i.slug));
+  const deleted = cleanOrphanedFiles(CONTENT_DIR, knownIds, state, 'posts/', MEDIA_DIR);
+
   saveSyncState(state);
 
   console.log(
-    `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,
+    `\nDone: ${updated} updated, ${skipped} skipped, ${deleted} cleaned, ${items.length} total`,
   );
 }
 

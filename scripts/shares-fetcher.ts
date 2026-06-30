@@ -3,6 +3,7 @@ import path from 'path';
 import { fetchAllPages, notion } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import {
+  cleanOrphanedFiles,
   loadSyncState,
   needsStateSync,
   nowLocal,
@@ -152,10 +153,14 @@ export async function fetchShares() {
     updated++;
   }
 
+  // 清理 Notion 中已删除的本地文件（shares 以 title 为文件标识）
+  const knownIds = new Set(items.map((i) => i.title).filter(Boolean));
+  const deleted = cleanOrphanedFiles(CONTENT_DIR, knownIds, state, 'shares/', MEDIA_DIR);
+
   saveSyncState(state);
 
   console.log(
-    `\nDone: ${updated} updated, ${skipped} skipped, ${items.length} total`,
+    `\nDone: ${updated} updated, ${skipped} skipped, ${deleted} cleaned, ${items.length} total`,
   );
 }
 
