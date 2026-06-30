@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 interface PostMetaProps {
-  date: string;
+  date: string | null;
   category?: string;
   tags?: string[];
   /** 紧凑模式（列表页用） */
@@ -20,7 +20,8 @@ export default function PostMeta({
     <div
       className={`flex flex-wrap items-center gap-x-2.5 gap-y-1.5 ${size} text-secondary`}
     >
-      <time dateTime={date} className="flex items-center gap-1.5 tabular-nums">
+      {date && (
+        <time dateTime={date} className="flex items-center gap-1.5 tabular-nums">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="14"
@@ -39,6 +40,7 @@ export default function PostMeta({
         </svg>
         {date}
       </time>
+      )}
 
       {category && (
         <Link

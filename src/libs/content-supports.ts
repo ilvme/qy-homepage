@@ -1,12 +1,48 @@
 import fs from 'fs';
 import matter from '@11ty/gray-matter';
 
+/** 补零 */
+function pad(n: number) {
+  return String(n).padStart(2, '0');
+}
+
+/** ISO 时间戳转为中国时区 YYYY-MM-DDTHH:mm:ss */
+function toChinaTimeStr(d: Date): string {
+  const china = new Date(d.getTime() + 8 * 3600 * 1000);
+  return `${china.getUTCFullYear()}-${pad(china.getUTCMonth() + 1)}-${pad(china.getUTCDate())}T${pad(china.getUTCHours())}:${pad(china.getUTCMinutes())}:${pad(china.getUTCSeconds())}`;
+}
+
+/**
+ * 将 Notion 日期转为中国时区 YYYY-MM-DD（去时间）
+ * 纯日期原样返回，ISO 时间戳转为中国日期
+ */
+export function toLocalDateStr(iso: string | null): string | null {
+  if (!iso) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return toChinaTimeStr(d).substring(0, 10);
+}
+
+/**
+ * 将 Notion 日期转为中国时区（保留时间）
+ * 纯日期原样返回，ISO 时间戳转为中国时间 YYYY-MM-DDTHH:mm:ss
+ */
+export function toLocalTimeStr(iso: string | null): string | null {
+  if (!iso) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return toChinaTimeStr(d);
+}
+
 /**
  * 解析日期字符串为 Date
  * 纯日期（YYYY-MM-DD）手动构造避免 UTC 偏差
  * ISO 字符串自带时区，直接交给 Date
  */
-export function parseDate(dateStr: string): Date {
+export function parseDate(dateStr: string | null): Date {
+  if (!dateStr) return new Date(0);
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     const [y, m, d] = dateStr.split('-').map(Number);
     return new Date(y, m - 1, d);

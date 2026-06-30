@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { syncCover, nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { syncCover, nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/posts');
@@ -15,7 +15,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`slug: "${meta.slug}"`);
-  fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
+  fm.push(`date: "${meta.date ?? ''}"`);
   fm.push(`category: "${meta.category || ''}"`);
   fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
@@ -80,7 +80,7 @@ export async function fetchArticles() {
     // 下载封面图
     item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, item.slug);
 
-    const now = nowLocal();
+    const now = nowISO();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 

@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/pages');
@@ -15,7 +15,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`slug: "${meta.slug}"`);
-  fm.push(`date: "${meta.date}"`);
+  fm.push(`date: "${meta.date ?? ''}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
@@ -71,7 +71,7 @@ export async function fetchPages() {
       continue;
     }
 
-    const now = nowLocal();
+    const now = nowISO();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 
