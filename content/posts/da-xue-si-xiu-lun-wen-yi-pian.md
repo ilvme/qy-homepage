@@ -6,7 +6,7 @@ category: "Thoughts"
 tags: ["大学"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T13:22:51.698Z"
+last_fetched_time: "2026-06-30T14:08:49.447Z"
 last_edited_time: "2026-06-27T16:24:00.000Z"
 page_id: "38bc485e-f356-80b1-9706-d0a407e55aa8"
 summary: ""

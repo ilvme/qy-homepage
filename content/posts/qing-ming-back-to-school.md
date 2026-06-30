@@ -6,7 +6,7 @@ category: "生活日志"
 tags: ["日常"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T13:22:30.354Z"
+last_fetched_time: "2026-06-30T14:08:15.708Z"
 last_edited_time: "2026-06-27T16:24:00.000Z"
 page_id: "38bc485e-f356-809d-9cfa-d2e28df604dd"
 summary: "清明当天，周五早上，终于在一番纠结之后，在多逛几个天津的郊野公园和自驾保定之间，选择了自驾保定。"
@@ -27,7 +27,7 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![2017 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/col_1782825750231_zn86e1.jpeg)
+![2017 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/col_1782828493227_dxh16l.jpeg)
 
 <br />
 <br />
@@ -37,7 +37,7 @@ icon: ""
 </Column>
 <Column>
 
-![2025 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/col_1782825750248_1akir5.jpeg)
+![2025 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/col_1782828495548_nrxx1r.jpeg)
 
 <br />
 
