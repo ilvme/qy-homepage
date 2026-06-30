@@ -6,7 +6,7 @@ category: "Thoughts"
 tags: ["书"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T16:26:38"
+last_fetched_time: "2026-06-30T17:52:06"
 last_edited_time: "2026-06-28T00:24:00"
 page_id: "37bc485e-f356-805f-8757-f9169fb08f4e"
 summary: "谈谈我关于买书的一些想法。"

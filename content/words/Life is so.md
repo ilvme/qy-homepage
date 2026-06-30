@@ -4,7 +4,7 @@ date: "2026-06-28T14:02:00"
 tags: ["日常"]
 status: "published"
 from: "Notion"
-last_fetched_time: "2026-06-30T16:27:24"
+last_fetched_time: "2026-06-30T17:52:44"
 last_edited_time: "2026-06-28T14:09:00"
 page_id: "38dc485e-f356-801b-9c6d-e359db8ef0ae"
 ---
