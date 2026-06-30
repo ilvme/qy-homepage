@@ -1,21 +1,26 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { downloadImage } from './notion-md-converter';
 
 // ── 时区转换 ──
+
+/** 中国时区偏移量 (UTC+8) */
+const CHINA_OFFSET_MS = 8 * 3600 * 1000;
 
 /** 补零 */
 function pad(n: number) {
   return String(n).padStart(2, '0');
 }
 
-/** Date → 本地时间字符串 (YYYY-MM-DDTHH:mm:ss) */
-function formatLocal(d: Date): string {
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+/** Date → 中国时区时间字符串 (YYYY-MM-DDTHH:mm:ss)，不受运行环境时区影响 */
+function formatChinaTime(d: Date): string {
+  const chinaMs = d.getTime() + CHINA_OFFSET_MS;
+  const c = new Date(chinaMs);
+  return `${c.getUTCFullYear()}-${pad(c.getUTCMonth() + 1)}-${pad(c.getUTCDate())}T${pad(c.getUTCHours())}:${pad(c.getUTCMinutes())}:${pad(c.getUTCSeconds())}`;
 }
 
 /**
- * 将 Notion 返回的 UTC 时间转为本地时区
+ * 将 Notion 返回的时间转为中国时区 (UTC+8)
  * 纯日期（YYYY-MM-DD）原样返回
  */
 export function toLocalTime(
@@ -24,13 +29,13 @@ export function toLocalTime(
   if (!iso) return undefined;
   if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
   const d = new Date(iso);
-  if (isNaN(d.getTime())) return iso;
-  return formatLocal(d);
+  if (Number.isNaN(d.getTime())) return iso;
+  return formatChinaTime(d);
 }
 
-/** 当前时间 — 本地格式 */
+/** 当前时间 — 中国时区格式 */
 export function nowLocal(): string {
-  return formatLocal(new Date());
+  return formatChinaTime(new Date());
 }
 
 const STATE_FILE = path.resolve(process.cwd(), 'content/sync-state.json');
@@ -135,8 +140,7 @@ export async function syncCover(
 
   // downloadImage 对非 Notion URL 会原样返回，此时尝试直接下载
   if (result === url) {
-    const ext =
-      url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'jpg';
+    const ext = url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'jpg';
     const fileName = `cover.${ext}`;
     const filePath = path.join(coverDir, fileName);
 
