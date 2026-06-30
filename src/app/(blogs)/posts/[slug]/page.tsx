@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
+import Comment from '@/components/ui/Comment';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
 import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
 import { extractHeadings } from '@/libs/content-supports';
+import { siteConfig } from '@/site.config';
 
 export async function generateMetadata({
   params,
@@ -96,6 +98,10 @@ export default async function Post({
             返回文章列表
           </Link>
         </div>
+
+        {postWithContent.comments !== false && siteConfig.giscus.enabled && (
+          <Comment />
+        )}
       </article>
     </div>
   );

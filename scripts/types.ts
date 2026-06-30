@@ -15,6 +15,8 @@ export interface PostMetadata extends PageMetadata {
   slug: string;
   category: string;
   summary?: string;
+  /** 是否开启评论，默认 true。设为 false 则关闭该文章评论 */
+  comments?: boolean;
 }
 
 export interface ShareMetadata extends PostMetadata {

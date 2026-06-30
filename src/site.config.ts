@@ -41,4 +41,13 @@ export const siteConfig = {
     intro:
       '欢迎来到我的小站。这里是我记录生活感悟、技术笔记、读书观影心得的地方。希望在数字世界里，找到一片属于自己的宁静角落。',
   },
+
+  /** Giscus 评论 */
+  giscus: {
+    enabled: true,
+    repo: 'ilvme/site-comments',
+    repoId: 'R_kgDOQGPClw',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDOQGPCl84Cw4yK',
+  },
 } as const;
