@@ -6,7 +6,7 @@ category: "生活日志"
 tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T21:24:45.616Z"
+last_fetched_time: "2026-06-30T23:06:35.099Z"
 last_edited_time: "2026-06-28T11:18:00.000Z"
 page_id: "38bc485e-f356-8014-92ae-cb6f5279181d"
 summary: "如果说 2024 是脚步落地，走进了现实，那 2025 年就是再更进一步。"
@@ -111,21 +111,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![酷狗概念版年度报告](/notion-images/posts/2025-summary/col_1782854685470_0mieij.png)
+![酷狗概念版年度报告](/notion-images/posts/2025-summary/col_1782860794945_4grtib.png)
 
 <br />
 
 </Column>
 <Column>
 
-![QQ 音乐年度报告](/notion-images/posts/2025-summary/col_1782854685457_f4z51e.png)
+![QQ 音乐年度报告](/notion-images/posts/2025-summary/col_1782860794935_1zktpo.png)
 
 <br />
 
 </Column>
 <Column>
 
-![滴答清单年度报告](/notion-images/posts/2025-summary/col_1782854685457_e21row.png)
+![滴答清单年度报告](/notion-images/posts/2025-summary/col_1782860794934_l2ta27.png)
 
 <br />
 

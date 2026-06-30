@@ -6,7 +6,7 @@ category: "生活日志"
 tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-06-30T21:24:58.858Z"
+last_fetched_time: "2026-06-30T23:06:44.706Z"
 last_edited_time: "2026-06-27T16:24:00.000Z"
 page_id: "16cc485e-f356-80cf-a971-e0eb86232bc0"
 summary: ""
@@ -31,14 +31,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2024-summary/col_1782854698688_vpl4a7.png)
+![Image](/notion-images/posts/2024-summary/col_1782860804548_gltp9f.png)
 
 <br />
 
 </Column>
 <Column>
 
-![颜值巅峰？？？](/notion-images/posts/2024-summary/col_1782854698668_i9l3bo.png)
+![颜值巅峰？？？](/notion-images/posts/2024-summary/col_1782860804539_gmkrn6.png)
 
 <br />
 
