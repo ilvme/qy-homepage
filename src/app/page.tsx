@@ -71,22 +71,22 @@ export default async function Home() {
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               ),
             },
-            {
-              href: '/taste',
-              label: '风味',
-              desc: '书影音收藏',
-              icon: (
-                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
-              ),
-            },
-            {
-              href: '/awaken',
-              label: '唤醒',
-              desc: '语录与感悟',
-              icon: (
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              ),
-            },
+            // {
+            //   href: '/taste',
+            //   label: '风味',
+            //   desc: '书影音收藏',
+            //   icon: (
+            //     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+            //   ),
+            // },
+            // {
+            //   href: '/awaken',
+            //   label: '唤醒',
+            //   desc: '语录与感悟',
+            //   icon: (
+            //     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            //   ),
+            // },
             {
               href: '/about',
               label: '关于',
