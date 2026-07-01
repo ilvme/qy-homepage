@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import type { Client } from '@notionhq/client';
 import fs from 'fs';
 import { NotionConverter } from 'notion-to-md';
@@ -21,8 +22,9 @@ export async function downloadImage(
     return url; // 非 Notion 图片，保持原样
   }
 
-  // 用 block_id 做文件名避免冲突
-  const name = `col_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  // 用 URL 哈希做文件名，同一 URL 永远生成同一文件名
+  const hash = crypto.createHash('md5').update(url).digest('hex').slice(0, 8);
+  const name = `img_${hash}`;
   const ext = url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'png';
   const fileName = `${name}.${ext}`;
   const filePath = path.join(outputDir, fileName);
