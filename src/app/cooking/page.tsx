@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ImageGallery } from '@/app/(cooking)/_components/ImageGallery';
+import { ImageGallery } from '@/app/cooking/_components/ImageGallery';
 import { PageHero } from '@/components/ui/PageHero';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
 import { siteConfig } from '@/site.config';
