@@ -6,7 +6,7 @@ category: "Thoughts"
 tags: ["剧"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-07-01T02:57:02.917Z"
+last_fetched_time: "2026-07-01T07:10:49.351Z"
 last_edited_time: "2026-06-27T16:24:00.000Z"
 page_id: "37bc485e-f356-80d0-9bbe-d3d946b2bdef"
 summary: "电视剧的精彩之处莫过于主角韦小宝游刃有余的穿梭于各大势力、形形色色的人之间。其中发生的各个事件、人物关系从敌到有的来回转换无不令人捧腹并拍手称快。"
