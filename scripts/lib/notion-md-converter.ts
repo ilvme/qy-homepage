@@ -164,8 +164,17 @@ export async function convertPageToMarkdown(
     const result = await converter.convert(pageId);
     console.debug = _debug;
 
+    let content = result.content;
+
+    // 修复列表最后一项与下一段落之间缺少空行的问题（notion-to-md bug）
+    // 匹配: 列表项行 → 紧跟非列表、非空行 → 插入空行
+    content = content.replace(
+      /^((?:\d+\. |[-*] ).+)\n(?!\s*(?:\d+\. |[-*] ))(.+)/gm,
+      '$1\n\n$2',
+    );
+
     // 保留多个空行
-    const content = result.content.replace(
+    content = content.replace(
       /\n\n(\n+)/g,
       (_, extras: string) => {
         const brCount = Math.floor(extras.length / 2);
