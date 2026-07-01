@@ -18,25 +18,32 @@ export async function POST(request: Request) {
   }
 
   // 2. 解析请求
-  let body: { text?: string; tags?: string[]; from?: string; date?: string };
+  let body: { text?: string; title?: string; tags?: string[]; from?: string; date?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const rawText = body.text?.trim();
-  if (!rawText) {
-    return NextResponse.json({ error: 'text is required' }, { status: 400 });
+  const rawText = body.text?.trim() || '';
+  const from = body.from ?? '快捷指令';
+
+  // Web 端直接使用 title 字段，其他端从 text 首段截取
+  let title: string;
+  let content: string;
+  if (from === 'Web' && body.title?.trim()) {
+    title = body.title.trim();
+    content = rawText;
+  } else {
+    if (!rawText) {
+      return NextResponse.json({ error: 'text is required' }, { status: 400 });
+    }
+    const spaceIndex = rawText.indexOf(' ');
+    title = spaceIndex === -1 ? rawText : rawText.slice(0, spaceIndex);
+    content = spaceIndex === -1 ? '' : rawText.slice(spaceIndex + 1).trim();
   }
 
-  // 第一个空格前作为 title，其余作为页面正文
-  const spaceIndex = rawText.indexOf(' ');
-  const title = spaceIndex === -1 ? rawText : rawText.slice(0, spaceIndex);
-  const content = spaceIndex === -1 ? '' : rawText.slice(spaceIndex + 1).trim();
-
   const tags = body.tags ?? [];
-  const from = body.from ?? '快捷指令';
   const date = body.date ?? new Date().toISOString();
 
   // 3. 校验环境变量
