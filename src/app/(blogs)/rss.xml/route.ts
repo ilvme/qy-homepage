@@ -22,7 +22,7 @@ export async function GET() {
       description: post.summary || post.title,
       url: `${siteConfig.url}/posts/${post.slug}`,
       guid: `${siteConfig.url}/posts/${post.slug}`,
-      date: post.date,
+      date: post.date ?? new Date(0).toISOString(),
       categories: post.tags,
     });
   }

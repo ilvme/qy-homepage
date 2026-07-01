@@ -25,7 +25,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.summary || undefined,
       type: 'article',
-      publishedTime: post.date,
+      publishedTime: post.date ?? undefined,
     },
   };
 }

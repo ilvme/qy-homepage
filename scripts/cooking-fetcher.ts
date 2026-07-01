@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { syncCover, toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { syncCover, nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/cooking');
@@ -29,7 +29,7 @@ function mapCookingPage(page: any): PostMetadata {
 
   return {
     page_id: page.id,
-    last_edited_time: toLocalTime(page.last_edited_time)!,
+    last_edited_time: page.last_edited_time,
     cover: coverUrl,
     icon: iconUrl,
 
@@ -40,12 +40,10 @@ function mapCookingPage(page: any): PostMetadata {
     tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
-    date:
-      toLocalTime(page.properties.date?.date?.start) ??
-      toLocalTime(page.created_time)!,
+    date: page.properties.date?.date?.start ?? null,
     summary: page.properties.summary.rich_text[0]?.plain_text,
     status: page.properties.status.select?.name,
-    last_fetched_time: toLocalTime(page.properties.last_fetched_time.date?.start) ?? null,
+    last_fetched_time: page.properties.last_fetched_time?.date?.start ?? null,
   };
 }
 
@@ -54,7 +52,7 @@ function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
   fm.push(`slug: "${meta.slug}"`);
-  fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
+  fm.push(`date: "${meta.date ?? ''}"`);
   fm.push(`category: "${meta.category || ''}"`);
   fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
@@ -118,7 +116,7 @@ export async function fetchCooking() {
     // 下载封面图
     item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, item.slug);
 
-    const now = nowLocal();
+    const now = nowISO();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${markdown}`;
 

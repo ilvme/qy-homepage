@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { toLocalTime, nowLocal, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
 import type { WordMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/words');
@@ -13,17 +13,15 @@ const MEDIA_URL = '/notion-images/words';
 function mapWordPage(page: any): WordMetadata {
   return {
     page_id: page.id,
-    last_edited_time: toLocalTime(page.last_edited_time)!,
+    last_edited_time: page.last_edited_time,
     title: page.properties.title?.title[0]?.plain_text,
     tags: page.properties.tags?.multi_select?.map(
       (tag: { name: string }) => tag.name,
     ),
-    date:
-      toLocalTime(page.properties.date?.date?.start) ??
-      toLocalTime(page.created_time)!,
+    date: page.properties.date?.date?.start ?? null,
     status: page.properties.status.select?.name,
     from: page.properties.from.select?.name,
-    last_fetched_time: toLocalTime(page.properties.last_fetched_time.date?.start) ?? null,
+    last_fetched_time: page.properties.last_fetched_time?.date?.start ?? null,
   };
 }
 
@@ -31,7 +29,7 @@ function mapWordPage(page: any): WordMetadata {
 function formatFrontmatter(meta: WordMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
   fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
-  fm.push(`date: "${meta.date ?? meta.last_edited_time}"`);
+  fm.push(`date: "${meta.date ?? ''}"`);
   fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`from: "${meta.from || ''}"`);
@@ -98,7 +96,7 @@ export async function fetchWords() {
       continue;
     }
 
-    const now = nowLocal();
+    const now = nowISO();
     const fm = formatFrontmatter(item, now);
     const fullContent = `---\n${fm}\n---\n\n${content}`;
 

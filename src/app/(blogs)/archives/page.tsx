@@ -15,7 +15,7 @@ export default async function Archives() {
   // 按年份分组
   const postsByYear = posts.reduce(
     (acc, post) => {
-      const year = new Date(post.date).getFullYear().toString();
+      const year = new Date(post.date ?? 0).getFullYear().toString();
       if (!acc[year]) acc[year] = [];
       acc[year].push(post);
       return acc;

@@ -4,7 +4,7 @@ export interface PageMetadata {
   last_fetched_time: string | null;
   title: string;
   tags: string[];
-  date: string;
+  date: string | null;
   status: string;
 }
 

@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
-import { parseDate, parseMdFromFile } from '@/libs/content-supports';
+import { parseDate, parseMdFromFile, toLocalDateStr } from '@/libs/content-supports';
 import type { ShareMetadata } from '../../scripts/types';
 
 export interface ShareWithContent extends ShareMetadata {
@@ -19,7 +19,8 @@ export async function getAllAwaken() {
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as ShareMetadata)
     .filter((item) => item.type === 'awaken')
-    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
+    .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
 
   return items;
 }
@@ -32,8 +33,10 @@ export async function getAwakenBySlug(
   const parsed = parseMdFromFile(filePath, true);
   if (!parsed?.postMeta) return null;
 
+  const meta = parsed.postMeta as ShareMetadata;
   return {
-    ...(parsed.postMeta as ShareMetadata),
+    ...meta,
+    date: toLocalDateStr(meta.date),
     content: parsed.content ?? '',
   };
 }
