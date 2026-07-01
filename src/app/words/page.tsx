@@ -16,7 +16,7 @@ export default async function ShuoShuo() {
     <div className="py-8 space-y-4">
       <PageHero
         title="说说"
-        description="随笔心情、生活碎片、一闪而过的念头。"
+        description="生活碎片、猫咪日常，以及一些忍不住的吐槽。"
       />
 
       {words.length === 0 ? (
