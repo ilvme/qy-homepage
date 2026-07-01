@@ -6,11 +6,11 @@ category: "主食"
 tags: ["米饭", "鸡蛋"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-01T07:11:14.432Z"
+last_fetched_time: "2026-07-01T07:18:45.297Z"
 last_edited_time: "2026-06-28T03:59:00.000Z"
 page_id: "38dc485e-f356-80d6-a4e0-d5d4005cd9f5"
 summary: ""
-cover: "/notion-images/cooking/dan-chao-fan/col_1782889874217_uzhmkl.jpg"
+cover: "/notion-images/cooking/dan-chao-fan/col_1782890325073_le5rt4.jpg"
 icon: ""
 ---
 

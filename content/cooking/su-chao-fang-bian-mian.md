@@ -6,11 +6,11 @@ category: "主食"
 tags: ["方便面", "素食"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-01T07:11:12.800Z"
+last_fetched_time: "2026-07-01T07:18:43.586Z"
 last_edited_time: "2026-06-28T14:40:00.000Z"
 page_id: "38dc485e-f356-80ab-aef9-fd8837ccb8cc"
 summary: ""
-cover: "/notion-images/cooking/su-chao-fang-bian-mian/col_1782889871599_mgt1l8.jpeg"
+cover: "/notion-images/cooking/su-chao-fang-bian-mian/col_1782890322492_j9re0e.jpeg"
 icon: ""
 ---
 
