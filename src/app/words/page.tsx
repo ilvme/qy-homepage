@@ -20,7 +20,9 @@ export default async function ShuoShuo({
   const { page: pageParam } = await searchParams;
 
   const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(words.length / siteConfig.pagination.wordsPageSize);
+  const totalPages = Math.ceil(
+    words.length / siteConfig.pagination.wordsPageSize,
+  );
   const pagedWords = words.slice(
     (currentPage - 1) * siteConfig.pagination.wordsPageSize,
     currentPage * siteConfig.pagination.wordsPageSize,
@@ -28,10 +30,7 @@ export default async function ShuoShuo({
 
   return (
     <div className="py-8 space-y-4">
-      <PageHero
-        title="说说"
-        description="生活碎片、猫咪日常，以及一些忍不住的吐槽。"
-      />
+      <PageHero title="说说" description="生活碎片、猫咪日常，以及一些吐槽。" />
 
       {words.length === 0 ? (
         <EmptyShower />
