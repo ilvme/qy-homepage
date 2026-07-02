@@ -5,6 +5,41 @@ import { NotionConverter } from 'notion-to-md';
 import { MDXRenderer } from 'notion-to-md/plugins/renderer';
 import path from 'path';
 
+/** 带指数退避重试的 fetch，最多重试 3 次 */
+export async function fetchWithRetry(
+  url: string,
+  options?: RequestInit,
+  retries = 3,
+): Promise<Response> {
+  let lastError: unknown;
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      // 4xx 客户端错误不重试
+      if (res.ok || (res.status >= 400 && res.status < 500)) return res;
+      if (i < retries) {
+        const delay = Math.pow(2, i) * 1000;
+        console.warn(
+          `  ⚠ HTTP ${res.status}, retrying in ${delay}ms (${i + 1}/${retries})`,
+        );
+        await new Promise((r) => setTimeout(r, delay));
+        continue;
+      }
+      return res;
+    } catch (err) {
+      lastError = err;
+      if (i < retries) {
+        const delay = Math.pow(2, i) * 1000;
+        console.warn(
+          `  ⚠ fetch error, retrying in ${delay}ms (${i + 1}/${retries}): ${err}`,
+        );
+        await new Promise((r) => setTimeout(r, delay));
+      }
+    }
+  }
+  throw lastError;
+}
+
 export interface ConverterConfig {
   /** 图片下载目录，如 public/notion-images/posts */
   mediaDir: string;
@@ -32,7 +67,7 @@ export async function downloadImage(
   if (fs.existsSync(filePath)) return `${urlPath}/${fileName}`;
 
   try {
-    const res = await fetch(url);
+    const res = await fetchWithRetry(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
     fs.writeFileSync(filePath, buf);

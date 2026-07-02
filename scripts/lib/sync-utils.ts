@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { downloadImage } from './notion-md-converter';
+import { downloadImage, fetchWithRetry } from './notion-md-converter';
 
 /** 当前时间 — ISO 格式 */
 export function nowISO(): string {
@@ -114,7 +114,7 @@ export async function syncCover(
     const filePath = path.join(coverDir, fileName);
 
     try {
-      const res = await fetch(url, {
+      const res = await fetchWithRetry(url, {
         headers: { Referer: new URL(url).origin },
       });
       if (!res.ok) return url;
