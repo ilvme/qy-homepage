@@ -31,8 +31,8 @@ export const siteConfig = {
     { href: '/posts', label: '文章' },
     // { href: '/archives', label: '归档' },
     { href: '/words', label: '说说' },
-    { href: '/cooking', label: '食者' },
     // { href: '/taste', label: '书影音' },
+    { href: '/cooking', label: '食者' },
     // { href: '/awaken', label: '分享' },
   ],
 
