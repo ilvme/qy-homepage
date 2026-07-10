@@ -28,6 +28,7 @@ export const siteConfig = {
 
   /** 导航 */
   navLinks: [
+    { href: '/nav', label: '导航' },
     { href: '/posts', label: '文章' },
     // { href: '/archives', label: '归档' },
     { href: '/words', label: '说说' },
