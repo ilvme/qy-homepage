@@ -7,7 +7,7 @@ export interface ShareWithContent extends ShareMetadata {
   content: string;
 }
 
-const SHARES_DIR = path.join(process.cwd(), 'content/shares');
+const SHARES_DIR = path.join(process.cwd(), 'content/shares/taste');
 
 /** 获取所有 taste 条目 */
 export async function getAllTaste() {
@@ -18,7 +18,6 @@ export async function getAllTaste() {
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as ShareMetadata)
-    .filter((item) => item.type === 'taste')
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
     .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
 

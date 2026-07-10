@@ -30,14 +30,14 @@ export default function SideNav({ categories }: SideNavProps) {
 
   return (
     <nav className="space-y-0.5">
-      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
+      <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
         分类
       </h4>
       {categories.map((cat) => (
         <a
           key={cat.key}
           href={`#${cat.key}`}
-          className={`block px-2 py-1.5 text-sm rounded-md transition-colors ${
+          className={`block px-2 py-1.5 text-xs 2xl:text-lg rounded-md transition-colors ${
             activeKey === cat.key
               ? 'bg-muted text-foreground font-medium'
               : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'

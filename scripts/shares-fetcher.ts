@@ -12,13 +12,12 @@ import {
 } from './lib/sync-utils';
 import type { ShareMetadata } from './types';
 
-const CONTENT_DIR = path.resolve(process.cwd(), 'content/shares');
-const MEDIA_DIR = path.resolve(process.cwd(), 'public/notion-images/shares');
-const MEDIA_URL = '/notion-images/shares';
+const CONTENT_ROOT = path.resolve(process.cwd(), 'content/shares');
+const MEDIA_ROOT = path.resolve(process.cwd(), 'public/notion-images/shares');
+const MEDIA_URL_ROOT = '/notion-images/shares';
 
 /** 将 Notion 分享数据库的 page 映射为 ShareMetadata */
 function mapSharePage(page: any): ShareMetadata {
-  // cover 优先取自定义属性，否则用 Notion 页面封面
   const coverUrl =
     page.properties.cover?.url ||
     page.properties.cover?.rich_text?.[0]?.plain_text ||
@@ -97,66 +96,113 @@ export async function fetchShares() {
     return;
   }
 
-  console.log(`[Shares] Found ${items.length} items...\n`);
+  console.log(`[Shares] Found ${items.length} items.\n`);
 
-  if (!fs.existsSync(CONTENT_DIR)) {
-    fs.mkdirSync(CONTENT_DIR, { recursive: true });
+  // 按 type 分组
+  const groups = new Map<string, ShareMetadata[]>();
+  for (const item of items) {
+    const t = item.type || 'other';
+    if (!groups.has(t)) groups.set(t, []);
+    groups.get(t)!.push(item);
   }
 
   const state = loadSyncState();
-  let updated = 0;
-  let skipped = 0;
+  let totalUpdated = 0;
+  let totalSkipped = 0;
+  let totalCleaned = 0;
 
-  for (const item of items) {
-    const fileKey = item.title;
-    const key = `shares/${fileKey}`;
-    if (!needsStateSync(state, key, item.last_edited_time)) {
-      skipped++;
-      console.log(`⊘ Skipped (up-to-date): ${fileKey}`);
-      continue;
+  for (const [type, typeItems] of groups) {
+    const contentDir = path.join(CONTENT_ROOT, type);
+    const mediaDir = path.join(MEDIA_ROOT, type);
+    const mediaUrl = `${MEDIA_URL_ROOT}/${type}`;
+
+    if (!fs.existsSync(contentDir)) {
+      fs.mkdirSync(contentDir, { recursive: true });
     }
 
-    console.log(`→ Fetching: ${item.title}`);
+    console.log(`\n── ${type} (${typeItems.length}) ──`);
 
-    const markdown = await convertPageToMarkdown(
-      notion,
-      item.page_id,
-      fileKey,
-      {
-        mediaDir: 'public/notion-images/shares',
-        mediaUrlPath: MEDIA_URL,
-      },
-    );
-    if (!markdown) {
-      console.error(`✗ No content returned for: ${item.title}`);
-      continue;
+    for (const item of typeItems) {
+      const fileKey = item.title;
+      const key = `shares/${type}/${fileKey}`;
+      if (!needsStateSync(state, key, item.last_edited_time)) {
+        totalSkipped++;
+        console.log(`⊘ Skipped (up-to-date): ${fileKey}`);
+        continue;
+      }
+
+      console.log(`→ Fetching: ${item.title}`);
+
+      const markdown = await convertPageToMarkdown(
+        notion,
+        item.page_id,
+        fileKey,
+        {
+          mediaDir: `public/notion-images/shares/${type}`,
+          mediaUrlPath: mediaUrl,
+        },
+      );
+      if (!markdown) {
+        console.error(`✗ No content returned for: ${item.title}`);
+        continue;
+      }
+
+      // 下载封面图
+      item.cover = await syncCover(item.cover, mediaDir, mediaUrl, fileKey);
+
+      const now = nowISO();
+      const fm = formatFrontmatter(item, now);
+      const fullContent = `---\n${fm}\n---\n\n${markdown}`;
+
+      fs.writeFileSync(
+        path.join(contentDir, `${fileKey}.md`),
+        fullContent,
+        'utf-8',
+      );
+      state[key] = item.last_edited_time;
+      console.log(`✓ Saved: ${fileKey}.md`);
+      totalUpdated++;
     }
 
-    // 下载封面图
-    item.cover = await syncCover(item.cover, MEDIA_DIR, MEDIA_URL, fileKey);
-
-    const now = nowISO();
-    const fm = formatFrontmatter(item, now);
-    const fullContent = `---\n${fm}\n---\n\n${markdown}`;
-
-    fs.writeFileSync(
-      path.join(CONTENT_DIR, `${fileKey}.md`),
-      fullContent,
-      'utf-8',
+    // 清理该 type 下的孤儿文件
+    const knownIds = new Set(typeItems.map((i) => i.title).filter(Boolean));
+    totalCleaned += cleanOrphanedFiles(
+      contentDir,
+      knownIds,
+      state,
+      `shares/${type}/`,
+      mediaDir,
     );
-    state[key] = item.last_edited_time;
-    console.log(`✓ Saved: ${fileKey}.md`);
-    updated++;
   }
 
-  // 清理 Notion 中已删除的本地文件（shares 以 title 为文件标识）
-  const knownIds = new Set(items.map((i) => i.title).filter(Boolean));
-  const deleted = cleanOrphanedFiles(CONTENT_DIR, knownIds, state, 'shares/', MEDIA_DIR);
+  // 清理旧的扁平 .md 文件（迁移前残留）
+  if (fs.existsSync(CONTENT_ROOT)) {
+    const oldFiles = fs
+      .readdirSync(CONTENT_ROOT, { withFileTypes: true })
+      .filter((d) => d.isFile() && d.name.endsWith('.md'));
+    for (const f of oldFiles) {
+      const p = path.join(CONTENT_ROOT, f.name);
+      fs.unlinkSync(p);
+      console.log(`🗑 Cleaned old flat file: ${f.name}`);
+    }
+    // 也清理旧扁平目录下的封面图片目录
+    const oldDirs = fs
+      .readdirSync(CONTENT_ROOT, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && !groups.has(d.name));
+    // 不自动删除未知目录，可能是手动创建的
+  }
+
+  // 清理旧的 sync-state 键（扁平结构）
+  for (const key of Object.keys(state)) {
+    if (key.startsWith('shares/') && key.split('/').length === 2) {
+      delete state[key];
+    }
+  }
 
   saveSyncState(state);
 
   console.log(
-    `\nDone: ${updated} updated, ${skipped} skipped, ${deleted} cleaned, ${items.length} total`,
+    `\nDone: ${totalUpdated} updated, ${totalSkipped} skipped, ${totalCleaned} cleaned, ${items.length} total`,
   );
 }
 
