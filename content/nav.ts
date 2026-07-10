@@ -127,14 +127,14 @@ export const NAV_DATA: NavData[] = [
       },
       {
         title: '今日热榜',
-        icon: '',
-        desc: '',
+        icon: 'https://rebang.today/favicon.ico',
+        desc: '全栈热榜',
         link: 'https://rebang.today/',
       },
       {
         title: '博友圈',
-        icon: '',
-        desc: '',
+        icon: 'https://www.boyouquan.com/assets/favicon.ico',
+        desc: '博友圈是博客人的专属朋友圈',
         link: 'https://www.boyouquan.com/home',
       },
       {
@@ -353,7 +353,6 @@ export const NAV_DATA: NavData[] = [
         link: 'https://expressjs.com',
       },
       {
-        icon: '/icons/koa.svg',
         title: 'Koa',
         desc: '基于 Node.js 平台的下一代 web 开发框架',
         link: 'https://koajs.com',
@@ -498,7 +497,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://vercel.com',
       },
       {
-        icon: 'https://docusaurus.io/favicon.ico',
+        icon: 'https://docusaurus.io/img/docusaurus.png',
         title: 'Docusaurus',
         desc: '一个用于构建文档网站的框架',
         link: 'https://docusaurus.io',
@@ -519,13 +518,13 @@ export const NAV_DATA: NavData[] = [
         title: 'Astro',
         desc: '一个快速、简洁且高效的静态网站生成器',
         link: 'https://astro.build',
-        icon: 'https://astro.build/favicon.ico',
+        icon: 'https://astro.build/favicon.svg',
       },
       {
         title: 'VitePress',
         desc: '一个基于 Vite 的静态网站生成器',
         link: 'https://vitepress.vuejs.org',
-        icon: 'https://vitepress.vuejs.org/logo.svg',
+        icon: 'https://vitepress.dev/vitepress-logo-mini.png',
       },
       {
         title: 'Hexo',
@@ -540,7 +539,7 @@ export const NAV_DATA: NavData[] = [
         link: 'https://jekyllrb.com',
       },
       {
-        icon: 'https://gohugo.io/static/hugo-favicon.ico',
+        icon: 'https://gohugo.io/favicon-32x32.png',
         title: 'Hugo',
         desc: '一个快速的静态站点生成器',
         link: 'https://gohugo.io',
