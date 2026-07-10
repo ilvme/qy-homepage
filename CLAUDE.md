@@ -36,6 +36,7 @@ pnpm fetchWords       # 仅同步说说
 | `NOTION_COOKING_DATABASE_ID` | 下厨数据库 | 同上 |
 | `NEXT_PUBLIC_SITE_URL` | 站点 URL | 仅 Vercel |
 | `PUBLISH_SECRET` | 说说发布 API 密钥 | Vercel + 本地 |
+| `VERCEL_DEPLOY_HOOK` | Deploy Hook URL，发布说说后自动触发部署 | 仅 Vercel |
 
 ## 目录约定
 
@@ -62,20 +63,23 @@ Notion 数据库（4 个独立库：articles, words, shares, cooking）
 ```
 
 1. **同步脚本**（`scripts/`）：每个内容类型一个独立 fetcher，查各自的 Notion 数据库（2026 API 通过 data_source 层），用 `notion-to-md` v4 转换页面为 Markdown（图片下载到 `public/notion-images/`、callout → `<Callout>`、column_list → `<Columns>`），生成带 YAML frontmatter 的 `.md` 文件。
-2. **加载器**（`src/libs/`）：`content-loader.ts`、`words-loader.ts`、`cooking-loader.ts` 通过 `glob` + `gray-matter` 读取本地 MD，解析 frontmatter 返回。
+2. **加载器**（`src/libs/`）：`content-loader.ts`、`words-loader.ts`、`cooking-loader.ts`、`awaken-loader.ts`、`taste-loader.ts` 通过 `glob` + `gray-matter` 读取本地 MD，解析 frontmatter 返回。`words-loader` 会过滤掉 `date` 在未来日期的说说（预发布机制）。
 3. **MDX 渲染**（`MarkdownRenderer`）：服务端组件，用 `@mdx-js/mdx` 的 `evaluate()` 渲染（非 `compile()`），`remarkGfm` + `rehypeShiki`（`github-light`/`monokai` 双主题）+ `rehypeSlug`，映射 `img` → `ImageViewer`、`pre` → `CodeBlock`。支持 `highlight` 和 `slug` boolean props 禁用语法高亮或标题锚点。
-4. **页面** 通过 `MarkdownRenderer` 或 `ImageGallery` 渲染内容。
+4. **图片下载**（`scripts/lib/notion-md-converter.ts`）：`fetchWithRetry()` 带指数退避重试（默认 3 次），避免 Notion 图片下载偶发失败。
+5. **页面** 通过 `MarkdownRenderer` 或 `ImageGallery` 渲染内容。
 
-### 四个内容类型
+### 内容类型
 
 | 类型 | Notion 库 | Fetcher | Loader | 路由 |
 |------|-----------|---------|--------|------|
 | 文章 + 页面 | articles（type 字段区分） | articles-fetcher + pages-fetcher 共用 `fetchByType()` | content-loader | `/posts`、`/about` 等 |
 | 说说 | words | words-fetcher | words-loader | `/words` |
-| 分享 | shares | shares-fetcher | 暂无 | `/share`（占位） |
-| 下厨 | cooking | cooking-fetcher | cooking-loader | `/cooking` |
+| 分享·觉晓 | shares（type: "awaken"） | shares-fetcher | awaken-loader | `/awaken`、`/awaken/[slug]`、`/awaken/all` |
+| 分享·品味 | shares（type: "taste"） | shares-fetcher | taste-loader | `/taste` |
+| 导航 | shares（type: "nav"） | shares-fetcher | nav-loader | `/nav` |
+| 下厨 | cooking | cooking-fetcher | cooking-loader | `/cooking`、`/cooking/[slug]` |
 
-每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
+awaken、taste、nav 共用 `content/shares/` 目录和同一个 Notion 数据库，通过 frontmatter 的 `type` 字段区分。Nav 页面以左侧分类目录 + 右侧卡片网格布局，卡片含 title/icon/description/url，点击新标签页打开。每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
 
 ### 脚本目录
 
@@ -123,15 +127,15 @@ scripts/
 | `getAllCategories()` | `string[]` | 所有分类，按字母排序 |
 | `getPostStats()` | `{totalPosts, totalWords}` | 文章总数 + 总字数 |
 
-`cooking-loader.ts` 提供对应的 `getAllCooking()`、`getCookingBySlug()`、`getAllCookingCategories()`、`getCookingByCategory()`。
+`cooking-loader.ts` 提供对应的 `getAllCooking()`、`getCookingBySlug()`、`getAllCookingCategories()`、`getCookingByCategory()`。`awaken-loader.ts` 和 `taste-loader.ts` 提供同名函数（`getAllAwaken`、`getAwakenBySlug`、`getAllAwakenCategories`、`getAwakenByCategory` 等）。
 
 ### API 路由
 
 | 端点 | 用途 |
 |------|------|
-| `POST /api/words/publish` | 写说说到 Notion → 触发部署。支持 text 字段按首个空格拆分为 title + markdown 正文 |
+| `POST /api/words/publish` | 写说说到 Notion（2026 API data_source 层），写入成功后 fire-and-forget 触发 Vercel Deploy Hook。Web 端 (`from: "Web"`) 直接传 `title` + `text`，其他端从 `text` 首个空格拆分为 title + markdown 正文 |
 
-需要 `Authorization: Bearer <PUBLISH_SECRET>`。
+需要 `Authorization: Bearer <PUBLISH_SECRET>`。另有 `/publish-words` 管理页面（`(admin)` 路由组）提供 Web 端发布表单，支持 PWA。
 
 ### 路由表
 
@@ -143,24 +147,31 @@ scripts/
 | `(blogs)` | `/categories`、`/categories/[cat]` | 分类 |
 | `(blogs)` | `/tags`、`/tags/[tag]` | 标签 |
 | `(blogs)` | `/rss.xml` | RSS |
-| — | `/words` | 说说流 |
-| `(shares)` | `/share` | 分享（占位） |
+| — | `/words` | 说说流（分页） |
+| `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享·觉晓（列表 + 详情 + 全部） |
+| `(shares)` | `/taste` | 分享·品味（书影音画廊） |
+| `(shares)` | `/nav` | 导航（分类卡片，type: "nav"） |
 | `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
 | `(pages)` | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
+| `(admin)` | `/publish-words` | Web 端说说发布（支持 PWA） |
 | — | `/caidan`、`/caidan/daily-words` | 彩蛋 + 旧版说说 |
+| — | `robots.ts`、`sitemap.ts` | SEO |
 | — | 404 | `not-found.tsx` |
 
 ### 组件
 
 - `src/components/layout/` — Header（导航从 `site.config.ts` 的 `navLinks` 读取）、Footer
-- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）
+- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）
 - `src/app/(blogs)/_components/` — PostItem、PostItemLite、PostMeta、Tag
 - `src/app/(cooking)/_components/` — ImageGallery（图片网格）
 - `src/app/words/_components/` — WordCard、WordImageGrid
+- `src/app/(shares)/awaken/_components/` — AwakenCard、CopyButton、ExpandableContent
+- `src/app/(shares)/taste/_components/` — TasteGallery
+- `src/app/(shares)/nav/_components/` — NavCard、SideNav（IntersectionObserver 高亮当前分类）
 
 ### site.config.ts
 
-集中管理：URL、标题、描述、作者、导航链接（`navLinks`）、RSS 配置、分页（`pageSize: 7`、`cookingPageSize: 8`）、Hero 文案。
+集中管理：URL、标题、描述、作者、导航链接（`navLinks`）、RSS 配置、分页（`pageSize: 7`、`cookingPageSize: 8`、`wordsPageSize: 10`、`tastePageSize: 12`、`awakenPageSize: 10`）、Hero 文案、Giscus 评论配置。
 
 ### 设计系统
 
