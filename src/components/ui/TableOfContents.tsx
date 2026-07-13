@@ -62,8 +62,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         left calc: 800px 主体容器居中，TOC 在其左侧 32px 处
       */}
       <div className="hidden xl:block xl:fixed top-20 left-[calc((100vw-800px)/2-12rem)] w-48">
-        <nav className="border-l-2 border-border pl-3 space-y-1 max-h-[calc(100vh-8rem)] overflow-y-auto">
-          <div className="text-base font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+        <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
+          <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-2">
             目录
           </div>
           {headings.map((heading) => (
@@ -74,12 +74,12 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 e.preventDefault();
                 scrollToHeading(heading.id);
               }}
-              className={`block text-sm leading-relaxed transition-colors ${
-                heading.level === 3 ? 'pl-4' : ''
+              className={`block text-sm 2xl:text-base rounded-md px-2 py-1 transition-colors ${
+                heading.level === 3 ? 'pl-6' : ''
               } ${
                 activeId === heading.id
-                  ? 'text-foreground font-medium'
-                  : 'text-muted-foreground hover:text-foreground hover:underline underline-offset-4'
+                  ? 'bg-muted text-foreground font-medium'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
             >
               {heading.text}
@@ -115,7 +115,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 </svg>
               </button>
             </div>
-            <nav className="border-l-2 border-border pl-3 space-y-1">
+            <nav>
               {headings.map((heading) => (
                 <a
                   key={heading.id}
@@ -125,12 +125,12 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                     scrollToHeading(heading.id);
                     setIsOpen(false);
                   }}
-                  className={`block text-sm leading-relaxed transition-colors ${
-                    heading.level === 3 ? 'pl-3' : ''
+                  className={`block text-sm rounded-md px-2 py-1 transition-colors ${
+                    heading.level === 3 ? 'pl-6' : ''
                   } ${
                     activeId === heading.id
-                      ? 'text-foreground font-medium'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-muted text-foreground font-medium'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                 >
                   {heading.text}
