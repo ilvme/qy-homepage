@@ -10,7 +10,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getAwakenBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  const post = await getAwakenBySlug(decodedSlug);
   if (!post) return {};
 
   return {
@@ -30,7 +31,8 @@ export default async function AwakenDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getAwakenBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  const post = await getAwakenBySlug(decodedSlug);
   if (!post) notFound();
 
   return (

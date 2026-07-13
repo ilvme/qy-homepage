@@ -25,7 +25,7 @@ function extractPreview(md: string, maxLen = 120): string {
 
 async function getAwakenWithPreview() {
   const items = await getAllAwaken();
-  const SHARES_DIR = path.join(process.cwd(), 'content/shares');
+  const SHARES_DIR = path.join(process.cwd(), 'content/shares/awaken');
 
   return Promise.all(
     items.map(async (item) => {
