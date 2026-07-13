@@ -28,13 +28,13 @@ export const siteConfig = {
 
   /** 导航 */
   navLinks: [
-    { href: '/nav', label: '导航' },
-    { href: '/posts', label: '文章' },
-    // { href: '/archives', label: '归档' },
-    { href: '/words', label: '说说' },
-    // { href: '/taste', label: '书影音' },
-    { href: '/cooking', label: '食者' },
-    // { href: '/awaken', label: '分享' },
+    { href: '/nav', label: '导航', location: 'footer' },
+    { href: '/posts', label: '文章', location: 'header' },
+    { href: '/archives', label: '归档', location: 'footer' },
+    { href: '/words', label: '说说', location: 'header' },
+    { href: '/taste', label: '书影音', location: 'footer' },
+    { href: '/cooking', label: '食者', location: 'header' },
+    { href: '/awaken', label: '分享', location: 'footer' },
   ],
 
   /** 首页 Hero 文案 */

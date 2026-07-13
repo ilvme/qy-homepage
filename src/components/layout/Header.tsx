@@ -18,7 +18,7 @@ export default function Header() {
 
       {/* 桌面端导航 */}
       <nav className="hidden sm:flex items-center gap-1">
-        {siteConfig.navLinks.map((link) => (
+        {siteConfig.navLinks.filter((l) => l.location === 'header').map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -74,7 +74,7 @@ export default function Header() {
       {menuOpen && (
         <nav className="absolute top-full left-0 right-0 z-50 bg-background border-b border-border shadow-lg sm:hidden">
           <div className="flex flex-col py-2 px-4">
-            {siteConfig.navLinks.map((link) => (
+            {siteConfig.navLinks.filter((l) => l.location === 'header').map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

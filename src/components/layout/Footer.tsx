@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import { siteConfig } from '@/site.config';
+
+const rightLinks = [
+  ...siteConfig.navLinks.filter((l) => l.location === 'footer').map((l) => ({ label: l.label, href: l.href })),
+  { label: '赞赏', href: '/sponsor' },
+  { label: 'RSS', href: '/rss.xml' },
+];
 
 export default function Footer() {
   return (
@@ -24,20 +31,18 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/sponsor"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-          >
-            赞赏
-          </Link>
-          <span>·</span>
-          <a
-            href="/rss.xml"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-          >
-            RSS
-          </a>
+        <div className="flex items-center gap-2">
+          {rightLinks.map((link, i) => (
+            <span key={link.href} className="flex items-center gap-2">
+              {i > 0 && <span>·</span>}
+              <Link
+                href={link.href}
+                className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+              >
+                {link.label}
+              </Link>
+            </span>
+          ))}
         </div>
       </div>
     </footer>
