@@ -34,7 +34,7 @@ export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
             )}
           </div>
           <div className="px-2.5 py-2">
-            <span className="font-medium text-xs group-hover:text-foreground transition-colors">
+            <span className="font-bold text-sm group-hover:text-foreground transition-colors">
               {item.title}
             </span>
             {item.date && (
