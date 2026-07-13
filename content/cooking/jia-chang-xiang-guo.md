@@ -6,11 +6,11 @@ category: "热菜"
 tags: ["方便面", "重口味"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-13T02:10:19.905Z"
-last_edited_time: "2026-07-13T01:25:00.000Z"
+last_fetched_time: "2026-07-13T05:10:41.007Z"
+last_edited_time: "2026-07-13T02:23:00.000Z"
 page_id: "38fc485e-f356-8090-baaa-c45beda8179e"
 summary: ""
-cover: ""
+cover: "/notion-images/cooking/jia-chang-xiang-guo/img_e969fe04.jpeg"
 icon: ""
 ---
 
