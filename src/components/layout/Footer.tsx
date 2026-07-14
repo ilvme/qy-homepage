@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { siteConfig } from '@/site.config';
 
 const rightLinks = [
-  ...siteConfig.navLinks.filter((l) => l.location === 'footer').map((l) => ({ label: l.label, href: l.href })),
+  ...siteConfig.navLinks
+    .filter((l) => l.location === 'footer')
+    .map((l) => ({ label: l.label, href: l.href })),
   { label: '赞赏', href: '/sponsor' },
   { label: 'RSS', href: '/rss.xml' },
 ];
@@ -21,7 +23,7 @@ export default function Footer() {
             CC BY-NC-SA 4.0
           </a>
           <span>·</span>
-          <span>2012 - PRESENT</span>
+          <span>2012 - {new Date().getFullYear()}</span>
           <span>·</span>
           <Link
             href="/"

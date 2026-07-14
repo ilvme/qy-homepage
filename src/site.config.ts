@@ -28,12 +28,14 @@ export const siteConfig = {
 
   /** 导航 */
   navLinks: [
-    { href: '/nav', label: '导航', location: 'footer' },
     { href: '/posts', label: '文章', location: 'header' },
-    { href: '/archives', label: '归档', location: 'footer' },
     { href: '/words', label: '说说', location: 'header' },
-    { href: '/taste', label: '书影音', location: 'footer' },
     { href: '/cooking', label: '食者', location: 'header' },
+    { href: '/nav', label: '导航', location: 'footer' },
+    { href: '/archives', label: '归档', location: 'footer' },
+    // { href: '/tags', label: '标签', location: 'footer' },
+    // { href: '/categories', label: '分类', location: 'footer' },
+    { href: '/taste', label: '书影音', location: 'footer' },
     { href: '/awaken', label: '分享', location: 'footer' },
   ],
 
