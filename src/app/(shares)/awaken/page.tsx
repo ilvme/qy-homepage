@@ -3,9 +3,7 @@ import Link from 'next/link';
 import CopyButton from '@/app/(shares)/awaken/_components/CopyButton';
 import ExpandableContent from '@/app/(shares)/awaken/_components/ExpandableContent';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
-import { PageHero } from '@/components/ui/PageHero';
 import { getAllAwaken, getAwakenBySlug } from '@/libs/awaken-loader';
-
 export const metadata: Metadata = {
   title: '唤醒',
   description: '台词、句子、古诗词古文',
@@ -39,12 +37,12 @@ export default async function AwakenPage() {
         href="/awaken/all"
         className="text-sm text-foreground font-medium hover:underline"
       >
-        全部（{items.length}）
+        查看全部（{items.length}）
       </Link>
 
       {/* 随机卡片 — 用留白替代边框 */}
       {randomItem && (
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-xl mx-auto">
           {/* 换一条 — 卡片上方 */}
           <div className="text-center mb-4">
             <Link
@@ -81,7 +79,10 @@ export default async function AwakenPage() {
             </span>
 
             {/* 正文 */}
-            <ExpandableContent contentLength={randomItem.content.length}>
+            <ExpandableContent
+              contentLength={randomItem.content.length}
+              detailUrl={`/awaken/${randomItem.title}`}
+            >
               <MarkdownRenderer
                 content={randomItem.content}
                 slug={false}
@@ -97,7 +98,7 @@ export default async function AwakenPage() {
                   href={`/awaken/${randomItem.title}`}
                   className="inline-block group"
                 >
-                  <span className="text-sm font-medium group-hover:underline underline-offset-4">
+                  <span className="text-sm font-semibold text-foreground group-hover:underline underline-offset-4">
                     {randomItem.title}
                   </span>
                 </Link>

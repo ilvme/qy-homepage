@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
+import TableOfContents from '@/components/ui/TableOfContents';
+import { extractHeadings } from '@/libs/content-supports';
 import { getAllAwaken, getAwakenBySlug } from '@/libs/awaken-loader';
 
 export async function generateMetadata({
@@ -35,8 +37,11 @@ export default async function AwakenDetailPage({
   const post = await getAwakenBySlug(decodedSlug);
   if (!post) notFound();
 
+  const headings = extractHeadings(post.content);
+
   return (
     <div className="relative py-8">
+      <TableOfContents headings={headings} />
       <article>
         <header className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">

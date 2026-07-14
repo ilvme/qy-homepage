@@ -18,7 +18,7 @@ export async function getAllAwaken() {
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as ShareMetadata)
-    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
+    .sort((a, b) => b.last_edited_time.localeCompare(a.last_edited_time))
     .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
 
   return items;
