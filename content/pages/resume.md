@@ -3,8 +3,8 @@ title: "康佳的简历"
 slug: "resume"
 date: "2026-06-01"
 page_id: "38ac485e-f356-8079-bb96-d6b7e60f26e7"
-last_edited_time: "2026-06-27T16:24:00.000Z"
-last_fetched_time: "2026-07-10T07:24:15.802Z"
+last_edited_time: "2026-07-15T05:20:00.000Z"
+last_fetched_time: "2026-07-15T07:11:54.634Z"
 type: "page"
 ---
 
@@ -66,7 +66,7 @@ type: "page"
 
 任职于天津南大通用总部的数据智能产品研发部门，担任「后端 / 前端」开发工程师。主要负责管理后台等项目的开发与维护工作。
 
- **⭐ GMS**  **`SpringBoot`**  ****  **`SQLite`**  ****  **`Vue`**  ****  **`ElementPlus`**  ****  **`TailwindCSS`** 
+ **⭐ GMS**  `SpringBoot`  ****  `SQLite`  ****  `Vue`  ****  `ElementPlus`  ****  `TailwindCSS` 
 
 待续……
 
@@ -74,11 +74,11 @@ type: "page"
 
 待续……
 
- **⭐ GDOM 数据库运维管理系统**   **`SpringBoot`**    **`RocketMQ`**  ****  **`Vue`**  ****  **`ElementPlus`** 
+ **⭐ GDOM 数据库运维管理系统**   `SpringBoot`    `RocketMQ`  ****  `Vue`  ****  `ElementPlus` 
 
 本人负责前端开发和部分后端模块实现，待续……
 
-⭐  **GBase 8a MPP 统一数据监控与运维系统**  **`Spring MVC`**  ****  **`GBase 8a MPP`**  ****  **`GDBC`** 
+⭐  **GBase 8a MPP 统一数据监控与运维系统**  `Spring MVC`  ****  `GBase 8a MPP`    `GDBC` 
 
 这个项目是 GBase 8a MPP 的监控与运维系统。我主要负责其中的数据库管理、SQL 执行器、健康检查、会话任务、SSH 调用操作等模块。
 
@@ -93,7 +93,7 @@ SQL 执行器：在 Web 页面实现了输入 SQL 进行操作功能。主要难
 
 任职于数据中台组，在职期间参与了模型设计器、日志服务产品、 DMS 项目等多个核心项目。工作内容包括但不限于后端 API 设计与开发、数据库设计（从逻辑设计、画 E-R 图到库表的建立等）、编写完善开发各个阶段的相关文档。
 
-⭐  **紫光云日志服务产品 （** [ **线上地址** ](https://www.unicloud.com/app/logservice/) **）**  **`Spring Boot`**  ****  **`Mybatis-Plus`**  ****  **`ELK`**  ****  **`RabbitMQ`**  ****  **`企业微信`** 
+⭐  **紫光云日志服务产品 （** [ **线上地址** ](https://www.unicloud.com/app/logservice/) **）**  `Spring Boot`  ****  `Mybatis-Plus`  ****  `ELK`  ****  `RabbitMQ`  ****  `企业微信` 
 
 项目描述：一款基于各种规则接入各种软件或系统的日志，进行日志数据采集、消费、投递以及查询分析功能的在线工具。常用于服务运维、运营、安全等场景。
 
@@ -107,7 +107,7 @@ SQL 执行器：在 Web 页面实现了输入 SQL 进行操作功能。主要难
 1. 接收来自 Rabbit MQ 的告警信息，解析处理。一是对接公司的短信、邮件接口发送告警信息，二是调用企业微信相关 API 发送告警信息；
 1. 使用 Swagger 结合 Postman 进行接口测试；与前端人员进行对接接口；使用 Sonar 进行静态代码检查以及使用 Jenkins 进行项目打包。
 
-⭐  **数据管理 DMS （** [ **线上地址** ](https://www.unicloud.com/product/dms) **）**  **`Spring Boot`**  ****  **`JOOQ`**  ****  **`JDBC`**  ****  **`MySQL`**  ****  **`Redis`**  ****  **`Hive`** 
+⭐  **数据管理 DMS （** [ **线上地址** ](https://www.unicloud.com/product/dms) **）**  `Spring Boot`  ****  `JOOQ`  ****  `JDBC`  ****  `MySQL`  ****  `Redis`  ****  `Hive` 
 
 项目描述：一个基于 B-S 架构的数据库管理系统，有点类似于阿里的 DMS 产品
 
@@ -115,7 +115,7 @@ SQL 执行器：在 Web 页面实现了输入 SQL 进行操作功能。主要难
 
 个人工作：参与部分核心模块开发，前后端联调。
 
-⭐  **模型设计器项目**  **`Spring Boot`**  ****  **`Spring Cloud`**  ****  **`MySQL`** 
+⭐  **模型设计器项目**  `Spring Boot`  ****  `Spring Cloud`  ****  `MySQL` 
 
 项目描述：一款 Web 端的类 BI 工具，可使用鼠标拖拽生成关系型数据库映射模型，不写 SQL 也能对数据进行查询和统计。
 
