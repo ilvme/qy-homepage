@@ -1,6 +1,6 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
 import { extractHeadings } from '@/libs/content-supports';
@@ -62,7 +62,7 @@ export default async function CookingDetailPage({
 
         <MarkdownRenderer
           content={post.content}
-          className="text-base xl:text-lg"
+          className="text-base 2xl:text-lg"
         />
 
         <div className="mt-12 pt-6 border-t border-border">

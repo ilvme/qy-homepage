@@ -72,7 +72,7 @@ export default async function Post({
 
         <MarkdownRenderer
           content={postWithContent.content}
-          className="text-base xl:text-lg"
+          className="text-base 2xl:text-lg"
         />
 
         <div className="mt-12 pt-6 border-t border-border flex items-center justify-between">

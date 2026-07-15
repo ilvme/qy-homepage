@@ -87,7 +87,7 @@ export default async function AwakenPage() {
                 content={randomItem.content}
                 slug={false}
                 highlight={false}
-                className="text-base xl:text-lg leading-relaxed tracking-wide"
+                className="text-base 2xl:text-lg leading-relaxed tracking-wide"
               />
             </ExpandableContent>
 

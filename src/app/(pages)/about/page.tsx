@@ -20,7 +20,7 @@ export default async function AboutMe() {
   return (
     <MarkdownRenderer
       content={fileContent.content}
-      className="text-base lg:text-lg"
+      className="text-base 2xl:text-lg"
     />
   );
 }

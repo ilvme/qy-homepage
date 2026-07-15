@@ -31,7 +31,7 @@ export default async function FriendsPage() {
       </header>
       <MarkdownRenderer
         content={fileContent.content}
-        className="text-base lg:text-lg"
+        className="text-base 2xl:text-lg"
       />
     </div>
   );
