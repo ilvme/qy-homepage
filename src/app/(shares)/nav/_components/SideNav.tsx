@@ -30,7 +30,7 @@ export default function SideNav({ categories }: SideNavProps) {
 
   return (
     <nav className="space-y-0.5">
-      <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
+      <h4 className="text-sm font-semibold text-muted-foreground uppercase mb-3 px-2">
         分类
       </h4>
       {categories.map((cat) => (

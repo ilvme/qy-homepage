@@ -63,7 +63,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
       */}
       <div className="hidden xl:block xl:fixed top-20 left-[calc((100vw-800px)/2-12rem)] w-48">
         <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
-          <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-2">
+          <div className="text-sm font-semibold text-muted-foreground uppercase mb-2 px-2">
             目录
           </div>
           {headings.map((heading) => (
