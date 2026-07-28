@@ -6,11 +6,11 @@ category: "热菜"
 tags: ["猪肉"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-20T12:13:01.904Z"
-last_edited_time: "2026-07-20T11:14:00.000Z"
+last_fetched_time: "2026-07-28T13:52:20.479Z"
+last_edited_time: "2026-07-28T12:48:00.000Z"
 page_id: "3a3c485e-f356-80eb-b542-fa58f0e2961b"
 summary: ""
-cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_fe15e4f1.jpeg"
+cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_e54dc5dd.jpeg"
 icon: ""
 ---
 
