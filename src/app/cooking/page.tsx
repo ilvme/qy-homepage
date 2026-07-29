@@ -7,7 +7,7 @@ import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
   title: '下厨',
-  description: '自己动手做的好吃的',
+  description: '一些日常做饭记录，自己动手做的好吃的',
 };
 
 export default async function CookingPage({
