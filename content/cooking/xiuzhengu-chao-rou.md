@@ -2,15 +2,15 @@
 title: "秀珍菇炒肉片"
 slug: "xiuzhengu-chao-rou"
 date: "2026-07-20"
-category: "热菜"
+category: "小炒"
 tags: ["猪肉"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-28T13:52:20.479Z"
-last_edited_time: "2026-07-28T12:48:00.000Z"
+last_fetched_time: "2026-07-29T02:12:41.202Z"
+last_edited_time: "2026-07-29T02:00:00.000Z"
 page_id: "3a3c485e-f356-80eb-b542-fa58f0e2961b"
 summary: ""
-cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_e54dc5dd.jpeg"
+cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_7771c219.jpeg"
 icon: ""
 ---
 

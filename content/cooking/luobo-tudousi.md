@@ -2,15 +2,15 @@
 title: "素炒萝卜土豆丝"
 slug: "luobo-tudousi"
 date: "2026-07-28"
-category: "热菜"
+category: "小炒"
 tags: ["素食"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-07-28T13:52:19.181Z"
-last_edited_time: "2026-07-28T12:48:00.000Z"
+last_fetched_time: "2026-07-29T02:12:40.217Z"
+last_edited_time: "2026-07-29T02:00:00.000Z"
 page_id: "3abc485e-f356-80ec-91cc-c3b83fd6f15b"
 summary: ""
-cover: "/notion-images/cooking/luobo-tudousi/img_484b767d.jpeg"
+cover: "/notion-images/cooking/luobo-tudousi/img_d3254936.jpeg"
 icon: ""
 ---
 
