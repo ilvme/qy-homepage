@@ -6,11 +6,11 @@ category: "小炒"
 tags: ["鸡蛋", "素食"]
 status: "published"
 type: "cooking"
-last_fetched_time: "2026-08-09T12:38:48.853Z"
-last_edited_time: "2026-08-09T12:37:00.000Z"
+last_fetched_time: "2026-08-10T09:13:43.276Z"
+last_edited_time: "2026-08-10T08:58:00.000Z"
 page_id: "3b7c485e-f356-8058-9ad8-f94db469f1a4"
 summary: ""
-cover: ""
+cover: "/notion-images/cooking/qiukui-chao-jidan/img_6aeafe91.jpeg"
 icon: ""
 ---
 
