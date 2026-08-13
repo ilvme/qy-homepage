@@ -5,7 +5,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { getAllPosts, getPostStats } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
-  title: '文章',
+  title: '归档',
   description: '技术笔记与生活随笔',
 };
 
