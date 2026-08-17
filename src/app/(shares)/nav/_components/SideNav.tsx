@@ -37,10 +37,10 @@ export default function SideNav({ categories }: SideNavProps) {
         <a
           key={cat.key}
           href={`#${cat.key}`}
-          className={`block px-2 py-1.5 text-xs 2xl:text-lg rounded-md transition-colors ${
+          className={`block px-2 py-1.5 text-sm rounded-md transition-colors ${
             activeKey === cat.key
-              ? 'bg-muted text-foreground font-medium'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+              ? 'text-foreground font-medium'
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           {cat.label}

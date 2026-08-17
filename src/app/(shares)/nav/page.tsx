@@ -31,39 +31,35 @@ export default async function NavPage() {
         description="收集整理的常用网站，按分类排列。"
       />
 
-      {/* Desktop: fixed sidebar outside the 1200px content area to the left */}
-      <aside
-        className="hidden xl:block fixed z-10 w-36"
-        style={{
-          left: `max(1.5rem, calc((100vw - 1200px) / 2 - 10rem))`,
-          top: '5rem',
-        }}
-      >
-        <SideNav categories={categories} />
-      </aside>
+      {/* 内容 + 目录：左侧分类卡片，右侧 sticky 分类目录 */}
+      <div className="mt-8 xl:grid xl:grid-cols-[minmax(0,1fr)_auto] xl:gap-12 xl:items-start">
+        <div>
+          {categories.map((cat) => (
+            <section
+              key={cat.key}
+              id={cat.key}
+              data-nav-section
+              className="mb-10"
+            >
+              <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                {cat.label}
+                <span className="text-sm text-muted-foreground font-normal">
+                  {cat.sites.length}
+                </span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {cat.sites.map((site) => (
+                  <NavCard key={site.title} site={site} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
 
-      {/* Main Content */}
-      <div className="mt-8">
-        {categories.map((cat) => (
-          <section
-            key={cat.key}
-            id={cat.key}
-            data-nav-section
-            className="mb-10"
-          >
-            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              {cat.label}
-              <span className="text-sm text-muted-foreground font-normal">
-                {cat.sites.length}
-              </span>
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {cat.sites.map((site) => (
-                <NavCard key={site.title} site={site} />
-              ))}
-            </div>
-          </section>
-        ))}
+        {/* 桌面端：分类目录 sticky 在右侧 */}
+        <aside className="hidden xl:block xl:sticky xl:top-20 w-36">
+          <SideNav categories={categories} />
+        </aside>
       </div>
     </div>
   );
