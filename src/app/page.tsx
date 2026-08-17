@@ -71,28 +71,40 @@ export default async function Home() {
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               ),
             },
-            // {
-            //   href: '/taste',
-            //   label: '风味',
-            //   desc: '书影音收藏',
-            //   icon: (
-            //     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
-            //   ),
-            // },
-            // {
-            //   href: '/awaken',
-            //   label: '唤醒',
-            //   desc: '语录与感悟',
-            //   icon: (
-            //     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            //   ),
-            // },
             {
               href: '/cooking',
               label: '食者',
               desc: '下厨记录',
               icon: (
                 <path d="M6 2h12l-2 8H8L6 2zM8 10v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V10" />
+              ),
+            },
+            {
+              href: '/taste',
+              label: '书影音',
+              desc: '书影音收藏',
+              icon: (
+                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+              ),
+            },
+            {
+              href: '/awaken',
+              label: '分享',
+              desc: '语录与感悟',
+              icon: (
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              ),
+            },
+            {
+              href: '/nav',
+              label: '导航',
+              desc: '常用网站',
+              icon: (
+                <>
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                  <path d="M2 12h20" />
+                </>
               ),
             },
             {
