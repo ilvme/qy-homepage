@@ -1,8 +1,15 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
+import TagCloud from '@/components/ui/TagCloud';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
-import { getAllPosts, getPostStats } from '@/libs/content-loader';
+import {
+  getAllCategories,
+  getAllPosts,
+  getAllTags,
+  getPostStats,
+} from '@/libs/content-loader';
 
 export const metadata: Metadata = {
   title: '归档',
@@ -10,7 +17,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Archives() {
-  const [posts, stats] = await Promise.all([getAllPosts(), getPostStats()]);
+  const [posts, stats, tags, categories] = await Promise.all([
+    getAllPosts(),
+    getPostStats(),
+    getAllTags(),
+    getAllCategories(),
+  ]);
 
   // 按年份分组
   const postsByYear = posts.reduce(
@@ -27,6 +39,17 @@ export default async function Archives() {
     (a, b) => Number(b) - Number(a),
   );
 
+  // 分类计数
+  const categoryCounts = new Map<string, number>();
+  for (const post of posts) {
+    if (post.category) {
+      categoryCounts.set(
+        post.category,
+        (categoryCounts.get(post.category) ?? 0) + 1,
+      );
+    }
+  }
+
   return (
     <div className="py-8">
       <PageHero title="归档">
@@ -35,6 +58,34 @@ export default async function Archives() {
           {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
         </p>
       </PageHero>
+
+      {/* 分类 + 标签聚合区 */}
+      <div className="mt-2 mb-10 space-y-5">
+        <div>
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase mb-2">
+            分类
+          </h4>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            {categories.map((cat) => (
+              <Link
+                key={cat}
+                href={`/categories/${cat}`}
+                className="text-sm text-secondary hover:text-foreground hover:underline underline-offset-4"
+              >
+                {cat}
+                <span className="pl-1">{categoryCounts.get(cat) ?? 0}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase mb-2">
+            标签
+          </h4>
+          <TagCloud tags={tags} basePath="/tags" />
+        </div>
+      </div>
 
       {posts.length === 0 ? (
         <EmptyShower />
