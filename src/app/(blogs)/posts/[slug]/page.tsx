@@ -48,12 +48,9 @@ export default async function Post({
   const headings = extractHeadings(postWithContent.content);
 
   return (
-    <div className="relative py-8">
-      {/* 目录 - 绝对定位在主体区域左侧外部 */}
-      <TableOfContents headings={headings} />
-
-      {/* 文章内容 - 保持原有布局不受影响 */}
-      <article>
+    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
+      {/* 文章内容 - 保持 768px 左对齐 */}
+      <article className="max-w-[768px]">
         <header className="mb-10">
           {/* 标题 */}
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">
@@ -103,6 +100,9 @@ export default async function Post({
           <Comment />
         )}
       </article>
+
+      {/* 目录 - 桌面端放在正文右侧 sticky */}
+      <TableOfContents headings={headings} />
     </div>
   );
 }

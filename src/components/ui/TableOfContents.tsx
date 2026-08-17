@@ -57,11 +57,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <>
-      {/*
-        桌面端：fixed 定位在页面左侧，滚动时固定在视口左上方
-        left calc: 800px 主体容器居中，TOC 在其左侧 32px 处
-      */}
-      <div className="hidden xl:block xl:fixed top-20 left-[calc((100vw-800px)/2-12rem)] w-48">
+      {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，右对齐容器右缘 */}
+      <div className="hidden xl:block xl:justify-self-end xl:sticky xl:top-20 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
           <div className="text-sm font-semibold text-muted-foreground uppercase mb-2 px-2">
             目录
@@ -78,8 +75,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 heading.level === 3 ? 'pl-6' : ''
               } ${
                 activeId === heading.id
-                  ? 'bg-muted text-foreground font-medium'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  ? 'text-foreground font-medium'
+                  : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               {heading.text}
@@ -129,8 +126,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                     heading.level === 3 ? 'pl-6' : ''
                   } ${
                     activeId === heading.id
-                      ? 'bg-muted text-foreground font-medium'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      ? 'text-foreground font-medium'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {heading.text}

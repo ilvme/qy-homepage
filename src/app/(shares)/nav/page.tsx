@@ -31,11 +31,11 @@ export default async function NavPage() {
         description="收集整理的常用网站，按分类排列。"
       />
 
-      {/* Desktop: fixed sidebar outside the 800px content area to the left */}
+      {/* Desktop: fixed sidebar outside the 1200px content area to the left */}
       <aside
         className="hidden xl:block fixed z-10 w-36"
         style={{
-          left: `max(1.5rem, calc((100vw - 800px) / 2 - 10rem))`,
+          left: `max(1.5rem, calc((100vw - 1200px) / 2 - 10rem))`,
           top: '5rem',
         }}
       >

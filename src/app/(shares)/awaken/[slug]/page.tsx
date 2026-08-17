@@ -40,9 +40,8 @@ export default async function AwakenDetailPage({
   const headings = extractHeadings(post.content);
 
   return (
-    <div className="relative py-8">
-      <TableOfContents headings={headings} />
-      <article>
+    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
+      <article className="max-w-[768px]">
         <header className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">
             {post.title}
@@ -88,6 +87,9 @@ export default async function AwakenDetailPage({
           </Link>
         </div>
       </article>
+
+      {/* 目录 - 桌面端放在正文右侧 sticky */}
+      <TableOfContents headings={headings} />
     </div>
   );
 }

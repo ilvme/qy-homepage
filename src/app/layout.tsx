@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import LayoutContainer from '@/components/layout/LayoutContainer';
 import BackToTop from '@/components/ui/BackToTop';
 import { siteConfig } from '@/site.config';
 
@@ -47,10 +48,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className="h-full antialiased">
-      <body className="min-h-full max-w-[800px] mx-auto px-4 sm:px-6">
+      <body className="min-h-full">
         <Header />
-        <main className="min-h-[calc(100vh-200px)]">{children}</main>
-        <Footer />
+        <LayoutContainer>
+          <main className="min-h-[calc(100vh-200px)]">{children}</main>
+          <Footer />
+        </LayoutContainer>
 
         <BackToTop />
         <Analytics />

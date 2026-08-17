@@ -1,14 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { siteConfig } from '@/site.config';
+import { isWideRoute } from './wide-route';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isWide = isWideRoute(pathname);
 
   return (
-    <header className="relative flex items-center justify-between py-6 border-b border-border mb-6">
+    <header
+      className={`relative mx-auto w-full px-4 sm:px-6 flex items-center justify-between py-6 border-b border-border mb-6 transition-[max-width] duration-500 ease-out ${
+        isWide ? 'max-w-[1200px]' : 'max-w-[800px]'
+      }`}
+    >
       <Link
         href="/"
         className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
