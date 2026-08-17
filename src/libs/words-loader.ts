@@ -34,3 +34,25 @@ export async function getAllWords() {
 
   return words;
 }
+
+/** 所有说说标签 + 条数，按 count 降序 */
+export async function getAllWordTags(): Promise<{ label: string; count: number }[]> {
+  const words = await getAllWords();
+
+  const counts = new Map<string, number>();
+  for (const word of words) {
+    for (const tag of word.postMeta.tags ?? []) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()]
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+/** 按标签过滤说说（保持时间倒序） */
+export async function getWordsByTag(tag: string) {
+  const words = await getAllWords();
+  return words.filter((word) => word.postMeta.tags?.includes(tag));
+}

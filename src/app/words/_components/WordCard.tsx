@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import Link from 'next/link';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import type { WordMetadata } from '../../../../scripts/types';
@@ -62,9 +63,13 @@ export default async function WordCard({ post }: WordCardProps) {
           {post.postMeta.tags?.length > 0 && (
             <div className="flex gap-2">
               {post.postMeta.tags?.map((tag) => (
-                <span key={tag} className="text-sm">
+                <Link
+                  key={tag}
+                  href={`/words/tags/${tag}`}
+                  className="text-sm hover:underline underline-offset-4"
+                >
                   #{tag}
-                </span>
+                </Link>
               ))}
             </div>
           )}
