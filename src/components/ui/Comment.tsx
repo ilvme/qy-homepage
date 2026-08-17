@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { siteConfig } from '@/site.config';
+import { THEME_EVENT_NAME } from './theme';
 
 function getGiscusTheme(): string {
   if (typeof window === 'undefined') return 'noborder_light';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
+  return document.documentElement.classList.contains('dark')
     ? 'noborder_gray'
     : 'noborder_light';
 }
@@ -29,14 +30,13 @@ export default function Comment({ lazy = true }: CommentProps) {
     );
   }, []);
 
-  // 监听系统主题变化，同步更新 Giscus
+  // 监听主题变化（手动切换或系统偏好变更），同步更新 Giscus
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
       sendTheme(getGiscusTheme());
     };
-    mq.addEventListener('change', handleChange);
-    return () => mq.removeEventListener('change', handleChange);
+    document.addEventListener(THEME_EVENT_NAME, handleChange);
+    return () => document.removeEventListener(THEME_EVENT_NAME, handleChange);
   }, [sendTheme]);
 
   useEffect(() => {

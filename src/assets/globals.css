@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
+/* Tailwind dark variant 跟随 html.dark class（手动主题切换） */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fafaf9;
   --foreground: #1c1917;
@@ -13,18 +16,16 @@
   --accent: #d6d3d1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #131313;
-    --foreground: #fafaf9;
-    --secondary: #a8a29e;
-    --muted: #1c1917;
-    --muted-foreground: #78716c;
-    --border: #292524;
-    --card: #1c1917;
-    --card-foreground: #fafaf9;
-    --accent: #44403c;
-  }
+.dark {
+  --background: #131313;
+  --foreground: #fafaf9;
+  --secondary: #a8a29e;
+  --muted: #1c1917;
+  --muted-foreground: #78716c;
+  --border: #292524;
+  --card: #1c1917;
+  --card-foreground: #fafaf9;
+  --accent: #44403c;
 }
 
 @theme inline {
@@ -78,13 +79,11 @@ body {
   color: var(--shiki-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose pre {
-    background: #272822;
-  }
-  .prose pre code span {
-    color: var(--shiki-dark);
-  }
+.dark .prose pre {
+  background: #272822;
+}
+.dark .prose pre code span {
+  color: var(--shiki-dark);
 }
 
 /* 表格 */
@@ -168,10 +167,8 @@ body {
   transition: text-decoration-color 0.15s;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose a {
-    color: #6db3f8;
-  }
+.dark .prose a {
+  color: #6db3f8;
 }
 
 .prose a:hover {
@@ -360,32 +357,30 @@ body {
   background: #faeae9;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose [data-callout="gray"] {
-    background: #2b2b2a;
-  }
-  .prose [data-callout="brown"] {
-    background: #2f2c2b;
-  }
-  .prose [data-callout="orange"] {
-    background: #30291f;
-  }
-  .prose [data-callout="yellow"] {
-    background: #2e2a1f;
-  }
-  .prose [data-callout="green"] {
-    background: #1f2c22;
-  }
-  .prose [data-callout="blue"] {
-    background: #1c2b31;
-  }
-  .prose [data-callout="purple"] {
-    background: #272531;
-  }
-  .prose [data-callout="pink"] {
-    background: #31242c;
-  }
-  .prose [data-callout="red"] {
-    background: #332222;
-  }
+.dark .prose [data-callout="gray"] {
+  background: #2b2b2a;
+}
+.dark .prose [data-callout="brown"] {
+  background: #2f2c2b;
+}
+.dark .prose [data-callout="orange"] {
+  background: #30291f;
+}
+.dark .prose [data-callout="yellow"] {
+  background: #2e2a1f;
+}
+.dark .prose [data-callout="green"] {
+  background: #1f2c22;
+}
+.dark .prose [data-callout="blue"] {
+  background: #1c2b31;
+}
+.dark .prose [data-callout="purple"] {
+  background: #272531;
+}
+.dark .prose [data-callout="pink"] {
+  background: #31242c;
+}
+.dark .prose [data-callout="red"] {
+  background: #332222;
 }

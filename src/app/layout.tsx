@@ -48,6 +48,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className="h-full antialiased">
+      <head>
+        {/* 主题初始化：优先用户选择，默认跟随系统；在首帧渲染前避免闪烁 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme')||'system';var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',dark);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full">
         <Header />
         <LayoutContainer>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { siteConfig } from '@/site.config';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import { isWideRoute } from './wide-route';
 
 export default function Header() {
@@ -25,17 +26,20 @@ export default function Header() {
       </Link>
 
       {/* 桌面端导航 */}
-      <nav className="hidden sm:flex items-center gap-1">
-        {siteConfig.navLinks.filter((l) => l.location === 'header').map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="px-2 py-1 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
+      <div className="hidden sm:flex items-center gap-1">
+        <nav className="flex items-center gap-1">
+          {siteConfig.navLinks.filter((l) => l.location === 'header').map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="px-2 py-1 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <ThemeToggle />
+      </div>
 
       {/* 移动端：汉堡按钮 */}
       <div className="sm:hidden">
@@ -93,6 +97,7 @@ export default function Header() {
               </Link>
             ))}
           </div>
+          <ThemeToggle />
         </nav>
       )}
     </header>
