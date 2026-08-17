@@ -14,7 +14,7 @@ export async function generateMetadata({
     ? decodeURIComponent(category)
     : category;
   return {
-    title: `📁 ${decoded}`,
+    title: `${decoded}`,
     description: `分类「${decoded}」下的文章列表`,
   };
 }
