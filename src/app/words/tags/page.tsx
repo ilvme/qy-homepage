@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
+import TagCloud from '@/components/ui/TagCloud';
 import { getAllWordTags } from '@/libs/words-loader';
 
 export const metadata: Metadata = {
@@ -19,19 +19,7 @@ export default async function WordsTagsPage() {
       {tags.length === 0 ? (
         <EmptyShower />
       ) : (
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
-          {tags.map((tag) => (
-            <Link
-              key={tag.label}
-              href={`/words/tags/${tag.label}`}
-              className="hover:underline"
-            >
-              <span>#</span>
-              {tag.label}
-              <span className="pl-1 text-secondary">{tag.count}</span>
-            </Link>
-          ))}
-        </div>
+        <TagCloud tags={tags} basePath="/words/tags" />
       )}
     </div>
   );
