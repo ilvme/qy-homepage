@@ -147,7 +147,7 @@ scripts/
 | `(blogs)` | `/categories`、`/categories/[cat]` | 分类 |
 | `(blogs)` | `/tags`、`/tags/[tag]` | 标签 |
 | `(blogs)` | `/rss.xml` | RSS |
-| — | `/words` | 说说流（分页） |
+| — | `/words`、`/words/tags`、`/words/tags/[tag]` | 说说流（分页）+ 说说标签 |
 | `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享·觉晓（列表 + 详情 + 全部） |
 | `(shares)` | `/taste` | 分享·品味（书影音画廊） |
 | `(shares)` | `/nav` | 导航（分类卡片，type: "nav"） |
@@ -161,7 +161,7 @@ scripts/
 ### 组件
 
 - `src/components/layout/` — Header（导航从 `site.config.ts` 的 `navLinks` 读取）、Footer
-- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）
+- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）、TagCloud（标签云）、ThemeToggle（主题切换）
 - `src/app/(blogs)/_components/` — PostItem、PostItemLite、PostMeta、Tag
 - `src/app/(cooking)/_components/` — ImageGallery（图片网格）
 - `src/app/words/_components/` — WordCard、WordImageGrid
@@ -171,7 +171,7 @@ scripts/
 
 ### site.config.ts
 
-集中管理：URL、标题、描述、作者、导航链接（`navLinks`）、RSS 配置、分页（`pageSize: 7`、`cookingPageSize: 8`、`wordsPageSize: 10`、`tastePageSize: 12`、`awakenPageSize: 10`）、Hero 文案、Giscus 评论配置。
+集中管理：URL、标题、描述、作者、导航链接（`navLinks`）、RSS 配置、分页（`pageSize: 7`、`cookingPageSize: 12`、`wordsPageSize: 10`、`tastePageSize: 12`、`awakenPageSize: 10`）、Hero 文案、Giscus 评论配置。
 
 ### 设计系统
 
