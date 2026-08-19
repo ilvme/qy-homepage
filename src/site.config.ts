@@ -33,8 +33,6 @@ export const siteConfig = {
     { href: '/cooking', label: '食者', location: 'header' },
     { href: '/nav', label: '导航', location: 'footer' },
     { href: '/archives', label: '归档', location: 'footer' },
-    // { href: '/tags', label: '标签', location: 'footer' },
-    // { href: '/categories', label: '分类', location: 'footer' },
     { href: '/taste', label: '书影音', location: 'footer' },
     { href: '/awaken', label: '分享', location: 'footer' },
   ],
