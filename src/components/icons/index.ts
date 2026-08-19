@@ -24,6 +24,4 @@ export {
   Globe,
   User,
   Link2,
-  ChevronDown,
-  Palette,
 } from 'lucide-react';
