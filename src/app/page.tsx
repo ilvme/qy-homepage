@@ -103,7 +103,7 @@ export default async function Home() {
               <h3 className="font-medium group-hover:text-foreground transition-colors flex items-center gap-1.5">
                 <item.Icon
                   size={15}
-                  className="shrink-0 text-muted-foreground"
+                  className="shrink-0 text-brand"
                 />
                 {item.label}
               </h3>
