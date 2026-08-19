@@ -24,4 +24,5 @@ export {
   Globe,
   User,
   Link2,
+  Palette,
 } from 'lucide-react';

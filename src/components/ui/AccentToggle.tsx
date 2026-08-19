@@ -1,15 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Check, Sun, Moon, Monitor } from '@/components/icons';
+import { Check, Palette, Sun, Moon, Monitor } from '@/components/icons';
 import type { Accent } from './accent';
 import { ACCENTS, applyAccent, getStoredAccent } from './accent';
 import type { Theme } from './theme';
 import { applyTheme, getStoredTheme } from './theme';
 
-/** 主题色 + 外观统一切换器：单个色点触发器，下拉框分区选择 */
+/** 主题色 + 外观统一切换器：Palette 图标触发器（带主题色），下拉框分区选择 */
 export default function AccentToggle() {
-  const [accent, setAccent] = useState<Accent>('cinnabar');
+  const [accent, setAccent] = useState<Accent>('ink');
   const [theme, setTheme] = useState<Theme>('system');
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -77,13 +77,9 @@ export default function AccentToggle() {
         aria-haspopup="listbox"
         aria-expanded={open}
         title={`主题色：${current.label}`}
-        className="p-1.5 rounded-md hover:bg-muted transition-colors"
+        className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
       >
-        <span
-          aria-hidden
-          className="block w-3 h-3 rounded-full ring-1 ring-border"
-          style={{ backgroundColor: current.color }}
-        />
+        <Palette size={18} style={{ color: current.color }} />
       </button>
 
       {open && (
