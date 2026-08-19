@@ -52,7 +52,7 @@ export default function RootLayout({
         {/* 主题初始化：优先用户选择，默认跟随系统；在首帧渲染前避免闪烁 */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme')||'system';var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',dark);var a=localStorage.getItem('accent')||'cinnabar';document.documentElement.dataset.accent=a;}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme')||'system';var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',dark);var a=localStorage.getItem('accent')||'ink';document.documentElement.dataset.accent=a;}catch(e){}})();`,
           }}
         />
       </head>

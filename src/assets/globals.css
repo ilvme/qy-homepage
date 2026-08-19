@@ -14,7 +14,7 @@
   --card: #ffffff;
   --card-foreground: #1c1917;
   --accent: #d6d3d1;
-  --brand: #b8463e;
+  --brand: var(--foreground);
 }
 
 /* 主题色覆盖：跟随 html[data-accent] 属性切换 */
@@ -34,7 +34,7 @@
   --card: #1c1917;
   --card-foreground: #fafaf9;
   --accent: #44403c;
-  --brand: #d9706a;
+  --brand: var(--foreground);
 }
 
 /* 暗色下的主题色覆盖 */

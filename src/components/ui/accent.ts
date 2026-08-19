@@ -4,7 +4,7 @@ const STORAGE_KEY = 'accent';
 const EVENT_NAME = 'accentchange';
 
 /** 默认主题色 */
-export const DEFAULT_ACCENT: Accent = 'cinnabar';
+export const DEFAULT_ACCENT: Accent = 'ink';
 
 /** 可选主题色配置：色点用亮色值展示，切换后由 CSS 变量接管明暗 */
 export const ACCENTS: { key: Accent; label: string; color: string }[] = [
@@ -22,7 +22,7 @@ const isAccent = (v: unknown): v is Accent =>
   v === 'ochre' ||
   v === 'ink';
 
-/** 读取用户选择的主题色，默认朱砂 */
+/** 读取用户选择的主题色，默认玄墨 */
 export function getStoredAccent(): Accent {
   if (typeof window === 'undefined') return DEFAULT_ACCENT;
   const stored = localStorage.getItem(STORAGE_KEY);
