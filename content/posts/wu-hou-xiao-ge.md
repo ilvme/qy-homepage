@@ -1,12 +1,17 @@
 ---
 title: "午后小歌"
-date: "2022-05-16T13:00:00.000+08:00"
-tags: ["诗与远方", "牛马生活"]
+slug: "wu-hou-xiao-ge"
+date: "2022-05-16"
+category: "诗"
+tags: ["牛马生活"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-08-13T03:03:38.132Z"
-last_edited_time: "2026-08-13T02:51:00.000Z"
-page_id: "38bc485e-f356-80bf-a74f-c50a0ffb64fc"
+type: "article"
+last_fetched_time: "2026-08-19T03:15:57.849Z"
+last_edited_time: "2026-08-19T03:06:00.000Z"
+page_id: "3c1c485e-f356-808d-8738-ed3a654fb50f"
+summary: "来自某天公司午休后的有感而发…"
+cover: ""
+icon: ""
 ---
 
 
