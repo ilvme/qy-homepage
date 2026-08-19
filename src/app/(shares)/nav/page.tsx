@@ -10,8 +10,6 @@ export const metadata: Metadata = {
   description: '常用网站导航 — AI、前端生态、社区、博客等',
 };
 
-export const dynamic = 'force-dynamic';
-
 export default async function NavPage() {
   const categories = await getAllNavSites();
 

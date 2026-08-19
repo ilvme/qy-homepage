@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   description: '台词、句子、古诗词古文',
 };
 
-export const dynamic = 'force-dynamic';
+// ISR：每小时重新生成（重算随机条目），与 Notion 每小时同步节奏对齐
+export const revalidate = 3600;
 
 /** 去除 markdown 标记，获取纯文本用于复制 */
 function stripMarkdown(md: string): string {
