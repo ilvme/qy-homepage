@@ -1,13 +1,13 @@
 ---
 title: "关于写年终总结这件小事"
 slug: "guan-yu-nian-zhong-zong-jie"
-date: "2023-12-30"
+date: "2022-12-16"
 category: "Thoughts"
 tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-07-10T07:23:52.968Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetched_time: "2026-08-19T03:15:55.308Z"
+last_edited_time: "2026-08-19T02:50:00.000Z"
 page_id: "38bc485e-f356-80e5-8129-dbb9893e7cca"
 summary: ""
 cover: ""

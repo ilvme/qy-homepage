@@ -1,13 +1,13 @@
 ---
-title: "高中的几首小诗（一）"
+title: "高中的几首小诗"
 slug: "poems-from-high-schools-1"
 date: "2014-01-01"
 category: "诗"
 tags: ["诗", "高中"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-07-10T07:24:14.118Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetched_time: "2026-08-19T03:15:59.125Z"
+last_edited_time: "2026-08-19T02:52:00.000Z"
 page_id: "38bc485e-f356-80f6-87a2-d517027dd1dd"
 summary: "《我伟大的平中》、《苦言》、《中秋小记》、《夜雨述怀 赠半哥》"
 cover: ""
