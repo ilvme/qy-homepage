@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className="h-full antialiased">
+    <html lang="zh-CN" className="h-full antialiased" data-accent="ink" suppressHydrationWarning>
       <head>
         {/* 主题初始化：优先用户选择，默认跟随系统；在首帧渲染前避免闪烁 */}
         <script
