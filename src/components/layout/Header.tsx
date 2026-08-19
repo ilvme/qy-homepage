@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Close, Menu } from '@/components/icons';
 import { siteConfig } from '@/site.config';
+import AccentToggle from '@/components/ui/AccentToggle';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import { isWideRoute } from './wide-route';
 
@@ -39,6 +40,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+        <AccentToggle />
         <ThemeToggle />
       </div>
 
@@ -67,6 +69,10 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+          </div>
+          <div className="flex items-center gap-3 px-4 py-2">
+            <span className="text-xs text-secondary">主题色</span>
+            <AccentToggle />
           </div>
           <ThemeToggle />
         </nav>

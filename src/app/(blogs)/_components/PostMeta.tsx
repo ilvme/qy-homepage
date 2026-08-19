@@ -31,7 +31,7 @@ export default function PostMeta({
       {category && (
         <Link
           href={`/categories/${category}`}
-          className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 hover:underline underline-offset-4"
+          className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 hover:text-brand hover:underline underline-offset-4"
         >
           <Folder size={12} />
           {category}
@@ -44,7 +44,7 @@ export default function PostMeta({
             <Link
               key={tag}
               href={`/tags/${tag}`}
-              className="hover:underline underline-offset-4"
+              className="hover:text-brand hover:underline underline-offset-4"
             >
               #{tag}
             </Link>

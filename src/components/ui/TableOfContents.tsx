@@ -76,7 +76,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 heading.level === 3 ? 'pl-6' : ''
               } ${
                 activeId === heading.id
-                  ? 'text-foreground font-medium'
+                  ? 'text-brand font-medium'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -113,7 +113,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                     heading.level === 3 ? 'pl-6' : ''
                   } ${
                     activeId === heading.id
-                      ? 'text-foreground font-medium'
+                      ? 'text-brand font-medium'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >

@@ -27,7 +27,7 @@ export default async function Home() {
         <div className="flex gap-3 pt-2">
           <Link
             href="/posts"
-            className="inline-flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-brand text-background hover:opacity-90 transition-opacity"
           >
             浏览文章
             <ArrowRight size={14} />
@@ -98,7 +98,7 @@ export default async function Home() {
             <Link
               key={item.href}
               href={item.href}
-              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-foreground/20 hover:bg-muted/60 transition-all duration-200 group"
+              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-brand/40 hover:bg-muted/60 transition-all duration-200 group"
             >
               <h3 className="font-medium group-hover:text-foreground transition-colors flex items-center gap-1.5">
                 <item.Icon
