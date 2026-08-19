@@ -16,7 +16,7 @@ export default async function ResumePage() {
     return (
       <div className="py-8 space-y-8">
         <header>
-          <h1 className="text-3xl font-bold tracking-tight">康佳的简历</h1>
+          <h1 className="text-3xl font-semibold tracking-normal">康佳的简历</h1>
         </header>
         <div className="py-16 text-center text-secondary">
           <p className="text-4xl mb-4">🤝</p>

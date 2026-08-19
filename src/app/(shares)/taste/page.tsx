@@ -38,7 +38,7 @@ export default async function TastePage() {
       <div className="space-y-10">
         {grouped.map(({ key, label, items: groupItems }) => (
           <section key={key}>
-            <h2 className="text-lg font-semibold mb-4">
+            <h2 className="text-lg font-medium mb-4">
               {label}
               {/*<span className="text-sm text-secondary font-normal ml-1.5">*/}
               {/*  {groupItems.length}*/}

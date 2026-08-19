@@ -18,7 +18,7 @@ export default async function Home() {
     <div className="py-8 space-y-16">
       {/* Hero Section */}
       <section className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-3xl font-semibold tracking-normal">
           <Typewriter text={siteConfig.hero.greeting} />
         </h1>
         <p className="text-secondary leading-relaxed text-base max-w-xl">
@@ -43,7 +43,7 @@ export default async function Home() {
 
       {/* Site Sections */}
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold">探索</h2>
+        <h2 className="text-lg font-medium">探索</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
             {
@@ -98,7 +98,7 @@ export default async function Home() {
             <Link
               key={item.href}
               href={item.href}
-              className="block p-4 rounded-xl border border-border hover:bg-muted transition-colors group"
+              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-foreground/20 hover:bg-muted/60 transition-all duration-200 group"
             >
               <h3 className="font-medium group-hover:text-foreground transition-colors flex items-center gap-1.5">
                 <item.Icon

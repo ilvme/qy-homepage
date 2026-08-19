@@ -99,7 +99,7 @@ export default async function Archives() {
         <div className="space-y-6">
           {sortedYears.map((year) => (
             <section key={year}>
-              <h2 className="text-lg font-semibold mb-2">{year}</h2>
+              <h2 className="text-lg font-medium mb-2">{year}</h2>
               <ul className="space-y-0.5">
                 {postsByYear[year]?.map((post) => (
                   <li key={post.slug}>

@@ -44,7 +44,7 @@ export default async function AwakenDetailPage({
     <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
       <article className="max-w-[768px]">
         <header className="mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-normal leading-tight mb-4">
             {post.title}
           </h1>
 

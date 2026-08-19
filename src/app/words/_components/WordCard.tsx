@@ -38,7 +38,7 @@ export default async function WordCard({ post }: WordCardProps) {
   const displayDate = formatDate(dateStr);
 
   return (
-    <article className="border border-border rounded-xl p-5 mb-4 bg-card">
+    <article className="border border-border rounded-xl p-5 mb-4 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm hover:border-foreground/20">
       <section className="flex items-center flex-wrap justify-between gap-y-2 text-secondary">
         <div className="flex items-center gap-x-4 flex-wrap gap-y-2">
           <time dateTime={dateStr} className="flex items-center gap-2">

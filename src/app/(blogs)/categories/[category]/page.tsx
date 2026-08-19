@@ -42,7 +42,7 @@ export default async function CategoryPage({
   return (
     <div className="py-8 space-y-6">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">{category}</h1>
+        <h1 className="text-3xl font-semibold tracking-normal">{category}</h1>
         <p className="text-secondary text-base mt-1">
           共 {posts.length} 篇文章属于此分类。
         </p>

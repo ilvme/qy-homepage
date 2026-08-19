@@ -4,7 +4,7 @@ export default function SponsorPage() {
   return (
     <div className="py-8">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Sponsor</h1>
+        <h1 className="text-3xl font-semibold tracking-normal">Sponsor</h1>
         <p className="text-secondary text-base mt-1">
           如果你喜欢我的文字，就给我的小猫买个罐头吧~ 🥫
         </p>

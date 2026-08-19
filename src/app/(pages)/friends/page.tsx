@@ -27,7 +27,7 @@ export default async function FriendsPage() {
   return (
     <div className="py-8 space-y-8">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>
+        <h1 className="text-3xl font-semibold tracking-normal">友情链接</h1>
       </header>
       <MarkdownRenderer
         content={fileContent.content}
