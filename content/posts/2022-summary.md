@@ -3,11 +3,11 @@ title: "2022 小结"
 slug: "2022-summary"
 date: "2022-12-31"
 category: "生活日志"
-tags: []
+tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-07-10T07:24:00.402Z"
-last_edited_time: "2026-06-27T16:24:00.000Z"
+last_fetched_time: "2026-08-19T02:16:52.013Z"
+last_edited_time: "2026-08-19T01:32:00.000Z"
 page_id: "1b8c485e-f356-806b-bb45-eaf62cbaba04"
 summary: ""
 cover: ""
@@ -91,7 +91,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_4eb737cd.jpeg)
+![Image](/notion-images/posts/2022-summary/img_e5d8ccc2.jpeg)
 
 <br />
 
@@ -100,7 +100,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_000958d8.jpeg)
+![Image](/notion-images/posts/2022-summary/img_87c5fc72.jpeg)
 
 <br />
 
@@ -113,7 +113,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_3b655c94.jpeg)
+![Image](/notion-images/posts/2022-summary/img_e0384857.jpeg)
 
 <br />
 
@@ -124,7 +124,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_ec6098d3.jpeg)
+![Image](/notion-images/posts/2022-summary/img_b302df00.jpeg)
 
 <br />
 
@@ -259,7 +259,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_477ce81c.jpg)
+![Image](/notion-images/posts/2022-summary/img_892167b9.jpg)
 
 <br />
 
@@ -268,7 +268,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_3b8b2b76.png)
+![Image](/notion-images/posts/2022-summary/img_08a140dd.png)
 
 <br />
 
@@ -281,7 +281,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_8d537f7c.jpeg)
+![Image](/notion-images/posts/2022-summary/img_497e4975.jpeg)
 
 <br />
 
@@ -290,7 +290,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_33314541.jpeg)
+![Image](/notion-images/posts/2022-summary/img_d67f7ee4.jpeg)
 
 <br />
 
@@ -303,7 +303,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_3404dee6.png)
+![Image](/notion-images/posts/2022-summary/img_e4fea74b.png)
 
 <br />
 
@@ -312,7 +312,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_49f17074.png)
+![Image](/notion-images/posts/2022-summary/img_f895e574.png)
 
 <br />
 

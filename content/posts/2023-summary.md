@@ -3,11 +3,11 @@ title: "2023 小结（很短，很无聊）"
 slug: "2023-summary"
 date: "2023-12-31"
 category: "生活日志"
-tags: []
+tags: ["年终总结"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-07-10T07:23:52.753Z"
-last_edited_time: "2026-06-28T11:34:00.000Z"
+last_fetched_time: "2026-08-19T02:16:47.129Z"
+last_edited_time: "2026-08-19T01:32:00.000Z"
 page_id: "1b8c485e-f356-80a4-9862-e8f45cd52908"
 summary: "一人两地三餐四季，继续等下一年到来。"
 cover: ""
@@ -29,14 +29,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![老夫也有少女心（一）](/notion-images/posts/2023-summary/img_3f900451.png)
+![老夫也有少女心（一）](/notion-images/posts/2023-summary/img_d56d30ed.png)
 
 <br />
 
 </Column>
 <Column>
 
-![老夫也有少女心（二）](/notion-images/posts/2023-summary/img_608eabd6.png)
+![老夫也有少女心（二）](/notion-images/posts/2023-summary/img_5d3bc580.png)
 
 <br />
 
@@ -59,46 +59,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![我的乡愁是一碗板面，1.18 和毅兄在北国](/notion-images/posts/2023-summary/img_4099a669.png)
+![我的乡愁是一碗板面，1.18 和毅兄在北国](/notion-images/posts/2023-summary/img_c3e5aec3.png)
 
 <br />
 
 </Column>
 <Column>
 
-![今年也有花花](/notion-images/posts/2023-summary/img_abd10a3a.png)
+![今年也有花花](/notion-images/posts/2023-summary/img_6fcb9533.png)
 
 <br />
 
 </Column>
 <Column>
 
-![十月一回家，兄弟们给买的生日蛋糕](/notion-images/posts/2023-summary/img_ae3a70df.png)
-
-<br />
-
-</Column>
-</Columns>
-
-
-<Columns cols={3}>
-<Column>
-
-![海河边，左到右，弟弟、我、妹妹](/notion-images/posts/2023-summary/img_6a4daa17.png)
-
-<br />
-
-</Column>
-<Column>
-
-![北京动物园看国宝](/notion-images/posts/2023-summary/img_8b80107e.png)
-
-<br />
-
-</Column>
-<Column>
-
-![2023.7.29 南开文园 与毅兄居家火锅与二锅头](/notion-images/posts/2023-summary/img_24a6bb4b.png)
+![十月一回家，兄弟们给买的生日蛋糕](/notion-images/posts/2023-summary/img_68df7f0d.png)
 
 <br />
 
@@ -109,21 +84,46 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![2023.2.18 于南开文园，就这绘画水平😮‍💨](/notion-images/posts/2023-summary/img_84ee76fb.png)
+![海河边，左到右，弟弟、我、妹妹](/notion-images/posts/2023-summary/img_6c0af18e.png)
 
 <br />
 
 </Column>
 <Column>
 
-![乐高之三个多小时的苦功夫](/notion-images/posts/2023-summary/img_c0518ee4.png)
+![北京动物园看国宝](/notion-images/posts/2023-summary/img_f84e9940.png)
 
 <br />
 
 </Column>
 <Column>
 
-![主打清淡饮食，高端的食材](/notion-images/posts/2023-summary/img_ce267140.png)
+![2023.7.29 南开文园 与毅兄居家火锅与二锅头](/notion-images/posts/2023-summary/img_c3619727.png)
+
+<br />
+
+</Column>
+</Columns>
+
+
+<Columns cols={3}>
+<Column>
+
+![2023.2.18 于南开文园，就这绘画水平😮‍💨](/notion-images/posts/2023-summary/img_d70b0777.png)
+
+<br />
+
+</Column>
+<Column>
+
+![乐高之三个多小时的苦功夫](/notion-images/posts/2023-summary/img_4df97574.png)
+
+<br />
+
+</Column>
+<Column>
+
+![主打清淡饮食，高端的食材](/notion-images/posts/2023-summary/img_48a43685.png)
 
 <br />
 
