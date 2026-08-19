@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Refresh } from '@/components/icons';
 import CopyButton from '@/app/(shares)/awaken/_components/CopyButton';
 import ExpandableContent from '@/app/(shares)/awaken/_components/ExpandableContent';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
@@ -49,22 +50,7 @@ export default async function AwakenPage() {
               href="/awaken"
               className="inline-flex items-center gap-1.5 px-4 py-2 text-sm border border-border/40 rounded-full hover:border-border hover:bg-muted/50 text-secondary hover:text-foreground transition-all duration-200"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <title>换一条</title>
-                <polyline points="23 4 23 10 17 10" />
-                <polyline points="1 20 1 14 7 14" />
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
-              </svg>
+              <Refresh size={15} />
               随机一条
             </Link>
           </div>

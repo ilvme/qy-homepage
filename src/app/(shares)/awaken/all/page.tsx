@@ -1,6 +1,7 @@
 import { glob } from 'glob';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowLeft } from '@/components/icons';
 import path from 'path';
 import AwakenCard from '@/app/(shares)/awaken/_components/AwakenCard';
 import { PageHero } from '@/components/ui/PageHero';
@@ -89,21 +90,7 @@ export default async function AwakenAllPage({
           href="/awaken"
           className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <title>返回</title>
-            <line x1="19" y1="12" x2="5" y2="12" />
-            <polyline points="12 19 5 12 12 5" />
-          </svg>
+          <ArrowLeft size={16} />
           随机唤醒
         </Link>
       </div>
