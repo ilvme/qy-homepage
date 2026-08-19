@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header
       className={`relative mx-auto w-full px-4 sm:px-6 flex items-center justify-between py-6 border-b border-border mb-6 transition-[max-width] duration-500 ease-out ${
-        isWide ? 'max-w-[1200px]' : 'max-w-[800px]'
+        isWide ? 'max-w-300' : 'max-w-200'
       }`}
     >
       <Link

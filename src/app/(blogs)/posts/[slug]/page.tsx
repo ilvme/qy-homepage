@@ -50,7 +50,7 @@ export default async function Post({
   return (
     <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
       {/* 文章内容 - 保持 768px 左对齐 */}
-      <article className="max-w-[768px]">
+      <article className="max-w-3xl">
         <header className="mb-10">
           {/* 标题 */}
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-4">
