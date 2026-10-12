@@ -6,8 +6,8 @@ category: "生活日志"
 tags: ["日常"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-10-12T03:54:44.022Z"
-last_edited_time: "2026-10-12T03:53:00.000Z"
+last_fetched_time: "2026-10-12T11:35:42.627Z"
+last_edited_time: "2026-10-12T03:57:00.000Z"
 page_id: "3f4c485e-f356-8098-9beb-d5333d5c1872"
 summary: "带着萌娃回家，假期生活忙得像陀螺一样。我在风水学中透视人生无常生老病死，在娃百天宴上感受人间烟火亲情温暖"
 cover: ""
@@ -21,22 +21,22 @@ icon: ""
 ![家乡的连山](/notion-images/posts/2026-guo-qing-hui-jia/7ed32622728c930306bffe36dca5ae15_3f7c485e-f356-8002-b4a5-ea19909cd2f5.jpg)
 
 
-##  **第一天，9.30** 
+##  **第一天，9.30，大扫除** 
 
 
-到家后，媳妇儿看着娃，妈收拾着满是落叶的院子，我累瘫在沙发上，迷迷糊糊思考着要修剪下葡萄枝。
+早上九点多到家后，媳妇儿看着娃，妈收拾着满是落叶的院子，我累瘫在沙发上，迷迷糊糊思考着要修剪下葡萄枝。
 
 <Columns cols={2}>
 <Column>
 
-![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_6c6bea0d.jpg)
+![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_c29a02fb.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_a8e9b17f.jpg)
+![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_3ac5782b.jpg)
 
 <br />
 
@@ -53,7 +53,7 @@ icon: ""
 ---
 
 
-##  **第二天，1 号** 
+##  **第二天，1 号，风水** 
 
 
 重头戏之一，请大师看风水。
@@ -73,7 +73,7 @@ icon: ""
 ---
 
 
-##  **第三天，2 号** 
+##  **第三天，2 号，迷迷瞪瞪补觉** 
 
 
 由于 1 号晚上熬了个夜，万恶的短剧，都集中在十月一更新了。2 号一天迷迷糊糊，头昏脑胀。
@@ -87,7 +87,7 @@ icon: ""
 ---
 
 
-##  **第四天，3 号** 
+##  **第四天，3 号，上山摘枣** 
 
 
 上午，撺掇着媳妇儿和弟弟上山摘枣，回味儿时快乐。
@@ -118,7 +118,7 @@ icon: ""
 ---
 
 
-##  **第五天，4 号** 
+##  **第五天，4 号，带媳妇回娘家** 
 
 
 大伯和爸在我家改台阶，干了一天，没干完。
@@ -130,7 +130,7 @@ icon: ""
 ---
 
 
-##  **第六天，5 号** 
+##  **第六天，5 号，剪葡萄枝与逛公园** 
 
 
 早上起来，我继续剪葡萄枝，狠狠剪，搞完，家里院子一下子开阔明亮。
@@ -147,14 +147,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_422a81ff.jpg)
+![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_476d98ea.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_33707ccd.jpg)
+![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_5bab6118.jpg)
 
 <br />
 
@@ -167,7 +167,7 @@ icon: ""
 ---
 
 
-##  **第七天，6 号** 
+##  **第七天，6 号，给娃办白天** 
 
 
 终于到了这次回家的重头戏，娃的百天宴，附萌娃照一张。
@@ -188,7 +188,7 @@ icon: ""
 ---
 
 
-##  **第八天，7 号** 
+##  **第八天，7 号，踏上返程** 
 
 
 早上六点多送弟弟去城里，随后给车充电、加油。八点二十到家，收拾行李准备返津。啊，假期临近结束，返程路上的空气都是臭的臭的。
