@@ -6,17 +6,17 @@ category: "生活日志"
 tags: ["日常"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-10-12T03:52:43.390Z"
-last_edited_time: "2026-10-12T03:51:00.000Z"
+last_fetched_time: "2026-10-12T03:54:44.022Z"
+last_edited_time: "2026-10-12T03:53:00.000Z"
 page_id: "3f4c485e-f356-8098-9beb-d5333d5c1872"
-summary: "忙得像陀螺一样的假期生活里，我在风水学中透视人生无常生老病死，在娃百天宴上感受人间烟火亲情温暖"
+summary: "带着萌娃回家，假期生活忙得像陀螺一样。我在风水学中透视人生无常生老病死，在娃百天宴上感受人间烟火亲情温暖"
 cover: ""
 icon: ""
 ---
 
 
 
-没胆子挑战十月一当天的高速，提前一天请假返乡。早上六点半出发，九点半就到家了，走的京港澳，高速的车并不多。
+没胆子挑战十月一当天的高速，提前一天请假返乡。早上六点半出发，九点半就到家了，走的京港澳，高速的车并不多。家乡的连山，看到连山说明快到家了。
 
 ![家乡的连山](/notion-images/posts/2026-guo-qing-hui-jia/7ed32622728c930306bffe36dca5ae15_3f7c485e-f356-8002-b4a5-ea19909cd2f5.jpg)
 
@@ -29,14 +29,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_e03b86f0.jpg)
+![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_6c6bea0d.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_fad4bbc4.jpg)
+![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_a8e9b17f.jpg)
 
 <br />
 
@@ -147,14 +147,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_8862a9f9.jpg)
+![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_422a81ff.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_2026f667.jpg)
+![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_33707ccd.jpg)
 
 <br />
 
