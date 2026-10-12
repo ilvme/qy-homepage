@@ -1,11 +1,11 @@
 ---
 title: "Bye～Typora "
 date: "2026-07-02T10:00:00.000+08:00"
-tags: ["工具链"]
+tags: ["折腾"]
 status: "published"
 from: "Notion"
-last_fetched_time: "2026-07-10T07:24:35.880Z"
-last_edited_time: "2026-07-02T01:53:00.000Z"
+last_fetched_time: "2026-10-12T03:04:45.368Z"
+last_edited_time: "2026-10-12T01:45:00.000Z"
 page_id: "391c485e-f356-80bc-8ebe-d1fcabb498f5"
 ---
 
