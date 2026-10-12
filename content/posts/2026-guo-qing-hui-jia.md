@@ -1,13 +1,13 @@
 ---
-title: "2026 国庆回家"
+title: "2026 国庆回家（家有萌娃）"
 slug: "2026-guo-qing-hui-jia"
 date: "2026-10-09"
 category: "生活日志"
 tags: ["日常"]
 status: "published"
 type: "article"
-last_fetched_time: "2026-10-12T03:38:37.656Z"
-last_edited_time: "2026-10-12T03:37:00.000Z"
+last_fetched_time: "2026-10-12T03:52:43.390Z"
+last_edited_time: "2026-10-12T03:51:00.000Z"
 page_id: "3f4c485e-f356-8098-9beb-d5333d5c1872"
 summary: "忙得像陀螺一样的假期生活里，我在风水学中透视人生无常生老病死，在娃百天宴上感受人间烟火亲情温暖"
 cover: ""
@@ -21,21 +21,22 @@ icon: ""
 ![家乡的连山](/notion-images/posts/2026-guo-qing-hui-jia/7ed32622728c930306bffe36dca5ae15_3f7c485e-f356-8002-b4a5-ea19909cd2f5.jpg)
 
 
- **第一天，9.30** 
+##  **第一天，9.30** 
+
 
 到家后，媳妇儿看着娃，妈收拾着满是落叶的院子，我累瘫在沙发上，迷迷糊糊思考着要修剪下葡萄枝。
 
 <Columns cols={2}>
 <Column>
 
-![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_421c02b1.jpg)
+![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_e03b86f0.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_19c6fbf9.jpg)
+![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_fad4bbc4.jpg)
 
 <br />
 
@@ -52,7 +53,8 @@ icon: ""
 ---
 
 
- **第二天，1 号** 
+##  **第二天，1 号** 
+
 
 重头戏之一，请大师看风水。
 
@@ -71,7 +73,8 @@ icon: ""
 ---
 
 
- **第三天，2 号** 
+##  **第三天，2 号** 
+
 
 由于 1 号晚上熬了个夜，万恶的短剧，都集中在十月一更新了。2 号一天迷迷糊糊，头昏脑胀。
 
@@ -84,7 +87,8 @@ icon: ""
 ---
 
 
- **第四天，3 号** 
+##  **第四天，3 号** 
+
 
 上午，撺掇着媳妇儿和弟弟上山摘枣，回味儿时快乐。
 
@@ -114,7 +118,8 @@ icon: ""
 ---
 
 
- **第五天，4 号** 
+##  **第五天，4 号** 
+
 
 大伯和爸在我家改台阶，干了一天，没干完。
 
@@ -125,7 +130,8 @@ icon: ""
 ---
 
 
- **第六天，5 号** 
+##  **第六天，5 号** 
+
 
 早上起来，我继续剪葡萄枝，狠狠剪，搞完，家里院子一下子开阔明亮。
 
@@ -141,14 +147,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_73cbd103.jpg)
+![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_8862a9f9.jpg)
 
 <br />
 
 </Column>
 <Column>
 
-![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_06112887.jpg)
+![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_2026f667.jpg)
 
 <br />
 
@@ -161,9 +167,13 @@ icon: ""
 ---
 
 
- **第七天，6 号** 
+##  **第七天，6 号** 
 
-终于到了这次回家的重头戏，娃的百天宴。
+
+终于到了这次回家的重头戏，娃的百天宴，附萌娃照一张。
+
+![家有萌娃](/notion-images/posts/2026-guo-qing-hui-jia/4a0f5bceb7ea980b8094c93885fb9f76_3f7c485e-f356-80d0-98b6-f800615bdbf2.jpg)
+
 
 早上八点和父亲去桥头超市买饮料和啤酒。六桶可乐、六桶雪碧、三箱啤酒，还有一大包橘子和一大捆香蕉。
 
@@ -178,7 +188,8 @@ icon: ""
 ---
 
 
- **第八天，7 号** 
+##  **第八天，7 号** 
+
 
 早上六点多送弟弟去城里，随后给车充电、加油。八点二十到家，收拾行李准备返津。啊，假期临近结束，返程路上的空气都是臭的臭的。
 
