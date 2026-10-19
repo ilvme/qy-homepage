@@ -31,11 +31,13 @@ export function getStoredAccent(): Accent {
 
 /** 应用主题色：设置 html[data-accent] + 持久化，并广播事件 */
 export function applyAccent(accent: Accent) {
-  document.documentElement.dataset.accent = accent;
+  const root = document.documentElement;
+  // 切换瞬间挂载全局过渡类，让颜色平滑渐变；稍后移除，避免影响常规 hover 过渡
+  root.classList.add('accent-transitioning');
+  root.dataset.accent = accent;
   localStorage.setItem(STORAGE_KEY, accent);
-  document.dispatchEvent(
-    new CustomEvent(EVENT_NAME, { detail: { accent } }),
-  );
+  document.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: { accent } }));
+  window.setTimeout(() => root.classList.remove('accent-transitioning'), 450);
 }
 
 export { EVENT_NAME as ACCENT_EVENT_NAME };

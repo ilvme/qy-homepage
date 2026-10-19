@@ -14,7 +14,7 @@ export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
   return (
     <article className="py-5">
       <Link href={`/awaken/${title}`} className="block space-y-2 group">
-        <h2 className="font-semibold text-lg xl:text-xl group-hover:underline underline-offset-4">
+        <h2 className="font-semibold text-lg xl:text-xl group-hover:text-brand group-hover:underline underline-offset-4 transition-colors">
           {title}
         </h2>
       </Link>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Refresh } from '@/components/icons';
 import CopyButton from '@/app/(shares)/awaken/_components/CopyButton';
 import ExpandableContent from '@/app/(shares)/awaken/_components/ExpandableContent';
+import { Refresh } from '@/components/icons';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { getAllAwaken, getAwakenBySlug } from '@/libs/awaken-loader';
 export const metadata: Metadata = {
@@ -85,7 +85,7 @@ export default async function AwakenPage() {
                   href={`/awaken/${randomItem.title}`}
                   className="inline-block group"
                 >
-                  <span className="text-sm font-semibold text-foreground group-hover:underline underline-offset-4">
+                  <span className="text-sm font-semibold text-foreground group-hover:text-brand group-hover:underline underline-offset-4 transition-colors">
                     {randomItem.title}
                   </span>
                 </Link>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Check, Palette, Sun, Moon, Monitor } from '@/components/icons';
+import { Check, Monitor, Moon, Palette, Sun } from '@/components/icons';
 import type { Accent } from './accent';
 import { ACCENTS, applyAccent, getStoredAccent } from './accent';
 import type { Theme } from './theme';
@@ -52,9 +52,41 @@ export default function AccentToggle() {
 
   const current = ACCENTS.find((a) => a.key === accent) ?? ACCENTS[0];
 
-  const selectAccent = (a: Accent) => {
-    applyAccent(a);
+  const selectAccent = (a: Accent, e: React.MouseEvent<HTMLButtonElement>) => {
     setAccent(a);
+    // 优先用 View Transitions 做涟漪扩散；不支持或用户偏好减弱动效时降级为普通切换（仍有颜色渐变）
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+    };
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (!doc.startViewTransition || reduceMotion) {
+      applyAccent(a);
+      return;
+    }
+    const x = e.clientX;
+    const y = e.clientY;
+    const transition = doc.startViewTransition(() => applyAccent(a));
+    transition.ready.then(() => {
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      );
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 450,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        },
+      );
+    });
   };
 
   const selectTheme = (t: Theme) => {
@@ -91,7 +123,7 @@ export default function AccentToggle() {
               <li key={a.key} role="option" aria-selected={accent === a.key}>
                 <button
                   type="button"
-                  onClick={() => selectAccent(a.key)}
+                  onClick={(e) => selectAccent(a.key, e)}
                   className="w-full flex items-center gap-2.5 px-3 py-1.5 text-sm text-foreground hover:bg-muted transition-colors"
                 >
                   <span
@@ -99,7 +131,9 @@ export default function AccentToggle() {
                     style={{ backgroundColor: a.color }}
                   />
                   <span className="flex-1 text-left">{a.label}</span>
-                  {accent === a.key && <Check size={14} className="text-brand" />}
+                  {accent === a.key && (
+                    <Check size={14} className="text-brand" />
+                  )}
                 </button>
               </li>
             ))}

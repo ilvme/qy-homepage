@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/site.config';
+import { isActiveNav } from './nav-active';
 
 const rightLinks = [
   ...siteConfig.navLinks
@@ -10,6 +14,8 @@ const rightLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="border-t border-border mt-16 pt-8 pb-8 text-sm text-secondary">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
@@ -34,17 +40,22 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-2">
-          {rightLinks.map((link, i) => (
-            <span key={link.href} className="flex items-center gap-2">
-              {i > 0 && <span>·</span>}
-              <Link
-                href={link.href}
-                className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-              >
-                {link.label}
-              </Link>
-            </span>
-          ))}
+          {rightLinks.map((link, i) => {
+            const active = isActiveNav(link.href, pathname);
+            return (
+              <span key={link.href} className="flex items-center gap-2">
+                {i > 0 && <span>·</span>}
+                <Link
+                  href={link.href}
+                  className={`transition-colors underline-offset-4 hover:underline ${
+                    active ? 'text-brand' : 'hover:text-foreground'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </span>
+            );
+          })}
         </div>
       </div>
     </footer>

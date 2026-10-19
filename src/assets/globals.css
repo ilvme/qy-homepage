@@ -44,6 +44,34 @@
 .dark[data-accent="ochre"]    { --brand: #d4a373; }
 .dark[data-accent="ink"]      { --brand: var(--foreground); }
 
+/* 文本选中色：跟随主题色（玄墨时退化为前景色的柔和选中） */
+::selection {
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+/* 主题色切换的全局颜色过渡：由 accent.ts 在切换瞬间挂载，结束后移除，
+   避免常驻 transition 干扰常规 hover 过渡节奏 */
+html.accent-transitioning,
+html.accent-transitioning *,
+html.accent-transitioning *::before,
+html.accent-transitioning *::after {
+  transition:
+    color 0.4s ease,
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    fill 0.4s ease,
+    stroke 0.4s ease,
+    text-decoration-color 0.4s ease !important;
+}
+
+/* 主题色涟漪：关闭默认交叉淡入，由 JS 对 ::view-transition-new(root)
+   做 clip-path 圆形扩散；不支持 View Transitions 的浏览器自动跳过 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

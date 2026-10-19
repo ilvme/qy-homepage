@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import { Calendar } from '@/components/icons';
 import WordImageGrid from '@/app/words/_components/WordImageGrid';
+import { Calendar } from '@/components/icons';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import type { WordMetadata } from '../../../../scripts/types';
 import 'dayjs/locale/zh-cn';
@@ -51,7 +51,7 @@ export default async function WordCard({ post }: WordCardProps) {
                 <Link
                   key={tag}
                   href={`/words/tags/${tag}`}
-                  className="text-sm hover:underline underline-offset-4"
+                  className="text-sm hover:text-brand hover:underline underline-offset-4 transition-colors"
                 >
                   #{tag}
                 </Link>

@@ -72,7 +72,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 e.preventDefault();
                 scrollToHeading(heading.id);
               }}
-              className={`block text-sm 2xl:text-base rounded-md px-2 py-1 transition-colors ${
+              className={`block text-sm 2xl:text-base px-2 py-1 transition-colors underline-offset-4 hover:underline ${
                 heading.level === 3 ? 'pl-6' : ''
               } ${
                 activeId === heading.id
@@ -109,7 +109,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                     scrollToHeading(heading.id);
                     setIsOpen(false);
                   }}
-                  className={`block text-sm rounded-md px-2 py-1 transition-colors ${
+                  className={`block text-sm px-2 py-1 transition-colors underline-offset-4 hover:underline ${
                     heading.level === 3 ? 'pl-6' : ''
                   } ${
                     activeId === heading.id
