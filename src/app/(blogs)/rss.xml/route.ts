@@ -1,5 +1,6 @@
 import RSS from 'rss';
-import { getAllPosts } from '@/libs/content-loader';
+import { getAllPosts, getPostBySlug } from '@/libs/content-loader';
+import { mdToFeedHtml } from '@/libs/feed-supports';
 import { siteConfig } from '@/site.config';
 
 export async function GET() {
@@ -17,6 +18,10 @@ export async function GET() {
   for (const post of posts) {
     if (post.status !== 'published') continue;
 
+    // summary 作摘要，content:encoded 输出全文 HTML
+    const full = await getPostBySlug(post.slug);
+    const html = full?.content ? mdToFeedHtml(full.content) : '';
+
     feed.item({
       title: post.title,
       description: post.summary || post.title,
@@ -24,6 +29,9 @@ export async function GET() {
       guid: `${siteConfig.url}/posts/${post.slug}`,
       date: post.date ?? new Date(0).toISOString(),
       categories: post.tags,
+      ...(html && {
+        custom_elements: [{ 'content:encoded': { _cdata: html } }],
+      }),
     });
   }
 

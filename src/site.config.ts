@@ -14,6 +14,7 @@ export const siteConfig = {
   /** RSS 订阅 */
   rss: {
     path: '/rss.xml',
+    wordsPath: '/words/rss.xml',
     cacheMaxAge: 3600,
   },
 

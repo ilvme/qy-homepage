@@ -145,8 +145,9 @@ scripts/
 | `(blogs)` | `/archives` | 归档（按年） |
 | `(blogs)` | `/categories`、`/categories/[cat]` | 分类 |
 | `(blogs)` | `/tags`、`/tags/[tag]` | 标签 |
-| `(blogs)` | `/rss.xml` | RSS |
+| `(blogs)` | `/rss.xml` | RSS（文章，全文输出） |
 | — | `/words`、`/words/tags`、`/words/tags/[tag]` | 说说流（分页）+ 说说标签 |
+| — | `/words/rss.xml` | 说说 RSS（最新 50 条，全文输出） |
 | `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享·觉晓（列表 + 详情 + 全部） |
 | `(shares)` | `/taste` | 分享·品味（书影音画廊） |
 | `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |

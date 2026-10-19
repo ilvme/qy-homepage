@@ -20,7 +20,10 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author.name }],
   alternates: {
     types: {
-      'application/rss+xml': siteConfig.rss.path,
+      'application/rss+xml': [
+        { url: siteConfig.rss.path, title: '文章 RSS' },
+        { url: siteConfig.rss.wordsPath, title: '说说 RSS' },
+      ],
     },
   },
   openGraph: {
