@@ -1,12 +1,12 @@
-import { glob } from 'glob';
+import path from 'node:path';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from '@/components/icons';
-import path from 'path';
 import AwakenCard from '@/app/(shares)/awaken/_components/AwakenCard';
-import { PageHero } from '@/components/ui/PageHero';
+import { ArrowLeft } from '@/components/icons';
+import Pagination from '@/components/ui/Pagination';
 import { getAllAwaken, getAllAwakenCategories } from '@/libs/awaken-loader';
 import { parseMdFromFile } from '@/libs/content-supports';
+import { paginate } from '@/libs/paginate';
 import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
@@ -67,15 +67,11 @@ export default async function AwakenAllPage({
     ? data.filter(({ item }) => item.category === activeCategory)
     : data;
 
-  const pageSize = siteConfig.pagination.awakenPageSize;
-  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(filtered.length / pageSize);
-  const pagedItems = filtered.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
+  const { currentPage, totalPages, pagedItems } = paginate(
+    filtered,
+    pageParam,
+    siteConfig.pagination.awakenPageSize,
   );
-
-  const categoryQS = activeCategory ? `category=${activeCategory}&` : '';
 
   return (
     <div className="py-8">
@@ -132,35 +128,12 @@ export default async function AwakenAllPage({
       </div>
 
       {/* 分页 */}
-      {totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-          <div className="w-16">
-            {currentPage > 1 && (
-              <Link
-                href={`/awaken/all?${categoryQS}page=${currentPage - 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                ← 上一页
-              </Link>
-            )}
-          </div>
-
-          <span className="text-sm text-secondary">
-            {currentPage} / {totalPages}
-          </span>
-
-          <div className="w-16 text-right">
-            {currentPage < totalPages && (
-              <Link
-                href={`/awaken/all?${categoryQS}page=${currentPage + 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                下一页 →
-              </Link>
-            )}
-          </div>
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/awaken/all"
+        query={activeCategory ? { category: activeCategory } : undefined}
+      />
     </div>
   );
 }

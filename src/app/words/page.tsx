@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import WordCard from '@/app/words/_components/WordCard';
+import { Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
-import { Rss } from '@/components/icons';
+import Pagination from '@/components/ui/Pagination';
+import { paginate } from '@/libs/paginate';
 import { getAllWords } from '@/libs/words-loader';
 import { siteConfig } from '@/site.config';
 
@@ -17,17 +18,14 @@ export default async function ShuoShuo({
 }: {
   searchParams: Promise<{ page?: string }>;
 }) {
-  const [words] = await Promise.all([getAllWords()]);
+  const words = await getAllWords();
   const { page: pageParam } = await searchParams;
 
-  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(
-    words.length / siteConfig.pagination.wordsPageSize,
-  );
-  const pagedWords = words.slice(
-    (currentPage - 1) * siteConfig.pagination.wordsPageSize,
-    currentPage * siteConfig.pagination.wordsPageSize,
-  );
+  const {
+    currentPage,
+    totalPages,
+    pagedItems: pagedWords,
+  } = paginate(words, pageParam, siteConfig.pagination.wordsPageSize);
 
   return (
     <div className="py-8 space-y-4">
@@ -58,35 +56,11 @@ export default async function ShuoShuo({
         </div>
       )}
 
-      {totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-          <div className="w-20">
-            {currentPage > 1 && (
-              <Link
-                href={`/words?page=${currentPage - 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                ← 上一页
-              </Link>
-            )}
-          </div>
-
-          <span className="text-sm text-secondary">
-            {currentPage} / {totalPages}
-          </span>
-
-          <div className="w-20 text-right">
-            {currentPage < totalPages && (
-              <Link
-                href={`/words?page=${currentPage + 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                下一页 →
-              </Link>
-            )}
-          </div>
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/words"
+      />
     </div>
   );
 }

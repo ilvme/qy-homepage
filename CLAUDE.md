@@ -160,7 +160,7 @@ scripts/
 ### 组件
 
 - `src/components/layout/` — Header（导航从 `site.config.ts` 的 `navLinks` 读取）、Footer
-- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）、TagCloud（标签云）、ThemeToggle（主题切换）
+- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）、TagCloud（标签云）、ThemeToggle（主题切换）、**Pagination**（列表分页，配合 `libs/paginate.ts`）
 - `src/app/(blogs)/_components/` — PostItem、PostItemLite、PostMeta、Tag
 - `src/app/(cooking)/_components/` — ImageGallery（图片网格）
 - `src/app/words/_components/` — WordCard、WordImageGrid

@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ImageGallery } from '@/app/cooking/_components/ImageGallery';
 import { PageHero } from '@/components/ui/PageHero';
+import Pagination from '@/components/ui/Pagination';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
+import { paginate } from '@/libs/paginate';
 import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
@@ -36,16 +38,11 @@ export default async function CookingPage({
     ? items.filter((i) => i.category === activeCategory)
     : items;
 
-  const pageSize = siteConfig.pagination.cookingPageSize;
-  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(filtered.length / pageSize);
-  const pagedItems = filtered.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize,
+  const { currentPage, totalPages, pagedItems } = paginate(
+    filtered,
+    pageParam,
+    siteConfig.pagination.cookingPageSize,
   );
-
-  // 分类切换时跳回第一页
-  const categoryQS = activeCategory ? `category=${activeCategory}&` : '';
 
   return (
     <div className="py-8">
@@ -87,35 +84,12 @@ export default async function CookingPage({
       <ImageGallery items={pagedItems} baseUrl="/cooking" />
 
       {/* 分页 */}
-      {totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-          <div className="w-16">
-            {currentPage > 1 && (
-              <Link
-                href={`/cooking?${categoryQS}page=${currentPage - 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                ← 上一页
-              </Link>
-            )}
-          </div>
-
-          <span className="text-sm text-secondary">
-            {currentPage} / {totalPages}
-          </span>
-
-          <div className="w-16 text-right">
-            {currentPage < totalPages && (
-              <Link
-                href={`/cooking?${categoryQS}page=${currentPage + 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                下一页 →
-              </Link>
-            )}
-          </div>
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/cooking"
+        query={activeCategory ? { category: activeCategory } : undefined}
+      />
     </div>
   );
 }
