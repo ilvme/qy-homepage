@@ -4,7 +4,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { getAllTaste } from '@/libs/taste-loader';
 
 export const metadata: Metadata = {
-  title: '风味',
+  title: '书影音',
   description: '书影音动漫小说收藏',
 };
 

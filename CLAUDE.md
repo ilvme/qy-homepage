@@ -74,8 +74,8 @@ Notion 数据库（4 个独立库：articles, words, shares, cooking）
 |------|-----------|---------|--------|------|
 | 文章 + 页面 | articles（type 字段区分） | articles-fetcher + pages-fetcher 共用 `fetchByType()` | content-loader | `/posts`、`/about` 等 |
 | 说说 | words | words-fetcher | words-loader | `/words` |
-| 分享·觉晓 | shares（type: "awaken"） | shares-fetcher | awaken-loader | `/awaken`、`/awaken/[slug]`、`/awaken/all` |
-| 分享·品味 | shares（type: "taste"） | shares-fetcher | taste-loader | `/taste` |
+| 分享 | shares（type: "awaken"） | shares-fetcher | awaken-loader | `/awaken`、`/awaken/[slug]`、`/awaken/all` |
+| 书影音 | shares（type: "taste"） | shares-fetcher | taste-loader | `/taste` |
 | 下厨 | cooking | cooking-fetcher | cooking-loader | `/cooking`、`/cooking/[slug]` |
 
 awaken、taste 共用同一个 Notion 数据库，同步时按 type 分目录存储：`content/shares/{type}/`、`public/notion-images/shares/{type}/`。每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
@@ -148,8 +148,8 @@ scripts/
 | `(blogs)` | `/rss.xml` | RSS（文章，全文输出） |
 | — | `/words`、`/words/tags`、`/words/tags/[tag]` | 说说流（分页）+ 说说标签 |
 | — | `/words/rss.xml` | 说说 RSS（最新 50 条，全文输出） |
-| `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享·觉晓（列表 + 详情 + 全部） |
-| `(shares)` | `/taste` | 分享·品味（书影音画廊） |
+| `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享（列表 + 详情 + 全部） |
+| `(shares)` | `/taste` | 书影音（画廊） |
 | `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
 | `(pages)` | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
 | `(admin)` | `/publish-words` | Web 端说说发布（支持 PWA） |

@@ -70,7 +70,7 @@ export default async function AwakenDetailPage({
             className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
           >
             <ArrowLeft size={16} />
-            返回唤醒
+            返回分享
           </Link>
         </div>
       </article>

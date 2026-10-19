@@ -10,7 +10,7 @@ import { paginate } from '@/libs/paginate';
 import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '全部唤醒',
+  title: '全部分享',
   description: '台词、句子、古诗词古文',
 };
 
@@ -76,7 +76,7 @@ export default async function AwakenAllPage({
   return (
     <div className="py-8">
       {/*<PageHero*/}
-      {/*  title="唤醒"*/}
+      {/*  title="分享"*/}
       {/*  description={`台词、句子、古诗词古文，共 ${data.length} 篇`}*/}
       {/*/>*/}
 
@@ -87,7 +87,7 @@ export default async function AwakenAllPage({
           className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
         >
           <ArrowLeft size={16} />
-          随机唤醒
+          随机分享
         </Link>
       </div>
 
