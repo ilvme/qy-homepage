@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from '@/components/icons';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
+import PostNav from '@/app/(blogs)/posts/_components/PostNav';
+import { ArrowLeft } from '@/components/icons';
 import Comment from '@/components/ui/Comment';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
@@ -48,6 +49,12 @@ export default async function Post({
 
   const headings = extractHeadings(postWithContent.content);
 
+  // 上下篇：列表按日期倒序，idx+1 为更早一篇，idx-1 为更晚一篇
+  const posts = (await getAllPosts()).filter((p) => p.status === 'published');
+  const idx = posts.findIndex((p) => p.slug === slug);
+  const prev = idx >= 0 ? posts[idx + 1] : undefined;
+  const next = idx > 0 ? posts[idx - 1] : undefined;
+
   return (
     <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
       {/* 文章内容 - 保持 768px 左对齐 */}
@@ -73,14 +80,17 @@ export default async function Post({
           className="text-base 2xl:text-lg"
         />
 
-        <div className="mt-12 pt-6 border-t border-border flex items-center justify-between">
-          <Link
-            href="/posts"
-            className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
-          >
-            <ArrowLeft size={16} />
-            返回文章列表
-          </Link>
+        <div className="mt-12 pt-6 border-t border-border">
+          <div className="flex items-center justify-between">
+            <Link
+              href="/posts"
+              className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              <ArrowLeft size={16} />
+              返回文章列表
+            </Link>
+          </div>
+          <PostNav prev={prev} next={next} />
         </div>
 
         {postWithContent.comments !== false && siteConfig.giscus.enabled && (
