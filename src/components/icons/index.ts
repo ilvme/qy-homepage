@@ -21,6 +21,7 @@ export {
   Share2 as Share,
   Soup as Cooking,
   Bookmark,
+  Rss,
   User,
   Link2,
   Palette,

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import WordCard from '@/app/words/_components/WordCard';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
+import { Rss } from '@/components/icons';
 import { getAllWords } from '@/libs/words-loader';
 import { siteConfig } from '@/site.config';
 
@@ -30,7 +31,19 @@ export default async function ShuoShuo({
 
   return (
     <div className="py-8 space-y-4">
-      <PageHero title="说说" description="生活碎片、猫咪日常，以及一些吐槽。" />
+      <PageHero
+        title="说说"
+        description="生活碎片、猫咪日常，以及一些吐槽。"
+        action={
+          <a
+            href="/words/rss.xml"
+            title="RSS 订阅"
+            className="inline-flex p-1.5 rounded-md text-secondary hover:text-foreground hover:bg-muted transition-colors"
+          >
+            <Rss size={16} />
+          </a>
+        }
+      />
 
       {words.length === 0 ? (
         <EmptyShower />
