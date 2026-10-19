@@ -4,7 +4,6 @@ import {
   Bookmark,
   Cooking,
   FileText,
-  Globe,
   Link2,
   Message,
   Share,
@@ -75,12 +74,6 @@ export default async function Home() {
               label: '分享',
               desc: '语录与感悟',
               Icon: Share,
-            },
-            {
-              href: '/nav',
-              label: '导航',
-              desc: '常用网站',
-              Icon: Globe,
             },
             {
               href: '/about',

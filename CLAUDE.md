@@ -44,7 +44,7 @@ pnpm fetchWords       # 仅同步说说
 - `src/components/` — 通用 UI 组件
 - `src/libs/` — 服务端工具：内容加载、frontmatter 解析、日期处理
 - `scripts/` — Notion 同步脚本（`tsx` 执行）
-- `content/` — 生成的 MD 文件（`posts/`、`pages/`、`words/`、`shares/{awaken,taste,nav}/`、`cooking/`、`old-words/`）
+- `content/` — 生成的 MD 文件（`posts/`、`pages/`、`words/`、`shares/{awaken,taste}/`、`cooking/`、`old-words/`）
 - `public/notion-images/` — 从 Notion 下载的图片
 - Node 20，ES2022 target，tsconfig `strict: true`，`moduleResolution: bundler`
 
@@ -76,10 +76,9 @@ Notion 数据库（4 个独立库：articles, words, shares, cooking）
 | 说说 | words | words-fetcher | words-loader | `/words` |
 | 分享·觉晓 | shares（type: "awaken"） | shares-fetcher | awaken-loader | `/awaken`、`/awaken/[slug]`、`/awaken/all` |
 | 分享·品味 | shares（type: "taste"） | shares-fetcher | taste-loader | `/taste` |
-| 导航 | 本地 `content/nav.ts` | — | nav-loader（直接 import） | `/nav` |
 | 下厨 | cooking | cooking-fetcher | cooking-loader | `/cooking`、`/cooking/[slug]` |
 
-awaken、taste、nav 共用同一个 Notion 数据库，同步时按 type 分目录存储：`content/shares/{type}/`、`public/notion-images/shares/{type}/`。Nav 页面以左侧固定分类目录 + 右侧卡片网格布局。每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
+awaken、taste 共用同一个 Notion 数据库，同步时按 type 分目录存储：`content/shares/{type}/`、`public/notion-images/shares/{type}/`。每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
 
 ### 脚本目录
 
@@ -150,7 +149,6 @@ scripts/
 | — | `/words`、`/words/tags`、`/words/tags/[tag]` | 说说流（分页）+ 说说标签 |
 | `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享·觉晓（列表 + 详情 + 全部） |
 | `(shares)` | `/taste` | 分享·品味（书影音画廊） |
-| `(shares)` | `/nav` | 导航（分类卡片，type: "nav"） |
 | `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
 | `(pages)` | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
 | `(admin)` | `/publish-words` | Web 端说说发布（支持 PWA） |
@@ -167,7 +165,6 @@ scripts/
 - `src/app/words/_components/` — WordCard、WordImageGrid
 - `src/app/(shares)/awaken/_components/` — AwakenCard、CopyButton、ExpandableContent
 - `src/app/(shares)/taste/_components/` — TasteGallery
-- `src/app/(shares)/nav/_components/` — NavCard、SideNav（IntersectionObserver 高亮当前分类）
 
 ### site.config.ts
 

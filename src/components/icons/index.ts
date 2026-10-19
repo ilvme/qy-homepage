@@ -21,7 +21,6 @@ export {
   Share2 as Share,
   Soup as Cooking,
   Bookmark,
-  Globe,
   User,
   Link2,
   Palette,
