@@ -62,7 +62,7 @@ export default function Comment({ lazy = true }: CommentProps) {
       script.setAttribute('data-category-id', giscus.categoryId);
       script.setAttribute('data-mapping', 'pathname');
       script.setAttribute('data-strict', '0');
-      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-reactions-enabled', '0');
       script.setAttribute('data-emit-metadata', '0');
       script.setAttribute('data-input-position', 'top');
       script.setAttribute('data-theme', theme);
@@ -92,7 +92,7 @@ export default function Comment({ lazy = true }: CommentProps) {
   }, [lazy]);
 
   return (
-    <div className="mt-12 pt-6 border-t border-border">
+    <div className="mt-12">
       <div ref={containerRef} />
     </div>
   );

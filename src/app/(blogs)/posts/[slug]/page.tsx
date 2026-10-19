@@ -80,7 +80,7 @@ export default async function Post({
           className="text-base 2xl:text-lg"
         />
 
-        <div className="mt-12 pt-6 border-t border-border">
+        <div className="mt-12">
           <div className="flex items-center justify-between">
             <Link
               href="/posts"
