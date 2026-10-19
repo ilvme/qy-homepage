@@ -25,9 +25,11 @@ export default function ImageViewer({
 
   return (
     <>
-      <figure className="my-4">
-        <div
-          className="relative overflow-hidden rounded-lg cursor-zoom-in"
+      {/* 用 span + block 替代 figure/div：图片常位于正文段落 <p> 内，
+          块级标签嵌套在 p 里属非法 HTML，会触发浏览器解析纠错导致 hydration 失败 */}
+      <span className="block my-4">
+        <span
+          className="relative block overflow-hidden rounded-lg cursor-zoom-in"
           onClick={() => setOpen(true)}
         >
           <img
@@ -36,13 +38,13 @@ export default function ImageViewer({
             className={className || 'max-w-full rounded'}
             loading="lazy"
           />
-        </div>
+        </span>
         {caption && (
-          <figcaption className="-mt-1.5 text-center text-sm text-secondary">
+          <span className="block -mt-1.5 text-center text-sm text-secondary">
             {caption}
-          </figcaption>
+          </span>
         )}
-      </figure>
+      </span>
 
       <Lightbox
         open={open}
