@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PostItem from '@/app/(blogs)/_components/PostItem';
+import { Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
@@ -28,7 +29,18 @@ export default async function Posts({
 
   return (
     <div className="py-8">
-      <PageHero title="文章">
+      <PageHero
+        title="文章"
+        action={
+          <a
+            href="/rss.xml"
+            title="RSS 订阅"
+            className="inline-flex p-1.5 rounded-md text-secondary hover:text-foreground hover:bg-muted transition-colors"
+          >
+            <Rss size={16} />
+          </a>
+        }
+      >
         <p className="text-secondary text-base mt-1">人穷龌龊事，尽揽一箩筐</p>
       </PageHero>
 

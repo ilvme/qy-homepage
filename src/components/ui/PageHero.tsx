@@ -18,7 +18,8 @@ export function PageHero({
     <header className="mb-8">
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-3xl font-semibold tracking-normal">{title}</h1>
-        {action && <div className="shrink-0 pt-1.5">{action}</div>}
+        {/* 顶部与标题字形对齐：图标自带 p-1.5 会把墨迹再推 6px，用 -2px 抵消半行距 */}
+        {action && <div className="shrink-0 -mt-0.5">{action}</div>}
       </div>
       {description && (
         <p className="text-secondary text-base mt-1">{description}</p>
