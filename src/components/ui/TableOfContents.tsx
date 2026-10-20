@@ -77,7 +77,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
               } ${
                 activeId === heading.id
                   ? 'text-brand font-medium'
-                  : 'text-muted-foreground hover:text-foreground'
+                  : 'text-muted-foreground hover:text-brand'
               }`}
             >
               {heading.text}
@@ -114,7 +114,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   } ${
                     activeId === heading.id
                       ? 'text-brand font-medium'
-                      : 'text-muted-foreground hover:text-foreground'
+                      : 'text-muted-foreground hover:text-brand'
                   }`}
                 >
                   {heading.text}

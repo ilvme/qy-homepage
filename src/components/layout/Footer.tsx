@@ -23,7 +23,7 @@ export default function Footer() {
           <a
             target="_blank"
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            className="hover:text-brand transition-colors underline-offset-4 hover:underline"
             rel="noopener noreferrer"
           >
             CC BY-NC-SA 4.0
@@ -33,7 +33,7 @@ export default function Footer() {
           <span>·</span>
           <Link
             href="/"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            className="hover:text-brand transition-colors underline-offset-4 hover:underline"
           >
             林深时觉寒
           </Link>
@@ -48,7 +48,7 @@ export default function Footer() {
                 <Link
                   href={link.href}
                   className={`transition-colors underline-offset-4 hover:underline ${
-                    active ? 'text-brand' : 'hover:text-foreground'
+                    active ? 'text-brand' : 'hover:text-brand'
                   }`}
                 >
                   {link.label}

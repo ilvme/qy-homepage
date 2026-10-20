@@ -37,7 +37,7 @@ export default async function AwakenPage() {
     <div className="py-8">
       <Link
         href="/awaken/all"
-        className="text-sm text-foreground font-medium hover:underline"
+        className="text-sm text-foreground font-medium hover:text-brand hover:underline underline-offset-4 transition-colors"
       >
         查看全部（{items.length}）
       </Link>

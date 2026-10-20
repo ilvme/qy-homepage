@@ -39,7 +39,7 @@ export default function Header() {
                 className={`px-2 py-1 transition-colors underline-offset-4 hover:underline ${
                   isActiveNav(link.href, pathname)
                     ? 'text-brand font-medium'
-                    : 'text-secondary hover:text-foreground'
+                    : 'text-secondary hover:text-brand'
                 }`}
               >
                 {link.label}
@@ -75,7 +75,7 @@ export default function Header() {
                   className={`py-2.5 px-2 transition-colors text-sm underline-offset-4 hover:underline ${
                     isActiveNav(link.href, pathname)
                       ? 'text-brand font-medium'
-                      : 'text-secondary hover:text-foreground'
+                      : 'text-secondary hover:text-brand'
                   }`}
                 >
                   {link.label}

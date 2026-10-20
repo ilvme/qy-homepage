@@ -17,7 +17,7 @@ export default function PostNav({ prev, next }: PostNavProps) {
   if (!prev && !next) return null;
 
   const linkCls =
-    'text-sm font-medium underline-offset-4 decoration-foreground/30 hover:underline';
+    'text-sm font-medium underline-offset-4 hover:text-brand hover:underline transition-colors';
 
   return (
     <nav className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2" aria-label="文章导航">

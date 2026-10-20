@@ -71,7 +71,7 @@ export default async function Archives() {
               <Link
                 key={cat}
                 href={`/categories/${cat}`}
-                className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground"
+                className="inline-flex items-center gap-1 text-sm text-secondary hover:text-brand transition-colors"
               >
                 <Folder size={12} />
                 <span className="hover:underline underline-offset-4">
