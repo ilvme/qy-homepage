@@ -18,7 +18,7 @@ export function TasteGallery({ items }: TasteGalleryProps) {
           rel="noopener noreferrer"
           className="group block rounded-sm hover:opacity-90 transition-opacity"
         >
-          <div className="aspect-[2/3] bg-muted  overflow-hidden">
+          <div className="aspect-2/3 bg-muted  overflow-hidden">
             {item.cover ? (
               <img
                 src={item.cover}

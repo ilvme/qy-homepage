@@ -33,7 +33,7 @@ export default function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
+    <nav className="flex items-center justify-between mt-6 pt-6">
       <div className="w-20">
         {currentPage > 1 && (
           <Link
