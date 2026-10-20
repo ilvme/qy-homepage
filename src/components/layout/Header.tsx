@@ -16,49 +16,52 @@ export default function Header() {
 
   return (
     <header
-      className={`relative mx-auto w-full px-4 sm:px-6 flex items-center justify-between py-6 border-b border-border mb-6 transition-[max-width] duration-500 ease-out ${
-        isWide ? 'max-w-300' : 'max-w-200'
+      className={`relative mx-auto w-full px-4 sm:px-6 mb-6 transition-[max-width] duration-500 ease-out ${
+        isWide ? 'max-w-288' : 'max-w-200'
       }`}
     >
-      <Link
-        href="/"
-        className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
-      >
-        {siteConfig.title}
-      </Link>
-
-      {/* 桌面端导航 */}
-      <div className="hidden sm:flex items-center gap-1">
-        <nav className="flex items-center gap-1">
-          {siteConfig.navLinks
-            .filter((l) => l.location === 'header')
-            .map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-2 py-1 transition-colors underline-offset-4 hover:underline ${
-                  isActiveNav(link.href, pathname)
-                    ? 'text-brand font-medium'
-                    : 'text-secondary hover:text-brand'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-        </nav>
-        <AccentToggle />
-      </div>
-
-      {/* 移动端：汉堡按钮 */}
-      <div className="sm:hidden">
-        <button
-          type="button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
-          className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+      {/* padding 放在外层，border-b 才能与正文/页脚分隔线同宽（对齐文字） */}
+      <div className="flex items-center justify-between py-6 border-b border-border">
+        <Link
+          href="/"
+          className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
         >
-          {menuOpen ? <Close size={20} /> : <Menu size={20} />}
-        </button>
+          {siteConfig.title}
+        </Link>
+
+        {/* 桌面端导航 */}
+        <div className="hidden sm:flex items-center gap-1">
+          <nav className="flex items-center gap-1">
+            {siteConfig.navLinks
+              .filter((l) => l.location === 'header')
+              .map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-2 py-1 transition-colors underline-offset-4 hover:underline ${
+                    isActiveNav(link.href, pathname)
+                      ? 'text-brand font-medium'
+                      : 'text-secondary hover:text-brand'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+          </nav>
+          <AccentToggle />
+        </div>
+
+        {/* 移动端：汉堡按钮 */}
+        <div className="sm:hidden">
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
+            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+          >
+            {menuOpen ? <Close size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* 移动端下拉菜单 */}

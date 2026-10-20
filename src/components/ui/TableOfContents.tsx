@@ -58,8 +58,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <>
-      {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，右对齐容器右缘 */}
-      <div className="hidden xl:block xl:justify-self-end xl:sticky xl:top-20 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，紧贴 gap 排列 */}
+      <div className="hidden xl:block xl:sticky xl:top-20 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
           <div className="text-sm font-semibold text-muted-foreground uppercase mb-2 px-2">
             目录

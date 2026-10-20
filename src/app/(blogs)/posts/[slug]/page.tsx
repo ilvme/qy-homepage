@@ -56,7 +56,7 @@ export default async function Post({
   const next = idx > 0 ? posts[idx - 1] : undefined;
 
   return (
-    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
+    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-12 xl:items-start">
       {/* 文章内容 - 保持 768px 左对齐 */}
       <article className="max-w-3xl">
         <header className="mb-10">
