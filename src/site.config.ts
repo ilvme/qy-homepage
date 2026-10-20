@@ -22,7 +22,7 @@ export const siteConfig = {
   pagination: {
     pageSize: 7,
     cookingPageSize: 12,
-    wordsPageSize: 10,
+    wordsPageSize: 30,
     tastePageSize: 12,
     awakenPageSize: 10,
   },
