@@ -45,3 +45,6 @@ yarn-error.log*
 next-env.d.ts
 /.qoder/
 /.workbuddy/memory/2026-10-20.md
+
+# 搜索索引（构建时生成）
+/public/search-index.json

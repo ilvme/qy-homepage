@@ -4,8 +4,8 @@
   "private": true,
   "packageManager": "pnpm@9.1.1",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tsx scripts/build-search-index.ts && next dev",
+    "build": "tsx scripts/build-search-index.ts && next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
@@ -31,6 +31,7 @@
     "lucide-react": "^1.32.0",
     "lxgw-wenkai-screen-webfont": "^1.7.0",
     "marked": "^18.1.1",
+    "minisearch": "^7.2.0",
     "next": "16.2.7",
     "notion-to-md": "4.0.0-alpha.7",
     "react": "19.2.4",

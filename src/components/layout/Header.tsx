@@ -2,17 +2,31 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { Close, Menu } from '@/components/icons';
+import { useEffect, useState } from 'react';
+import { Close, Menu, Search } from '@/components/icons';
 import AccentToggle from '@/components/ui/AccentToggle';
+import SearchPalette from '@/components/ui/SearchPalette';
 import { siteConfig } from '@/site.config';
 import { isActiveNav } from './nav-active';
 import { isWideRoute } from './wide-route';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const isWide = isWideRoute(pathname);
+
+  // ⌘K / Ctrl+K 全局唤起/关闭搜索
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   return (
     <header
@@ -31,6 +45,14 @@ export default function Header() {
 
         {/* 桌面端导航 */}
         <div className="hidden sm:flex items-center gap-1">
+          <button
+            type="button"
+            aria-label="搜索文章（⌘K）"
+            onClick={() => setSearchOpen(true)}
+            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+          >
+            <Search size={18} />
+          </button>
           <nav className="flex items-center gap-1">
             {siteConfig.navLinks
               .filter((l) => l.location === 'header')
@@ -51,8 +73,16 @@ export default function Header() {
           <AccentToggle />
         </div>
 
-        {/* 移动端：汉堡按钮 */}
-        <div className="sm:hidden">
+        {/* 移动端：搜索 + 汉堡按钮 */}
+        <div className="flex items-center gap-1 sm:hidden">
+          <button
+            type="button"
+            aria-label="搜索文章"
+            onClick={() => setSearchOpen(true)}
+            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+          >
+            <Search size={20} />
+          </button>
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -90,6 +120,8 @@ export default function Header() {
           </div>
         </nav>
       )}
+
+      <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
