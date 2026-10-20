@@ -1,8 +1,9 @@
 import fs from 'fs';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import path from 'path';
 import { PageHero } from '@/components/ui/PageHero';
+import Pagination from '@/components/ui/Pagination';
+import { paginate } from '@/libs/paginate';
 
 export const metadata: Metadata = {
   title: '旧版说说',
@@ -94,12 +95,11 @@ export default async function DailyWordsPage({
   const words = loadWords();
   const { page: pageParam } = await searchParams;
 
-  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1);
-  const totalPages = Math.ceil(words.length / PAGE_SIZE);
-  const pagedWords = words.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE,
-  );
+  const {
+    currentPage,
+    totalPages,
+    pagedItems: pagedWords,
+  } = paginate(words, pageParam, PAGE_SIZE);
 
   return (
     <div className="py-8">
@@ -124,35 +124,11 @@ export default async function DailyWordsPage({
         ))}
       </div>
 
-      {totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-          <div className="w-20">
-            {currentPage > 1 && (
-              <Link
-                href={`/caidan/daily-words?page=${currentPage - 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                ← 上一页
-              </Link>
-            )}
-          </div>
-
-          <span className="text-sm text-secondary">
-            {currentPage} / {totalPages}
-          </span>
-
-          <div className="w-20 text-right">
-            {currentPage < totalPages && (
-              <Link
-                href={`/caidan/daily-words?page=${currentPage + 1}`}
-                className="text-sm text-secondary hover:text-foreground transition-colors"
-              >
-                下一页 →
-              </Link>
-            )}
-          </div>
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/caidan/daily-words"
+      />
     </div>
   );
 }
