@@ -29,7 +29,7 @@ export default function ImageViewer({
           块级标签嵌套在 p 里属非法 HTML，会触发浏览器解析纠错导致 hydration 失败 */}
       <span className="block my-4">
         <span
-          className="relative block overflow-hidden rounded-lg cursor-zoom-in"
+          className="relative block overflow-hidden rounded-lg cursor-pointer"
           onClick={() => setOpen(true)}
         >
           <img

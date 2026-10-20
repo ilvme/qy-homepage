@@ -42,7 +42,7 @@ export default function WordImageGrid({ images }: WordImageGridProps) {
             key={src}
             type="button"
             onClick={() => setIndex(i)}
-            className="block w-full p-0 border-0 bg-transparent cursor-zoom-in overflow-hidden"
+            className="block w-full p-0 border-0 bg-transparent cursor-pointer overflow-hidden"
           >
             <img
               src={src}
