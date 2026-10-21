@@ -48,6 +48,7 @@ export default async function Post({
   if (!postWithContent) notFound();
 
   const headings = extractHeadings(postWithContent.content);
+  const hasToc = headings.length > 0;
 
   // 上下篇：列表按日期倒序，idx+1 为更早一篇，idx-1 为更晚一篇
   const posts = (await getAllPosts()).filter((p) => p.status === 'published');
@@ -56,9 +57,15 @@ export default async function Post({
   const next = idx > 0 ? posts[idx - 1] : undefined;
 
   return (
-    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-12 xl:items-start">
-      {/* 文章内容 - 保持 768px 左对齐 */}
-      <article className="max-w-3xl">
+    <div
+      className={`relative py-8 xl:grid xl:gap-12 xl:items-start ${
+        hasToc
+          ? 'xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)]'
+          : 'xl:grid-cols-1'
+      }`}
+    >
+      {/* 文章内容 - 768px 上限；无目录时（含 xl 以下单列）整体居中 */}
+      <article className="mx-auto w-full max-w-3xl">
         <header className="mb-10">
           {/* 标题 */}
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-normal leading-tight mb-4">
