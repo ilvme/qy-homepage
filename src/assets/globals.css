@@ -95,6 +95,13 @@ body {
   font-family: var(--font-sans);
 }
 
+/* 骨架屏脉冲：减弱动效偏好下停用 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse {
+    animation: none;
+  }
+}
+
 /* 行内代码 */
 .prose :not(pre) > code {
   background: var(--muted);

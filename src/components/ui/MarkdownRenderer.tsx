@@ -1,8 +1,8 @@
 import { evaluate } from '@mdx-js/mdx';
 import rehypeShiki from '@shikijs/rehype';
 import * as runtime from 'react/jsx-runtime';
-import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 import Callout from '@/components/ui/Callout';
 import CodeBlock from '@/components/ui/CodeBlock';
 import { Column, Columns } from '@/components/ui/Columns';
@@ -22,6 +22,12 @@ const components = {
   Column,
   img: ({ src, alt }: any) => <ImageViewer src={src ?? ''} alt={alt ?? ''} />,
   pre: (props: any) => <CodeBlock {...props} />,
+  // 宽表格包一层横向滚动容器，避免撑破 800px 正文（尤其移动端）
+  table: (props: any) => (
+    <div className="overflow-x-auto">
+      <table {...props} />
+    </div>
+  ),
 };
 
 export default async function MarkdownRenderer({

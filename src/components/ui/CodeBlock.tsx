@@ -69,7 +69,8 @@ export default function CodeBlock({
         onClick={handleCopy}
         className="absolute right-2 top-2 flex items-center gap-1 text-xs px-2 py-1 rounded
                    bg-muted hover:bg-accent border border-border text-secondary
-                   opacity-0 group-hover/code:opacity-100 transition-opacity z-10"
+                   opacity-0 group-hover/code:opacity-100 transition-opacity z-10
+                   [@media(hover:none)]:opacity-100 focus-visible:opacity-100"
       >
         {copied ? (
           <>
