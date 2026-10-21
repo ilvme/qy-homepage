@@ -1,16 +1,14 @@
 import Link from 'next/link';
 import {
-  ArrowRight,
   Bookmark,
   Cooking,
   FileText,
-  Link2,
   Message,
   Share,
   User,
 } from '@/components/icons';
-import Typewriter from '@/components/ui/Typewriter';
 import { siteConfig } from '@/site.config';
+import HomeFeed from './_components/HomeFeed';
 
 export default async function Home() {
   return (
@@ -18,26 +16,25 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="space-y-4">
         <h1 className="text-3xl font-semibold tracking-normal">
-          <Typewriter text={siteConfig.hero.greeting} />
+          {siteConfig.hero.greeting}
         </h1>
         <p className="text-secondary leading-relaxed text-base max-w-xl">
           {siteConfig.hero.intro}
         </p>
-        <div className="flex gap-3 pt-2">
+      </section>
+
+      {/* 最近更新：文章 + 说说混排 */}
+      <section className="space-y-4">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-lg font-medium">最近更新</h2>
           <Link
             href="/posts"
-            className="inline-flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-brand text-background hover:opacity-90 transition-opacity"
+            className="text-sm text-secondary transition-colors hover:text-brand"
           >
-            浏览文章
-            <ArrowRight size={14} />
-          </Link>
-          <Link
-            href="/words"
-            className="inline-flex items-center gap-1 text-sm px-4 py-2 rounded-full border border-border hover:bg-muted transition-colors"
-          >
-            查看说说
+            全部文章
           </Link>
         </div>
+        <HomeFeed />
       </section>
 
       {/* Site Sections */}
@@ -81,12 +78,6 @@ export default async function Home() {
               desc: '我与小站',
               Icon: User,
             },
-            {
-              href: '/friends',
-              label: '友链',
-              desc: '朋友小站',
-              Icon: Link2,
-            },
           ].map((item) => (
             <Link
               key={item.href}
@@ -94,10 +85,7 @@ export default async function Home() {
               className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-brand/40 hover:bg-muted/60 transition-all duration-200 group"
             >
               <h3 className="font-medium group-hover:text-brand transition-colors flex items-center gap-1.5">
-                <item.Icon
-                  size={15}
-                  className="shrink-0 text-brand"
-                />
+                <item.Icon size={15} className="shrink-0 text-brand" />
                 {item.label}
               </h3>
               <p className="text-xs text-secondary mt-1">{item.desc}</p>
