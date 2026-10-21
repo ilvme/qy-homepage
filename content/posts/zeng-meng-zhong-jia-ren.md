@@ -1,12 +1,17 @@
 ---
-title: "梦求凰"
+title: "赠梦中佳人"
+slug: "zeng-meng-zhong-jia-ren"
 date: "2026-07-29T09:53:00.000+08:00"
-tags: ["迷梦", "诗与远方"]
+category: "诗"
+tags: ["相思", "迷梦"]
 status: "published"
-from: "Notion"
-last_fetched_time: "2026-07-29T02:12:41.976Z"
-last_edited_time: "2026-07-29T01:58:00.000Z"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:36.488Z"
+last_edited_time: "2026-10-21T02:40:00.000Z"
 page_id: "3acc485e-f356-80b2-878a-ca9d5faed42e"
+summary: "黄粱一梦遇佳人，缘是修行自来身"
+cover: ""
+icon: ""
 ---
 
 
@@ -21,6 +26,8 @@ page_id: "3acc485e-f356-80b2-878a-ca9d5faed42e"
 
 远听泠泉声，近闻处子香。
 
+/
+
 求助同姓友，索事求同行。
 
 同行可寻机，机来明心思。
@@ -29,6 +36,8 @@ page_id: "3acc485e-f356-80b2-878a-ca9d5faed42e"
 
 本是来助我，自己叭叭叭。
 
+/
+
 醒来成一梦，思来有回甘。
 
 事出皆有因，有因难有果。
@@ -36,3 +45,5 @@ page_id: "3acc485e-f356-80b2-878a-ca9d5faed42e"
 无果何来梦，有梦亦非真。
 
 沐浴濯恶体，修行自来身。
+
+——2026.7.29，记于家中

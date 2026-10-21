@@ -1,12 +1,17 @@
 ---
 title: "鱼与飞鸟"
+slug: "yu-yu-fei-niao"
 date: "2015-01-09"
-tags: ["诗与远方"]
+category: "诗"
+tags: ["青春"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-10-12T03:04:46.401Z"
-last_edited_time: "2026-10-12T01:45:00.000Z"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:38.247Z"
+last_edited_time: "2026-10-21T02:35:00.000Z"
 page_id: "38bc485e-f356-807d-90bf-e7bac474a940"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 

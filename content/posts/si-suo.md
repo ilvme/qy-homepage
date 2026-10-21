@@ -1,17 +1,22 @@
 ---
 title: "思索"
+slug: "si-suo"
 date: "2017-09-03"
-tags: ["万千思绪"]
+category: "诗"
+tags: ["大学", "青春", "思索"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-08-13T03:03:39.221Z"
-last_edited_time: "2026-08-13T02:50:00.000Z"
-page_id: "38bc485e-f356-8040-b4e6-e3f00df99aca"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:38.085Z"
+last_edited_time: "2026-10-21T02:02:00.000Z"
+page_id: "400c485e-f356-80f4-b4d8-d4c70d060c78"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 
 
-思索
+《思索》
 
 一曲婉转引人入胜的迪克斯
 

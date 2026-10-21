@@ -1,12 +1,17 @@
 ---
 title: "携仙游"
+slug: "xie-xian-you"
 date: "2024-01-24T09:00:00.000+08:00"
-tags: ["诗与远方"]
+category: "诗"
+tags: ["迷梦", "胡言乱语"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-10-12T03:04:45.967Z"
-last_edited_time: "2026-10-12T01:45:00.000Z"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:36.826Z"
+last_edited_time: "2026-10-21T02:41:00.000Z"
 page_id: "38bc485e-f356-8027-980a-e323fb99b68c"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 

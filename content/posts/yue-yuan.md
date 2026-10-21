@@ -1,12 +1,17 @@
 ---
 title: "月圆"
-date: "2019-01-20T21:00:00.000+08:00"
-tags: ["万千思绪"]
+slug: "yue-yuan"
+date: "2019-01-20"
+category: "诗"
+tags: ["相思", "大学", "青春"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-08-13T03:03:38.818Z"
-last_edited_time: "2026-08-13T02:51:00.000Z"
-page_id: "38bc485e-f356-8062-ac50-ff824bf6bf41"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:37.558Z"
+last_edited_time: "2026-10-21T02:28:00.000Z"
+page_id: "400c485e-f356-80e0-9310-f5e6872a60e8"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 
@@ -41,5 +46,5 @@ page_id: "38bc485e-f356-8062-ac50-ff824bf6bf41"
 
 ——2019年1月20日
 
-![Image](/notion-images/words/月圆/image_38bc485e-f356-8012-8a88-ce67fc6cb783.png)
+![Image](/notion-images/posts/yue-yuan/yeuyuan_400c485e-f356-8080-a2b1-ca59aec34051.png)
 

@@ -1,12 +1,17 @@
 ---
 title: "梦偶天书"
+slug: "meng-ou-tian-shu"
 date: "2024-01-16T07:20:00.000+08:00"
-tags: ["诗与远方"]
+category: "Thoughts"
+tags: ["迷梦", "胡言乱语"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-10-12T03:04:46.079Z"
-last_edited_time: "2026-10-12T01:45:00.000Z"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:37.010Z"
+last_edited_time: "2026-10-21T02:36:00.000Z"
 page_id: "38bc485e-f356-807c-b1c8-fa85be1193b5"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 

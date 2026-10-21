@@ -1,12 +1,17 @@
 ---
 title: "不成熟的梦想"
+slug: "bu-cheng-shu-de-meng-xiang"
 date: "2018-06-19"
-tags: ["万千思绪"]
+category: "Thoughts"
+tags: ["大学", "胡言乱语"]
 status: "published"
-from: "岁月时光机"
-last_fetched_time: "2026-07-10T07:24:46.610Z"
-last_edited_time: "2026-06-26T14:32:00.000Z"
-page_id: "38bc485e-f356-8015-ad32-d80a7799804a"
+type: "article"
+last_fetched_time: "2026-10-21T02:53:37.898Z"
+last_edited_time: "2026-10-21T02:14:00.000Z"
+page_id: "400c485e-f356-805b-8b7f-dc340974964a"
+summary: ""
+cover: ""
+icon: ""
 ---
 
 
