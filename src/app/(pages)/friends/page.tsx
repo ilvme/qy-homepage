@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import path from 'path';
+import Comment from '@/components/ui/Comment';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { PageHero } from '@/components/ui/PageHero';
 import { parseMdFromFile } from '@/libs/content-supports';
+import { siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
   title: '友情链接',
@@ -33,6 +35,9 @@ export default async function FriendsPage() {
         content={fileContent.content}
         className="text-base 2xl:text-lg"
       />
+
+      {/* 互换友链、留言咨询：Giscus 按 pathname 建独立讨论区，无需额外配置 */}
+      {siteConfig.giscus.enabled && <Comment />}
     </div>
   );
 }
