@@ -48,3 +48,4 @@ next-env.d.ts
 
 # 搜索索引（构建时生成）
 /public/search-index.json
+/.workbuddy/memory/2026-10-21.md
