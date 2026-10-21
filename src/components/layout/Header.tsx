@@ -49,7 +49,7 @@ export default function Header() {
             type="button"
             aria-label="搜索文章（⌘K）"
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+            className="p-1.5 transition-colors text-secondary hover:text-brand"
           >
             <Search size={18} />
           </button>
@@ -79,7 +79,7 @@ export default function Header() {
             type="button"
             aria-label="搜索文章"
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+            className="p-1.5 transition-colors text-secondary hover:text-brand"
           >
             <Search size={20} />
           </button>
