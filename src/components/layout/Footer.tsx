@@ -9,6 +9,7 @@ const rightLinks = [
   ...siteConfig.navLinks
     .filter((l) => l.location === 'footer')
     .map((l) => ({ label: l.label, href: l.href })),
+  { label: '友链', href: '/friends' },
   { label: '赞赏', href: '/sponsor' },
   { label: 'RSS', href: '/rss.xml' },
 ];
@@ -39,7 +40,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           {rightLinks.map((link, i) => {
             const active = isActiveNav(link.href, pathname);
             return (

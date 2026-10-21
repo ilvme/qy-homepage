@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header
       className={`relative mx-auto w-full px-4 sm:px-6 mb-6 transition-[max-width] duration-500 ease-out ${
-        isWide ? 'max-w-288' : 'max-w-200'
+        isWide ? 'max-w-6xl' : 'max-w-200'
       }`}
     >
       {/* padding 放在外层，border-b 才能与正文/页脚分隔线同宽（对齐文字） */}
