@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-19T05:46:36.329Z"
 last_edited_time: "2026-07-19T05:11:00.000Z"
 page_id: "3a2c485e-f356-80a0-acdd-dff977ab415e"
 summary: ""
-cover: "/notion-images/cooking/si-gua-dou-fu-ji-dan-tang/img_0cf6c2f2.jpeg"
+cover: "/notion-images/cooking/si-gua-dou-fu-ji-dan-tang/img_0cf6c2f2.webp"
 icon: ""
 ---
 
@@ -41,5 +41,5 @@ icon: ""
 1. 加入切好的丝瓜，继续咕嘟至少五分钟，越咕嘟味儿越好，汤越白
 1. 调味，加入一丢丢盐，一丢丢生抽，适量白胡椒粉，稍加咕嘟，即可出锅
 
-![Image](/notion-images/cooking/si-gua-dou-fu-ji-dan-tang/IMG_1311_3a2c485e-f356-8083-a6cf-fce5dd27b209.jpeg)
+![Image](/notion-images/cooking/si-gua-dou-fu-ji-dan-tang/IMG_1311_3a2c485e-f356-8083-a6cf-fce5dd27b209.webp)
 

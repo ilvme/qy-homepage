@@ -81,7 +81,7 @@ icon: ""
 晓看窗外，梧桐方立，落花雨。石阶古泪，冬青犹新，晨光微，啄花喧，花应语，有情花落鸟徒去。
 
 > 以下为原笔记：
-> ![Image](/notion-images/posts/poems-from-high-schools-1/image_38bc485e-f356-80c0-8b53-ed7fbeb4d170.png)
+> ![Image](/notion-images/posts/poems-from-high-schools-1/image_38bc485e-f356-80c0-8b53-ed7fbeb4d170.webp)
 > 
 > 
 

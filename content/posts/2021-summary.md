@@ -71,7 +71,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 这是拍自某个惬意的周末：
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8015-9182-ca9328ba2057.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8015-9182-ca9328ba2057.webp)
 
 
 ###  **关于工作** 
@@ -93,7 +93,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 路不远，小雨也不下了，总共也没落几滴，只是风还在呼啸着。透过单薄的衣服似乎吹进浑身上下每一处毛孔里，净涤着了我的身体与精神。走到了海河边，这时候几乎没有了任何要下雨的痕迹，西方天空也泛了红，这是当时随手拍下的。天还没黑。
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8042-a1ed-c5cac4837b46.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8042-a1ed-c5cac4837b46.webp)
 
 
 顺着海河边，伴着凉风，一路向北走了起来。期间想过给家里打个电话，想过给她打个电话，想过给某个老友打电话。抬起头，眼里噙着泪水，思索着我要留下来，还是离开。天也慢慢变黑了。只记得沿着路走了好久，经过了好几座桥，天都黑了，也没个答案。后来又沿着路走了回来。决定了，我要离开，这不是我想要的工作。
@@ -115,7 +115,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 关于新入职的工作，差强人意，中规中矩。三个月后，也顺利通过转正答辩，直到今天，入职也逾百日了。总之，还算稳定。附上一张某天下班随手拍的图：
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-803e-b17a-da7cb16b6abc.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-803e-b17a-da7cb16b6abc.webp)
 
 
 ###  **就是花钱** 
@@ -158,7 +158,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 到达唐山站，距离列车出发最近的还有一个多小时，哥儿仨，在站外小林子的石头台阶上坐下继续侃着。看着路过的可能是开学的小姑娘，喝着之前约定好的我请客的哇哈哈。甚是扯淡的是，期间还一起来了波立定跳远。时间溜达的是真快，多么不舍分离。最后，奉上在唐山站外等候时拍的一张极富特色与收藏价值的照片（舍友你看到可别来打我，我打了马赛克了，笑）。
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8084-8924-c4affccd326e.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8084-8924-c4affccd326e.webp)
 
 
 ###  **国庆假期** 
@@ -203,7 +203,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 7月份购买了个人域名，第一时间就修改了博客的域名，将博客放在子目录  `/blog`  下，换成了 [https://ikangjia.cn/blog](https://ikangjia.cn/blog)，暂定这样了。
 关于在线简历，也是编辑好源 md 文件的简历后，使用 Vue 主题的 Typora 先转换成 HTML 文件，修改其中的某些样式后。托管在 GitHub Pages 子目录  `/resume` ，也是通过 [https://ikangjia.cn/resume](https://ikangjia.cn/resume) 即可访问。
 关于个人主页，使用了 [HTML5 UP](https://html5up.net/) 上的 [Aerial | HTML5 UP](https://html5up.net/aerial) 模板进行改造，添加上自己的一些网站链接，背景是自动获取 Bing 每日一图，总体效果还不错。访问地址就是：[https://ikangjia.cn](https://ikangjia.cn/)。其中有几乎我的所有链接（技术笔记（基于 Notion 的  `Share to web` 功能）、博客、GitHub 等）与联系方式。
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8072-8606-c996fefe9081.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8072-8606-c996fefe9081.webp)
 
 
 关于博客与技术笔记更多的内容已经在之前的文章详细阐述了。这里不再赘述了。详情可参考：
@@ -221,7 +221,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 最近，我又调整了房间布局。这次不一样，并没有按之前追求简洁与整齐那般布置。冬天到了，我可能更倾向于让房间杂一点，所以这次刻意的乱，仿佛让整个屋子里充满东西，会让人觉得暖和一点。
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-805f-b0a8-fa9b37c490a3.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-805f-b0a8-fa9b37c490a3.webp)
 
 
 ##  ~~**最终的总结（我是假的）**~~ 
@@ -237,7 +237,7 @@ emmm，好像扯远了。把思绪拉回来，回到3月12日，我回到天津�
 
 2021-12-30 补充该图（请自动忽略我丑陋的躯体0.0）
 
-![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8066-bb44-eb361a2f0163.png)
+![Image](/notion-images/posts/2021-summary/Untitled_38bc485e-f356-8066-bb44-eb361a2f0163.webp)
 
 
 最后对于爱情，用心去爱。

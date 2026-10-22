@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-29T13:57:20.889Z"
 last_edited_time: "2026-07-29T11:35:00.000Z"
 page_id: "3acc485e-f356-80a2-9c90-c43649bc8b22"
 summary: ""
-cover: "/notion-images/cooking/suchao-donggua/img_a72f92f8.jpeg"
+cover: "/notion-images/cooking/suchao-donggua/img_a72f92f8.webp"
 icon: ""
 ---
 
@@ -33,5 +33,5 @@ icon: ""
 1. 看情况可加入一点点水
 1. 盖盖子中火三分钟，出锅
 
-![Image](/notion-images/cooking/suchao-donggua/9FA6305F-6DC5-4AB6-B6C8-D58A8FCBE348_3acc485e-f356-8091-a25e-eccf4dd5dbd1.jpeg)
+![Image](/notion-images/cooking/suchao-donggua/9FA6305F-6DC5-4AB6-B6C8-D58A8FCBE348_3acc485e-f356-8091-a25e-eccf4dd5dbd1.webp)
 

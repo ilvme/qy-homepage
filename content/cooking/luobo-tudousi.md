@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-29T02:12:40.217Z"
 last_edited_time: "2026-07-29T02:00:00.000Z"
 page_id: "3abc485e-f356-80ec-91cc-c3b83fd6f15b"
 summary: ""
-cover: "/notion-images/cooking/luobo-tudousi/img_d3254936.jpeg"
+cover: "/notion-images/cooking/luobo-tudousi/img_d3254936.webp"
 icon: ""
 ---
 
@@ -40,5 +40,5 @@ icon: ""
 1. 转小火，加入一丢丢老抽，一丢丢生抽，一丢丢盐，适量醋
 1. 大火翻炒均匀，出锅🤩
 
-![Image](/notion-images/cooking/luobo-tudousi/3CD8CD01-741C-472D-B119-A7D2C600FF9F_3abc485e-f356-80c7-a910-c213e474d184.jpeg)
+![Image](/notion-images/cooking/luobo-tudousi/3CD8CD01-741C-472D-B119-A7D2C600FF9F_3abc485e-f356-80c7-a910-c213e474d184.webp)
 

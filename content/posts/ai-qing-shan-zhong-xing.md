@@ -41,21 +41,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_9f9afe9a.jpeg)
+![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_9f9afe9a.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_e78dd695.jpeg)
+![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_e78dd695.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_4e5dbbc5.jpeg)
+![Image](/notion-images/posts/ai-qing-shan-zhong-xing/img_4e5dbbc5.webp)
 
 <br />
 

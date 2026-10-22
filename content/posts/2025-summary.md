@@ -49,14 +49,14 @@ icon: ""
 
 写到这儿才发现，好像现在越来越入了华为的坑了。其实自小米台灯 Pro 坏掉以及米家显示器挂灯 1S 使用时多次罢工，我就对小米的产品不再信任。还有罗技，因为 MX Master 2s 在使用第三年的时候，出了两个大毛病。一是大拇指底部按压失灵，按下去就卡在下面，很难自己恢复，这还是玩 LOL 发现的，当时还以为没电了。后来只能把底部按压整块都扣掉，目前还在凑活用着；还有个更无语的问题是大拇指可以波动转的那个位置，外层的橡胶层竟然掉渣，手指轻轻一扣就掉一块儿，三百多大洋的货啊，是我特么手里汗多腐蚀的？？？
 
-![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8079-83a0-cb32d53221d2.png)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8079-83a0-cb32d53221d2.webp)
 
 
 想起我这 iPhone 13 Pro 将近 4 年了，电池掉到 78%，算了，凑活凑活继续用吧。 其实现在看看家里的电子产品，很是分明，我是果系，媳妇儿是华为系。打算后面继续观望下华为的电子产品以及鸿蒙系统的发展，要是稳定，打算继续入坑。
 
 一个颜值超高的钟表 52￥，是静音的，目前摆在客厅电视上方柜子里。
 
-![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80c5-8e5d-ed3a59752f17.png)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80c5-8e5d-ed3a59752f17.webp)
 
 
 厨房
@@ -90,7 +90,7 @@ icon: ""
 
 春节假期期间，去县里刚新建完的英雄纪念馆转了转，里面有不少土枪、土炮、旧信件等战争遗留下来的物迹。 纪念馆这一块儿原来是光路山寨，现在改造的大了许多。纪念馆中心是一尊英雄纪念碑，再往上是山，山上修了石板阶梯路，每逢周末或佳节都有不少爬山观光之人。 纪念馆下也是游玩之地。有歌舞表演、养马场，甚至有个动物园。里面除了各种花色的鸡、鸭、鹅，还有一奇葩景观：山羊与狗同圈。
 
-![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-803c-a9eb-f3f426b9b196.png)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-803c-a9eb-f3f426b9b196.webp)
 
 
 ---
@@ -112,21 +112,21 @@ icon: ""
 <Columns cols={3}>
 <Column>
 
-![酷狗概念版年度报告](/notion-images/posts/2025-summary/img_0ebc5107.png)
+![酷狗概念版年度报告](/notion-images/posts/2025-summary/img_0ebc5107.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![QQ 音乐年度报告](/notion-images/posts/2025-summary/img_57fae6e5.png)
+![QQ 音乐年度报告](/notion-images/posts/2025-summary/img_57fae6e5.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![滴答清单年度报告](/notion-images/posts/2025-summary/img_0e63b943.png)
+![滴答清单年度报告](/notion-images/posts/2025-summary/img_0e63b943.webp)
 
 <br />
 
@@ -152,7 +152,7 @@ icon: ""
 
 发布了四篇非技术博客、两条朋友圈说说、123 条吐槽。
 
-![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8065-a099-f8e51ae2c1a4.png)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-8065-a099-f8e51ae2c1a4.webp)
 
 
 ##  **工作** 
@@ -160,7 +160,7 @@ icon: ""
 
 公司园区的山楂又红了一次，工作还是老样子，平平无奇。和去年一样，下半年后几个月让加班，工资迟发…
 
-![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80ad-ac44-f9ed40d9270e.png)
+![Image](/notion-images/posts/2025-summary/image_38dc485e-f356-80ad-ac44-f9ed40d9270e.webp)
 
 
 ##  **总结** 

@@ -27,7 +27,7 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![2017 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/img_bfc38a47.jpeg)
+![2017 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/img_bfc38a47.webp)
 
 <br />
 <br />
@@ -37,7 +37,7 @@ icon: ""
 </Column>
 <Column>
 
-![2025 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/img_cc4f2684.jpeg)
+![2025 年孔子圣象下的我](/notion-images/posts/qing-ming-back-to-school/img_cc4f2684.webp)
 
 <br />
 
@@ -47,7 +47,7 @@ icon: ""
 
 这时的野鸭湖里没有野鸭，湖畔的花开了，柳条垂下，分外春天，突然打开的喷泉吓我一跳。
 
-![Image](/notion-images/posts/qing-ming-back-to-school/2f3252df801daee7ab30d30ba4bbcf30_38bc485e-f356-80e4-8027-c88d354b6b49.jpeg)
+![Image](/notion-images/posts/qing-ming-back-to-school/2f3252df801daee7ab30d30ba4bbcf30_38bc485e-f356-80e4-8027-c88d354b6b49.webp)
 
 
 学校里人不多，稀稀拉拉几对小情侣和一些带孩子来玩的一家子。
@@ -58,12 +58,12 @@ icon: ""
 
 到一楼食堂，整了些炒菜米饭，价钱真便宜。
 
-![Image](/notion-images/posts/qing-ming-back-to-school/IMG_1259_38bc485e-f356-80ba-b71a-d13df4cb9a23.jpeg)
+![Image](/notion-images/posts/qing-ming-back-to-school/IMG_1259_38bc485e-f356-80ba-b71a-d13df4cb9a23.webp)
 
 
 饭后，从景观大道入园，不像秋天黄色树叶，只有三五人群稀稀拉拉。左拐经过当年信士楼宿舍楼下穿过，生活区内的湖里倒是空空。坐下小憩一会儿。
 
-![Image](/notion-images/posts/qing-ming-back-to-school/776235774398f024835fbde8e13b9120_38bc485e-f356-802d-b850-e5332217c52f.jpeg)
+![Image](/notion-images/posts/qing-ming-back-to-school/776235774398f024835fbde8e13b9120_38bc485e-f356-802d-b850-e5332217c52f.webp)
 
 
 后从最南边易百超市那条路走出校园，离去。

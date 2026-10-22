@@ -12,7 +12,7 @@ last_fetched_time: "2026-07-10T07:24:26.074Z"
 last_edited_time: "2026-06-29T09:46:00.000Z"
 page_id: "38dc485e-f356-8066-bef5-e66eed606f60"
 summary: ""
-cover: "/notion-images/shares/taste/Windy Hill/cover.jpg"
+cover: "/notion-images/shares/taste/Windy Hill/cover.webp"
 icon: ""
 ---
 

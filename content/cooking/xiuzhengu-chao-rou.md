@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-29T02:12:41.202Z"
 last_edited_time: "2026-07-29T02:00:00.000Z"
 page_id: "3a3c485e-f356-80eb-b542-fa58f0e2961b"
 summary: ""
-cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_7771c219.jpeg"
+cover: "/notion-images/cooking/xiuzhengu-chao-rou/img_7771c219.webp"
 icon: ""
 ---
 
@@ -35,5 +35,5 @@ icon: ""
 
 临出锅加入一丢丢生抽，一丢丢蚝油，一丢丢醋，搅拌均匀出锅！
 
-![Image](/notion-images/cooking/xiuzhengu-chao-rou/IMG_1327_3a3c485e-f356-8063-a304-dff77b31008b.jpeg)
+![Image](/notion-images/cooking/xiuzhengu-chao-rou/IMG_1327_3a3c485e-f356-8063-a304-dff77b31008b.webp)
 

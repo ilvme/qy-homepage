@@ -28,5 +28,5 @@ icon: ""
 
 emmm，不知道写啥了，就先这样吧。
 
-![Image](/notion-images/posts/mou-jie-duan-de-ji-hua/image_38bc485e-f356-8055-a949-ec0bb1f13ffd.png)
+![Image](/notion-images/posts/mou-jie-duan-de-ji-hua/image_38bc485e-f356-8055-a949-ec0bb1f13ffd.webp)
 

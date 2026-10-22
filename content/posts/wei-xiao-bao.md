@@ -30,7 +30,7 @@ icon: ""
 
  **『电视剧的精彩之处莫过于主角韦小宝游刃有余的穿梭于各大势力、形形色色的人之间。其中发生的各个事件、人物关系从敌到有的来回转换无不令人捧腹并拍手称快。』** 
 
-![Image](/notion-images/posts/wei-xiao-bao/韦小宝关系网_37bc485e-f356-8020-b840-ca465bad0fbe.png)
+![Image](/notion-images/posts/wei-xiao-bao/韦小宝关系网_37bc485e-f356-8020-b840-ca465bad0fbe.webp)
 
 
 ###  **朋友线** 

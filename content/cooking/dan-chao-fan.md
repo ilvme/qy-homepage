@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-10T07:24:32.928Z"
 last_edited_time: "2026-06-28T03:59:00.000Z"
 page_id: "38dc485e-f356-80d6-a4e0-d5d4005cd9f5"
 summary: ""
-cover: "/notion-images/cooking/dan-chao-fan/img_2d3e564b.jpg"
+cover: "/notion-images/cooking/dan-chao-fan/img_2d3e564b.webp"
 icon: ""
 ---
 
@@ -32,7 +32,7 @@ icon: ""
 - 煮上米饭，水比平时做饭稍少一点点
 - 黄瓜切丁、胡萝卜切丁、火腿切丁
 
-![Image](/notion-images/cooking/dan-chao-fan/80ee9436-705c-41c7-8101-606183f0b813_38dc485e-f356-8040-8300-d5b77c00552b.png)
+![Image](/notion-images/cooking/dan-chao-fan/80ee9436-705c-41c7-8101-606183f0b813_38dc485e-f356-8040-8300-d5b77c00552b.webp)
 
 
 ## 炒
@@ -41,7 +41,7 @@ icon: ""
 1. 炒鸡蛋，盛出备用
 1. 少量油，中小火，胡萝卜丁、黄瓜丁炒至断生
 
-![Image](/notion-images/cooking/dan-chao-fan/a556fd3a-fcc0-4829-b183-809bb1fe00c1_38dc485e-f356-8032-a137-d58de0e5d73f.png)
+![Image](/notion-images/cooking/dan-chao-fan/a556fd3a-fcc0-4829-b183-809bb1fe00c1_38dc485e-f356-8032-a137-d58de0e5d73f.webp)
 
 <br />
 
@@ -51,5 +51,5 @@ icon: ""
 ## 最终成品
 
 
-![Image](/notion-images/cooking/dan-chao-fan/b120f5cd84414f869d5699266864d14a_38dc485e-f356-809a-8afb-d4ddf74dcbac.jpg)
+![Image](/notion-images/cooking/dan-chao-fan/b120f5cd84414f869d5699266864d14a_38dc485e-f356-809a-8afb-d4ddf74dcbac.webp)
 

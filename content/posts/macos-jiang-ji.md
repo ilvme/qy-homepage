@@ -25,14 +25,14 @@ icon: ""
 
 在 APP Store 里搜索 macOS，选择 macOS Sonoma 14，进入后如下图
 
-![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-8027-9d45-dfdd91d04f2e.png)
+![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-8027-9d45-dfdd91d04f2e.webp)
 
 
 点击获取，会自动跳转到设置里的软件更新页面下载（不要误解它在这个页面只是下载不会真的安装，要是能装就好了，直接降级了）。
 
 等待安装完成，13G+，安装完成后应用程序了多了「安装 macOS Sonoma.app」。
 
-![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-807e-bde0-c730ddbab283.png)
+![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-807e-bde0-c730ddbab283.webp)
 
 
 准备 16G+ 的 U 盘，插入 Mac，改名为 MyVolume，后续要用到
@@ -46,7 +46,7 @@ sudo /Applications/Install\ macOS\ Sonoma.app/Contents/Resources/createinstallme
 
 等待执行完毕，此时 U 盘安装器就装好了，安装好后 U 盘名字就变成「Install macOS Sonoma」，如下图
 
-![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-8098-a59d-eccda8741f13.png)
+![Image](/notion-images/posts/macos-jiang-ji/image_3f7c485e-f356-8098-a59d-eccda8741f13.webp)
 
 
 此时可以退出终端，推出 U 盘，也可以从“应用程序”中删除安装器了。

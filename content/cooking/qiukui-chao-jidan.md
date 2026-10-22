@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-10T09:13:43.276Z"
 last_edited_time: "2026-08-10T08:58:00.000Z"
 page_id: "3b7c485e-f356-8058-9ad8-f94db469f1a4"
 summary: ""
-cover: "/notion-images/cooking/qiukui-chao-jidan/img_6aeafe91.jpeg"
+cover: "/notion-images/cooking/qiukui-chao-jidan/img_6aeafe91.webp"
 icon: ""
 ---
 
@@ -34,5 +34,5 @@ icon: ""
 1. 加入一丢丢生抽，一丢丢盐，开大火翻炒均匀
 1. 淋上一点点香油，出锅
 
-![Image](/notion-images/cooking/qiukui-chao-jidan/0AF102D1-D72C-4E87-8164-13A564D53D77_3b7c485e-f356-804d-a9f8-d3c878601a18.jpeg)
+![Image](/notion-images/cooking/qiukui-chao-jidan/0AF102D1-D72C-4E87-8164-13A564D53D77_3b7c485e-f356-804d-a9f8-d3c878601a18.webp)
 

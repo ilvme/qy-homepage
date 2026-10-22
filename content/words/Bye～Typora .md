@@ -15,5 +15,5 @@ page_id: "391c485e-f356-80bc-8ebe-d1fcabb498f5"
 
 预感将是  Typora 最严厉的父亲
 
-![Image](/notion-images/words/Bye～Typora /image_391c485e-f356-8056-9d2b-c21f8c7127cb.png)
+![Image](/notion-images/words/Bye～Typora /image_391c485e-f356-8056-9d2b-c21f8c7127cb.webp)
 

@@ -85,7 +85,7 @@ PMT-7 模型是近一年中，我积累沉淀出的适用于个人的管理模�
 
 文字终究不够直观，所以我又做了个思维导图，如下：
 
-![ST-3](/notion-images/posts/duan-she-li-02/image_3c1c485e-f356-80f2-a3d1-f1b92f986e47.png)
+![ST-3](/notion-images/posts/duan-she-li-02/image_3c1c485e-f356-80f2-a3d1-f1b92f986e47.webp)
 
 
 ## 写在最后

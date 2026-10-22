@@ -40,7 +40,7 @@ icon: ""
 
 经历了整一年的一小时通勤时光（家 —> 步行 8 分钟 —> 1号线 5 分钟 —> 6 号线 20 分钟 —> 3 号线 5 分钟 —> 步行 18 分钟 —> 公司）。年中，我终于决定要搬家，换个离公司近点的。图省事依然选择了天杀的自如。我对租房的要求不算低，起码房子周围噪音要尽量小，空间要尽量大。和热心的管家小姐姐大热天里奔波着找房，几经周折算是寻到了比较满意的。21 平的空间（带个阳台）加上木质的床、桌、衣柜，甚是满意，当场就拍板租下。下图是刚租下房时的模样与新家现状（请忽略杂乱的床铺，且看阳光下的一点温馨 😊）：
 
-![清冷的新屋 VS 我的暖色小窝](/notion-images/posts/2022-summary/2022-mywo_1c3c485e-f356-80e7-959f-ce9727dc7b1f.png)
+![清冷的新屋 VS 我的暖色小窝](/notion-images/posts/2022-summary/2022-mywo_1c3c485e-f356-80e7-959f-ce9727dc7b1f.webp)
 
 
 清冷的新屋 VS 我的暖色小窝
@@ -50,7 +50,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 ###  **短暂的薄荷时光** 
 
 
-![Image](/notion-images/posts/2022-summary/2022-bohe_1c3c485e-f356-809f-b031-c966312e78ce.jpeg)
+![Image](/notion-images/posts/2022-summary/2022-bohe_1c3c485e-f356-809f-b031-c966312e78ce.webp)
 
 
 薄荷小清新也在寻找阳光
@@ -80,7 +80,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 
 今年起码有三分之一的时间是带饭的。还特意追求营养均衡，小圆餐盒带水果，大方餐盒带饭。
 
-![Image](/notion-images/posts/2022-summary/2022-wucan_1c3c485e-f356-8018-bc2e-e48a4b87df6a.jpeg)
+![Image](/notion-images/posts/2022-summary/2022-wucan_1c3c485e-f356-8018-bc2e-e48a4b87df6a.webp)
 
 
 图是平素某日里的寻常午餐
@@ -91,7 +91,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_e5d8ccc2.jpeg)
+![Image](/notion-images/posts/2022-summary/img_e5d8ccc2.webp)
 
 <br />
 
@@ -100,7 +100,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_87c5fc72.jpeg)
+![Image](/notion-images/posts/2022-summary/img_87c5fc72.webp)
 
 <br />
 
@@ -113,7 +113,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_e0384857.jpeg)
+![Image](/notion-images/posts/2022-summary/img_e0384857.webp)
 
 <br />
 
@@ -124,7 +124,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_b302df00.jpeg)
+![Image](/notion-images/posts/2022-summary/img_b302df00.webp)
 
 <br />
 
@@ -136,7 +136,7 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 </Columns>
 
 
-![Image](/notion-images/posts/2022-summary/2022-sun_1c3c485e-f356-80c5-953b-d3567f7c7f65.jpeg)
+![Image](/notion-images/posts/2022-summary/2022-sun_1c3c485e-f356-80c5-953b-d3567f7c7f65.webp)
 
 
 10月4日，国庆一人自行车出游抓拍，这条路也是现在上班必经之路
@@ -162,12 +162,12 @@ PS：最后感谢对面 NKFY（某 ZF 机构）持续月余每日早七点且不
 
 下图是当前移动硬盘的目录，占空间最多的是电视剧、动漫文件夹💥
 
-![Image](/notion-images/posts/2022-summary/2022-disk_1c3c485e-f356-80b4-af0f-cde67a767da4.png)
+![Image](/notion-images/posts/2022-summary/2022-disk_1c3c485e-f356-80b4-af0f-cde67a767da4.webp)
 
 
 - *iPhone13 Pro & Apple Watch Series 7：**对于那台 iPhone11，我想应该是中招了。我是移动、联通双卡，实在受够了这糟心至极的网络。每次坐地铁得提前打开，甚至在外面等会儿才进。还有不能带口罩人脸识别。总之已成功说服了自己，官网剁手了 iPhone13 Pro 128G。我的手机内存使用常年没超过 80G，最多的时候是 77G，所以 128G 已完全足够。顺带搞了个 Apple Watch，毕竟一个人的生活晕倒起不来了也有个照应🤭。
 
-![Image](/notion-images/posts/2022-summary/2022-apple_1c3c485e-f356-8024-88b5-f59aa6096192.jpeg)
+![Image](/notion-images/posts/2022-summary/2022-apple_1c3c485e-f356-8024-88b5-f59aa6096192.webp)
 
 
 iPhone 和 Watch 开箱照片（好家伙，一不小心全家桶了😯）
@@ -177,7 +177,7 @@ iPhone 和 Watch 开箱照片（好家伙，一不小心全家桶了😯）
 - *LG 27 英寸 4K 27UP850N：**两年前入手的三星入门款显示器 C24F390，一直以来与我那个垃圾雷蛇本搭档。承包了日常使用、游戏所有场景。直到后来有了 MBP，与这款 1080P 的显示器实在无法配合，画面模糊且观感极其差劲。考虑良久，还是剁手了 LG 这款显示器。Type-C 口的反向充电让 Mac 自带的方形大头充电器彻底抽屉吃灰。而雷蛇本也自带一个雷电三的接口，想玩游戏时直接将线插上，Mac 与 雷蛇本之间的切换尤其方便。使用 4K 27 英寸的显示器玩 LOL 和穿越火线的快乐是我之前无法想象的。PS：后来在京东看了下，两年前购入的那款三星入门款显示器竟然还涨价了，涨了一百多，着实值得。图的话见下文键盘。
 - *京东京造 K3 茶轴机械键盘：**有了显示器当然不能少了一个更好看适用的键盘啊。我对京东京造印象还不错，果断选择了那款 K3 茶轴机械键盘，事实证明我的选择也没啥问题。
 
-![Image](/notion-images/posts/2022-summary/2022-enjoy_1c3c485e-f356-80fe-84b5-e2fb30bcd9e1.jpeg)
+![Image](/notion-images/posts/2022-summary/2022-enjoy_1c3c485e-f356-80fe-84b5-e2fb30bcd9e1.webp)
 
 
 显示器与键盘图片（自觉忽略图中其他杂物 🙈）
@@ -207,7 +207,7 @@ iPhone 和 Watch 开箱照片（好家伙，一不小心全家桶了😯）
 
 下面是一些小例：
 
-![Image](/notion-images/posts/2022-summary/2022-words_1c3c485e-f356-807e-aff1-d04da3518829.png)
+![Image](/notion-images/posts/2022-summary/2022-words_1c3c485e-f356-807e-aff1-d04da3518829.webp)
 
 
 Daily Words 小段截图
@@ -239,7 +239,7 @@ Daily Words 小段截图
 
 《神探狄仁杰2》：友情提醒一定要在 B 站看，一定要开弹幕！老粉表示梗多笑爆！以下为观剧时有感发在 Daily Words 的部分言语：
 
-![Image](/notion-images/posts/2022-summary/2022-words2_1c3c485e-f356-8083-a724-e3d2a4690895.png)
+![Image](/notion-images/posts/2022-summary/2022-words2_1c3c485e-f356-8083-a724-e3d2a4690895.webp)
 
 
 《三国演义》：旧版三国与新版三国的最大区别是，一个是纪实纪录片，另一个是电视剧。致敬老版三国的演员，陆老师走好，二爷千古。《鹿鼎记》：陈小春版电视剧真是经典，一时兴起写了一篇文章，诚悦惠览：[ **”为人不识鹿鼎公，再称风流也枉然“** ](https://blog.ikangjia.cn/Wei-Xiao-Bao)。重温了一些美剧，如《绝命毒师》、《破产姐妹》、《老友记》。还有古装情景喜剧：《宰相刘罗锅》、《铁齿铜牙纪晓岚》。看了《人民的民义》、《东周列国 春秋篇 | 战国篇》、《走向共和》、《毛泽东》。周末在家一个人刷个甜甜的恋爱剧不好吗，大赞《百岁之好，一言为定》里的女主，真是让人喜爱。还有不少，略了……
@@ -248,7 +248,7 @@ Daily Words 小段截图
 
 最后是三个平台的年度报告🙈
 
-![Image](/notion-images/posts/2022-summary/2022-baogao_1c3c485e-f356-80cb-9d86-eb2976635b5e.png)
+![Image](/notion-images/posts/2022-summary/2022-baogao_1c3c485e-f356-80cb-9d86-eb2976635b5e.webp)
 
 
 ###  **美食生活** 
@@ -259,7 +259,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_892167b9.jpg)
+![Image](/notion-images/posts/2022-summary/img_892167b9.webp)
 
 <br />
 
@@ -268,7 +268,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_08a140dd.png)
+![Image](/notion-images/posts/2022-summary/img_08a140dd.webp)
 
 <br />
 
@@ -281,7 +281,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_497e4975.jpeg)
+![Image](/notion-images/posts/2022-summary/img_497e4975.webp)
 
 <br />
 
@@ -290,7 +290,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_d67f7ee4.jpeg)
+![Image](/notion-images/posts/2022-summary/img_d67f7ee4.webp)
 
 <br />
 
@@ -303,7 +303,7 @@ Daily Words 小段截图
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_e4fea74b.png)
+![Image](/notion-images/posts/2022-summary/img_e4fea74b.webp)
 
 <br />
 
@@ -312,7 +312,7 @@ Daily Words 小段截图
 </Column>
 <Column>
 
-![Image](/notion-images/posts/2022-summary/img_f895e574.png)
+![Image](/notion-images/posts/2022-summary/img_f895e574.webp)
 
 <br />
 

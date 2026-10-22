@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-05T13:55:10.576Z"
 last_edited_time: "2026-08-05T12:00:00.000Z"
 page_id: "3b3c485e-f356-80b8-9b96-e5087afdafa4"
 summary: ""
-cover: "/notion-images/cooking/suantai-chao-jidan/img_f5d368de.jpeg"
+cover: "/notion-images/cooking/suantai-chao-jidan/img_f5d368de.webp"
 icon: ""
 ---
 
@@ -35,5 +35,5 @@ icon: ""
 1. 翻炒一下，临出锅锅边淋一点醋
 1. 出锅
 
-![Image](/notion-images/cooking/suantai-chao-jidan/DACBFEA4-61E4-42A1-825D-0740CDFBAA6A_3b3c485e-f356-8040-8c5c-d90492047e45.jpeg)
+![Image](/notion-images/cooking/suantai-chao-jidan/DACBFEA4-61E4-42A1-825D-0740CDFBAA6A_3b3c485e-f356-8040-8c5c-d90492047e45.webp)
 

@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-28T13:52:19.852Z"
 last_edited_time: "2026-07-28T12:42:00.000Z"
 page_id: "3abc485e-f356-808b-83e4-cc7d4bcbdd5d"
 summary: ""
-cover: "/notion-images/cooking/kele-paigu/img_a8080500.jpeg"
+cover: "/notion-images/cooking/kele-paigu/img_a8080500.webp"
 icon: ""
 ---
 
@@ -36,5 +36,5 @@ icon: ""
 1. 加入一丢丢盐，一定要少，不能影响甜口
 1. 大火收汁，出锅。排骨夹出摆盘，汤汁浇上😍
 
-![Image](/notion-images/cooking/kele-paigu/5979906F-0685-41AE-BFA4-ED7CF4344052_3abc485e-f356-80ee-a125-e9b9f3fef49d.jpeg)
+![Image](/notion-images/cooking/kele-paigu/5979906F-0685-41AE-BFA4-ED7CF4344052_3abc485e-f356-80ee-a125-e9b9f3fef49d.webp)
 

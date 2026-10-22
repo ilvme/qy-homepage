@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-19T12:35:19.269Z"
 last_edited_time: "2026-08-19T12:08:00.000Z"
 page_id: "3c1c485e-f356-801c-b7d0-e875782d7cde"
 summary: ""
-cover: "/notion-images/cooking/qingjiao-chao-jidan/img_1ab0ab92.jpeg"
+cover: "/notion-images/cooking/qingjiao-chao-jidan/img_1ab0ab92.webp"
 icon: ""
 ---
 
@@ -33,5 +33,5 @@ icon: ""
 1. 加一点点老抽，适量盐，翻炒
 1. 加入适量生抽，一丢丢蚝油，翻炒均匀出锅
 
-![Image](/notion-images/cooking/qingjiao-chao-jidan/E8674502-EAA0-47A7-8C97-D5D05AC3B4DA_3c1c485e-f356-80e7-8e74-fff05f52b6b7.jpeg)
+![Image](/notion-images/cooking/qingjiao-chao-jidan/E8674502-EAA0-47A7-8C97-D5D05AC3B4DA_3c1c485e-f356-80e7-8e74-fff05f52b6b7.webp)
 

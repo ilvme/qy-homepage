@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-22T13:39:14.151Z"
 last_edited_time: "2026-07-22T11:12:00.000Z"
 page_id: "3a5c485e-f356-80f0-ae06-db85123fce6e"
 summary: ""
-cover: "/notion-images/cooking/fanqie-feiniu-jiandan-zhushengmian/img_c3d6c0e3.jpeg"
+cover: "/notion-images/cooking/fanqie-feiniu-jiandan-zhushengmian/img_c3d6c0e3.webp"
 icon: ""
 ---
 
@@ -36,5 +36,5 @@ icon: ""
 1. 加入一丢丢生抽，一丢丢香油
 1. 出锅
 
-![Image](/notion-images/cooking/fanqie-feiniu-jiandan-zhushengmian/IMG_1333_3a5c485e-f356-80a5-bd51-f068160d6e09.jpeg)
+![Image](/notion-images/cooking/fanqie-feiniu-jiandan-zhushengmian/IMG_1333_3a5c485e-f356-80a5-bd51-f068160d6e09.webp)
 

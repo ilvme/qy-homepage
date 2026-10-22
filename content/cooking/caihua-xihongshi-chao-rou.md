@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-05T13:55:09.557Z"
 last_edited_time: "2026-08-05T12:08:00.000Z"
 page_id: "3b3c485e-f356-8043-a0fb-c44e9dc1de84"
 summary: ""
-cover: "/notion-images/cooking/caihua-xihongshi-chao-rou/img_eb541f02.jpeg"
+cover: "/notion-images/cooking/caihua-xihongshi-chao-rou/img_eb541f02.webp"
 icon: ""
 ---
 
@@ -39,5 +39,5 @@ icon: ""
 1. 加入适量盐，加入适量生抽，大火翻炒一下
 1. 临出锅，加入拍碎的大蒜，翻炒均匀即可出锅
 
-![Image](/notion-images/cooking/caihua-xihongshi-chao-rou/42C78BF3-766C-438D-96B7-E2960047B1B3_3b3c485e-f356-80ee-917a-de054e9e5ca5.jpeg)
+![Image](/notion-images/cooking/caihua-xihongshi-chao-rou/42C78BF3-766C-438D-96B7-E2960047B1B3_3b3c485e-f356-80ee-917a-de054e9e5ca5.webp)
 

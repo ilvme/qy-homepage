@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-10T12:55:49.037Z"
 last_edited_time: "2026-08-10T12:36:00.000Z"
 page_id: "3b8c485e-f356-80a8-b214-fb3bc7496f9b"
 summary: ""
-cover: "/notion-images/cooking/lajiao-chao-rou/img_09af9ffe.jpeg"
+cover: "/notion-images/cooking/lajiao-chao-rou/img_09af9ffe.webp"
 icon: ""
 ---
 
@@ -40,5 +40,5 @@ icon: ""
 
 没豆豉就用适量多一点点的老抽代替了
 
-![Image](/notion-images/cooking/lajiao-chao-rou/28575AE3-D5DC-4816-8599-862D5B4D23D1_3b8c485e-f356-8050-92f5-c93a339f4958.jpeg)
+![Image](/notion-images/cooking/lajiao-chao-rou/28575AE3-D5DC-4816-8599-862D5B4D23D1_3b8c485e-f356-8050-92f5-c93a339f4958.webp)
 

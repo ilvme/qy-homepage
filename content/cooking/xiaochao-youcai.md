@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-12T14:19:31.089Z"
 last_edited_time: "2026-08-12T13:05:00.000Z"
 page_id: "3bac485e-f356-80b3-abd3-e0b7dd36ea54"
 summary: ""
-cover: "/notion-images/cooking/xiaochao-youcai/img_ef56d5b5.jpeg"
+cover: "/notion-images/cooking/xiaochao-youcai/img_ef56d5b5.webp"
 icon: ""
 ---
 
@@ -32,5 +32,5 @@ icon: ""
 1. 加一点点生抽，一丢丢盐，一丢丢蚝油，锅边淋一点点醋
 1. 大火翻炒均匀，出锅
 
-![Image](/notion-images/cooking/xiaochao-youcai/CE6ECA03-49A4-4E8A-81FB-822B7DB295AF_3bac485e-f356-80c5-8b29-fdee834ebc77.jpeg)
+![Image](/notion-images/cooking/xiaochao-youcai/CE6ECA03-49A4-4E8A-81FB-822B7DB295AF_3bac485e-f356-80c5-8b29-fdee834ebc77.webp)
 

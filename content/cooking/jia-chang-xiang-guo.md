@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-13T05:10:41.007Z"
 last_edited_time: "2026-07-13T02:23:00.000Z"
 page_id: "38fc485e-f356-8090-baaa-c45beda8179e"
 summary: ""
-cover: "/notion-images/cooking/jia-chang-xiang-guo/img_e969fe04.jpeg"
+cover: "/notion-images/cooking/jia-chang-xiang-guo/img_e969fe04.webp"
 icon: ""
 ---
 
@@ -40,5 +40,5 @@ icon: ""
 1. 加入生抽，蒜，适量盐搅拌均匀
 1. 出锅淋点醋，撒点芝麻，按口味可选放点麻酱
 
-![Image](/notion-images/cooking/jia-chang-xiang-guo/IMG_1269_39cc485e-f356-801e-bc15-e2dc5c637fcf.jpeg)
+![Image](/notion-images/cooking/jia-chang-xiang-guo/IMG_1269_39cc485e-f356-801e-bc15-e2dc5c637fcf.webp)
 

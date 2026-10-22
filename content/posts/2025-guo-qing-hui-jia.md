@@ -29,14 +29,14 @@ icon: ""
 
 菜园中，众人努力辨识着不同的菜。有圆白菜、长白菜、豆角、黄豆、胡萝卜、香菜、白萝卜、菜花、大葱、花生…… 除了小时候的胡萝卜苗跟香菜是真的分不清，其它大抵还是认得出来。不过，我也是头回看到我们这边竟然还有种菜花的。
 
-![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80fc-a3e6-ed0e85ec52b3.png)
+![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80fc-a3e6-ed0e85ec52b3.webp)
 
 
 后媳妇儿在娘家住了一天，次日接媳妇儿回家，返家途中，决定再去费城国际充个电。 本来这次有了准备，下高速后一直保持着保电 70% 的状态，就是为了压缩仓促中充电的时间，能待在家里的日子真得很短。 这次费城这边又多了一块儿充电的地方，快充、慢充都有，果然只有强大的国家、稳定的社会才能发展如此迅速。
 
 充电时，跟媳妇儿再一旁侃天侃地，附一张电厂烟囱照片。
 
-![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80de-b44b-ebb259c98522.png)
+![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80de-b44b-ebb259c98522.webp)
 
 
 5日，去看望姥娘，年纪大了，摔了一跤，所幸状况良好，估计不出几日便可起身。 想起小时候调皮被我爹揍，爷爷奶奶护不住我，就去叫我姥娘来一起「劝架」，岁月一去不复返带走了太多东西。 临走，妗子给带了一包自家摘的核桃。
@@ -57,14 +57,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![清秋里的冶河风光](/notion-images/posts/2025-guo-qing-hui-jia/img_62402c73.png)
+![清秋里的冶河风光](/notion-images/posts/2025-guo-qing-hui-jia/img_62402c73.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![河州里吃草的牛羊](/notion-images/posts/2025-guo-qing-hui-jia/img_09b18984.png)
+![河州里吃草的牛羊](/notion-images/posts/2025-guo-qing-hui-jia/img_09b18984.webp)
 
 <br />
 
@@ -90,7 +90,7 @@ icon: ""
 
 十五的月亮十六圆，我的生日就是八月十六，历来不缺月饼吃。 这次本想从家里过个生日再走，想想从高中开始就好像就没在家里过过生日了。 奈何最近天公不作美，说是 7 号下午开始下雨。 终决定 7 日清晨返津，下午果然开始下雨……
 
-![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80f1-b6fb-e7c6c6d3f794.png)
+![Image](/notion-images/posts/2025-guo-qing-hui-jia/image_38dc485e-f356-80f1-b6fb-e7c6c6d3f794.webp)
 
 
 ---

@@ -18,7 +18,7 @@ icon: ""
 
 没胆子挑战十月一当天的高速，提前一天请假返乡。早上六点半出发，九点半就到家了，走的京港澳，高速的车并不多。家乡的连山，看到连山说明快到家了。
 
-![家乡的连山](/notion-images/posts/2026-guo-qing-hui-jia/7ed32622728c930306bffe36dca5ae15_3f7c485e-f356-8002-b4a5-ea19909cd2f5.jpg)
+![家乡的连山](/notion-images/posts/2026-guo-qing-hui-jia/7ed32622728c930306bffe36dca5ae15_3f7c485e-f356-8002-b4a5-ea19909cd2f5.webp)
 
 
 ##  **第一天，9.30，大扫除** 
@@ -29,14 +29,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_c29a02fb.jpg)
+![荒凉三个月的院落](/notion-images/posts/2026-guo-qing-hui-jia/img_c29a02fb.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_3ac5782b.jpg)
+![给娃看结婚时遗留的喜庆](/notion-images/posts/2026-guo-qing-hui-jia/img_3ac5782b.webp)
 
 <br />
 
@@ -102,7 +102,7 @@ icon: ""
 
 回程弟弟的电动车没电了，好在一路下坡，顺利回来。我的腿上、胳膊上搞了一堆的小伤口。
 
-![半山坡上三人的合影](/notion-images/posts/2026-guo-qing-hui-jia/4d28bfc8abe5cf617f3d62bb025a22f9_3f7c485e-f356-80fe-8264-cc6e32b976a0.jpg)
+![半山坡上三人的合影](/notion-images/posts/2026-guo-qing-hui-jia/4d28bfc8abe5cf617f3d62bb025a22f9_3f7c485e-f356-80fe-8264-cc6e32b976a0.webp)
 
 
 大伯是个建筑大工，啥都会干。大伯更是个行动派，今天就开始改自家台阶了。
@@ -139,7 +139,7 @@ icon: ""
 
 中午我负责做饭，弟弟打下手，炒了几个小菜。吃完饭去接媳妇儿回来，给带了一大堆东西。
 
-![塞满后备箱的爱](/notion-images/posts/2026-guo-qing-hui-jia/5cb038bcf0329c8034cba5deb828564f_3f7c485e-f356-8068-8609-e4e76a8240a4.jpg)
+![塞满后备箱的爱](/notion-images/posts/2026-guo-qing-hui-jia/5cb038bcf0329c8034cba5deb828564f_3f7c485e-f356-8068-8609-e4e76a8240a4.webp)
 
 
 下午我、媳妇儿、弟弟去城里采购瓜子糖等物资。没开车，两个电摩。弟弟去健身了，我和媳妇儿在秀水公园逛了逛，回忆起高中第一次约会就在此地，十多年过去了，人是物非…
@@ -147,14 +147,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_476d98ea.jpg)
+![冶河怡情 1](/notion-images/posts/2026-guo-qing-hui-jia/img_476d98ea.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_5bab6118.jpg)
+![冶河怡情 2](/notion-images/posts/2026-guo-qing-hui-jia/img_5bab6118.webp)
 
 <br />
 
@@ -172,7 +172,7 @@ icon: ""
 
 终于到了这次回家的重头戏，娃的百天宴，附萌娃照一张。
 
-![家有萌娃](/notion-images/posts/2026-guo-qing-hui-jia/4a0f5bceb7ea980b8094c93885fb9f76_3f7c485e-f356-80d0-98b6-f800615bdbf2.jpg)
+![家有萌娃](/notion-images/posts/2026-guo-qing-hui-jia/4a0f5bceb7ea980b8094c93885fb9f76_3f7c485e-f356-80d0-98b6-f800615bdbf2.webp)
 
 
 早上八点和父亲去桥头超市买饮料和啤酒。六桶可乐、六桶雪碧、三箱啤酒，还有一大包橘子和一大捆香蕉。

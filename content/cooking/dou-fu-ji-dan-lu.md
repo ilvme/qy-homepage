@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-13T16:27:00.704Z"
 last_edited_time: "2026-07-13T14:55:00.000Z"
 page_id: "39cc485e-f356-80c3-a332-c71d25155420"
 summary: ""
-cover: "/notion-images/cooking/dou-fu-ji-dan-lu/img_d01d377a.jpeg"
+cover: "/notion-images/cooking/dou-fu-ji-dan-lu/img_d01d377a.webp"
 icon: ""
 ---
 
@@ -45,5 +45,5 @@ icon: ""
 
 加入耗油，生抽，一丢丢香油，出锅！
 
-![Image](/notion-images/cooking/dou-fu-ji-dan-lu/IMG_1272_39cc485e-f356-8084-9efa-fd5554c3bd38.jpeg)
+![Image](/notion-images/cooking/dou-fu-ji-dan-lu/IMG_1272_39cc485e-f356-8084-9efa-fd5554c3bd38.webp)
 

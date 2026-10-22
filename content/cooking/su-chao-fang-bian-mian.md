@@ -10,7 +10,7 @@ last_fetched_time: "2026-07-10T07:24:32.080Z"
 last_edited_time: "2026-06-28T14:40:00.000Z"
 page_id: "38dc485e-f356-80ab-aef9-fd8837ccb8cc"
 summary: ""
-cover: "/notion-images/cooking/su-chao-fang-bian-mian/img_cbf4e25f.jpeg"
+cover: "/notion-images/cooking/su-chao-fang-bian-mian/img_cbf4e25f.webp"
 icon: ""
 ---
 
@@ -34,5 +34,5 @@ icon: ""
 ## 成品
 
 
-![Image](/notion-images/cooking/su-chao-fang-bian-mian/su-chao-fang-bian-mian_38dc485e-f356-800a-bc1a-e5ffb87b8d66.jpeg)
+![Image](/notion-images/cooking/su-chao-fang-bian-mian/su-chao-fang-bian-mian_38dc485e-f356-800a-bc1a-e5ffb87b8d66.webp)
 

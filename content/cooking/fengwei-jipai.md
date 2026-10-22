@@ -10,7 +10,7 @@ last_fetched_time: "2026-08-12T12:56:37.862Z"
 last_edited_time: "2026-08-12T12:46:00.000Z"
 page_id: "3bac485e-f356-80b5-b5b6-ce92356d5e27"
 summary: ""
-cover: "/notion-images/cooking/fengwei-jipai/img_8ab2d967.jpeg"
+cover: "/notion-images/cooking/fengwei-jipai/img_8ab2d967.webp"
 icon: ""
 ---
 
@@ -36,7 +36,7 @@ icon: ""
 1. 倒入少量小苏打，抓匀，腌制十五分钟左右。然后洗干净，一定要洗干净
 1. 把鸡胸肉片放到案板上，用刀背嘎嘎来几下，然后厨房纸吸一下表面水分
 
-![Image](/notion-images/cooking/fengwei-jipai/B6F2B7E4-093F-422A-9247-4DC99E1BCEF9_3bac485e-f356-802b-9c1a-f471693bfbaa.jpeg)
+![Image](/notion-images/cooking/fengwei-jipai/B6F2B7E4-093F-422A-9247-4DC99E1BCEF9_3bac485e-f356-802b-9c1a-f471693bfbaa.webp)
 
 <br />
 
@@ -47,5 +47,5 @@ icon: ""
 1. 用锅铲直接在锅里就切成小条，也可以不切保留整块，注重颜值的可以出锅后用刀切
 1. 整好出锅装盘儿，汁儿浇在鸡排上
 
-![Image](/notion-images/cooking/fengwei-jipai/5036525B-8412-46CC-87A8-08DCA7D4D9DC_3bac485e-f356-806a-b2de-dffca4e71f45.jpeg)
+![Image](/notion-images/cooking/fengwei-jipai/5036525B-8412-46CC-87A8-08DCA7D4D9DC_3bac485e-f356-806a-b2de-dffca4e71f45.webp)
 

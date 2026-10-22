@@ -21,7 +21,7 @@ icon: ""
 
 关于生活，其实 IPhone 图库搜索页的截图基本就囊括了。
 
-![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-8049-9799-ddfdc9a9d4f9.png)
+![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-8049-9799-ddfdc9a9d4f9.webp)
 
 
 猫
@@ -31,14 +31,14 @@ icon: ""
 <Columns cols={2}>
 <Column>
 
-![Image](/notion-images/posts/2024-summary/img_40c9d145.png)
+![Image](/notion-images/posts/2024-summary/img_40c9d145.webp)
 
 <br />
 
 </Column>
 <Column>
 
-![颜值巅峰？？？](/notion-images/posts/2024-summary/img_d82d8252.png)
+![颜值巅峰？？？](/notion-images/posts/2024-summary/img_d82d8252.webp)
 
 <br />
 
@@ -50,7 +50,7 @@ icon: ""
 
 今年在购物上收敛许多，买了个九阳豆浆机 238￥。在媳妇儿同意下入手了京东京造 JZ990V2茶轴机械键盘 359￥。买了大学格外喜欢的同款杯子 30￥。其余除了婚事相关的，打开拼多多，就是猫砂猫条猫草棒。。。打开京东，就是猫粮猫粮猫粮。。。
 
-![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-8061-ad7b-d605951f6515.png)
+![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-8061-ad7b-d605951f6515.webp)
 
 
 上半年懒懒散散，平平庸庸的我，下半年仿佛按下了人生加速键。
@@ -63,12 +63,12 @@ icon: ""
 
 25 年元旦开始请假，直到 1.20「元旦一天 + 年假 2 天 + 婚假 10 天 + 周末 6 天= 19 天」。期间经历了人生大事——结婚。从高中到现在，从校服到婚纱，这是一场胜利的爱情长跑。后去云南度假，后面会写一篇游记。
 
-![订婚时抓拍](/notion-images/posts/2024-summary/image_1bbc485e-f356-805a-ab51-ef4f7ebd26d9.png)
+![订婚时抓拍](/notion-images/posts/2024-summary/image_1bbc485e-f356-805a-ab51-ef4f7ebd26d9.webp)
 
 
 十一月买车，秦 L 12.98 次顶配款，外青内灰，与同事 T 一模一样 😆。离元旦俩月不到的时间有空就练车，只为元旦开车回家。期间回了趟滨海，打卡了她之前工作的地方东海路附近，也就是地铁 9 号线的终点站。又到我之前工作的地方转了转，20 年离开时还在建设中的吾悦广场竟人满为患！以至于一直到便利蜂附近才找到停车位，想起 19 年毕业到这边工作时，园区外围都是围起来的土地，不禁唏嘘，发展得真快。现在想起，当时应该去奥特莱斯转一圈的，毕竟我摆脱衣服贫乏是从那里开始的。 我开车冒失，出了两次险 。第一次是去 4S 店贴膜途径黑牛城道，我在最左测车道行驶，前边有追尾事故，然后跟着车流陆续向右变道。不知当时是脑子为啥空了，也不看是否有变道条件，即使后视镜上三角变道提示灯一直在闪着也被无视。撞死了直行车辆，喜提全责。还有撞了也没有第一时间刹车，俩车门被划了，对方车只是左车头掉了点漆 🥲。然后，然后就被动熟悉了撞车后找交警、定责任、走保险的流程 😅。第二次是下班去接媳妇儿，等红绿灯时被追尾了，对方全责。这次就显得稀松平常了，走流程、去修车。
 
-![Image](/notion-images/posts/2024-summary/3f27c34c-3f74-48ee-add0-7a448fc01951_1bbc485e-f356-802e-aa3d-c18dc06ae5fb.png)
+![Image](/notion-images/posts/2024-summary/3f27c34c-3f74-48ee-add0-7a448fc01951_1bbc485e-f356-802e-aa3d-c18dc06ae5fb.webp)
 
 
 ### 文娱
@@ -91,7 +91,7 @@ icon: ""
 
 如此长久下去，不知哪天但肯定有那么一天，真得可以做到披头散发奔向深山老林。
 
-![公司楼下的山楂树山楂，秋日某天下楼遛弯所拍](/notion-images/posts/2024-summary/image_1bbc485e-f356-8088-8f39-e0918c2d4b3f.png)
+![公司楼下的山楂树山楂，秋日某天下楼遛弯所拍](/notion-images/posts/2024-summary/image_1bbc485e-f356-8088-8f39-e0918c2d4b3f.webp)
 
 
 ### 技术 & 产出
@@ -103,7 +103,7 @@ icon: ""
 
 2024 年发了五条朋友圈，三条关于猫，剩下两条一条是订婚，一条是结婚。
 
-![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-802f-a072-d826f412e5de.png)
+![Image](/notion-images/posts/2024-summary/image_1bbc485e-f356-802f-a072-d826f412e5de.webp)
 
 
 ### 总结 & 后续

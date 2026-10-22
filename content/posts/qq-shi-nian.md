@@ -16,7 +16,7 @@ icon: ""
 
 
 
-![Image](/notion-images/posts/qq-shi-nian/image_38bc485e-f356-808a-8a1d-dfe6da31b7fc.png)
+![Image](/notion-images/posts/qq-shi-nian/image_38bc485e-f356-808a-8a1d-dfe6da31b7fc.webp)
 
 
 > 这是一篇长文，长到我要用近10年光阴去完成。2019-10-11
