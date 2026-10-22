@@ -4,6 +4,7 @@ import fs from 'fs';
 import { NotionConverter } from 'notion-to-md';
 import { MDXRenderer } from 'notion-to-md/plugins/renderer';
 import path from 'path';
+import sharp from 'sharp';
 
 /** 带指数退避重试的 fetch，最多重试 3 次 */
 export async function fetchWithRetry(
@@ -18,7 +19,7 @@ export async function fetchWithRetry(
       // 4xx 客户端错误不重试
       if (res.ok || (res.status >= 400 && res.status < 500)) return res;
       if (i < retries) {
-        const delay = Math.pow(2, i) * 1000;
+        const delay = 2 ** i * 1000;
         console.warn(
           `  ⚠ HTTP ${res.status}, retrying in ${delay}ms (${i + 1}/${retries})`,
         );
@@ -29,7 +30,7 @@ export async function fetchWithRetry(
     } catch (err) {
       lastError = err;
       if (i < retries) {
-        const delay = Math.pow(2, i) * 1000;
+        const delay = 2 ** i * 1000;
         console.warn(
           `  ⚠ fetch error, retrying in ${delay}ms (${i + 1}/${retries}): ${err}`,
         );
@@ -47,7 +48,7 @@ export interface ConverterConfig {
   mediaUrlPath: string;
 }
 
-/** 下载图片到本地，返回本地相对 URL 路径 */
+/** 下载图片到本地并压缩为 webp，返回本地相对 URL 路径 */
 export async function downloadImage(
   url: string,
   outputDir: string,
@@ -61,7 +62,7 @@ export async function downloadImage(
   const hash = crypto.createHash('md5').update(url).digest('hex').slice(0, 8);
   const name = `img_${hash}`;
   const ext = url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'png';
-  const fileName = `${name}.${ext}`;
+  const fileName = `${name}.webp`;
   const filePath = path.join(outputDir, fileName);
 
   if (fs.existsSync(filePath)) return `${urlPath}/${fileName}`;
@@ -70,7 +71,28 @@ export async function downloadImage(
     const res = await fetchWithRetry(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
-    fs.writeFileSync(filePath, buf);
+
+    // 压缩：最长边 1600、质量 80、转 webp；SVG/GIF 原样保留（webp 会破坏动图/矢量）
+    let outBuf: Buffer = buf;
+    if (ext !== 'svg' && ext !== 'gif') {
+      outBuf = await sharp(buf)
+        .rotate() // 按 EXIF 方向校正
+        .resize({
+          width: 1600,
+          height: 1600,
+          fit: 'inside',
+          withoutEnlargement: true,
+        })
+        .webp({ quality: 80 })
+        .toBuffer();
+    } else {
+      // 非 webp 输出的格式原样写盘（SVG/GIF 保持原扩展名）
+      const fallbackName = `${name}.${ext}`;
+      fs.writeFileSync(path.join(outputDir, fallbackName), buf);
+      return `${urlPath}/${fallbackName}`;
+    }
+
+    fs.writeFileSync(filePath, outBuf);
     return `${urlPath}/${fileName}`;
   } catch {
     return url; // 下载失败保持原 URL
@@ -209,13 +231,10 @@ export async function convertPageToMarkdown(
     );
 
     // 保留多个空行
-    content = content.replace(
-      /\n\n(\n+)/g,
-      (_, extras: string) => {
-        const brCount = Math.floor(extras.length / 2);
-        return '\n\n' + '<br />\n'.repeat(brCount) + '\n';
-      },
-    );
+    content = content.replace(/\n\n(\n+)/g, (_, extras: string) => {
+      const brCount = Math.floor(extras.length / 2);
+      return '\n\n' + '<br />\n'.repeat(brCount) + '\n';
+    });
 
     return content;
   } catch (error) {
