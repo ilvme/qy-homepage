@@ -3,7 +3,7 @@ import { getAllPosts } from '@/libs/content-loader';
 import { parseDate } from '@/libs/content-supports';
 import { getAllWords } from '@/libs/words-loader';
 
-const FEED_LIMIT = 6;
+const FEED_LIMIT = 4;
 const EXCERPT_MAX = 60;
 
 interface FeedItem {
@@ -64,13 +64,7 @@ export default async function HomeFeed() {
       {items.map((item) => (
         <li key={item.key}>
           <Link href={item.href} className="group flex items-center gap-2 py-2">
-            <span
-              className={`shrink-0 rounded-full px-2 py-0.5 text-xs ${
-                item.kind === 'post'
-                  ? 'bg-brand/10 text-brand'
-                  : 'bg-muted text-secondary'
-              }`}
-            >
+            <span className="shrink-0 text-xs text-muted-foreground">
               {item.kind === 'post' ? '文章' : '说说'}
             </span>
             <span className="min-w-0 flex-1 truncate text-sm text-foreground transition-colors group-hover:text-brand">

@@ -27,12 +27,6 @@ export default async function Home() {
       <section className="space-y-4">
         <div className="flex items-baseline justify-between gap-4">
           <h2 className="text-lg font-medium">最近更新</h2>
-          <Link
-            href="/posts"
-            className="text-sm text-secondary transition-colors hover:text-brand"
-          >
-            全部文章
-          </Link>
         </div>
         <HomeFeed />
       </section>
