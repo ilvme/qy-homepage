@@ -9,6 +9,7 @@ import {
 } from '@/components/icons';
 import { siteConfig } from '@/site.config';
 import HomeFeed from './_components/HomeFeed';
+import {Users} from "lucide-react";
 
 export default async function Home() {
   return (
@@ -65,6 +66,12 @@ export default async function Home() {
               label: '分享',
               desc: '语录与感悟',
               Icon: Share,
+            },
+            {
+              href: '/friends',
+              label: '友链',
+              desc: '一些朋友',
+              Icon: Users,
             },
             {
               href: '/about',
