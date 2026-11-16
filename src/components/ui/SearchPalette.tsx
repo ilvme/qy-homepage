@@ -231,7 +231,7 @@ export default function SearchPalette({
             onKeyDown={handleKeyDown}
             placeholder="搜索文章…"
             aria-label="搜索文章"
-            className="flex-1 bg-transparent py-3.5 text-base outline-none placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent py-3.5 text-base outline-none placeholder:text-placeholder"
           />
           <kbd className="shrink-0 rounded border border-border bg-muted px-1.5 py-0.5 text-xs text-secondary">
             ESC
@@ -255,7 +255,7 @@ export default function SearchPalette({
           ) : (
             <>
               {!q && (
-                <div className="px-3 pb-1 pt-2 text-xs text-muted-foreground">
+                <div className="px-3 pb-1 pt-2 text-xs text-secondary">
                   最近文章
                 </div>
               )}
@@ -286,7 +286,7 @@ export default function SearchPalette({
         </div>
 
         {/* 底部提示 */}
-        <div className="flex shrink-0 items-center justify-between border-t border-border px-4 py-2 text-xs text-muted-foreground">
+        <div className="flex shrink-0 items-center justify-between border-t border-border px-4 py-2 text-xs text-secondary">
           <span>↑↓ 选择 · Enter 打开 · Esc 关闭</span>
           <span>共 {total} 篇</span>
         </div>

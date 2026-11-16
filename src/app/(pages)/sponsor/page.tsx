@@ -19,7 +19,7 @@ export default function SponsorPage() {
           className="w-full rounded-xl border border-border"
           priority
         />
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-secondary">
           打开微信扫一扫，识别赞赏码
         </p>
       </div>

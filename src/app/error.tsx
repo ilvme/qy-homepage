@@ -16,7 +16,7 @@ export default function RouteError({
 
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
-      <p className="text-8xl font-bold text-muted-foreground/30">500</p>
+      <p className="text-8xl font-bold text-secondary/30">500</p>
       <h1 className="mt-6 text-2xl font-medium tracking-normal">页面出错了</h1>
       <p className="mt-2 text-secondary text-sm max-w-sm leading-relaxed">
         渲染这个页面时发生了异常。可以重试一次，或者先回首页逛逛。

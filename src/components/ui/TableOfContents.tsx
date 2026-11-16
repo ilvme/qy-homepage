@@ -61,7 +61,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
       {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，紧贴 gap 排列 */}
       <div className="hidden xl:block xl:sticky xl:top-20 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
-          <div className="text-sm font-semibold text-muted-foreground uppercase mb-2 px-2">
+          <div className="text-sm font-semibold text-secondary uppercase mb-2 px-2">
             目录
           </div>
           {headings.map((heading) => (
@@ -77,7 +77,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
               } ${
                 activeId === heading.id
                   ? 'text-foreground font-medium'
-                  : 'text-muted-foreground hover:text-foreground'
+                  : 'text-secondary hover:text-foreground'
               }`}
             >
               {heading.text}
@@ -114,7 +114,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                   } ${
                     activeId === heading.id
                       ? 'text-foreground font-medium'
-                      : 'text-muted-foreground hover:text-foreground'
+                      : 'text-secondary hover:text-foreground'
                   }`}
                 >
                   {heading.text}

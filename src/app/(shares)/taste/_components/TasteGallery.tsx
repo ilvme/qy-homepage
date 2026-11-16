@@ -28,7 +28,7 @@ export function TasteGallery({ items }: TasteGalleryProps) {
                 referrerPolicy="no-referrer"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">
+              <div className="w-full h-full flex items-center justify-center text-secondary text-xs">
                 暂无图片
               </div>
             )}

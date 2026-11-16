@@ -59,7 +59,7 @@ export default async function AwakenPage() {
           <article className="relative px-4 py-8 sm:px-8 sm:py-10 rounded-lg bg-muted/30">
             {/* 装饰引号 */}
             <span
-              className="absolute top-4 left-4 sm:top-5 sm:left-6 text-7xl text-muted-foreground/8 leading-none select-none"
+              className="absolute top-4 left-4 sm:top-5 sm:left-6 text-7xl text-secondary/8 leading-none select-none"
               aria-hidden
             >
               “
@@ -85,11 +85,11 @@ export default async function AwakenPage() {
                   href={`/awaken/${randomItem.title}`}
                   className="inline-block group"
                 >
-                  <span className="text-sm font-semibold text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-colors">
+                  <span className="text-sm font-semibold text-foreground group-hover:underline underline-offset-4 transition-colors">
                     {randomItem.title}
                   </span>
                 </Link>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-secondary">
                   {randomItem.author && <span>{randomItem.author}</span>}
                   {randomItem.category && <span>· {randomItem.category}</span>}
                 </div>
@@ -98,7 +98,7 @@ export default async function AwakenPage() {
                     {randomItem.tags.map((tag: string) => (
                       <span
                         key={tag}
-                        className="text-xs text-muted-foreground/40"
+                        className="text-xs text-secondary/40"
                       >
                         #{tag}
                       </span>

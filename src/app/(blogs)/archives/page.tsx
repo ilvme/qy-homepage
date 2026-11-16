@@ -63,7 +63,7 @@ export default async function Archives() {
       {/* 分类 + 标签聚合区 */}
       <div className="mt-2 mb-10 space-y-5">
         <div>
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase mb-2">
+          <h4 className="text-sm font-semibold text-secondary uppercase mb-2">
             分类
           </h4>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
@@ -86,7 +86,7 @@ export default async function Archives() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase mb-2">
+          <h4 className="text-sm font-semibold text-secondary uppercase mb-2">
             标签
           </h4>
           <TagCloud tags={tags} basePath="/tags" />

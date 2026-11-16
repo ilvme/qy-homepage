@@ -114,7 +114,7 @@ export default async function DailyWordsPage({
             key={`${currentPage}-${i + ''}`}
             className="border border-border rounded-lg px-4 py-3 bg-card"
           >
-            <time className="text-xs text-muted-foreground block mb-1.5">
+            <time className="text-xs text-secondary block mb-1.5">
               {word.date}
             </time>
             <p className="text-sm leading-relaxed whitespace-pre-wrap">

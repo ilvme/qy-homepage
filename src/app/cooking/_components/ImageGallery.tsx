@@ -28,17 +28,17 @@ export function ImageGallery({ items, baseUrl }: ImageGalleryProps) {
                 loading="lazy"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">
+              <div className="w-full h-full flex items-center justify-center text-secondary text-xs">
                 暂无图片
               </div>
             )}
           </div>
           <div className="px-2.5 py-2">
-            <span className="font-bold text-sm group-hover:text-foreground transition-colors">
+            <span className="font-bold text-sm transition-colors">
               {item.title}
             </span>
             {item.date && (
-              <span className="text-xs text-muted-foreground block mt-0.5">
+              <span className="text-xs text-secondary block mt-0.5">
                 {new Date(item.date).toLocaleDateString('zh-CN')}
               </span>
             )}

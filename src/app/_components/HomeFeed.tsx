@@ -64,15 +64,15 @@ export default async function HomeFeed() {
       {items.map((item) => (
         <li key={item.key}>
           <Link href={item.href} className="group flex items-center gap-2 py-2">
-            <span className="shrink-0 text-xs text-muted-foreground">
+            <span className="shrink-0 text-xs text-secondary">
               {item.kind === 'post' ? '文章' : '说说'}
             </span>
-            <span className="min-w-0 flex-1 truncate text-sm text-foreground">
+            <span className="min-w-0 flex-1 truncate text-sm text-foreground group-hover:underline underline-offset-4 transition-colors">
               {item.title}
             </span>
             <time
               dateTime={item.date}
-              className="shrink-0 text-xs text-muted-foreground tabular-nums"
+              className="shrink-0 text-xs text-secondary tabular-nums"
             >
               {item.date.slice(5, 10)}
             </time>

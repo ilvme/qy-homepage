@@ -14,7 +14,7 @@ export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
   return (
     <article className="py-5">
       <Link href={`/awaken/${title}`} className="block space-y-2 group">
-        <h2 className="font-semibold text-lg xl:text-xl group-hover:text-foreground group-hover:underline underline-offset-4 transition-colors">
+        <h2 className="font-semibold text-lg xl:text-xl group-hover:underline underline-offset-4 transition-colors">
           {title}
         </h2>
       </Link>
@@ -27,7 +27,7 @@ export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
 
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs text-secondary">
         {item.author && (
-          <span className="text-muted-foreground">— {item.author}</span>
+          <span className="text-secondary">— {item.author}</span>
         )}
         {item.date && (
           <time dateTime={item.date}>
@@ -35,7 +35,7 @@ export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
           </time>
         )}
         {item.category && (
-          <span className="text-muted-foreground">{item.category}</span>
+          <span className="text-secondary">{item.category}</span>
         )}
       </div>
     </article>

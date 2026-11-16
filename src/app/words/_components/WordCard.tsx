@@ -42,7 +42,7 @@ export default async function WordCard({ post }: WordCardProps) {
       <section className="flex items-center flex-wrap justify-between gap-y-2 text-secondary">
         <div className="flex items-center gap-x-4 flex-wrap gap-y-2">
           <time dateTime={dateStr} className="flex items-center gap-2">
-            <Calendar size={14} className="shrink-0 text-muted-foreground" />
+            <Calendar size={14} className="shrink-0 text-secondary" />
             <span className="font-medium">{displayDate}</span>
           </time>
           {post.postMeta.tags?.length > 0 && (

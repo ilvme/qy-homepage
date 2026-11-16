@@ -20,7 +20,7 @@ export default function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+      className="inline-flex items-center gap-1.5 text-xs text-secondary/60 hover:text-secondary transition-colors"
     >
       {copied ? (
         <Check size={14} />
