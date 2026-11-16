@@ -36,7 +36,7 @@ export default async function ShuoShuo({
           <a
             href="/words/rss.xml"
             title="RSS 订阅"
-            className="inline-flex p-1.5 text-secondary hover:text-brand transition-colors"
+            className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
           >
             <Rss size={16} />
           </a>

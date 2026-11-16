@@ -83,10 +83,10 @@ export default async function Home() {
             <Link
               key={item.href}
               href={item.href}
-              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-brand/40 hover:bg-muted/60 transition-all duration-200 group"
+              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-foreground/40 hover:bg-muted/60 transition-all duration-200 group"
             >
-              <h3 className="font-medium group-hover:text-brand transition-colors flex items-center gap-1.5">
-                <item.Icon size={15} className="shrink-0 text-brand" />
+              <h3 className="font-medium group-hover:text-foreground transition-colors flex items-center gap-1.5">
+                <item.Icon size={15} className="shrink-0" />
                 {item.label}
               </h3>
               <p className="text-xs text-secondary mt-1">{item.desc}</p>

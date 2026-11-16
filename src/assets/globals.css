@@ -14,15 +14,7 @@
   --card: #ffffff;
   --card-foreground: #1c1917;
   --accent: #d6d3d1;
-  --brand: var(--foreground);
 }
-
-/* 主题色覆盖：跟随 html[data-accent] 属性切换 */
-[data-accent="cinnabar"] { --brand: #b8463e; }
-[data-accent="celadon"]  { --brand: #4a7c5a; }
-[data-accent="indigo"]   { --brand: #3d5a80; }
-[data-accent="ochre"]    { --brand: #a8632e; }
-[data-accent="ink"]      { --brand: var(--foreground); }
 
 .dark {
   --background: #131313;
@@ -34,42 +26,11 @@
   --card: #1c1917;
   --card-foreground: #e7e5e4;
   --accent: #44403c;
-  --brand: var(--foreground);
 }
 
-/* 暗色下的主题色覆盖 */
-.dark[data-accent="cinnabar"] { --brand: #d9706a; }
-.dark[data-accent="celadon"]  { --brand: #7ab896; }
-.dark[data-accent="indigo"]   { --brand: #7da3cc; }
-.dark[data-accent="ochre"]    { --brand: #d4a373; }
-.dark[data-accent="ink"]      { --brand: var(--foreground); }
-
-/* 文本选中色：跟随主题色（玄墨时退化为前景色的柔和选中） */
+/* 文本选中色 */
 ::selection {
-  background: color-mix(in srgb, var(--brand) 22%, transparent);
-}
-
-/* 主题色切换的全局颜色过渡：由 accent.ts 在切换瞬间挂载，结束后移除，
-   避免常驻 transition 干扰常规 hover 过渡节奏 */
-html.accent-transitioning,
-html.accent-transitioning *,
-html.accent-transitioning *::before,
-html.accent-transitioning *::after {
-  transition:
-    color 0.4s ease,
-    background-color 0.4s ease,
-    border-color 0.4s ease,
-    fill 0.4s ease,
-    stroke 0.4s ease,
-    text-decoration-color 0.4s ease !important;
-}
-
-/* 主题色涟漪：关闭默认交叉淡入，由 JS 对 ::view-transition-new(root)
-   做 clip-path 圆形扩散；不支持 View Transitions 的浏览器自动跳过 */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  background: color-mix(in srgb, var(--foreground) 18%, transparent);
 }
 
 @theme inline {
@@ -82,7 +43,6 @@ html.accent-transitioning *::after {
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
-  --color-brand: var(--brand);
   --font-sans: "LXGW WenKai Screen", system-ui, -apple-system, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
@@ -215,13 +175,15 @@ body {
 
 /* 链接 */
 .prose a {
-  color: var(--brand);
-  text-decoration: none;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--foreground) 40%, transparent);
+  text-underline-offset: 3px;
   transition: text-decoration-color 0.15s;
 }
 
 .prose a:hover {
-  text-decoration: underline;
+  text-decoration-color: var(--foreground);
 }
 
 /* 图片 */
@@ -283,7 +245,7 @@ body {
 
 /* 引用块 — Notion callout 风格 */
 .prose blockquote {
-  border-left: 3px solid var(--brand);
+  border-left: 3px solid var(--foreground);
   background: var(--muted);
   border-radius: 0 0.375rem 0.375rem 0;
   padding: 0.75rem 1rem;

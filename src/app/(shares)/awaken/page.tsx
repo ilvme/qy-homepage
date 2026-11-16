@@ -37,7 +37,7 @@ export default async function AwakenPage() {
     <div className="py-8">
       <Link
         href="/awaken/all"
-        className="text-sm text-foreground font-medium hover:text-brand hover:underline underline-offset-4 transition-colors"
+        className="text-sm text-foreground font-medium hover:text-foreground hover:underline underline-offset-4 transition-colors"
       >
         查看全部（{items.length}）
       </Link>
@@ -85,7 +85,7 @@ export default async function AwakenPage() {
                   href={`/awaken/${randomItem.title}`}
                   className="inline-block group"
                 >
-                  <span className="text-sm font-semibold text-foreground group-hover:text-brand group-hover:underline underline-offset-4 transition-colors">
+                  <span className="text-sm font-semibold text-foreground group-hover:text-foreground group-hover:underline underline-offset-4 transition-colors">
                     {randomItem.title}
                   </span>
                 </Link>

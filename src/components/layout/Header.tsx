@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Close, Menu, Search } from '@/components/icons';
-import AccentToggle from '@/components/ui/AccentToggle';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import SearchPalette from '@/components/ui/SearchPalette';
 import { siteConfig } from '@/site.config';
 import { isActiveNav } from './nav-active';
@@ -49,7 +49,7 @@ export default function Header() {
             type="button"
             aria-label="搜索文章（⌘K）"
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 transition-colors text-secondary hover:text-brand"
+            className="p-1.5 transition-colors text-secondary hover:text-foreground"
           >
             <Search size={18} />
           </button>
@@ -62,15 +62,15 @@ export default function Header() {
                   href={link.href}
                   className={`px-2 py-1 transition-colors underline-offset-4 hover:underline ${
                     isActiveNav(link.href, pathname)
-                      ? 'text-brand font-medium'
-                      : 'text-secondary hover:text-brand'
+                      ? 'text-foreground font-medium'
+                      : 'text-secondary hover:text-foreground'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
           </nav>
-          <AccentToggle />
+          <ThemeToggle />
         </div>
 
         {/* 移动端：搜索 + 汉堡按钮 */}
@@ -79,7 +79,7 @@ export default function Header() {
             type="button"
             aria-label="搜索文章"
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 transition-colors text-secondary hover:text-brand"
+            className="p-1.5 transition-colors text-secondary hover:text-foreground"
           >
             <Search size={20} />
           </button>
@@ -107,8 +107,8 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className={`py-2.5 px-2 transition-colors text-sm underline-offset-4 hover:underline ${
                     isActiveNav(link.href, pathname)
-                      ? 'text-brand font-medium'
-                      : 'text-secondary hover:text-brand'
+                      ? 'text-foreground font-medium'
+                      : 'text-secondary hover:text-foreground'
                   }`}
                 >
                   {link.label}
@@ -116,7 +116,7 @@ export default function Header() {
               ))}
           </div>
           <div className="flex items-center gap-3 px-4 py-2">
-            <AccentToggle />
+            <ThemeToggle />
           </div>
         </nav>
       )}

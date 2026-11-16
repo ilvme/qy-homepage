@@ -13,7 +13,7 @@ export default function PostItemLite({
       </time>
       <Link
         href={`/posts/${postMetadata.slug}`}
-        className="text-base font-medium truncate hover:text-brand hover:underline underline-offset-4 transition-colors"
+        className="text-base font-medium truncate hover:text-foreground hover:underline underline-offset-4 transition-colors"
       >
         {postMetadata.title}
       </Link>

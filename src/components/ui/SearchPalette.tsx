@@ -96,7 +96,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
         // biome-ignore lint/suspicious/noArrayIndexKey: 纯展示的分片静态列表，无重排风险
         <span key={i}>
           {i > 0 && (
-            <mark className="bg-transparent text-brand font-medium">{q}</mark>
+            <mark className="bg-transparent text-foreground font-medium">{q}</mark>
           )}
           {part}
         </span>

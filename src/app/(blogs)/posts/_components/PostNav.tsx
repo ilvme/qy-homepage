@@ -17,7 +17,7 @@ export default function PostNav({ prev, next }: PostNavProps) {
   if (!prev && !next) return null;
 
   const linkCls =
-    'text-base font-medium underline-offset-4 hover:text-brand hover:underline transition-colors';
+    'text-base font-medium underline-offset-4 hover:text-foreground hover:underline transition-colors';
 
   return (
     <nav

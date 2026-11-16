@@ -67,7 +67,7 @@ export default async function HomeFeed() {
             <span className="shrink-0 text-xs text-muted-foreground">
               {item.kind === 'post' ? '文章' : '说说'}
             </span>
-            <span className="min-w-0 flex-1 truncate text-sm text-foreground transition-colors group-hover:text-brand">
+            <span className="min-w-0 flex-1 truncate text-sm text-foreground transition-colors group-hover:text-foreground">
               {item.title}
             </span>
             <time
