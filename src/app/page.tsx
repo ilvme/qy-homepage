@@ -6,10 +6,10 @@ import {
   Message,
   Share,
   User,
+  Users,
 } from '@/components/icons';
 import { siteConfig } from '@/site.config';
 import HomeFeed from './_components/HomeFeed';
-import {Users} from "lucide-react";
 
 export default async function Home() {
   return (

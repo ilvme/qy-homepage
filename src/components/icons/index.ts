@@ -25,5 +25,6 @@ export {
   Soup as Cooking,
   Sun,
   User,
+  Users,
   X as Close,
 } from 'lucide-react';
