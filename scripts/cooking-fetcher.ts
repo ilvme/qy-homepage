@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { syncCover, nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { syncCover, nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles, yamlEsc } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/cooking');
@@ -50,19 +50,19 @@ function mapCookingPage(page: any): PostMetadata {
 /** 生成 frontmatter YAML 字符串 */
 function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
-  fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
-  fm.push(`slug: "${meta.slug}"`);
+  fm.push(`title: "${yamlEsc(meta.title)}"`);
+  fm.push(`slug: "${yamlEsc(meta.slug)}"`);
   fm.push(`date: "${meta.date ?? ''}"`);
-  fm.push(`category: "${meta.category || ''}"`);
-  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`category: "${yamlEsc(meta.category || '')}"`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${yamlEsc(t)}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
-  fm.push(`summary: "${meta.summary || ''}"`);
-  fm.push(`cover: "${meta.cover || ''}"`);
-  fm.push(`icon: "${meta.icon || ''}"`);
+  fm.push(`summary: "${yamlEsc(meta.summary)}"`);
+  fm.push(`cover: "${yamlEsc(meta.cover || '')}"`);
+  fm.push(`icon: "${yamlEsc(meta.icon || '')}"`);
   return fm.join('\n');
 }
 

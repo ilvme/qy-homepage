@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
-import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles, yamlEsc } from './lib/sync-utils';
 import type { WordMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/words');
@@ -28,11 +28,11 @@ function mapWordPage(page: any): WordMetadata {
 /** 生成 frontmatter YAML 字符串 */
 function formatFrontmatter(meta: WordMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
-  fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
+  fm.push(`title: "${yamlEsc(meta.title)}"`);
   fm.push(`date: "${meta.date ?? ''}"`);
-  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${yamlEsc(t)}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
-  fm.push(`from: "${meta.from || ''}"`);
+  fm.push(`from: "${yamlEsc(meta.from || '')}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);

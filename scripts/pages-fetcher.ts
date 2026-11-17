@@ -3,7 +3,7 @@ import path from 'path';
 import { notion, fetchAllPages } from './lib/notion-client';
 import { convertPageToMarkdown } from './lib/notion-md-converter';
 import { mapArticlePage, getArticlesDatabaseId } from './lib/mappers';
-import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles } from './lib/sync-utils';
+import { nowISO, loadSyncState, saveSyncState, needsStateSync, cleanOrphanedFiles, yamlEsc } from './lib/sync-utils';
 import type { PostMetadata } from './types';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content/pages');
@@ -13,8 +13,8 @@ const MEDIA_URL = '/notion-images/pages';
 /** 生成 frontmatter YAML 字符串（页面字段比文章少） */
 function formatFrontmatter(meta: PostMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
-  fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
-  fm.push(`slug: "${meta.slug}"`);
+  fm.push(`title: "${yamlEsc(meta.title)}"`);
+  fm.push(`slug: "${yamlEsc(meta.slug)}"`);
   fm.push(`date: "${meta.date ?? ''}"`);
   fm.push(`page_id: "${meta.page_id}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);

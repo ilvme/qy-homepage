@@ -9,6 +9,7 @@ import {
   nowISO,
   saveSyncState,
   syncCover,
+  yamlEsc,
 } from './lib/sync-utils';
 import type { ShareMetadata } from './types';
 
@@ -60,21 +61,21 @@ function mapSharePage(page: any): ShareMetadata {
 /** 生成 frontmatter YAML 字符串 */
 function formatFrontmatter(meta: ShareMetadata, lastFetchTime: string): string {
   const fm: string[] = [];
-  fm.push(`title: "${meta.title.replace(/"/g, '\\"')}"`);
-  fm.push(`slug: "${meta.slug}"`);
+  fm.push(`title: "${yamlEsc(meta.title)}"`);
+  fm.push(`slug: "${yamlEsc(meta.slug)}"`);
   fm.push(`date: "${meta.date ?? ''}"`);
-  fm.push(`category: "${meta.category || ''}"`);
-  fm.push(`tags: [${(meta.tags || []).map((t) => `"${t}"`).join(', ')}]`);
+  fm.push(`category: "${yamlEsc(meta.category || '')}"`);
+  fm.push(`tags: [${(meta.tags || []).map((t) => `"${yamlEsc(t)}"`).join(', ')}]`);
   fm.push(`status: "${meta.status}"`);
   fm.push(`type: "${meta.type}"`);
-  fm.push(`author: "${meta.author || ''}"`);
-  fm.push(`link: "${meta.link || ''}"`);
+  fm.push(`author: "${yamlEsc(meta.author || '')}"`);
+  fm.push(`link: "${yamlEsc(meta.link || '')}"`);
   fm.push(`last_fetched_time: "${lastFetchTime}"`);
   fm.push(`last_edited_time: "${meta.last_edited_time}"`);
   fm.push(`page_id: "${meta.page_id}"`);
-  fm.push(`summary: "${meta.summary || ''}"`);
-  fm.push(`cover: "${meta.cover || ''}"`);
-  fm.push(`icon: "${meta.icon || ''}"`);
+  fm.push(`summary: "${yamlEsc(meta.summary)}"`);
+  fm.push(`cover: "${yamlEsc(meta.cover || '')}"`);
+  fm.push(`icon: "${yamlEsc(meta.icon || '')}"`);
   return fm.join('\n');
 }
 
