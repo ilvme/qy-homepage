@@ -19,10 +19,10 @@ export default function PostMeta({
 
   return (
     <div
-      className={`flex flex-wrap items-center gap-x-2.5 gap-y-1.5 ${size} text-secondary`}
+      className={`flex flex-wrap items-center gap-x-2.5 gap-y-1.5 font-mono ${size} text-secondary`}
     >
       {date && (
-        <time dateTime={date} className="flex items-center gap-1.5 tabular-nums">
+        <time dateTime={date} className="flex items-center gap-1.5 tabular-nums ">
           <Calendar size={14} />
           {date}
         </time>

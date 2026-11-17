@@ -56,7 +56,7 @@ export default function CodeBlock({
   }, []);
 
   return (
-    <div className="relative group/code my-5">
+    <div className="relative group/code my-5 overflow-hidden rounded-lg">
       {lang && (
         <span className="absolute left-3 top-2 text-sm text-secondary select-none">
           {lang}
