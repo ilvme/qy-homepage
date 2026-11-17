@@ -3,15 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Check, Copy } from '@/components/icons';
 
-function extractLang(children: React.ReactNode): string | null {
-  if (!children || typeof children !== 'object') return null;
-  const codeEl = children as { props?: { className?: string } };
-  const className = codeEl?.props?.className;
-  if (typeof className !== 'string') return null;
-  const match = className.match(/language-(\w+)/);
-  return match ? match[1] : null;
-}
-
 /** Shiki 输出字符串 style，React 不接受，用 ref 绕过 */
 function useShikiStyle(
   ref: React.RefObject<HTMLPreElement | null>,
@@ -33,9 +24,16 @@ export default function CodeBlock({
 }) {
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
-  const lang = extractLang(children);
+  const [lang, setLang] = useState<string | null>(null);
 
   useShikiStyle(preRef, shikiStyle);
+
+  /** mount 后从 DOM 读语言名 — SSR/CSR 初始同为 null，避免 hydration mismatch */
+  useEffect(() => {
+    const el = preRef.current?.querySelector('code');
+    const match = el?.className?.match(/language-(\w+)/);
+    if (match) setLang(match[1]);
+  }, []);
 
   const handleCopy = useCallback(async () => {
     const text = preRef.current?.textContent ?? '';
