@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
-import PostNav from '@/app/(blogs)/posts/_components/PostNav';
+import PostNav from '@/app/(blogs)/_components/PostNav';
 import { ArrowLeft } from '@/components/icons';
 import Comment from '@/components/ui/Comment';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
