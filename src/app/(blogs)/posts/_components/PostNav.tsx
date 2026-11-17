@@ -30,9 +30,9 @@ export default function PostNav({ prev, next }: PostNavProps) {
           <Link href={`/posts/${prev.slug}`} className={linkCls}>
             {prev.title}
           </Link>
-          {prev.date && (
-            <span className="text-xs text-secondary">{prev.date}</span>
-          )}
+          {/*{prev.date && (*/}
+          {/*  <span className="text-xs text-secondary font-mono">{prev.date}</span>*/}
+          {/*)}*/}
         </div>
       ) : (
         <div aria-hidden className="hidden sm:block" />
@@ -43,9 +43,9 @@ export default function PostNav({ prev, next }: PostNavProps) {
           <Link href={`/posts/${next.slug}`} className={linkCls}>
             {next.title}
           </Link>
-          {next.date && (
-            <span className="text-xs text-secondary">{next.date}</span>
-          )}
+          {/*{next.date && (*/}
+          {/*  <span className="text-xs text-secondary font-mono">{next.date}</span>*/}
+          {/*)}*/}
         </div>
       ) : (
         <div aria-hidden className="hidden sm:block" />

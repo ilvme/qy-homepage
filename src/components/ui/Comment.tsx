@@ -1,8 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { siteConfig } from '@/site.config';
 import { THEME_EVENT_NAME } from './theme';
+
+const GISCUS_ORIGIN = 'https://giscus.app';
 
 function getGiscusTheme(): string {
   if (typeof window === 'undefined') return 'noborder_light';
@@ -17,6 +19,11 @@ interface CommentProps {
 }
 
 export default function Comment({ lazy = true }: CommentProps) {
+  /** 默认收起 */
+  const [open, setOpen] = useState(false);
+  /** giscus 元数据回传的评论总数，未拿到前按 0 显示 */
+  const [count, setCount] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const loadedRef = useRef(false);
 
@@ -26,7 +33,7 @@ export default function Comment({ lazy = true }: CommentProps) {
     );
     iframe?.contentWindow?.postMessage(
       { giscus: { setConfig: { theme } } },
-      'https://giscus.app',
+      GISCUS_ORIGIN,
     );
   }, []);
 
@@ -38,6 +45,22 @@ export default function Comment({ lazy = true }: CommentProps) {
     document.addEventListener(THEME_EVENT_NAME, handleChange);
     return () => document.removeEventListener(THEME_EVENT_NAME, handleChange);
   }, [sendTheme]);
+
+  // 接收 giscus 元数据，取评论数（评论 + 回复）
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== GISCUS_ORIGIN) return;
+      const discussion = event.data?.giscus?.discussion;
+      if (!discussion) return;
+      setCount(
+        (discussion.totalCommentCount ?? 0) +
+          (discussion.totalReplyCount ?? 0),
+      );
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   useEffect(() => {
     if (loadedRef.current) return;
@@ -55,7 +78,7 @@ export default function Comment({ lazy = true }: CommentProps) {
       loadedRef.current = true;
 
       const script = document.createElement('script');
-      script.src = 'https://giscus.app/client.js';
+      script.src = `${GISCUS_ORIGIN}/client.js`;
       script.setAttribute('data-repo', giscus.repo);
       script.setAttribute('data-repo-id', giscus.repoId);
       script.setAttribute('data-category', giscus.category);
@@ -63,11 +86,13 @@ export default function Comment({ lazy = true }: CommentProps) {
       script.setAttribute('data-mapping', 'pathname');
       script.setAttribute('data-strict', '0');
       script.setAttribute('data-reactions-enabled', '0');
-      script.setAttribute('data-emit-metadata', '0');
+      // 回传评论数，供收起态标题显示
+      script.setAttribute('data-emit-metadata', '1');
       script.setAttribute('data-input-position', 'top');
       script.setAttribute('data-theme', theme);
       script.setAttribute('data-lang', 'zh-CN');
-      script.setAttribute('data-loading', 'lazy');
+      // 收起时容器高度为 0，需 eager 才会加载
+      script.setAttribute('data-loading', 'eager');
       script.crossOrigin = 'anonymous';
       script.async = true;
 
@@ -75,6 +100,10 @@ export default function Comment({ lazy = true }: CommentProps) {
     };
 
     if (lazy) {
+      // 观察外层（收起态容器高度为 0，零尺寸元素不会触发相交）
+      const target = sectionRef.current;
+      if (!target) return;
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -84,16 +113,36 @@ export default function Comment({ lazy = true }: CommentProps) {
         },
         { rootMargin: '200px' },
       );
-      observer.observe(container);
+      observer.observe(target);
       return () => observer.disconnect();
     }
 
     loadGiscus();
   }, [lazy]);
 
+  const label = `评论（${count}）`;
+
   return (
-    <div className="mt-8">
-      <div ref={containerRef} />
+    <div className="mt-12" ref={sectionRef}>
+      {!open && (
+        <div className="flex ">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-expanded={open}
+            className="text-base font-semibold hover:cursor-pointer transition-colors"
+          >
+            {label}
+          </button>
+        </div>
+      )}
+
+      {/* 收起时高度为 0，保留 iframe 宽度与加载状态，展开不重复请求 */}
+      <div
+        ref={containerRef}
+        aria-hidden={!open}
+        className={open ? '' : 'h-0 overflow-hidden'}
+      />
     </div>
   );
 }

@@ -24,13 +24,13 @@ export default function Footer() {
           <a
             target="_blank"
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline font-mono"
             rel="noopener noreferrer"
           >
             CC BY-NC-SA 4.0
           </a>
           <span>·</span>
-          <span>2012 - {new Date().getFullYear()}</span>
+          <span className="font-mono">2012 - {new Date().getFullYear()}</span>
           <span>·</span>
           <Link
             href="/"

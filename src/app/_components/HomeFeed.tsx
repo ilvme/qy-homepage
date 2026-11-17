@@ -72,7 +72,7 @@ export default async function HomeFeed() {
             </span>
             <time
               dateTime={item.date}
-              className="shrink-0 text-xs text-secondary tabular-nums"
+              className="shrink-0 text-xs text-secondary tabular-nums font-mono"
             >
               {item.date.slice(5, 10)}
             </time>

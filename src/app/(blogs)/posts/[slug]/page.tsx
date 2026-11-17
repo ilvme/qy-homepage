@@ -87,22 +87,26 @@ export default async function Post({
           className="text-base 2xl:text-lg"
         />
 
-        <div className="mt-12">
-          <div className="flex items-center justify-between">
-            <Link
-              href="/posts"
-              className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
-            >
-              <ArrowLeft size={16} />
-              返回文章列表
-            </Link>
-          </div>
-          <PostNav prev={prev} next={next} />
-        </div>
 
         {postWithContent.comments !== false && siteConfig.giscus.enabled && (
           <Comment />
         )}
+
+
+        <div className="mt-12">
+          {/*<div className="flex items-center justify-between">*/}
+          {/*  <Link*/}
+          {/*    href="/posts"*/}
+          {/*    className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"*/}
+          {/*  >*/}
+          {/*    <ArrowLeft size={16} />*/}
+          {/*    返回文章列表*/}
+          {/*  </Link>*/}
+          {/*</div>*/}
+          <PostNav prev={prev} next={next} />
+        </div>
+
+
       </article>
 
       {/* 目录 - 桌面端放在正文右侧 sticky */}
