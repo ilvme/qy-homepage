@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
+import { Rss } from '@/components/icons';
 import {
   getAllWords,
   getWordsGroupedByMonth,
@@ -33,12 +34,27 @@ export default async function WordsMonthlyIndex() {
         title="说说月刊"
         description="按月归档的碎碎念，另一种翻阅方式。"
         action={
-          <Link
-            href="/words"
-            className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
-          >
-            时间流视图
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/words/tags"
+              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              标签视图
+            </Link>
+            <Link
+              href="/words"
+              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              时间流视图
+            </Link>
+            <a
+              href="/words/rss.xml"
+              title="RSS 订阅"
+              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+            >
+              <Rss size={16} />
+            </a>
+          </div>
         }
       />
 

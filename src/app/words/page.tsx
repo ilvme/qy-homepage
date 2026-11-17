@@ -36,6 +36,12 @@ export default async function ShuoShuo({
         action={
           <div className="flex items-center gap-3">
             <Link
+              href="/words/tags"
+              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              标签视图
+            </Link>
+            <Link
               href="/words/monthly"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
