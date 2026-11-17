@@ -133,6 +133,14 @@ export async function convertPageToMarkdown(
       },
     });
 
+    // paragraph：把 Shift+Enter 产生的 \n 替换成 <br>（软换行，行间距紧挨着）
+    renderer.createBlockTransformer('paragraph', {
+      transform: async ({ block, utils }) => {
+        const text = await utils.transformRichText(block.paragraph.rich_text);
+        return text.replace(/\n/g, '  \n') + '\n\n';
+      },
+    });
+
     // callout → <Callout>
     renderer.createBlockTransformer('callout', {
       transform: async ({ block, utils }) => {
