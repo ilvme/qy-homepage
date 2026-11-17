@@ -133,21 +133,64 @@ export async function convertPageToMarkdown(
       },
     });
 
-    // paragraph：把 Shift+Enter 产生的 \n 替换成 <br>（软换行，行间距紧挨着）
+    // paragraph 分三种情况：
+    // 1. 空段落（Notion 里的空行）→ 显式 <br />。notion-to-md 拼接时会吞掉
+    //    纯空白输出，空行就没了；非空白标记能存活，渲染成视觉空行
+    // 2. 段内 \n（Shift+Enter）→ Markdown 软换行（行尾两空格 + \n），
+    //    渲染成同一 <p> 内紧挨着的 <br>
+    // 3. 普通段落（Enter）→ 原文 + 标准段落分隔
     renderer.createBlockTransformer('paragraph', {
       transform: async ({ block, utils }) => {
         const text = await utils.transformRichText(block.paragraph.rich_text);
+        if (text.trim() === '') {
+          return '<br />\n\n';
+        }
         return text.replace(/\n/g, '  \n') + '\n\n';
       },
     });
 
     // callout → <Callout>
+    // rich_text 内：\n\n 是分段（Enter），单个 \n 是软换行（Shift+Enter）
+    // 子块（callout 里 Enter 创建的段落等）需要递归转换，否则整块丢失
     renderer.createBlockTransformer('callout', {
       transform: async ({ block, utils }) => {
         const text = await utils.transformRichText(block.callout.rich_text);
+        const body = text.replace(/(?<!\n)\n(?!\n)/g, '  \n');
+
+        let childrenMd = '';
+        const kids = block.children?.length
+          ? block.children
+          : (
+              await notionClient.blocks.children.list({
+                block_id: block.id,
+              })
+            ).results;
+        if (kids.length) {
+          const parts = [];
+          for (const child of kids) {
+            const md = await utils.processBlock(child);
+            if (md.trim() !== '') parts.push(md.replace(/\n+$/, ''));
+          }
+          if (parts.length) childrenMd = '\n\n' + parts.join('\n\n');
+        }
+
         const icon = (block.callout.icon as any)?.emoji ?? '';
         const color = block.callout.color ?? '';
-        return `<Callout icon="${icon}" color="${color}">\n\n${text}\n\n</Callout>\n\n`;
+        return `<Callout icon="${icon}" color="${color}">\n\n${body}${childrenMd}\n\n</Callout>\n\n`;
+      },
+    });
+
+    // quote → blockquote。rich_text 内单个 \n（Shift+Enter）转软换行，
+    // \n\n（Enter）保持引用内分段（> 空行）
+    renderer.createBlockTransformer('quote', {
+      transform: async ({ block, utils }) => {
+        const text = await utils.transformRichText(block.quote.rich_text);
+        const md = text.replace(/(?<!\n)\n(?!\n)/g, '  \n');
+        const quoted = md
+          .split('\n')
+          .map((l) => (l === '' ? '>' : '> ' + l))
+          .join('\n');
+        return quoted + '\n\n';
       },
     });
 
@@ -238,11 +281,9 @@ export async function convertPageToMarkdown(
       '$1\n\n$2',
     );
 
-    // 保留多个空行
-    content = content.replace(/\n\n(\n+)/g, (_, extras: string) => {
-      const brCount = Math.floor(extras.length / 2);
-      return '\n\n' + '<br />\n'.repeat(brCount) + '\n';
-    });
+    // 空 paragraph 已由 transformer 输出显式 <br />，这里只需把 block 拼接
+    // 产生的多余换行（\n\n\n）规整为标准段落分隔 \n\n
+    content = content.replace(/\n{3,}/g, '\n\n');
 
     return content;
   } catch (error) {
@@ -250,3 +291,4 @@ export async function convertPageToMarkdown(
     return undefined;
   }
 }
+
