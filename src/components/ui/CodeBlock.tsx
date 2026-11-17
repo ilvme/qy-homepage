@@ -56,33 +56,35 @@ export default function CodeBlock({
   }, []);
 
   return (
-    <div className="relative group/code my-5 overflow-hidden rounded-lg">
-      {lang && (
-        <span className="absolute left-3 top-2 text-sm text-secondary select-none">
-          {lang}
-        </span>
-      )}
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="absolute right-2 top-2 flex items-center gap-1 text-xs px-2 py-1 rounded
-                   bg-muted hover:bg-accent border border-border text-secondary
-                   opacity-0 group-hover/code:opacity-100 transition-opacity z-10
-                   [@media(hover:none)]:opacity-100 focus-visible:opacity-100"
-      >
-        {copied ? (
-          <>
-            <Check size={14} />
-            已复制
-          </>
-        ) : (
-          <>
-            <Copy size={14} />
-            复制
-          </>
+    <div className="group/code my-5">
+      <pre ref={preRef} className="relative">
+        {lang && (
+          <span className="absolute left-3 top-2 text-sm text-secondary select-none">
+            {lang}
+          </span>
         )}
-      </button>
-      <pre ref={preRef}>{children}</pre>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="absolute right-2 top-2 flex items-center gap-1 text-xs px-2 py-1 rounded
+                     bg-muted hover:bg-accent border border-border text-secondary
+                     opacity-0 group-hover/code:opacity-100 transition-opacity z-10
+                     [@media(hover:none)]:opacity-100 focus-visible:opacity-100"
+        >
+          {copied ? (
+            <>
+              <Check size={14} />
+              已复制
+            </>
+          ) : (
+            <>
+              <Copy size={14} />
+              复制
+            </>
+          )}
+        </button>
+        {children}
+      </pre>
     </div>
   );
 }
