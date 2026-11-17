@@ -59,10 +59,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full">
+      <body className="flex min-h-dvh flex-col">
         <Header />
-        <LayoutContainer>
-          <main className="min-h-[calc(100vh-200px)]">{children}</main>
+        <LayoutContainer className="flex flex-1 flex-col">
+          <main className="flex-1">{children}</main>
           <Footer />
         </LayoutContainer>
 

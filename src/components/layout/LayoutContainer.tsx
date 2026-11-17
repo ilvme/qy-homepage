@@ -9,8 +9,10 @@ import { isWideRoute } from './wide-route';
  */
 export default function LayoutContainer({
   children,
+  className = '',
 }: {
   children: React.ReactNode;
+  className?: string;
 }) {
   const pathname = usePathname();
   const isWide = isWideRoute(pathname);
@@ -19,7 +21,7 @@ export default function LayoutContainer({
     <div
       className={`mx-auto w-full px-4 sm:px-6 max-w-200 ${
         isWide ? 'xl:max-w-288' : ''
-      }`}
+      } ${className}`}
     >
       {children}
     </div>
