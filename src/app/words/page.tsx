@@ -39,13 +39,13 @@ export default async function ShuoShuo({
               href="/words/tags"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              标签视图
+              标签
             </Link>
             <Link
               href="/words/monthly"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              月刊视图
+              月刊
             </Link>
             <a
               href="/words/rss.xml"

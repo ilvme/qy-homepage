@@ -24,13 +24,13 @@ export default async function WordsTagsPage() {
               href="/words/monthly"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              月刊视图
+              月刊
             </Link>
             <Link
               href="/words"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              时间流视图
+              时间流
             </Link>
             <a
               href="/words/rss.xml"

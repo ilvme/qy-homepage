@@ -39,13 +39,13 @@ export default async function WordsMonthlyIndex() {
               href="/words/tags"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              标签视图
+              标签
             </Link>
             <Link
               href="/words"
               className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
             >
-              时间流视图
+              时间流
             </Link>
             <a
               href="/words/rss.xml"
