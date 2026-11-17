@@ -42,7 +42,9 @@ export default async function MarkdownRenderer({
     rehypePlugins.push([
       rehypeShiki,
       {
-        themes: { light: 'github-light', dark: 'monokai' },
+        // themes: { light: 'github-light', dark: 'github-dark' },
+        // themes: { light: 'one-light', dark: 'one-dark-pro' },
+        themes: { light: 'catppuccin-latte', dark: 'catppuccin-mocha' },
         defaultColor: false,
         addLanguageClass: true,
       },
