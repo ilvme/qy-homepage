@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
-import '@fontsource/noto-sans-sc/400.css';
-import '@fontsource/noto-sans-sc/500.css';
-import '@fontsource/noto-sans-sc/600.css';
-import '@fontsource/noto-sans-sc/700.css';
+import 'lxgw-wenkai-screen-webfont/style.css';
 import '@/assets/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
