@@ -58,8 +58,13 @@ export async function downloadImage(
     return url; // 非 Notion 图片，保持原样
   }
 
-  // 用 URL 哈希做文件名，同一 URL 永远生成同一文件名
-  const hash = crypto.createHash('md5').update(url).digest('hex').slice(0, 8);
+  // 用 URL path 哈希做文件名（去掉签名 query — Notion s3 URL 每次返回的
+  // X-Amz-Signature 都不同，对完整 URL 哈希会导致缓存永远不命中、目录无限膨胀）
+  const hash = crypto
+    .createHash('md5')
+    .update(url.split('?')[0])
+    .digest('hex')
+    .slice(0, 8);
   const name = `img_${hash}`;
   const ext = url.match(/\.(png|jpe?g|gif|webp|svg)(\?|$)/i)?.[1] ?? 'png';
   const fileName = `${name}.webp`;
@@ -71,6 +76,9 @@ export async function downloadImage(
     const res = await fetchWithRetry(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
+
+    // 懒创建目录 — 无图文章不产生空目录
+    fs.mkdirSync(outputDir, { recursive: true });
 
     // 压缩：最长边 1600、质量 80、转 webp；SVG/GIF 原样保留（webp 会破坏动图/矢量）
     let outBuf: Buffer = buf;
@@ -112,26 +120,9 @@ export async function convertPageToMarkdown(
     const pageMediaDir = path.resolve(process.cwd(), config.mediaDir, key);
     const pageMediaPath = `${config.mediaUrlPath}/${key}`;
 
-    if (!fs.existsSync(pageMediaDir)) {
-      fs.mkdirSync(pageMediaDir, { recursive: true });
-    }
+    // 目录按需创建（downloadImage 写盘前 mkdir）— 无图文章不建空目录
 
     const renderer = new MDXRenderer();
-
-    // image → 保留 Notion 标题作为 alt
-    renderer.createBlockTransformer('image', {
-      transform: async ({ block, utils }) => {
-        const url =
-          block.image.type === 'external'
-            ? block.image.external.url
-            : block.image.file.url;
-        const caption = await utils.transformRichText(
-          (block.image as any).caption ?? [],
-        );
-        const alt = caption || 'Image';
-        return `![${alt}](${url})\n\n`;
-      },
-    });
 
     // paragraph 分三种情况：
     // 1. 空段落（Notion 里的空行）→ 显式 <br />。notion-to-md 拼接时会吞掉
@@ -168,7 +159,7 @@ export async function convertPageToMarkdown(
         if (kids.length) {
           const parts = [];
           for (const child of kids) {
-            const md = await utils.processBlock(child);
+            const md = await utils.processBlock(child as any);
             if (md.trim() !== '') parts.push(md.replace(/\n+$/, ''));
           }
           if (parts.length) childrenMd = '\n\n' + parts.join('\n\n');
@@ -177,6 +168,22 @@ export async function convertPageToMarkdown(
         const icon = (block.callout.icon as any)?.emoji ?? '';
         const color = block.callout.color ?? '';
         return `<Callout icon="${icon}" color="${color}">\n\n${body}${childrenMd}\n\n</Callout>\n\n`;
+      },
+    });
+
+    // image → 统一走 downloadImage（webp 压缩 + 稳定 hash 命名）
+    // 覆盖 notion-to-md 内置的 downloadMediaTo 路径（UUID 原名、原格式不压缩）
+    renderer.createBlockTransformer('image', {
+      transform: async ({ block, utils }) => {
+        const img = (block as any).image;
+        const url =
+          img?.type === 'external' ? img.external?.url : img?.file?.url;
+        if (!url) return '';
+        const caption = (
+          await utils.transformRichText(img.caption ?? [])
+        ).trim();
+        const local = await downloadImage(url, pageMediaDir, pageMediaPath);
+        return `![${caption}](${local})\n\n`;
       },
     });
 
@@ -255,14 +262,10 @@ export async function convertPageToMarkdown(
       .configureFetcher({
         maxRequestsPerSecond: 3,
         batchSize: 5,
-        trackMediaBlocks: true,
-      })
-      .downloadMediaTo({
-        outputDir: pageMediaDir,
-        transformPath: (localPath: string) =>
-          `${pageMediaPath}/${path.basename(localPath)}`,
-        preserveExternalUrls: true,
-        failForward: true,
+        // 不用 trackMediaBlocks/downloadMediaTo：内置媒体下载用 Notion 原名
+      // 存原始格式（png/jpg 不压缩），且签名 URL 变化导致目录膨胀。
+      // 图片统一由上方自定义 image transformer 走 downloadImage（webp）。
+        trackMediaBlocks: false,
       })
       .withRenderer(renderer);
 
@@ -284,6 +287,29 @@ export async function convertPageToMarkdown(
     // 空 paragraph 已由 transformer 输出显式 <br />，这里只需把 block 拼接
     // 产生的多余换行（\n\n\n）规整为标准段落分隔 \n\n
     content = content.replace(/\n{3,}/g, '\n\n');
+
+    // 清理本页目录中未被引用的媒体文件（换图/换签名 URL 后的旧文件）。
+    // 引用来源：正文图片（![](...)）+ 封面（由 fetcher 的 syncCover 写入同目录，
+    // 其引用在 md frontmatter 中，不在此处 — cover 单独豁免）。
+    if (fs.existsSync(pageMediaDir)) {
+      const referenced = new Set(
+        [...content.matchAll(/\/notion-images\/[^)\s"']+/g)].map(
+          (m) => m[0],
+        ),
+      );
+      for (const f of fs.readdirSync(pageMediaDir)) {
+        // cover/文件名以 cover 开头的（syncCover 生成）豁免
+        if (f.startsWith('cover.')) continue;
+        const ref = `${pageMediaPath}/${f}`;
+        if (!referenced.has(ref)) {
+          fs.unlinkSync(path.join(pageMediaDir, f));
+        }
+      }
+      // 目录清空后（无图文章）删除空目录
+      if (fs.readdirSync(pageMediaDir).length === 0) {
+        fs.rmSync(pageMediaDir, { recursive: true });
+      }
+    }
 
     return content;
   } catch (error) {

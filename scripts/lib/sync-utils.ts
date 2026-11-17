@@ -100,9 +100,7 @@ export async function syncCover(
   const coverDir = path.join(mediaDir, key);
   const coverUrlPath = `${mediaUrlPath}/${key}`;
 
-  if (!fs.existsSync(coverDir)) {
-    fs.mkdirSync(coverDir, { recursive: true });
-  }
+  // 目录由 downloadImage / fallback 写盘时懒创建，无 cover 不留空目录
 
   // 先尝试 downloadImage（处理 Notion 图片），失败则尝试通用下载
   const result = await downloadImage(url, coverDir, coverUrlPath);
@@ -119,11 +117,23 @@ export async function syncCover(
       });
       if (!res.ok) return url;
       const buf = Buffer.from(await res.arrayBuffer());
+      fs.mkdirSync(coverDir, { recursive: true });
       fs.writeFileSync(filePath, buf);
       return `${coverUrlPath}/${fileName}`;
     } catch {
       return url;
     }
+  }
+
+  // Notion cover（img_<hash>.webp）：重命名为固定 cover.webp。
+  // 正文媒体清理逻辑只豁免 cover.* 前缀；固定名也避免换图时旧 cover 残留。
+  // 注意：不能在此清理目录里其他文件 — 正文图片也在同一目录。
+  const oldName = path.basename(result);
+  if (oldName.startsWith('img_')) {
+    const fixedPath = path.join(coverDir, 'cover.webp');
+    fs.rmSync(fixedPath, { force: true });
+    fs.renameSync(path.join(coverDir, oldName), fixedPath);
+    return `${coverUrlPath}/cover.webp`;
   }
 
   return result;
