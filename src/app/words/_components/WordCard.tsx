@@ -84,7 +84,8 @@ export default async function WordCard({ post }: WordCardProps) {
 
 const IMAGE_REGEX = /!\[([^\]]*)\]\(([^)]+)\)/g;
 
-function extractImagesFromMdx(content: string): {
+/** 供 WordCard / 月刊条目共用：提取 mdx 图片链接并清理正文 */
+export function extractImagesFromMdx(content: string): {
   images: string[];
   cleanedContent: string;
 } {

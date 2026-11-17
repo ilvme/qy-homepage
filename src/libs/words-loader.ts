@@ -56,3 +56,36 @@ export async function getWordsByTag(tag: string) {
   const words = await getAllWords();
   return words.filter((word) => word.postMeta.tags?.includes(tag));
 }
+
+/** 说说月刊分组（时间倒序），key 形如 2026-11 */
+export interface WordsMonthGroup {
+  key: string;
+  year: number;
+  month: number;
+  words: Awaited<ReturnType<typeof getAllWords>>;
+}
+
+export async function getWordsGroupedByMonth(): Promise<WordsMonthGroup[]> {
+  const words = await getAllWords();
+  const groups = new Map<string, WordsMonthGroup>();
+
+  for (const word of words) {
+    const dateStr = word.postMeta.date ?? word.postMeta.last_edited_time ?? '';
+    const d = parseDate(dateStr);
+    if (isNaN(d.getTime())) continue;
+
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const key = `${year}-${String(month).padStart(2, '0')}`;
+
+    let group = groups.get(key);
+    if (!group) {
+      group = { key, year, month, words: [] };
+      groups.set(key, group);
+    }
+    group.words.push(word);
+  }
+
+  // getAllWords 已时间倒序，Map 按首次插入序 = 月份倒序
+  return [...groups.values()];
+}

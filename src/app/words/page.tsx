@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import WordCard from '@/app/words/_components/WordCard';
 import { Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
@@ -33,13 +34,21 @@ export default async function ShuoShuo({
         title="说说"
         description="生活碎片、猫咪日常，以及一些吐槽。"
         action={
-          <a
-            href="/words/rss.xml"
-            title="RSS 订阅"
-            className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
-          >
-            <Rss size={16} />
-          </a>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/words/monthly"
+              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              月刊视图
+            </Link>
+            <a
+              href="/words/rss.xml"
+              title="RSS 订阅"
+              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+            >
+              <Rss size={16} />
+            </a>
+          </div>
         }
       />
 
