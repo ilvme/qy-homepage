@@ -17,8 +17,8 @@ export default function LayoutContainer({
 
   return (
     <div
-      className={`mx-auto w-full px-4 sm:px-6 ${
-        isWide ? 'max-w-288' : 'max-w-200'
+      className={`mx-auto w-full px-4 sm:px-6 max-w-200 ${
+        isWide ? 'xl:max-w-288' : ''
       }`}
     >
       {children}
