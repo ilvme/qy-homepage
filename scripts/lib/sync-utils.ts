@@ -7,6 +7,14 @@ export function nowISO(): string {
   return new Date().toISOString();
 }
 
+/** YAML 双引号字符串转义：反斜杠、引号、换行 */
+export function yamlEsc(s: string | undefined | null): string {
+  return (s ?? '')
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\r?\n/g, ' '); // 换行换成空格，防止破坏 YAML 结构
+}
+
 const STATE_FILE = path.resolve(process.cwd(), 'content/sync-state.json');
 
 /** { contentType/identifier: last_edited_time } */
@@ -102,8 +110,16 @@ export async function syncCover(
 
   // 目录由 downloadImage / fallback 写盘时懒创建，无 cover 不留空目录
 
-  // 先尝试 downloadImage（处理 Notion 图片），失败则尝试通用下载
-  const result = await downloadImage(url, coverDir, coverUrlPath);
+  // 先尝试 downloadImage（处理 Notion 图片，下载失败会抛错）
+  let result: string;
+  try {
+    result = await downloadImage(url, coverDir, coverUrlPath);
+  } catch {
+    // Notion cover 下载失败：不写会过期的 s3 签名 URL 死链，
+    // 放弃 cover（frontmatter 写空），页面下次有变更时自动重试
+    console.warn(`  ⚠ cover 下载失败，跳过: ${url.split('?')[0]}`);
+    return undefined;
+  }
 
   // downloadImage 对非 Notion URL 会原样返回，此时尝试直接下载
   if (result === url) {

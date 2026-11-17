@@ -102,8 +102,12 @@ export async function downloadImage(
 
     fs.writeFileSync(filePath, outBuf);
     return `${urlPath}/${fileName}`;
-  } catch {
-    return url; // 下载失败保持原 URL
+  } catch (err) {
+    // 抛错而不是返回原 URL：返回签名 URL 会 1 小时后过期成死链，
+    // 且 fetcher 会写入 state 导致永不重试。抛错让整篇 convert 失败，
+    // state 不更新，下次同步自动重试。
+    console.warn(`  ⚠ 图片下载失败，本文稍后重试: ${url.split('?')[0]}`);
+    throw err;
   }
 }
 
@@ -222,32 +226,14 @@ export async function convertPageToMarkdown(
               if (!resp.results.length) return '<Column>\n\n\n\n</Column>';
 
               const parts = await Promise.all(
-                resp.results.map(async (child: any) => {
-                  let md = await utils.processBlock(child);
-
-                  // 列内图片：手动下载 + URL 替换
-                  if (child.type === 'image') {
-                    const url =
-                      child.image?.type === 'external'
-                        ? child.image.external.url
-                        : child.image?.file?.url;
-                    if (url) {
-                      const local = await downloadImage(
-                        url,
-                        pageMediaDir,
-                        pageMediaPath,
-                      );
-                      md = md.replace(url, local);
-                    }
-                  }
-
-                  return md;
-                }),
+                resp.results.map((child: any) => utils.processBlock(child)),
               );
 
               return `<Column>\n\n${parts.join('\n\n')}\n\n</Column>`;
-            } catch {
-              return '<Column>\n\n\n\n</Column>';
+            } catch (err) {
+              // 不吞错误：列内图片下载失败等需要整篇失败、下次同步重试，
+              // 吞掉会把丢图/空列固化进 md 并写入 state
+              throw err;
             }
           }),
         );
