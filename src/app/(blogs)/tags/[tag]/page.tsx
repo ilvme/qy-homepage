@@ -49,7 +49,7 @@ export default async function Tags({
         </p>
       </header>
 
-      <div className="space-y-6">
+      <div className="space-y-0.5">
         {pagedPosts.map((post) => (
           <PostItem key={post.slug} postMetadata={post} />
         ))}
