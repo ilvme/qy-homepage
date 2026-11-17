@@ -2,7 +2,7 @@ import path from 'node:path';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AwakenCard from '@/app/(shares)/awaken/_components/AwakenCard';
-import { ArrowLeft } from '@/components/icons';
+import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
 import { getAllAwaken, getAllAwakenCategories } from '@/libs/awaken-loader';
 import { parseMdFromFile } from '@/libs/content-supports';
@@ -75,21 +75,18 @@ export default async function AwakenAllPage({
 
   return (
     <div className="py-8">
-      {/*<PageHero*/}
-      {/*  title="分享"*/}
-      {/*  description={`台词、句子、古诗词古文，共 ${data.length} 篇`}*/}
-      {/*/>*/}
-
-      {/* 返回随机页 */}
-      <div className="mb-6">
-        <Link
-          href="/awaken"
-          className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
-        >
-          <ArrowLeft size={16} />
-          随机分享
-        </Link>
-      </div>
+      <PageHero
+        title="分享"
+        description={`台词、句子、古诗词古文，共 ${data.length} 条`}
+        action={
+          <Link
+            href="/awaken"
+            className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+          >
+            随机一条
+          </Link>
+        }
+      />
 
       {/* 分类 Tab */}
       {categories.length > 0 && (
@@ -121,7 +118,7 @@ export default async function AwakenAllPage({
       )}
 
       {/* 文字列表 */}
-      <div className="divide-y divide-border">
+      <div className="space-y-0.5">
         {pagedItems.map(({ item, preview }) => (
           <AwakenCard key={item.title} item={item} contentPreview={preview} />
         ))}

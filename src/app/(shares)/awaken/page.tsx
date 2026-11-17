@@ -28,19 +28,21 @@ export default async function AwakenPage() {
   // 随机选取一条，并加载正文
   const randomMeta = items[Math.floor(Math.random() * items.length)];
   const randomItem = randomMeta
-    ? await getAwakenBySlug(randomMeta.title)
+    ? await getAwakenBySlug(randomMeta.slug)
     : null;
 
   const plainText = randomItem ? stripMarkdown(randomItem.content) : '';
 
   return (
     <div className="py-8">
-      <Link
-        href="/awaken/all"
-        className="text-sm text-foreground font-medium hover:text-foreground hover:underline underline-offset-4 transition-colors"
-      >
-        查看全部（{items.length}）
-      </Link>
+      <div className="flex justify-end">
+        <Link
+          href="/awaken/all"
+          className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+        >
+          查看全部（{items.length}）
+        </Link>
+      </div>
 
       {/* 随机卡片 — 用留白替代边框 */}
       {randomItem && (
@@ -68,7 +70,7 @@ export default async function AwakenPage() {
             {/* 正文 */}
             <ExpandableContent
               contentLength={randomItem.content.length}
-              detailUrl={`/awaken/${randomItem.title}`}
+              detailUrl={`/awaken/${randomItem.slug}`}
             >
               <MarkdownRenderer
                 content={randomItem.content}
@@ -82,7 +84,7 @@ export default async function AwakenPage() {
             <div className="mt-6 pt-4 border-t border-border/30 flex items-end justify-between">
               <div>
                 <Link
-                  href={`/awaken/${randomItem.title}`}
+                  href={`/awaken/${randomItem.slug}`}
                   className="inline-block group"
                 >
                   <span className="text-sm font-semibold text-foreground group-hover:underline underline-offset-4 transition-colors">

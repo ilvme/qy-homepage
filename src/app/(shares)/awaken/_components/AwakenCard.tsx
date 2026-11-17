@@ -8,12 +8,12 @@ interface AwakenCardProps {
 }
 
 export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
-  const { title } = item;
+  const { title, slug } = item;
   const preview = contentPreview || item.summary;
 
   return (
     <article className="py-5">
-      <Link href={`/awaken/${title}`} className="block space-y-2 group">
+      <Link href={`/awaken/${slug}`} className="block space-y-2 group">
         <h2 className="font-semibold text-lg xl:text-xl group-hover:underline underline-offset-4 transition-colors">
           {title}
         </h2>
@@ -30,8 +30,11 @@ export default function AwakenCard({ item, contentPreview }: AwakenCardProps) {
           <span className="text-secondary">— {item.author}</span>
         )}
         {item.date && (
-          <time dateTime={item.date}>
-            {new Date(item.date).toLocaleDateString('zh-CN')}
+          <time
+            dateTime={item.date}
+            className="font-mono tabular-nums"
+          >
+            {item.date}
           </time>
         )}
         {item.category && (

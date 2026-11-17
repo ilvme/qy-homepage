@@ -103,10 +103,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-  // 语录详情页（slug 为 title）
+  // 分享详情页
   const awakenItems = await getAllAwaken();
   const awakenEntries: MetadataRoute.Sitemap = awakenItems.map((item) => ({
-    url: `${baseUrl}/awaken/${encodeURIComponent(item.title)}`,
+    url: `${baseUrl}/awaken/${item.slug}`,
     lastModified: item.date ? new Date(item.date) : undefined,
     changeFrequency: 'monthly' as const,
     priority: 0.6,

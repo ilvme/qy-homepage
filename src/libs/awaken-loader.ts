@@ -24,18 +24,22 @@ export async function getAllAwaken() {
   return items;
 }
 
-/** 获取指定 title 的 awaken 条目 */
+/** 获取指定 slug 的 awaken 条目（文件名仍按 title） */
 export async function getAwakenBySlug(
-  title: string,
+  slug: string,
 ): Promise<ShareWithContent | null> {
-  const filePath = path.join(SHARES_DIR, `${title}.md`);
+  const items = await getAllAwaken();
+  const meta = items.find((item) => item.slug === slug);
+  if (!meta) return null;
+
+  const filePath = path.join(SHARES_DIR, `${meta.title}.md`);
   const parsed = parseMdFromFile(filePath, true);
   if (!parsed?.postMeta) return null;
 
-  const meta = parsed.postMeta as ShareMetadata;
+  const shareMeta = parsed.postMeta as ShareMetadata;
   return {
-    ...meta,
-    date: toLocalDateStr(meta.date),
+    ...shareMeta,
+    date: toLocalDateStr(shareMeta.date),
     content: parsed.content ?? '',
   };
 }

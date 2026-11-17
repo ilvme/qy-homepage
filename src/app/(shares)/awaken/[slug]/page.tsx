@@ -13,8 +13,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
-  const post = await getAwakenBySlug(decodedSlug);
+  const post = await getAwakenBySlug(slug);
   if (!post) return {};
 
   return {
@@ -25,7 +24,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const all = await getAllAwaken();
-  return all.map((item) => ({ slug: item.title }));
+  return all.map((item) => ({ slug: item.slug }));
 }
 
 export default async function AwakenDetailPage({
@@ -34,8 +33,7 @@ export default async function AwakenDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
-  const post = await getAwakenBySlug(decodedSlug);
+  const post = await getAwakenBySlug(slug);
   if (!post) notFound();
 
   const headings = extractHeadings(post.content);
@@ -51,8 +49,8 @@ export default async function AwakenDetailPage({
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-secondary">
             {post.author && <span>— {post.author}</span>}
             {post.date && (
-              <time dateTime={post.date}>
-                {new Date(post.date).toLocaleDateString('zh-CN')}
+              <time dateTime={post.date} className="font-mono tabular-nums">
+                {post.date}
               </time>
             )}
             {post.category && <span>{post.category}</span>}
