@@ -18,7 +18,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="border-t border-border mt-16 pt-8 pb-8 text-sm text-secondary">
+    <footer className="border-t border-border mt-12 pt-8 pb-8 text-sm text-secondary">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
         <div className="flex items-center gap-2">
           <a
