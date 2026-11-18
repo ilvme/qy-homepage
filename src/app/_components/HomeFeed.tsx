@@ -3,7 +3,9 @@ import { getAllPosts } from '@/libs/content-loader';
 import { parseDate } from '@/libs/content-supports';
 import { getAllWords } from '@/libs/words-loader';
 
-const FEED_LIMIT = 4;
+/** 各类型固定配额：文章与说说各取最近 2 条，避免说说频率高时独占整个时间流 */
+const POST_FEED_LIMIT = 2;
+const WORD_FEED_LIMIT = 2;
 const EXCERPT_MAX = 60;
 
 interface FeedItem {
@@ -28,12 +30,13 @@ function toExcerpt(md: string): string {
   return text.length > EXCERPT_MAX ? `${text.slice(0, EXCERPT_MAX)}…` : text;
 }
 
-/** 首页时间流：文章与说说混排，按日期倒序取最近若干条 */
+/** 首页时间流：文章与说说各取最近 2 条，合并后按日期倒序排列 */
 export default async function HomeFeed() {
   const [posts, words] = await Promise.all([getAllPosts(), getAllWords()]);
 
   const postItems: FeedItem[] = posts
     .filter((post) => post.status === 'published')
+    .slice(0, POST_FEED_LIMIT)
     .map((post) => ({
       key: `post-${post.slug}`,
       kind: 'post',
@@ -44,6 +47,7 @@ export default async function HomeFeed() {
 
   // 说说按时间倒序排列，最近几条必在 /words 第一页，直接落列表即可
   const wordItems: FeedItem[] = words
+    .slice(0, WORD_FEED_LIMIT)
     .map((word) => ({
       key: `word-${word.postMeta.page_id}`,
       kind: 'word' as const,
@@ -53,9 +57,9 @@ export default async function HomeFeed() {
     }))
     .filter((item) => item.title);
 
-  const items = [...postItems, ...wordItems]
-    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
-    .slice(0, FEED_LIMIT);
+  const items = [...postItems, ...wordItems].sort(
+    (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime(),
+  );
 
   if (items.length === 0) return null;
 
