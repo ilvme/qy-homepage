@@ -4,17 +4,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Close, Menu, Search } from '@/components/icons';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 import SearchPalette from '@/components/ui/SearchPalette';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import { siteConfig } from '@/site.config';
 import { isActiveNav } from './nav-active';
-import { isWideRoute } from './wide-route';
+import { pageWidthClass } from './wide-route';
 
-export default function Header() {
+export default function Header({ wide }: { wide: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
-  const isWide = isWideRoute(pathname);
 
   // ⌘K / Ctrl+K 全局唤起/关闭搜索
   useEffect(() => {
@@ -30,9 +29,7 @@ export default function Header() {
 
   return (
     <header
-      className={`relative mx-auto w-full px-4 sm:px-6 mb-6 transition-[max-width] duration-500 ease-out max-w-200 ${
-        isWide ? 'xl:max-w-6xl' : ''
-      }`}
+      className={`relative ${pageWidthClass(wide)} mb-6 transition-[max-width] duration-500 ease-out`}
     >
       {/* padding 放在外层，border-b 才能与正文/页脚分隔线同宽（对齐文字） */}
       <div className="flex items-center justify-between py-6 border-b border-border">

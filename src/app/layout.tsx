@@ -5,9 +5,7 @@ import 'lxgw-wenkai-screen-webfont/lxgwwenkaiscreen.css';
 import '@/assets/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
-import LayoutContainer from '@/components/layout/LayoutContainer';
+import SiteShell from '@/components/layout/SiteShell';
 import BackToTop from '@/components/ui/BackToTop';
 import { siteConfig } from '@/site.config';
 
@@ -62,11 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <Header />
-        <LayoutContainer className="flex flex-1 flex-col">
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </LayoutContainer>
+        <SiteShell>{children}</SiteShell>
 
         <BackToTop />
         <Analytics />
