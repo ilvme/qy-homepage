@@ -32,11 +32,15 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     locale: 'zh_CN',
+    images: [
+      { url: '/og.png', width: 1200, height: 630, alt: siteConfig.title },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
+    images: ['/og.png'],
   },
   robots: {
     index: true,

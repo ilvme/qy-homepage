@@ -20,6 +20,11 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
   if (!post) return {};
 
+  // 有封面用封面（1200×630 社交媒体预览对宽幅图更友好），没有则回落到全站默认图
+  const images = post.cover
+    ? [{ url: post.cover, alt: post.title }]
+    : [{ url: '/og.png', width: 1200, height: 630, alt: post.title }];
+
   return {
     title: post.title,
     description: post.summary || post.title,
@@ -28,6 +33,15 @@ export async function generateMetadata({
       description: post.summary || undefined,
       type: 'article',
       publishedTime: post.date ?? undefined,
+      modifiedTime: post.last_edited_time ?? undefined,
+      tags: [...post.tags],
+      images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary || undefined,
+      images: images.map((i) => i.url),
     },
   };
 }
@@ -56,6 +70,29 @@ export default async function Post({
   const prev = idx >= 0 ? posts[idx + 1] : undefined;
   const next = idx > 0 ? posts[idx - 1] : undefined;
 
+  const pageUrl = `${siteConfig.url}/posts/${slug}`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: postWithContent.title,
+    description: postWithContent.summary || undefined,
+    datePublished: postWithContent.date ?? undefined,
+    dateModified: postWithContent.last_edited_time ?? undefined,
+    image: postWithContent.cover
+      ? `${siteConfig.url}${postWithContent.cover}`
+      : `${siteConfig.url}/og.png`,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    articleSection: postWithContent.category,
+    keywords: postWithContent.tags.join(', '),
+    author: { '@type': 'Person', name: siteConfig.author.displayName },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.title,
+      logo: { '@type': 'ImageObject', url: `${siteConfig.url}/icon.png` },
+    },
+  };
+
   return (
     <div
       className={`relative py-8 xl:grid xl:gap-12 xl:items-start ${
@@ -64,6 +101,10 @@ export default async function Post({
           : 'xl:grid-cols-1'
       }`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 文章内容 - 768px 上限；无目录时（含 xl 以下单列）整体居中 */}
       <article className="mx-auto w-full max-w-3xl">
         <header className="mb-10">

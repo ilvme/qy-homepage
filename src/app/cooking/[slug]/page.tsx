@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from '@/components/icons';
 import { notFound } from 'next/navigation';
+import { ArrowLeft } from '@/components/icons';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
 import { extractHeadings } from '@/libs/content-supports';
@@ -16,9 +16,27 @@ export async function generateMetadata({
   const post = await getCookingBySlug(slug);
   if (!post) return {};
 
+  const description = post.summary || `${post.title} — 做饭记录`;
+  const images = post.cover
+    ? [{ url: post.cover, alt: post.title }]
+    : [{ url: '/og.png', width: 1200, height: 630, alt: post.title }];
+
   return {
     title: post.title,
-    description: post.summary || `${post.title} — 做饭记录`,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+      publishedTime: post.date ?? undefined,
+      images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description,
+      images: images.map((i) => i.url),
+    },
   };
 }
 
