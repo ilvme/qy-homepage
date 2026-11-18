@@ -1,5 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
+import { cache } from 'react';
 import { parseDate, parseMdFromFile, toLocalDateStr } from '@/libs/content-supports';
 import type { ShareMetadata } from '../../scripts/types';
 
@@ -9,25 +10,23 @@ export interface ShareWithContent extends ShareMetadata {
 
 const SHARES_DIR = path.join(process.cwd(), 'content/shares/awaken');
 
-/** 获取所有 awaken 条目 */
-export async function getAllAwaken() {
+/** 获取所有 awaken 条目（请求级缓存） */
+export const getAllAwaken = cache(async () => {
   const pattern = path.join(SHARES_DIR, '*.md');
   const files = await glob(pattern);
 
-  const items = files
+  return files
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as ShareMetadata)
     .sort((a, b) => b.last_edited_time.localeCompare(a.last_edited_time))
     .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
+});
 
-  return items;
-}
-
-/** 获取指定 slug 的 awaken 条目（文件名仍按 title） */
-export async function getAwakenBySlug(
+/** 获取指定 slug 的 awaken 条目（按 slug 缓存） */
+export const getAwakenBySlug = cache(async (
   slug: string,
-): Promise<ShareWithContent | null> {
+): Promise<ShareWithContent | null> => {
   const items = await getAllAwaken();
   const meta = items.find((item) => item.slug === slug);
   if (!meta) return null;
@@ -42,7 +41,7 @@ export async function getAwakenBySlug(
     date: toLocalDateStr(shareMeta.date),
     content: parsed.content ?? '',
   };
-}
+});
 
 /** 获取所有分类 */
 export async function getAllAwakenCategories() {

@@ -1,5 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
+import { cache } from 'react';
 import { parseDate, parseMdFromFile, toLocalDateStr } from '@/libs/content-supports';
 import type { PostMetadata } from '../../scripts/types';
 
@@ -10,32 +11,26 @@ export interface PostWithContent extends PostMetadata {
 const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 
 /**
- * 获取所有文章
+ * 获取所有文章（请求级缓存：同一请求内多次调用只跑一次 glob+matter）
  */
-export async function getAllPosts() {
+export const getAllPosts = cache(async () => {
   const pattern = path.join(POSTS_DIR, '*.md');
   const files = await glob(pattern);
 
-  const posts = files
+  return files
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as PostMetadata)
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
     .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
-
-  console.log('本地文章数：', posts.length);
-
-  return posts;
-}
+});
 
 /**
- * 获取指定 slug 的文章
- *
- * @param slug slug
+ * 获取指定 slug 的文章（按 slug 缓存）
  */
-export async function getPostBySlug(
+export const getPostBySlug = cache(async (
   slug: string,
-): Promise<PostWithContent | null> {
+): Promise<PostWithContent | null> => {
   const filePath = path.join(POSTS_DIR, `${slug}.md`);
   const parsed = parseMdFromFile(filePath, true);
   if (!parsed?.postMeta) return null;
@@ -46,7 +41,7 @@ export async function getPostBySlug(
     date: toLocalDateStr(meta.date),
     content: parsed.content ?? '',
   };
-}
+});
 
 /**
  * 获取指定标签的文章
@@ -90,9 +85,9 @@ export async function getAllTags(): Promise<
 }
 
 /**
- * 统计文章总数和总字数
+ * 统计文章总数和总字数（请求级缓存）
  */
-export async function getPostStats() {
+export const getPostStats = cache(async () => {
   const pattern = path.join(POSTS_DIR, '*.md');
   const files = await glob(pattern);
 
@@ -111,7 +106,7 @@ export async function getPostStats() {
   }
 
   return { totalPosts, totalWords };
-}
+});
 
 /**
  * 获取所有分类

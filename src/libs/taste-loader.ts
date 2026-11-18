@@ -1,5 +1,6 @@
 import { glob } from 'glob';
 import path from 'path';
+import { cache } from 'react';
 import { parseDate, parseMdFromFile, toLocalDateStr } from '@/libs/content-supports';
 import type { ShareMetadata } from '../../scripts/types';
 
@@ -9,25 +10,23 @@ export interface ShareWithContent extends ShareMetadata {
 
 const SHARES_DIR = path.join(process.cwd(), 'content/shares/taste');
 
-/** 获取所有 taste 条目 */
-export async function getAllTaste() {
+/** 获取所有 taste 条目（请求级缓存） */
+export const getAllTaste = cache(async () => {
   const pattern = path.join(SHARES_DIR, '*.md');
   const files = await glob(pattern);
 
-  const items = files
+  return files
     .map((file) => parseMdFromFile(file))
     .filter((item): item is NonNullable<typeof item> => item != null)
     .map((item) => item.postMeta as ShareMetadata)
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
     .map((p) => ({ ...p, date: toLocalDateStr(p.date) }));
+});
 
-  return items;
-}
-
-/** 获取指定 title 的 taste 条目 */
-export async function getTasteBySlug(
+/** 获取指定 title 的 taste 条目（按 title 缓存） */
+export const getTasteBySlug = cache(async (
   title: string,
-): Promise<ShareWithContent | null> {
+): Promise<ShareWithContent | null> => {
   const filePath = path.join(SHARES_DIR, `${title}.md`);
   const parsed = parseMdFromFile(filePath, true);
   if (!parsed?.postMeta) return null;
@@ -38,7 +37,7 @@ export async function getTasteBySlug(
     date: toLocalDateStr(meta.date),
     content: parsed.content ?? '',
   };
-}
+});
 
 /** 获取所有分类 */
 export async function getAllTasteCategories() {

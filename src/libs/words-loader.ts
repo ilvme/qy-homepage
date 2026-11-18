@@ -1,16 +1,18 @@
 import { glob } from 'glob';
 import path from 'path';
+import { cache } from 'react';
 import { parseDate, parseMdFromFile, toLocalTimeStr } from '@/libs/content-supports';
 
 const WORDS_DIR = path.join(process.cwd(), 'content/words');
 
-export async function getAllWords() {
+/** 获取所有说说（请求级缓存） */
+export const getAllWords = cache(async () => {
   const pattern = path.join(WORDS_DIR, '*.md');
   const files = await glob(pattern);
 
   const now = new Date();
 
-  const words = files
+  return files
     .map((file) => parseMdFromFile(file, true))
     .filter((item) => item !== null)
     .filter((item) => {
@@ -29,11 +31,7 @@ export async function getAllWords() {
         parseDate(b?.postMeta.date).getTime() -
         parseDate(a?.postMeta.date).getTime(),
     );
-
-  console.log('本地说说数：', words.length);
-
-  return words;
-}
+});
 
 /** 所有说说标签 + 条数，按 count 降序 */
 export async function getAllWordTags(): Promise<{ label: string; count: number }[]> {
