@@ -1,3 +1,45 @@
+/** 导航可出现的三处位置：顶栏主干 / 页脚元信息 / 首页探索卡片 */
+export type NavSurface = 'header' | 'footer' | 'home';
+
+export interface NavLink {
+  href: string;
+  label: string;
+  /** 首页探索卡片的一句话说明 */
+  desc?: string;
+  surfaces: NavSurface[];
+}
+
+const navLinks: NavLink[] = [
+  {
+    href: '/posts',
+    label: '文章',
+    desc: '博文笔记',
+    surfaces: ['header', 'home'],
+  },
+  {
+    href: '/words',
+    label: '说说',
+    desc: '随笔心情',
+    surfaces: ['header', 'home'],
+  },
+  {
+    href: '/cooking',
+    label: '食者',
+    desc: '下厨记录',
+    surfaces: ['header', 'home'],
+  },
+  { href: '/taste', label: '书影音', desc: '书影音收藏', surfaces: ['home'] },
+  { href: '/awaken', label: '分享', desc: '语录与感悟', surfaces: ['home'] },
+
+  { href: '/about', label: '关于', desc: '我与小站', surfaces: ['home'] },
+  { href: '/friends', label: '友链', desc: '一些朋友', surfaces: ['home'] },
+  { href: '/sponsor', label: '赞赏', desc: '谢谢～', surfaces: ['home'] },
+
+  { href: '/archives', label: '归档', surfaces: ['footer'] },
+  { href: '/tags', label: '标签', surfaces: ['footer'] },
+  { href: '/categories', label: '分类', surfaces: ['footer'] },
+];
+
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ikangjia.cn',
 
@@ -28,14 +70,7 @@ export const siteConfig = {
   },
 
   /** 导航 */
-  navLinks: [
-    { href: '/posts', label: '文章', location: 'header' },
-    { href: '/words', label: '说说', location: 'header' },
-    { href: '/cooking', label: '食者', location: 'header' },
-    { href: '/archives', label: '归档', location: 'footer' },
-    { href: '/taste', label: '书影音', location: 'footer' },
-    { href: '/awaken', label: '分享', location: 'footer' },
-  ],
+  navLinks,
 
   /** 首页 Hero 文案 */
   hero: {

@@ -67,7 +67,7 @@ export default function Header({ wide }: { wide: boolean }) {
           </button>
           <nav className="flex items-center gap-1">
             {siteConfig.navLinks
-              .filter((l) => l.location === 'header')
+              .filter((l) => l.surfaces.includes('header'))
               .map((link) => (
                 <Link
                   key={link.href}
@@ -118,7 +118,7 @@ export default function Header({ wide }: { wide: boolean }) {
         >
           <div className="flex flex-col py-2 px-4">
             {siteConfig.navLinks
-              .filter((l) => l.location === 'header')
+              .filter((l) => l.surfaces.includes('header'))
               .map((link) => (
                 <Link
                   key={link.href}

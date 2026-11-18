@@ -18,6 +18,8 @@
 # next.js
 /.next/
 /out/
+# 构建时临时移走 .next 产生的快照目录（.next-old-* / .next-tmp-*）
+/.next-*/
 
 .idea
 

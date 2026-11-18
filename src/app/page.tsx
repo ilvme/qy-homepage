@@ -1,15 +1,33 @@
 import Link from 'next/link';
 import {
-  Bookmark,
   Cooking,
   FileText,
+  Film,
   Message,
   Share,
+  Sponsor,
   User,
   Users,
 } from '@/components/icons';
 import { siteConfig } from '@/site.config';
 import HomeFeed from './_components/HomeFeed';
+
+/** 首页卡片图标：config 只存数据，图标映射留在展示层 */
+const HOME_ICONS: Record<string, typeof FileText> = {
+  '/posts': FileText,
+  '/words': Message,
+  '/cooking': Cooking,
+  '/taste': Film,
+  '/awaken': Share,
+  '/friends': Users,
+  '/about': User,
+  '/sponsor': Sponsor,
+};
+
+/** 首页探索卡片：目标是补充曝光，不复读顶栏与页脚已有的入口 */
+const HOME_LINKS = siteConfig.navLinks.filter((l) =>
+  l.surfaces.includes('home'),
+);
 
 export default async function Home() {
   return (
@@ -35,63 +53,25 @@ export default async function Home() {
       {/* Site Sections */}
       <section className="space-y-4">
         <h2 className="text-base font-semibold">探索</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {[
-            {
-              href: '/posts',
-              label: '文章',
-              desc: '博文笔记',
-              Icon: FileText,
-            },
-            {
-              href: '/words',
-              label: '说说',
-              desc: '随笔心情',
-              Icon: Message,
-            },
-            {
-              href: '/cooking',
-              label: '食者',
-              desc: '下厨记录',
-              Icon: Cooking,
-            },
-            {
-              href: '/taste',
-              label: '书影音',
-              desc: '书影音收藏',
-              Icon: Bookmark,
-            },
-            {
-              href: '/awaken',
-              label: '分享',
-              desc: '语录与感悟',
-              Icon: Share,
-            },
-            {
-              href: '/friends',
-              label: '友链',
-              desc: '一些朋友',
-              Icon: Users,
-            },
-            {
-              href: '/about',
-              label: '关于',
-              desc: '我与小站',
-              Icon: User,
-            },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:shadow-sm hover:border-foreground/40 hover:bg-muted/60 transition-all duration-200 group"
-            >
-              <h3 className="font-medium transition-colors flex items-center gap-1.5">
-                <item.Icon size={15} className="shrink-0" />
-                {item.label}
-              </h3>
-              <p className="text-xs text-secondary mt-1">{item.desc}</p>
-            </Link>
-          ))}
+        <div className="grid grid-cols-3 gap-3">
+          {HOME_LINKS.map((item) => {
+            const Icon = HOME_ICONS[item.href];
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block p-4 rounded-xl border border-border hover:-translate-y-0.5 hover:bg-muted/60 transition-all duration-200 group"
+              >
+                <h3 className="font-medium transition-colors flex items-center gap-1.5">
+                  {Icon && <Icon size={15} className="shrink-0" />}
+                  {item.label}
+                </h3>
+                {item.desc && (
+                  <p className="text-xs text-secondary mt-1">{item.desc}</p>
+                )}
+              </Link>
+            );
+          })}
         </div>
       </section>
     </div>

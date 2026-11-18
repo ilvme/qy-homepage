@@ -1,21 +1,14 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/site.config';
-import { isActiveNav } from './nav-active';
 
-const rightLinks = [
-  ...siteConfig.navLinks
-    .filter((l) => l.location === 'footer')
-    .map((l) => ({ label: l.label, href: l.href })),
-  { label: '友链', href: '/friends' },
-  { label: '赞赏', href: '/sponsor' },
-  { label: 'RSS', href: '/rss.xml' },
-];
-
+/** 页脚：只放元信息与站点工具，内容类型一律不在这里重复 */
 export default function Footer() {
-  const pathname = usePathname();
+  const footerLinks = [
+    ...siteConfig.navLinks
+      .filter((l) => l.surfaces.includes('footer'))
+      .map((l) => ({ label: l.label, href: l.href })),
+    { label: 'RSS', href: siteConfig.rss.path },
+  ];
 
   return (
     <footer className="border-t border-border mt-12 pt-8 pb-8 text-sm text-secondary">
@@ -31,30 +24,20 @@ export default function Footer() {
           </a>
           <span>·</span>
           <span className="font-mono">2012 - {new Date().getFullYear()}</span>
-          {/*<span>·</span>*/}
-          {/*<Link*/}
-          {/*  href="/"*/}
-          {/*  className="hover:text-foreground transition-colors underline-offset-4 hover:underline"*/}
-          {/*>*/}
-          {/*  林深时觉寒*/}
-          {/*</Link>*/}
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {rightLinks.map((link, i) => {
-            const active = isActiveNav(link.href, pathname);
-            return (
-              <span key={link.href} className="flex items-center gap-2">
-                {i > 0 && <span>·</span>}
-                <Link
-                  href={link.href}
-                  className={`transition-colors underline-offset-4 hover:underline`}
-                >
-                  {link.label}
-                </Link>
-              </span>
-            );
-          })}
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+          {footerLinks.map((link, i) => (
+            <span key={link.href} className="flex items-center gap-2">
+              {i > 0 && <span>·</span>}
+              <Link
+                href={link.href}
+                className="transition-colors underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {link.label}
+              </Link>
+            </span>
+          ))}
         </div>
       </div>
     </footer>
