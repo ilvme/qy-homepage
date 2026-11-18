@@ -50,7 +50,7 @@ export default function Header({ wide }: { wide: boolean }) {
       <div className="flex items-center justify-between py-6 border-b border-border">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+          className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
         >
           {siteConfig.title}
         </Link>

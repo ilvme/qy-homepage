@@ -130,7 +130,7 @@ export default function Comment({ lazy = true }: CommentProps) {
             type="button"
             onClick={() => setOpen(true)}
             aria-expanded={open}
-            className="text-base font-semibold hover:cursor-pointer transition-colors"
+            className="text-base font-extrabold hover:cursor-pointer"
           >
             {label}
           </button>

@@ -14,9 +14,10 @@ export default function TagCloud({ tags, basePath }: TagCloudProps) {
         <Link
           key={tag.label}
           href={`${basePath}/${tag.label}`}
-          className="text-secondary text-sm hover:text-foreground hover:underline underline-offset-4 transition-colors"
+          className="text-sm text-secondary hover:underline underline-offset-4"
         >
-          #{tag.label} {tag.count}
+          <span>#{tag.label}&nbsp;&nbsp;</span>
+          <span className=" font-mono">{tag.count}</span>
         </Link>
       ))}
     </div>

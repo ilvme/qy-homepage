@@ -16,7 +16,7 @@ export default async function Home() {
     <div className="py-8 space-y-16">
       {/* Hero Section */}
       <section className="space-y-4">
-        <h1 className="text-3xl font-semibold tracking-normal">
+        <h1 className="text-3xl font-bold tracking-normal">
           {siteConfig.hero.greeting}
         </h1>
         <p className="text-secondary leading-relaxed text-base max-w-xl">
@@ -27,14 +27,14 @@ export default async function Home() {
       {/* 最近更新：文章 + 说说混排 */}
       <section className="space-y-4">
         <div className="flex items-baseline justify-between gap-4">
-          <h2 className="text-lg font-medium">最近更新</h2>
+          <h2 className="text-base">最近更新</h2>
         </div>
         <HomeFeed />
       </section>
 
       {/* Site Sections */}
       <section className="space-y-4">
-        <h2 className="text-lg font-medium">探索</h2>
+        <h2 className="text-base">探索</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
             {

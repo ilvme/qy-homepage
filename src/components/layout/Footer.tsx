@@ -31,13 +31,13 @@ export default function Footer() {
           </a>
           <span>·</span>
           <span className="font-mono">2012 - {new Date().getFullYear()}</span>
-          <span>·</span>
-          <Link
-            href="/"
-            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-          >
-            林深时觉寒
-          </Link>
+          {/*<span>·</span>*/}
+          {/*<Link*/}
+          {/*  href="/"*/}
+          {/*  className="hover:text-foreground transition-colors underline-offset-4 hover:underline"*/}
+          {/*>*/}
+          {/*  林深时觉寒*/}
+          {/*</Link>*/}
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-2">
@@ -48,9 +48,7 @@ export default function Footer() {
                 {i > 0 && <span>·</span>}
                 <Link
                   href={link.href}
-                  className={`transition-colors underline-offset-4 hover:underline ${
-                    active ? 'font-medium' : 'hover:text-foreground'
-                  }`}
+                  className={`transition-colors underline-offset-4 hover:underline`}
                 >
                   {link.label}
                 </Link>

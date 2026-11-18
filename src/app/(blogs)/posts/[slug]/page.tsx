@@ -109,7 +109,7 @@ export default async function Post({
       <article className="mx-auto w-full max-w-3xl">
         <header className="mb-10">
           {/* 标题 */}
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-normal leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-normal leading-tight mb-4">
             {postWithContent.title}
           </h1>
 

@@ -54,7 +54,7 @@ export default async function Archives() {
   return (
     <div className="py-8">
       <PageHero title="归档">
-        <p className="text-secondary text-base mt-1">
+        <p className="text-secondary mt-1">
           共 {stats.totalPosts} 篇文章
           {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
         </p>
@@ -63,7 +63,7 @@ export default async function Archives() {
       {/* 分类 + 标签聚合区 */}
       <div className="mt-2 mb-10 space-y-5">
         <div>
-          <h4 className="text-sm font-semibold text-secondary uppercase mb-2">
+          <h4 className="text-sm font-semibold text-secondary uppercase mb-3">
             分类
           </h4>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
@@ -86,7 +86,7 @@ export default async function Archives() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-secondary uppercase mb-2">
+          <h4 className="text-sm font-semibold text-secondary uppercase mb-3">
             标签
           </h4>
           <TagCloud tags={tags} basePath="/tags" />
@@ -99,7 +99,7 @@ export default async function Archives() {
         <div className="space-y-6">
           {sortedYears.map((year) => (
             <section key={year}>
-              <h2 className="text-lg font-medium mb-2">{year}</h2>
+              <h2 className="text-lg font-bold mb-2">{year}</h2>
               <ul className="space-y-0.5">
                 {postsByYear[year]?.map((post) => (
                   <li key={post.slug}>
