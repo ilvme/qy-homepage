@@ -16,8 +16,8 @@ interface ImageViewerProps {
 export default function ImageViewer({
   src,
   alt,
-  width = 800,
-  height = 500,
+  width,
+  height,
   className = '',
 }: ImageViewerProps) {
   const [open, setOpen] = useState(false);
@@ -35,8 +35,11 @@ export default function ImageViewer({
           <img
             src={src}
             alt={alt}
+            width={width}
+            height={height}
             className={className || 'max-w-full rounded'}
             loading="lazy"
+            decoding="async"
           />
         </span>
         {caption && (
