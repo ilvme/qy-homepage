@@ -49,6 +49,8 @@ export default async function ShuoShuo({
             </Link>
             <a
               href="/words/rss.xml"
+              target="_blank"
+              rel="noopener noreferrer"
               title="RSS 订阅"
               className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
             >
