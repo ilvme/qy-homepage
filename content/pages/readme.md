@@ -3,15 +3,14 @@ title: "关于"
 slug: "readme"
 date: "2026-06-26"
 page_id: "38bc485e-f356-8057-9ee5-e131f76a045a"
-last_edited_time: "2026-10-21T01:47:00.000Z"
-last_fetched_time: "2026-10-21T01:47:46.717Z"
+last_edited_time: "2026-11-17T06:01:00.000Z"
+last_fetched_time: "2026-11-17T10:01:06.212Z"
 type: "page"
 ---
 
 
 
 ## Me 
-
 
 九零后，一介布衣。暂栖津门，以编码为业，苟图居行生计。
 
@@ -25,7 +24,6 @@ type: "page"
 
 ## Website
 
-
 这个网站记录了一些我的日常、技术笔记，以及牢骚，算是一个脱离不了低级趣味的人的寻常日子里的惨淡经营。
 
 折腾过很多次网站，基本都已湮没于互联网尘埃之中😂。 
@@ -34,7 +32,11 @@ type: "page"
 
 本站代码已开源：[ilvme/qy-homepage](https://github.com/ilvme/qy-homepage)。 
 
+<br />
+
+注意：所有内容均以 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议授权，转载请注明出处，禁止用于商业目的。
+
 ## Find me on
 
-
 若有所言，欢迎致邮：ikangjia.cn#outlook.com
+
