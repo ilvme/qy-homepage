@@ -21,7 +21,9 @@ export default function ImageViewer({
   className = '',
 }: ImageViewerProps) {
   const [open, setOpen] = useState(false);
-  const caption = alt && alt !== 'Image' ? alt : '';
+  // Notion 无 caption 时同步脚本会写入通用占位词 "Image"，对读屏和图片搜索都是噪音，
+  // 这类图片按装饰性处理：alt 留空，也不渲染图注。
+  const realAlt = alt && alt !== 'Image' ? alt : '';
 
   return (
     <>
@@ -34,7 +36,7 @@ export default function ImageViewer({
         >
           <img
             src={src}
-            alt={alt}
+            alt={realAlt}
             width={width}
             height={height}
             className={className || 'max-w-full rounded'}
@@ -42,9 +44,9 @@ export default function ImageViewer({
             decoding="async"
           />
         </span>
-        {caption && (
+        {realAlt && (
           <span className="block -mt-1.5 text-center text-sm text-secondary">
-            {caption}
+            {realAlt}
           </span>
         )}
       </span>
@@ -52,7 +54,7 @@ export default function ImageViewer({
       <Lightbox
         open={open}
         close={() => setOpen(false)}
-        slides={[{ src, alt: caption || alt, description: caption }]}
+        slides={[{ src, alt: realAlt, description: realAlt }]}
         plugins={[Zoom]}
         zoom={{ maxZoomPixelRatio: 3 }}
         carousel={{ finite: true }}
