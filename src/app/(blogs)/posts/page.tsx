@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import PostItem from '@/app/(blogs)/_components/PostItem';
 import { Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
@@ -32,13 +33,23 @@ export default async function Posts({
       <PageHero
         title="文章"
         action={
-          <a
-            href="/rss.xml"
-            title="RSS 订阅"
-            className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
-          >
-            <Rss size={16} />
-          </a>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/archives"
+              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              归档
+            </Link>
+            <a
+              href="/rss.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="RSS 订阅"
+              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+            >
+              <Rss size={16} />
+            </a>
+          </div>
         }
       >
         <p className="text-secondary text-base mt-1">人穷龌龊事，尽揽一箩筐</p>

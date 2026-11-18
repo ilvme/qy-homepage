@@ -35,9 +35,11 @@ const navLinks: NavLink[] = [
   { href: '/friends', label: '友链', desc: '一些朋友', surfaces: ['home'] },
   { href: '/sponsor', label: '赞赏', desc: '谢谢～', surfaces: ['home'] },
 
-  { href: '/archives', label: '归档', surfaces: ['footer'] },
-  { href: '/tags', label: '标签', surfaces: ['footer'] },
-  { href: '/categories', label: '分类', surfaces: ['footer'] },
+  // 文章子页面：入口收敛到 /posts 与 /archives 内部，不占顶栏、首页与页脚
+  // 标签、分类已由 /archives 的聚合区承载，页面本身保留但不单独展示
+  { href: '/archives', label: '归档', surfaces: [] },
+  { href: '/tags', label: '标签', surfaces: [] },
+  { href: '/categories', label: '分类', surfaces: [] },
 ];
 
 export const siteConfig = {

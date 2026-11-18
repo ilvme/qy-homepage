@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Folder } from '@/components/icons';
+import { Folder, Rss } from '@/components/icons';
 import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
 import TagCloud from '@/components/ui/TagCloud';
 import { EmptyShower } from '@/components/ui/EmptyShower';
@@ -53,7 +53,20 @@ export default async function Archives() {
 
   return (
     <div className="py-8">
-      <PageHero title="归档">
+      <PageHero
+        title="归档"
+        action={
+          <a
+            href="/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="RSS 订阅"
+            className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+          >
+            <Rss size={16} />
+          </a>
+        }
+      >
         <p className="text-secondary mt-1">
           共 {stats.totalPosts} 篇文章
           {stats.totalWords > 0 && <> ，约 {stats.totalWords} 字</>}
