@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PostItem from '@/app/(blogs)/_components/PostItem';
-import { Rss } from '@/components/icons';
+import { Folder, Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
@@ -33,21 +33,22 @@ export default async function Posts({
       <PageHero
         title="文章"
         action={
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Link
               href="/archives"
-              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
+              <Folder size={14} className="shrink-0" />
               归档
             </Link>
             <a
               href="/rss.xml"
               target="_blank"
               rel="noopener noreferrer"
-              title="RSS 订阅"
-              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              <Rss size={16} />
+              <Rss size={14} className="shrink-0" />
+              订阅
             </a>
           </div>
         }

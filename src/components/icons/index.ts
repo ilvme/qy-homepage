@@ -25,6 +25,7 @@ export {
   Share2 as Share,
   Soup as Cooking,
   Sun,
+  Tag,
   User,
   Users,
   X as Close,

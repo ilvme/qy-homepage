@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Folder, Rss } from '@/components/icons';
 import PostItemLite from '@/app/(blogs)/_components/PostItemLite';
-import TagCloud from '@/components/ui/TagCloud';
+import { FileText, Folder, Rss } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
+import TagCloud from '@/components/ui/TagCloud';
 import {
   getAllCategories,
   getAllPosts,
@@ -56,15 +56,24 @@ export default async function Archives() {
       <PageHero
         title="归档"
         action={
-          <a
-            href="/rss.xml"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="RSS 订阅"
-            className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
-          >
-            <Rss size={16} />
-          </a>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/posts"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
+            >
+              <FileText size={14} className="shrink-0" />
+              文章
+            </Link>
+            <a
+              href="/rss.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
+            >
+              <Rss size={14} className="shrink-0" />
+              订阅
+            </a>
+          </div>
         }
       >
         <p className="text-secondary mt-1">
@@ -89,9 +98,7 @@ export default async function Archives() {
                 <Folder size={12} />
                 <span className="hover:underline underline-offset-4">
                   {cat}
-                  <span className="pl-1">
-                    {categoryCounts.get(cat) ?? 0}
-                  </span>
+                  <span className="pl-1">{categoryCounts.get(cat) ?? 0}</span>
                 </span>
               </Link>
             ))}

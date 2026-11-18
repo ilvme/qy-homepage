@@ -16,9 +16,9 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <header className="mb-8">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
         <h1 className="text-3xl font-bold tracking-normal">{title}</h1>
-        {/* 顶部与标题字形对齐：图标自带 p-1.5 会把墨迹再推 6px，用 -2px 抵消半行距 */}
+        {/* 顶部与标题字形对齐：图标自带内边距会把墨迹再推 6px，用 -2px 抵消半行距 */}
         {action && <div className="shrink-0 -mt-0.5">{action}</div>}
       </div>
       {description && (

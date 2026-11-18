@@ -5,7 +5,7 @@ import TagCloud from '@/components/ui/TagCloud';
 import { getAllTags } from '@/libs/content-loader';
 
 export const metadata: Metadata = {
-  title: 'Tags',
+  title: '标签',
   description: '文章标签',
 };
 
@@ -14,7 +14,7 @@ export default async function TagsPage() {
 
   return (
     <div className="py-8">
-      <PageHero title="Tags" description={`共 ${tags.length} 个标签`} />
+      <PageHero title="标签" description={`共 ${tags.length} 个标签`} />
 
       {tags.length === 0 ? (
         <EmptyShower />

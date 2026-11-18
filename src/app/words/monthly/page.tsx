@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { List, Rss, Tag } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
-import { Rss } from '@/components/icons';
 import {
   getAllWords,
   getWordsGroupedByMonth,
@@ -34,27 +34,29 @@ export default async function WordsMonthlyIndex() {
         title="说说月刊"
         description="按月归档的碎碎念，另一种翻阅方式。"
         action={
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Link
               href="/words/tags"
-              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              标签视图
+              <Tag size={14} className="shrink-0" />
+              标签
             </Link>
             <Link
               href="/words"
-              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              时间流视图
+              <List size={14} className="shrink-0" />
+              时间流
             </Link>
             <a
               href="/words/rss.xml"
               target="_blank"
               rel="noopener noreferrer"
-              title="RSS 订阅"
-              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              <Rss size={16} />
+              <Rss size={14} className="shrink-0" />
+              订阅
             </a>
           </div>
         }
@@ -65,11 +67,16 @@ export default async function WordsMonthlyIndex() {
       ) : (
         <div className="mt-12 space-y-10">
           {[...yearMap.entries()].map(([year, yearGroups]) => {
-            const total = yearGroups.reduce((sum, g) => sum + g.words.length, 0);
+            const total = yearGroups.reduce(
+              (sum, g) => sum + g.words.length,
+              0,
+            );
             return (
               <section key={year}>
                 <h2 className="flex items-baseline gap-2">
-                  <span className="text-lg font-bold tracking-tight">{year} 年</span>
+                  <span className="text-lg font-bold tracking-tight">
+                    {year} 年
+                  </span>
                   <span className="font-mono text-xs text-secondary tabular-nums">
                     {total} 条
                   </span>
@@ -81,7 +88,9 @@ export default async function WordsMonthlyIndex() {
                       href={`/words/monthly/${group.key}`}
                       className="group flex flex-col gap-0.5"
                     >
-                      <span className="text-base leading-tight">{group.month} 月</span>
+                      <span className="text-base leading-tight">
+                        {group.month} 月
+                      </span>
                       <span className="font-mono text-xs text-secondary tabular-nums transition-colors group-hover:text-foreground">
                         {group.words.length} 条
                       </span>

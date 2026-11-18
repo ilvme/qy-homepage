@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import WordCard from '@/app/words/_components/WordCard';
-import { Rss } from '@/components/icons';
+import { Calendar, Rss, Tag } from '@/components/icons';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
@@ -34,27 +34,29 @@ export default async function ShuoShuo({
         title="说说"
         description="生活碎片、猫咪日常，以及一些吐槽。"
         action={
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Link
               href="/words/tags"
-              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              标签视图
+              <Tag size={14} className="shrink-0" />
+              标签
             </Link>
             <Link
               href="/words/monthly"
-              className="inline-flex p-1.5 text-sm text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              月刊视图
+              <Calendar size={14} className="shrink-0" />
+              月刊
             </Link>
             <a
               href="/words/rss.xml"
               target="_blank"
               rel="noopener noreferrer"
-              title="RSS 订阅"
-              className="inline-flex p-1.5 text-secondary hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm text-secondary hover:text-foreground hover:border-foreground/30 hover:bg-muted/60 transition-colors"
             >
-              <Rss size={16} />
+              <Rss size={14} className="shrink-0" />
+              订阅
             </a>
           </div>
         }
