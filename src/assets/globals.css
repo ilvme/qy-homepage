@@ -45,8 +45,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
   --font-sans:
-    -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
-    "Noto Sans SC", system-ui, sans-serif;
+    var(--font-noto-sans), -apple-system, "PingFang SC", "HarmonyOS Sans SC",
+    "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
     monospace;
@@ -56,6 +56,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  /* 思源黑 Regular(400) 比 MiSans/PingFang 观感更细，正文取可变轴 450 补足灰度 */
+  font-weight: 400;
 }
 
 /* 骨架屏脉冲：减弱动效偏好下停用 */
