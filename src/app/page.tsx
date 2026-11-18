@@ -27,14 +27,14 @@ export default async function Home() {
       {/* 最近更新：文章 + 说说混排 */}
       <section className="space-y-4">
         <div className="flex items-baseline justify-between gap-4">
-          <h2 className="text-base">最近更新</h2>
+          <h2 className="text-base font-semibold">最近更新</h2>
         </div>
         <HomeFeed />
       </section>
 
       {/* Site Sections */}
       <section className="space-y-4">
-        <h2 className="text-base">探索</h2>
+        <h2 className="text-base font-semibold">探索</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
             {

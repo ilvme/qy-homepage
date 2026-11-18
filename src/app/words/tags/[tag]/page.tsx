@@ -41,7 +41,7 @@ export default async function WordsByTag({
   return (
     <div className="py-8 space-y-6">
       <header>
-        <h1 className="text-3xl font-semibold tracking-normal">
+        <h1 className="text-3xl font-bold tracking-normal">
           <span>#{tag}</span>
         </h1>
         <p className="text-secondary text-base mt-1">
