@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
-import PostNav from '@/app/(blogs)/_components/PostNav';
 import { ArrowLeft } from '@/components/icons';
 import Comment from '@/components/ui/Comment';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
@@ -64,12 +63,6 @@ export default async function Post({
   const headings = extractHeadings(postWithContent.content);
   const hasToc = headings.length > 0;
 
-  // 上下篇：列表按日期倒序，idx+1 为更早一篇，idx-1 为更晚一篇
-  const posts = (await getAllPosts()).filter((p) => p.status === 'published');
-  const idx = posts.findIndex((p) => p.slug === slug);
-  const prev = idx >= 0 ? posts[idx + 1] : undefined;
-  const next = idx > 0 ? posts[idx - 1] : undefined;
-
   const pageUrl = `${siteConfig.url}/posts/${slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -128,26 +121,21 @@ export default async function Post({
           className="text-base 2xl:text-lg"
         />
 
-
         {postWithContent.comments !== false && siteConfig.giscus.enabled && (
           <Comment />
         )}
 
-
         <div className="mt-12">
-          {/*<div className="flex items-center justify-between">*/}
-          {/*  <Link*/}
-          {/*    href="/posts"*/}
-          {/*    className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"*/}
-          {/*  >*/}
-          {/*    <ArrowLeft size={16} />*/}
-          {/*    返回文章列表*/}
-          {/*  </Link>*/}
-          {/*</div>*/}
-          <PostNav prev={prev} next={next} />
+          <div className="flex items-center justify-between">
+            <Link
+              href="/posts"
+              className="inline-flex items-center gap-1 text-sm text-secondary hover:text-foreground transition-colors"
+            >
+              <ArrowLeft size={16} />
+              返回文章列表
+            </Link>
+          </div>
         </div>
-
-
       </article>
 
       {/* 目录 - 桌面端放在正文右侧 sticky */}
