@@ -4,7 +4,10 @@ import { mdToFeedHtml } from '@/libs/feed-supports';
 import { siteConfig } from '@/site.config';
 
 export async function GET() {
-  const posts = await getAllPosts();
+  // 已发布 + 按日期倒序，取最近若干篇；全文输出，条数由 config 控制
+  const posts = (await getAllPosts())
+    .filter((post) => post.status === 'published')
+    .slice(0, siteConfig.rss.maxItems);
 
   const feed = new RSS({
     title: siteConfig.title,
@@ -16,8 +19,6 @@ export async function GET() {
   });
 
   for (const post of posts) {
-    if (post.status !== 'published') continue;
-
     // summary 作摘要，content:encoded 输出全文 HTML
     const full = await getPostBySlug(post.slug);
     const html = full?.content ? mdToFeedHtml(full.content) : '';

@@ -3,9 +3,6 @@ import { mdToFeedHtml, plainText } from '@/libs/feed-supports';
 import { getAllWords } from '@/libs/words-loader';
 import { siteConfig } from '@/site.config';
 
-/** feed 条数上限，避免全量输出过大 */
-const MAX_ITEMS = 50;
-
 export async function GET() {
   const words = await getAllWords();
 
@@ -21,7 +18,7 @@ export async function GET() {
   // getAllWords 已按时间倒序、过滤未来日期；索引对应列表分页位置
   const pageSize = siteConfig.pagination.wordsPageSize;
 
-  words.slice(0, MAX_ITEMS).forEach((word, index) => {
+  words.slice(0, siteConfig.rss.wordsMaxItems).forEach((word, index) => {
     const meta = word.postMeta;
     const text = plainText(word.content ?? '');
 

@@ -60,6 +60,10 @@ export const siteConfig = {
     path: '/rss.xml',
     wordsPath: '/words/rss.xml',
     cacheMaxAge: 3600,
+    /** 文章 feed 条数上限（全文输出，限制条数以控制体积与生成开销） */
+    maxItems: 20,
+    /** 说说 feed 条数上限（单条内容短，可多输出一些） */
+    wordsMaxItems: 50,
   },
 
   /** 分页 */
