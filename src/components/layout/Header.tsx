@@ -91,7 +91,7 @@ export default function Header({ wide }: { wide: boolean }) {
             type="button"
             aria-label="搜索文章"
             onClick={() => setSearchOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-md transition-colors text-secondary hover:text-foreground"
+            className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors text-secondary hover:text-foreground"
           >
             <Search size={20} />
           </button>
@@ -102,7 +102,7 @@ export default function Header({ wide }: { wide: boolean }) {
             aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="flex h-11 w-11 items-center justify-center rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+            className="flex h-11 w-11 items-center justify-center rounded-lg hover:bg-muted transition-colors text-secondary hover:text-foreground"
           >
             {menuOpen ? <Close size={20} /> : <Menu size={20} />}
           </button>

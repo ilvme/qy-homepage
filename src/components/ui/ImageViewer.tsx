@@ -39,7 +39,7 @@ export default function ImageViewer({
             alt={realAlt}
             width={width}
             height={height}
-            className={className || 'max-w-full rounded'}
+            className={className || 'max-w-full rounded-lg'}
             loading="lazy"
             decoding="async"
           />

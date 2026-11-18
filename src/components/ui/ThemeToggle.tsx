@@ -47,7 +47,7 @@ export default function ThemeToggle({
       onClick={cycle}
       aria-label={`外观：${label}（点击切换）`}
       title={`外观：${label}（点击切换）`}
-      className={`p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground ${className}`}
+      className={`p-1.5 rounded-lg hover:bg-muted transition-colors text-secondary hover:text-foreground ${className}`}
     >
       <Icon size={18} />
     </button>

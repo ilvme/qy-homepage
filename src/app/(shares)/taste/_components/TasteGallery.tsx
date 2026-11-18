@@ -16,7 +16,7 @@ export function TasteGallery({ items }: TasteGalleryProps) {
           href={item.link || '#'}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block rounded-sm hover:opacity-90 transition-opacity"
+          className="group block rounded hover:opacity-90 transition-opacity"
         >
           <div className="aspect-2/3 bg-muted  overflow-hidden">
             {item.cover ? (
