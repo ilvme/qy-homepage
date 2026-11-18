@@ -13,7 +13,11 @@ const META: Record<Theme, { Icon: typeof Sun; label: string }> = {
   dark: { Icon: Moon, label: '暗色' },
 };
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+  className = '',
+}: {
+  className?: string;
+}) {
   const [theme, setTheme] = useState<Theme>('system');
 
   useEffect(() => {
@@ -43,7 +47,7 @@ export default function ThemeToggle() {
       onClick={cycle}
       aria-label={`外观：${label}（点击切换）`}
       title={`外观：${label}（点击切换）`}
-      className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+      className={`p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground ${className}`}
     >
       <Icon size={18} />
     </button>

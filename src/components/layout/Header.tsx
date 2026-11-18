@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Close, Menu, Search } from '@/components/icons';
 import SearchPalette from '@/components/ui/SearchPalette';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -14,6 +14,21 @@ export default function Header({ wide }: { wide: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
+
+  // 移动端菜单开合的可达性：打开时焦点移入菜单，Escape 关闭并归还焦点
+  useEffect(() => {
+    if (!menuOpen) return;
+    menuRef.current?.querySelector<HTMLElement>('a')?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
 
   // ⌘K / Ctrl+K 全局唤起/关闭搜索
   useEffect(() => {
@@ -70,21 +85,24 @@ export default function Header({ wide }: { wide: boolean }) {
           <ThemeToggle />
         </div>
 
-        {/* 移动端：搜索 + 汉堡按钮 */}
+        {/* 移动端：搜索 + 汉堡按钮（命中区 44px，符合触控推荐） */}
         <div className="flex items-center gap-1 sm:hidden">
           <button
             type="button"
             aria-label="搜索文章"
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 transition-colors text-secondary hover:text-foreground"
+            className="flex h-11 w-11 items-center justify-center rounded-md transition-colors text-secondary hover:text-foreground"
           >
             <Search size={20} />
           </button>
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
-            className="p-1.5 rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="flex h-11 w-11 items-center justify-center rounded-md hover:bg-muted transition-colors text-secondary hover:text-foreground"
           >
             {menuOpen ? <Close size={20} /> : <Menu size={20} />}
           </button>
@@ -93,7 +111,11 @@ export default function Header({ wide }: { wide: boolean }) {
 
       {/* 移动端下拉菜单 */}
       {menuOpen && (
-        <nav className="absolute top-full left-0 right-0 z-50 bg-background border-b border-border shadow-lg sm:hidden">
+        <nav
+          id="mobile-menu"
+          ref={menuRef}
+          className="absolute top-full left-0 right-0 z-50 bg-background border-b border-border shadow-lg sm:hidden"
+        >
           <div className="flex flex-col py-2 px-4">
             {siteConfig.navLinks
               .filter((l) => l.location === 'header')
@@ -102,7 +124,7 @@ export default function Header({ wide }: { wide: boolean }) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`py-2.5 px-2 transition-colors text-sm underline-offset-4 hover:underline ${
+                  className={`py-3 px-2 transition-colors text-sm underline-offset-4 hover:underline ${
                     isActiveNav(link.href, pathname)
                       ? 'text-foreground font-medium'
                       : 'text-secondary hover:text-foreground'
@@ -113,7 +135,7 @@ export default function Header({ wide }: { wide: boolean }) {
               ))}
           </div>
           <div className="flex items-center gap-3 px-4 py-2">
-            <ThemeToggle />
+            <ThemeToggle className="flex h-11 w-11 items-center justify-center" />
           </div>
         </nav>
       )}
