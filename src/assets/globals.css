@@ -44,7 +44,9 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
-  --font-sans: "LXGW WenKai Screen", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-sans:
+    -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
+    "Noto Sans SC", system-ui, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
     monospace;

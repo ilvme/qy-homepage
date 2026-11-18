@@ -1,7 +1,4 @@
 import type { Metadata } from 'next';
-// 只引入实际使用的完整版：style.css 会额外带入 GB 版（同族名、被完整版覆盖）
-// 与两个 R 变体（全站未引用），纯属多出约 270KB 渲染阻塞 CSS。
-import 'lxgw-wenkai-screen-webfont/lxgwwenkaiscreen.css';
 import '@/assets/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';

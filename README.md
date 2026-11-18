@@ -9,7 +9,7 @@
 - **内容**: MDX (`@mdx-js/mdx`), Notion API (`@notionhq/client`), `notion-to-md` v4, gray-matter, glob
 - **代码高亮**: Shiki (`@shikijs/rehype`, `shiki`)
 - **Markdown 插件**: remark-gfm, rehype-slug
-- **字体**: 霞鶜文楷 (`lxgw-wenkai-screen-webfont`)
+- **字体**: 系统字体栈（PingFang SC / HarmonyOS Sans SC / 微软雅黑 / system-ui），不加载网页字体
 - **图片灯箱**: `yet-another-react-lightbox`
 - **评论**: Giscus
 - **工具库**: dayjs, rss, dotenv
