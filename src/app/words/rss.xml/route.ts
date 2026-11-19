@@ -11,7 +11,7 @@ export async function GET() {
     description: '碎片化的思考与记录',
     site_url: `${siteConfig.url}/words`,
     feed_url: `${siteConfig.url}${siteConfig.rss.wordsPath}`,
-    language: 'zh-CN',
+    language: siteConfig.language,
     pubDate: new Date().toISOString(),
   });
 

@@ -14,7 +14,7 @@ export async function GET() {
     description: siteConfig.description,
     site_url: siteConfig.url,
     feed_url: `${siteConfig.url}${siteConfig.rss.path}`,
-    language: 'zh-CN',
+    language: siteConfig.language,
     pubDate: new Date().toISOString(),
   });
 

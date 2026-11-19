@@ -2,10 +2,9 @@ import Link from 'next/link';
 import { getAllPosts } from '@/libs/content-loader';
 import { parseDate } from '@/libs/content-supports';
 import { getAllWords } from '@/libs/words-loader';
+import { siteConfig } from '@/site.config';
 
-/** 各类型固定配额：文章与说说各取最近 2 条，避免说说频率高时独占整个时间流 */
-const POST_FEED_LIMIT = 2;
-const WORD_FEED_LIMIT = 2;
+/** 条目摘要截断长度：属于排版细节，留在展示层不提到 config */
 const EXCERPT_MAX = 60;
 
 interface FeedItem {
@@ -36,7 +35,7 @@ export default async function HomeFeed() {
 
   const postItems: FeedItem[] = posts
     .filter((post) => post.status === 'published')
-    .slice(0, POST_FEED_LIMIT)
+    .slice(0, siteConfig.feedLimits.post)
     .map((post) => ({
       key: `post-${post.slug}`,
       kind: 'post',
@@ -47,7 +46,7 @@ export default async function HomeFeed() {
 
   // 说说按时间倒序排列，最近几条必在 /words 第一页，直接落列表即可
   const wordItems: FeedItem[] = words
-    .slice(0, WORD_FEED_LIMIT)
+    .slice(0, siteConfig.feedLimits.word)
     .map((word) => ({
       key: `word-${word.postMeta.page_id}`,
       kind: 'word' as const,

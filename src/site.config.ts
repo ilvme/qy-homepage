@@ -42,18 +42,34 @@ const navLinks: NavLink[] = [
   { href: '/categories', label: '分类', surfaces: [] },
 ];
 
+/** 作者署名：config 内部多处复用，改笔名只改这一处 */
+const AUTHOR_DISPLAY_NAME = '林深时觉寒';
+
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ikangjia.cn',
 
   title: '和光同尘',
   description: '个人主页 — 记录生活与技术，分享思考与创造。',
 
+  /** 语言标识唯一来源：html lang 与 RSS language 用 language，OG locale 用下划线写法 */
+  language: 'zh-CN',
+  ogLocale: 'zh_CN',
+
   author: {
     name: 'kangjia',
-    displayName: '林深时觉寒',
+    displayName: AUTHOR_DISPLAY_NAME,
   },
 
   keywords: ['博客', '技术', '生活', '前端', '个人主页'],
+
+  /** 站点起始年份：页脚版权区间起点，与当前年份组成 20xx-20xx */
+  startYear: 2012,
+
+  /** 首页「最近更新」配额：文章与说说各取最近 N 条，避免说说高频独占时间流 */
+  feedLimits: {
+    post: 2,
+    word: 2,
+  },
 
   /** RSS 订阅 */
   rss: {
@@ -80,7 +96,7 @@ export const siteConfig = {
 
   /** 首页 Hero 文案 */
   hero: {
-    greeting: '你好，我是林深时觉寒',
+    greeting: `你好，我是${AUTHOR_DISPLAY_NAME}`,
     intro:
       '欢迎来到我的小站。这里是我记录生活感悟、技术笔记、读书观影心得的地方。',
   },

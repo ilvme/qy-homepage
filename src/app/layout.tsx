@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.title,
     title: siteConfig.title,
     description: siteConfig.description,
-    locale: 'zh_CN',
+    locale: siteConfig.ogLocale,
     images: [
       { url: '/og.png', width: 1200, height: 630, alt: siteConfig.title },
     ],
@@ -63,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="zh-CN"
+      lang={siteConfig.language}
       className={`h-full antialiased ${notoSansSC.variable}`}
       suppressHydrationWarning
     >

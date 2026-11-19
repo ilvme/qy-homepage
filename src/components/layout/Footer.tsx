@@ -12,17 +12,23 @@ export default function Footer() {
     .filter((l) => l.surfaces.includes('footer'))
     .map((l) => ({ label: l.label, href: l.href }));
 
+  const currentYear = new Date().getFullYear();
+  const copyrightYears =
+    siteConfig.startYear === currentYear
+      ? `${currentYear}`
+      : `${siteConfig.startYear}-${currentYear}`;
+
   return (
     <footer className="mt-12 pt-8 pb-8 text-sm text-secondary">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
         <div className="flex items-center gap-2 font-mono">
           <Copyright size={14} />
-          <span>2012-{new Date().getFullYear()}</span>
+          <span>{copyrightYears}</span>
           <Link
             href="/about"
             className="hover:text-foreground underline-offset-4 hover:underline"
           >
-            林深时觉寒
+            {siteConfig.author.displayName}
           </Link>
         </div>
 
