@@ -13,18 +13,9 @@ export default function Footer() {
     .map((l) => ({ label: l.label, href: l.href }));
 
   return (
-    <footer className="border-t border-border mt-12 pt-8 pb-8 text-sm text-secondary">
+    <footer className="mt-12 pt-8 pb-8 text-sm text-secondary">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
         <div className="flex items-center gap-2 font-mono">
-          {/*<a*/}
-          {/*  target="_blank"*/}
-          {/*  href="https://creativecommons.org/licenses/by-nc-sa/4.0/"*/}
-          {/*  className="hover:text-foreground transition-colors underline-offset-4 hover:underline font-mono"*/}
-          {/*  rel="noopener noreferrer"*/}
-          {/*>*/}
-          {/*  CC BY-NC-SA 4.0*/}
-          {/*</a>*/}
-          {/*<span>·</span>*/}
           <Copyright size={14} />
           <span>2012-{new Date().getFullYear()}</span>
           <Link
