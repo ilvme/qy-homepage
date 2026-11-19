@@ -277,11 +277,11 @@ export async function convertPageToMarkdown(
     // 清理本页目录中未被引用的媒体文件（换图/换签名 URL 后的旧文件）。
     // 引用来源：正文图片（![](...)）+ 封面（由 fetcher 的 syncCover 写入同目录，
     // 其引用在 md frontmatter 中，不在此处 — cover 单独豁免）。
+    // 注意：正则不能排除空白字符——目录名可能含空格（如 words/Crazy DBX/），
+    // 排除 \s 会在空格处截断路径，导致文件被误判为未引用而删除。
     if (fs.existsSync(pageMediaDir)) {
       const referenced = new Set(
-        [...content.matchAll(/\/notion-images\/[^)\s"']+/g)].map(
-          (m) => m[0],
-        ),
+        [...content.matchAll(/\/notion-images\/[^)"'\n]+/g)].map((m) => m[0]),
       );
       for (const f of fs.readdirSync(pageMediaDir)) {
         // cover/文件名以 cover 开头的（syncCover 生成）豁免
