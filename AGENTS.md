@@ -1,12 +1,17 @@
 # AGENTS.md
 
-This file provides guidance to Qoder (qoder.com) when working with code in this repository.
+This file provides guidance to AI coding tools (Qoder and others) when working with code in this repository.
 
 ## 项目文档
 
-项目的完整文档见 **CLAUDE.md**（与本文件同目录，唯一权威来源）：包含常用命令、架构、内容管线、路由表、组件清单、设计系统、CI/CD、依赖注意事项。
+两份文件分工明确，不要在这里重复维护内容：
 
-**请始终以 CLAUDE.md 为准**，本文件不再重复维护内容，避免两处文档不同步。
+| 文件 | 面向 | 内容 |
+|------|------|------|
+| **CLAUDE.md** | AI 编码工具 | 命令、硬约定、已知陷阱——**动手前先读这个** |
+| **README.md** | 人 | 项目介绍、站点结构、内容管线、开发与部署 |
+
+设计取舍与「为什么这么做」就近写在代码注释里，改代码时顺手更新。
 
 ## 一句话概述
 

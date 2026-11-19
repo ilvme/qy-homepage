@@ -1,199 +1,62 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+给 AI 编码工具的操作手册：命令、硬约定、已知陷阱。**只放代码里读不出来的东西**——项目介绍、站点结构、内容管线、环境变量说明在 `README.md`，需要背景去那里看。
 
-## 项目概述
-
-个人主页/博客（"和光同尘"），基于 Next.js 16（App Router）、React 19、TypeScript 和 Tailwind CSS v4 构建。内容在 Notion 中编辑，通过脚本同步为本地 Markdown 文件（含 YAML frontmatter），MDX 通过 `@mdx-js/mdx` 的 `evaluate()` 在服务端渲染。
-
-## 常用命令
+## 命令
 
 ```bash
-pnpm dev              # 启动开发服务器（端口 3000）
-pnpm build            # 生产构建
-pnpm lint             # Biome 检查（linter + formatter）
-pnpm format           # Biome 格式化并写入
-pnpm fetchAll         # 从 Notion 同步所有内容
-pnpm fetchArticles    # 仅同步文章
-pnpm fetchPages       # 仅同步页面
-pnpm fetchShares      # 仅同步分享
-pnpm fetchCooking     # 仅同步下厨
-pnpm fetchWords       # 仅同步说说
+pnpm dev            # 先构建搜索索引，再启动 dev server（3000）
+pnpm build          # 先构建搜索索引，再 next build（含类型检查）
+pnpm lint           # Biome check
+pnpm format         # Biome 格式化并写入
+pnpm fetchAll       # Notion 全量同步（增量语义）
+pnpm fetchAll --force
+pnpm fetchArticles  # 也可 fetchPages / fetchShares / fetchCooking / fetchWords
 ```
 
-`fetchAll` 加 `--force` 可强制全量重新同步（绕过增量检查）。
+`dev` / `build` 前置的 `tsx scripts/build-search-index.ts` 不能省——直接 `next dev` 会拿不到 `public/search-index.json`，搜索功能静默失效。
 
-## 环境变量
+## 硬约定
 
-复制 `.env.example` 为 `.env` 并填入：
+- **图标只从 `@/components/icons` 具名导入**，不要 `from 'lucide-react'`。lucide 别名收在出口里，直接引入会绕过统一出口。
+- **fetcher 之间不共用字段列表或格式化函数**。每个 fetcher 自己定义 property → frontmatter 映射、自己拼 MD 字符串，只共享 `scripts/lib/` 的纯函数。
+- **Tailwind 类名必须是完整字面量**。`max-w-200${cond ? ' …' : ''}` 这种模板拼接会让 v4 扫描器把整条候选丢弃，规则根本不生成。宽窄路由见 `src/components/layout/wide-route.ts`。
+- **loader 的重查询用 `React.cache()` 包裹**，同一次渲染内只读一次盘。
+- **提交信息**：`type(scope): 中文描述`，如 `fix(sync): 图片清理正则不再排除空格`。类型用 conventional commits，描述用中文。
+- **文档分工**：`README.md` 给人，本文件给 AI，设计 why 就近写代码注释。改代码不需要同步 README，改「用法」才需要。
 
-| 变量 | 用途 | 位置 |
-|------|------|------|
-| `NOTION_TOKEN` | Notion Integration Token | 本地 + Vercel + GitHub Secrets |
-| `NOTION_ARTICLES_DATABASE_ID` | 文章数据库（含 page 类型） | 同上 |
-| `NOTION_WORDS_DATABASE_ID` | 说说数据库 | 同上 |
-| `NOTION_SHARE_DATABASE_ID` | 分享数据库 | 同上 |
-| `NOTION_COOKING_DATABASE_ID` | 下厨数据库 | 同上 |
-| `NEXT_PUBLIC_SITE_URL` | 站点 URL | 仅 Vercel |
-| `PUBLISH_SECRET` | 说说发布 API 密钥 | Vercel + 本地 |
-| `VERCEL_DEPLOY_HOOK` | Deploy Hook URL，发布说说后自动触发部署 | 仅 Vercel |
+## 已知陷阱
 
-## 目录约定
-
-- `src/app/` — Next.js App Router 页面（`@/` 映射到 `src/`）
-- `src/components/` — 通用 UI 组件
-- `src/libs/` — 服务端工具：内容加载、frontmatter 解析、日期处理
-- `scripts/` — Notion 同步脚本（`tsx` 执行）
-- `content/` — 生成的 MD 文件（`posts/`、`pages/`、`words/`、`shares/{awaken,taste}/`、`cooking/`、`old-words/`）
-- `public/notion-images/` — 从 Notion 下载的图片
-- Node 20，ES2022 target，tsconfig `strict: true`，`moduleResolution: bundler`
-
-## Biome 配置
-
-`biome.json`：缩进 2 空格，单引号，`organizeImports: on`。`content/` 目录排除（含 YAML frontmatter 的 MD 文件 Biome 无法解析）。`suspicious.noUnknownAtRules: off` 以兼容 Tailwind v4 的 `@theme`/`@plugin` 等指令。启用 `next: recommended` 和 `react: recommended` 领域规则。
-
-## 架构
-
-### 内容管线
-
-```
-Notion 数据库（4 个独立库：articles, words, shares, cooking）
-        │
-        └── GitHub Action（每小时）──→ fetchAll → commit → push 触发 Vercel 构建
-```
-
-1. **同步脚本**（`scripts/`）：每个内容类型一个独立 fetcher，查各自的 Notion 数据库（2026 API 通过 data_source 层），用 `notion-to-md` v4 转换页面为 Markdown（图片下载到 `public/notion-images/`、callout → `<Callout>`、column_list → `<Columns>`），生成带 YAML frontmatter 的 `.md` 文件。
-2. **加载器**（`src/libs/`）：`content-loader.ts`、`words-loader.ts`、`cooking-loader.ts`、`awaken-loader.ts`、`taste-loader.ts` 通过 `glob` + `gray-matter` 读取本地 MD，解析 frontmatter 返回。`words-loader` 会过滤掉 `date` 在未来日期的说说（预发布机制）。
-3. **MDX 渲染**（`MarkdownRenderer`）：服务端组件，用 `@mdx-js/mdx` 的 `evaluate()` 渲染（非 `compile()`），`remarkGfm` + `rehypeShiki`（`github-light`/`monokai` 双主题）+ `rehypeSlug`，映射 `img` → `ImageViewer`、`pre` → `CodeBlock`。支持 `highlight` 和 `slug` boolean props 禁用语法高亮或标题锚点。
-4. **图片下载**（`scripts/lib/notion-md-converter.ts`）：`fetchWithRetry()` 带指数退避重试（默认 3 次），避免 Notion 图片下载偶发失败。
-5. **页面** 通过 `MarkdownRenderer` 或 `ImageGallery` 渲染内容。
-
-### 内容类型
-
-| 类型 | Notion 库 | Fetcher | Loader | 路由 |
-|------|-----------|---------|--------|------|
-| 文章 + 页面 | articles（type 字段区分） | articles-fetcher + pages-fetcher 共用 `fetchByType()` | content-loader | `/posts`、`/about` 等 |
-| 说说 | words | words-fetcher | words-loader | `/words` |
-| 分享 | shares（type: "awaken"） | shares-fetcher | awaken-loader | `/awaken`、`/awaken/[slug]`、`/awaken/all` |
-| 书影音 | shares（type: "taste"） | shares-fetcher | taste-loader | `/taste` |
-| 下厨 | cooking | cooking-fetcher | cooking-loader | `/cooking`、`/cooking/[slug]` |
-
-awaken、taste 共用同一个 Notion 数据库，同步时按 type 分目录存储：`content/shares/{type}/`、`public/notion-images/shares/{type}/`。每个 fetcher 完全独立：自己定义 Notion property → metadata 映射、自己显式声明 frontmatter 字段列表及顺序、自己拼接 MD 字符串。**不共用字段列表或格式化函数**。
-
-### 脚本目录
-
-```
-scripts/
-├── fetch-all.ts              # 统一入口
-├── articles-fetcher.ts       # 文章（type: "article"）
-├── pages-fetcher.ts          # 页面（type: "page"）
-├── shares-fetcher.ts         # 分享（独立数据库）
-├── cooking-fetcher.ts        # 下厨（独立数据库）
-├── words-fetcher.ts          # 说说
-├── types.ts                  # PostMetadata / ShareMetadata / WordMetadata
-└── lib/
-    ├── notion-client.ts      # fetchAllPages() 分页查询 + data_source 解析
-    ├── notion-md-converter.ts # convertPageToMarkdown() + downloadImage()
-    ├── sync-utils.ts         # needsSync() 增量检查 + syncCover() 封面下载
-    └── mappers.ts            # mapArticlePage() + getArticlesDatabaseId()
-```
-
-每个 fetcher 完全自包含：自己查库、自己循环处理、自己写文件。仅通过 `lib/` 中的几个纯函数共享基础设施。
-
-### 增量同步
-
-比对 `last_edited_time`，一致则跳过。`--force` 模式设置 `FORCE_SYNC=true` 绕过。Cover 图片也会通过 `syncCover()` 下载到本地。
-
-### Date 解析
-
-`content-supports.ts` 导出 `parseDate()`：纯日期字符串（`YYYY-MM-DD`）手动构造 `new Date(y, m-1, d)` 强制本地时间，避免 JS 当 UTC 处理导致 8 小时偏差。所有 loader 的排序和过滤统一使用此函数。WordCard 显示端用 `dayjs` 显式指定格式。
-
-该文件还导出：
-- `parseMdFromFile(filePath, withContent?)` — 读取 MD 文件，解析 frontmatter + 正文
-- `extractHeadings(md)` — 从 Markdown 提取 h2/h3 标题，返回 `TocHeading[]`（`{id, text, level}`）
-- `slugify(text)` — 与 rehype-slug 一致的 ID 生成（支持中文）
-
-### Content Loader API
-
-`content-loader.ts` 完整导出：
-| 函数 | 返回值 | 说明 |
-|------|--------|------|
-| `getAllPosts()` | `PostMetadata[]` | 按日期倒序排列所有文章 |
-| `getPostBySlug(slug)` | `PostWithContent \| null` | 单篇文章（含正文） |
-| `getPostsByTag(tag)` | `PostMetadata[]` | 按标签过滤 |
-| `getPostsByCategory(cat)` | `PostMetadata[]` | 按分类过滤 |
-| `getAllTags()` | `{label, count}[]` | 所有标签 + 文章数，按 count 降序 |
-| `getAllCategories()` | `string[]` | 所有分类，按字母排序 |
-| `getPostStats()` | `{totalPosts, totalWords}` | 文章总数 + 总字数 |
-
-`cooking-loader.ts` 提供对应的 `getAllCooking()`、`getCookingBySlug()`、`getAllCookingCategories()`、`getCookingByCategory()`。`awaken-loader.ts` 和 `taste-loader.ts` 提供同名函数（`getAllAwaken`、`getAwakenBySlug`、`getAllAwakenCategories`、`getAwakenByCategory` 等）。
-
-### API 路由
-
-| 端点 | 用途 |
+| 陷阱 | 说明 |
 |------|------|
-| `POST /api/words/publish` | 写说说到 Notion（2026 API data_source 层），写入成功后 fire-and-forget 触发 Vercel Deploy Hook。Web 端 (`from: "Web"`) 直接传 `title` + `text`，其他端从 `text` 首个空格拆分为 title + markdown 正文 |
+| 图片清理正则不能排除空白 | `scripts/lib/notion-md-converter.ts` 用正则判断「正文是否引用了该文件」，并据此删除未引用文件。目录名可能含空格（如 `words/Crazy DBX/`），字符类若排除 `\s` 会截断路径 → 图片被误判未引用 → 当场删除。曾因此丢过数据 |
+| 说说抽图后残留 `<br />` | 空段落在 MD 里是 `<br />`，图片被 `extractImagesFromMdx` 抽走后留下孤立标签，`trim()` 清不掉，渲染成正文与图片之间的一段空白。只清首尾，中间空段落是作者有意留的 |
+| 暗色图片降亮的作用域是 `article img` | 不是 `.prose img`。说说图片由 `WordImageGrid` 渲染，在 `.prose` 之外但仍在 `WordCard` 的 `<article>` 内。改作用域会漏掉或误伤画廊 |
+| 暗色不要改成纯 CSS 媒体查询 | 配色挂在 `.dark` class 上，主题三态（system/light/dark）由 `ui/theme.ts` + 首帧内联脚本控制。用 `prefers-color-scheme` 会破坏用户手动选择 |
+| Notion 2026 API 需要 data_source 层 | 查库/建页不能直接用 database_id，要先 `databases.retrieve()` 拿 `data_sources[0].id` |
+| `notion-to-md` 是 v4 alpha | API 与 v3 不兼容，查用法别照 v3 文档抄 |
+| `@11ty/gray-matter` 不是 `gray-matter` | 包名不同，frontmatter 解析统一用它 |
 
-需要 `Authorization: Bearer <PUBLISH_SECRET>`。另有 `/publish-words` 管理页面（`(admin)` 路由组）提供 Web 端发布表单，支持 PWA。
+## 增量同步
 
-### 路由表
+状态在 `content/sync-state.json`，结构 `{ "<type>/<id>": last_edited_time }`。`needsStateSync()` 对比后决定是否处理，`FORCE_SYNC=true` 时无条件处理。
 
-| 路由组 | 路由 | 说明 |
-|--------|------|------|
-| — | `/` | 首页 |
-| `(blogs)` | `/posts`、`/posts/[slug]` | 文章列表（分页）+ 详情 |
-| `(blogs)` | `/archives` | 归档（按年） |
-| `(blogs)` | `/categories`、`/categories/[cat]` | 分类 |
-| `(blogs)` | `/tags`、`/tags/[tag]` | 标签 |
-| `(blogs)` | `/rss.xml` | RSS（文章，全文输出） |
-| — | `/words`、`/words/tags`、`/words/tags/[tag]` | 说说流（分页）+ 说说标签 |
-| — | `/words/rss.xml` | 说说 RSS（最新 50 条，全文输出） |
-| `(shares)` | `/awaken`、`/awaken/[slug]`、`/awaken/all` | 分享（列表 + 详情 + 全部） |
-| `(shares)` | `/taste` | 书影音（画廊） |
-| `(cooking)` | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
-| `(pages)` | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
-| `(admin)` | `/publish-words` | Web 端说说发布（支持 PWA） |
-| — | `/caidan`、`/caidan/daily-words` | 彩蛋 + 旧版说说 |
-| — | `robots.ts`、`sitemap.ts` | SEO |
-| — | 404 | `not-found.tsx` |
+改同步逻辑时注意：Notion 里删掉的页面靠 `cleanOrphanedFiles()` 收尾，它同时删 `.md`、sync-state 条目和封面目录——多加一个「未引用就删」的判断就是加一次数据丢失风险。
 
-### 组件
+## 搜索
 
-- `src/components/layout/` — Header（导航从 `site.config.ts` 的 `navLinks` 读取）、Footer
-- `src/components/ui/` — **MarkdownRenderer**、ImageViewer（`yet-another-react-lightbox` + Zoom）、TableOfContents、Prose、CodeBlock、Callout、Columns/Column、Typewriter（首页打字）、BackToTop、**PageHero**（页面标题区）、**EmptyShower**（空状态）、**Comment**（Giscus 评论组件）、TagCloud（标签云）、ThemeToggle（主题切换）、**Pagination**（列表分页，配合 `libs/paginate.ts`）
-- `src/app/(blogs)/_components/` — PostItem、PostItemLite、PostMeta、Tag
-- `src/app/(cooking)/_components/` — ImageGallery（图片网格）
-- `src/app/words/_components/` — WordCard、WordImageGrid
-- `src/app/(shares)/awaken/_components/` — AwakenCard、CopyButton、ExpandableContent
-- `src/app/(shares)/taste/_components/` — TasteGallery
+构建期 `scripts/build-search-index.ts` 扫 `content/posts` 写出 `public/search-index.json`；查询侧 `SearchPalette` 懒加载 minisearch。**改分词前先读 `src/libs/search-tokenizer.ts` 的头注释**——中文必须按「整词 + unigram + 跨词边界 bigram」展开，少一层就会出现搜不到或 AND 语义退化。
 
-### site.config.ts
+## 质量门
 
-集中管理：URL、标题、描述、作者、导航链接（`navLinks`）、RSS 配置、分页（`pageSize: 7`、`cookingPageSize: 12`、`wordsPageSize: 10`、`tastePageSize: 12`、`awakenPageSize: 10`）、Hero 文案、Giscus 评论配置。
+没有测试框架，不要引入。判断改动是否安全靠：
 
-### 设计系统
+- `pnpm build`（含类型检查）
+- `pnpm lint` —— **目前不是绿的**：存量约 41 error + 37 warning，集中在 `scripts/`（`noExplicitAny`、`useNodejsImportProtocol`）与 `src/libs/words-loader.ts`（`noGlobalIsNan`）。这些是历史遗留，判断自己有没有搞坏东西，看新增报错是否落在你改过的文件里。
 
-Tailwind v4 + `@tailwindcss/typography`，CSS 变量定义暖中性色调（stone），支持亮色/暗色模式（`prefers-color-scheme: dark`）。字体：霞鶜文楷屏幕版（直接导入 CSS，不用 `next/font`），回退 `system-ui`。集成 `@vercel/analytics` 和 `@vercel/speed-insights`。
+## 需要背景时
 
-`next.config.ts` 当前为空对象（无自定义配置）。若生产环境加载 Notion/Unsplash 外部图片遇到问题，需要添加 `images.remotePatterns` 配置。
-
-`globals.css` 中 `.prose` 有大量覆盖：代码块、表格、引用块、任务列表、10 色 callout、`<details>/<summary>`、多栏布局（`md-columns-2/3/4`）。Shiki 双主题通过 CSS 变量（`--shiki-light`/`--shiki-dark`）切换。
-
-### Root Layout
-
-`src/app/layout.tsx`：`<html lang="zh-CN">`，`max-w-[800px] mx-auto` 居中，`<main>` 最小高度 `calc(100vh-200px)`。全局注入 `<Analytics>`、`<SpeedInsights>`、`<BackToTop>`。Metadata 含 OpenGraph（`locale: zh_CN`）、Twitter Card、RSS alternate link。
-
-### CI/CD
-
-`.github/workflows/sync-notion.yml` — 每小时（`cron: "0 * * * *"`）自动 `pnpm fetchAll`，有变更时 commit + push，触发 Vercel 构建。也可 `workflow_dispatch` 手动触发。使用 Node 20 + pnpm 9.1.1，`pnpm install --frozen-lockfile`。提交信息：`chore: sync content from Notion`（Co-Authored-By: Claude）。需要 5 个 GitHub Secrets（`NOTION_TOKEN` + 4 个数据库 ID）。
-
-### 测试
-
-项目当前无测试框架（无 jest/vitest 配置，无测试文件）。
-
-### 依赖注意事项
-
-- `pnpm.overrides` 强制 `unified@11.0.5`，解决 `@mdx-js/mdx` 与 `rehype-slug` 版本冲突
-- `notion-to-md@4.0.0-alpha.7`（v4 alpha），API 与 v3 不兼容，2026 Notion API 需通过 data_source 层
-- `dayjs` 日期格式化、`rss` RSS 生成、`yet-another-react-lightbox` 图片灯箱
-- Git 提交使用简洁英文 message
+- 站点结构、内容管线、环境变量、部署 → `README.md`
+- 设计 token 取值 → `src/assets/globals.css`；排版覆盖 → `src/assets/prose.css`
+- 渲染链路 → `src/components/ui/MarkdownRenderer.tsx`
+- 配置项（导航 / RSS / 分页）→ `src/site.config.ts`
