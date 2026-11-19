@@ -49,8 +49,8 @@ export default function WordImageGrid({ images }: WordImageGridProps) {
               alt=""
               className={
                 isSingle
-                  ? 'max-h-96 w-full object-cover hover:opacity-95 transition-opacity'
-                  : 'aspect-square w-full object-cover hover:opacity-95 transition-opacity'
+                  ? 'max-h-96 w-full rounded-lg object-cover'
+                  : 'aspect-square w-full rounded-lg object-cover'
               }
               loading="lazy"
             />
