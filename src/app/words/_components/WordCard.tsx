@@ -99,8 +99,15 @@ export function extractImagesFromMdx(content: string): {
     return '';
   });
 
-  // Collapse 3+ consecutive newlines into 2 (one blank line)
-  const cleanedContent = withoutImages.replace(/\n{3,}/g, '\n\n').trim();
+  // 图片抽走后，原本环绕图片的空行会变成孤立节点。
+  // Notion 空段落输出为 <br />，trim() 只处理空白字符、清不掉标签，
+  // 残留在正文首尾时会渲染成正文与图片网格之间的一段空白。
+  // 只清理首尾：中间的空段落是著者有意留的段落间距，图片被移走后依然有意义。
+  const cleanedContent = withoutImages
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/^(?:\s*<br\s*\/?>\s*)+/, '')
+    .replace(/(?:\s*<br\s*\/?>\s*)+$/, '')
+    .trim();
 
   // 判断是否有实质文字内容：去掉所有 HTML 标签后检查
   const hasText = cleanedContent.replace(/<[^>]+>/g, '').trim().length > 0;
