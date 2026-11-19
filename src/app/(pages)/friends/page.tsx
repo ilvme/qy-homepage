@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import path from 'path';
+import BlogBadges from '@/components/ui/BlogBadges';
 import Comment from '@/components/ui/Comment';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
@@ -33,13 +34,17 @@ export default async function FriendsPage() {
       <header>
         <h1 className="text-3xl font-bold tracking-normal">{navTitle}</h1>
       </header>
+
       <MarkdownRenderer
         content={fileContent.content}
         className="text-base 2xl:text-lg"
       />
 
-      {/* 互换友链、留言咨询：Giscus 按 pathname 建独立讨论区，无需额外配置 */}
-      {siteConfig.giscus.enabled && <Comment />}
+      <BlogBadges className="mt-4" label="" />
+
+      {/* 互换友链、留言咨询：Giscus 按 pathname 建独立讨论区。标题由组件渲染，
+          不再写在 Notion 内容里——原先的 md h2 与评论组件只靠位置相邻凑成一节 */}
+      {siteConfig.giscus.enabled && <Comment title="留言板" />}
     </div>
   );
 }

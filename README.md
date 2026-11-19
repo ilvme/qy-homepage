@@ -91,6 +91,7 @@ src/
 scripts/                    Notion 同步脚本 + 搜索索引构建
 content/                    同步产物（MD + sync-state.json）
 public/notion-images/       同步产物（图片）
+public/badges/              博客圈标识（十年之约、博友圈，各备亮/暗两版自托管）
 ```
 
 ## 本地开发

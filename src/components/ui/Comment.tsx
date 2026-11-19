@@ -16,9 +16,12 @@ function getGiscusTheme(): string {
 interface CommentProps {
   /** 是否视口进入时才加载（默认 true） */
   lazy?: boolean;
+  /** 收起态标题，默认「评论」。页面想用别的措辞（如友链页的「留言板」）时传这个，
+   *  避免标题写在 Notion 内容里、组件在代码里，两边靠位置巧合拼在一起 */
+  title?: string;
 }
 
-export default function Comment({ lazy = true }: CommentProps) {
+export default function Comment({ lazy = true, title = '评论' }: CommentProps) {
   /** 默认收起 */
   const [open, setOpen] = useState(false);
   /** giscus 元数据回传的评论总数，未拿到前按 0 显示 */
@@ -120,7 +123,7 @@ export default function Comment({ lazy = true }: CommentProps) {
     loadGiscus();
   }, [lazy]);
 
-  const label = `评论（${count}）`;
+  const label = `${title}（${count}）`;
 
   return (
     <div className="mt-12" ref={sectionRef}>
