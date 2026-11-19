@@ -66,16 +66,14 @@
 }
 
 /* 暗色模式下白底截图会形成刺眼光块（全站约 8% 的图片平均亮度 >0.85），
-   统一压低亮度；hover 恢复，点击进灯箱也是原图。
+   统一压低亮度。
    0.78 是实测平衡点：0.88 时纯白截图（#fff→#e0e0e0）在 #131313 底上依然刺眼，
-   0.68 会让普通照片发灰、色彩寡淡。 */
-.dark .prose img {
+   0.68 会让普通照片发灰、色彩寡淡。
+   作用域用 article 而非 .prose：说说正文图片由 WordImageGrid 渲染，在 .prose 之外
+   但仍在 WordCard 的 <article> 内；画廊、书影音、赞助二维码均在 div 中，不受影响。
+   不做 hover 恢复：亮度跳变会打断阅读，看原图点开灯箱即可（灯箱是独立 portal，不带滤镜）。 */
+.dark article img {
   filter: brightness(0.78) contrast(1.02);
-  transition: filter 0.2s ease;
-}
-
-.dark .prose img:hover {
-  filter: none;
 }
 
 /* ── 列表 ── */
@@ -242,7 +240,7 @@
 
 .prose hr {
   border: 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-subtle);
   margin: 2rem 0;
 }
 
