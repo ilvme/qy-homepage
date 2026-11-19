@@ -48,10 +48,7 @@ export default function Header({ wide }: { wide: boolean }) {
     >
       {/* padding 放在外层，border-b 才能与正文/页脚分隔线同宽（对齐文字） */}
       <div className="flex items-center justify-between py-6 border-b border-border">
-        <Link
-          href="/"
-          className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
-        >
+        <Link href="/" className="text-lg font-semibold tracking-tight">
           {siteConfig.title}
         </Link>
 
