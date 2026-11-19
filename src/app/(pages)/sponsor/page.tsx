@@ -1,14 +1,24 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
+import { PageHero } from '@/components/ui/PageHero';
+import { getNavTitle } from '@/site.config';
+
+/** 页面副标题与 SEO 描述共用一份，避免两处各写 */
+const SPONSOR_DESCRIPTION = '如果你喜欢我的文字，就给我的小猫买个罐头吧~ 🥫';
+
+export const metadata: Metadata = {
+  // 此前该页完全没有 metadata，分享出去只有默认标题；顺带把 h1 从英文 Sponsor 归一到导航文案
+  title: getNavTitle('/sponsor'),
+  description: SPONSOR_DESCRIPTION,
+};
 
 export default function SponsorPage() {
   return (
     <div className="py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-normal">Sponsor</h1>
-        <p className="text-secondary text-base mt-1">
-          如果你喜欢我的文字，就给我的小猫买个罐头吧~ 🥫
-        </p>
-      </header>
+      <PageHero
+        title={getNavTitle('/sponsor')}
+        description={SPONSOR_DESCRIPTION}
+      />
 
       <div className="max-w-xs mx-auto text-center space-y-4">
         <Image
@@ -19,9 +29,7 @@ export default function SponsorPage() {
           className="w-full rounded-xl border border-border"
           priority
         />
-        <p className="text-xs text-secondary">
-          打开微信扫一扫，识别赞赏码
-        </p>
+        <p className="text-xs text-secondary">打开微信扫一扫，识别赞赏码</p>
       </div>
     </div>
   );

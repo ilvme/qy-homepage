@@ -1,4 +1,5 @@
 import RSS from 'rss';
+import { WORDS_DESCRIPTION } from '@/app/words/_meta';
 import { mdToFeedHtml, plainText } from '@/libs/feed-supports';
 import { getAllWords } from '@/libs/words-loader';
 import { siteConfig } from '@/site.config';
@@ -8,7 +9,7 @@ export async function GET() {
 
   const feed = new RSS({
     title: `${siteConfig.title} · 说说`,
-    description: '碎片化的思考与记录',
+    description: WORDS_DESCRIPTION,
     site_url: `${siteConfig.url}/words`,
     feed_url: `${siteConfig.url}${siteConfig.rss.wordsPath}`,
     language: siteConfig.language,

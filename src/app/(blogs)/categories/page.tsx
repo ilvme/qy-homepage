@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { EmptyShower } from '@/components/ui/EmptyShower';
 import { PageHero } from '@/components/ui/PageHero';
 import { getAllCategories, getAllPosts } from '@/libs/content-loader';
+import { getNavTitle } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '分类',
+  title: getNavTitle('/categories'),
   description: '文章分类',
 };
 
@@ -24,7 +25,10 @@ export default async function CategoriesPage() {
 
   return (
     <div className="py-8">
-      <PageHero title="分类" description={`共 ${categories.length} 个分类`} />
+      <PageHero
+        title={getNavTitle('/categories')}
+        description={`共 ${categories.length} 个分类`}
+      />
 
       {categories.length === 0 ? (
         <EmptyShower />

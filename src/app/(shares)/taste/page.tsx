@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { TasteGallery } from '@/app/(shares)/taste/_components/TasteGallery';
 import { PageHero } from '@/components/ui/PageHero';
 import { getAllTaste } from '@/libs/taste-loader';
+import { getNavTitle } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '书影音',
+  title: getNavTitle('/taste'),
   description: '书影音动漫小说收藏',
 };
 
@@ -30,7 +31,7 @@ export default async function TastePage() {
   return (
     <div className="py-8">
       <PageHero
-        title="书影音"
+        title={getNavTitle('/taste')}
         description="以下是我喜欢的一些书影音等文娱内容，内容可能时常变动。"
       />
 

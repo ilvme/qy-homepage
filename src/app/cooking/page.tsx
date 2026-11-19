@@ -5,10 +5,11 @@ import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
 import { getAllCooking, getAllCookingCategories } from '@/libs/cooking-loader';
 import { paginate } from '@/libs/paginate';
-import { siteConfig } from '@/site.config';
+import { getNavTitle, siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '下厨',
+  // 站内标题与顶栏都叫「食者」，此前 SEO 标题写成「下厨」，两处漂移
+  title: getNavTitle('/cooking'),
   description: '一些日常做饭记录，自己动手做的好吃的',
 };
 
@@ -47,7 +48,7 @@ export default async function CookingPage({
   return (
     <div className="py-8">
       <PageHero
-        title="食者"
+        title={getNavTitle('/cooking')}
         description={`一些日常做饭记录，自己动手做的好吃的，共 ${items.length} 道`}
       />
 

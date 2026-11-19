@@ -5,8 +5,10 @@ import ExpandableContent from '@/app/(shares)/awaken/_components/ExpandableConte
 import { Refresh } from '@/components/icons';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { getAllAwaken, getAwakenBySlug } from '@/libs/awaken-loader';
+import { getNavTitle } from '@/site.config';
+
 export const metadata: Metadata = {
-  title: '分享',
+  title: getNavTitle('/awaken'),
   description: '台词、句子、古诗词古文',
 };
 

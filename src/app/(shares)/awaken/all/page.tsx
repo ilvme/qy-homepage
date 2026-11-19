@@ -9,8 +9,11 @@ import { parseMdFromFile } from '@/libs/content-supports';
 import { paginate } from '@/libs/paginate';
 import { siteConfig } from '@/site.config';
 
+/** h1 与浏览器标题同源：此前 h1 写「分享」，与 title「全部分享」不一致 */
+const PAGE_TITLE = '全部分享';
+
 export const metadata: Metadata = {
-  title: '全部分享',
+  title: PAGE_TITLE,
   description: '台词、句子、古诗词古文',
 };
 
@@ -76,7 +79,7 @@ export default async function AwakenAllPage({
   return (
     <div className="py-8">
       <PageHero
-        title="分享"
+        title={PAGE_TITLE}
         description={`台词、句子、古诗词古文，共 ${data.length} 条`}
         action={
           <Link

@@ -11,9 +11,10 @@ import {
   getAllTags,
   getPostStats,
 } from '@/libs/content-loader';
+import { getNavTitle } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '归档',
+  title: getNavTitle('/archives'),
   description: '技术笔记与生活随笔',
 };
 
@@ -54,7 +55,7 @@ export default async function Archives() {
   return (
     <div className="py-8">
       <PageHero
-        title="归档"
+        title={getNavTitle('/archives')}
         action={
           <div className="flex items-center gap-2">
             <Link

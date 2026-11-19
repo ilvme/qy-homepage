@@ -7,11 +7,12 @@ import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
 import { paginate } from '@/libs/paginate';
 import { getAllWords } from '@/libs/words-loader';
-import { siteConfig } from '@/site.config';
+import { getNavTitle, siteConfig } from '@/site.config';
+import { WORDS_DESCRIPTION } from './_meta';
 
 export const metadata: Metadata = {
-  title: '说说',
-  description: '碎片化的思考与记录',
+  title: getNavTitle('/words'),
+  description: WORDS_DESCRIPTION,
 };
 
 export default async function ShuoShuo({
@@ -31,7 +32,7 @@ export default async function ShuoShuo({
   return (
     <div className="py-8 space-y-4">
       <PageHero
-        title="说说"
+        title={getNavTitle('/words')}
         description="生活碎片、猫咪日常，以及一些吐槽。"
         action={
           <div className="flex items-center gap-2">

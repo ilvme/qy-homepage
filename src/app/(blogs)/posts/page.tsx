@@ -7,10 +7,10 @@ import { PageHero } from '@/components/ui/PageHero';
 import Pagination from '@/components/ui/Pagination';
 import { getAllPosts } from '@/libs/content-loader';
 import { paginate } from '@/libs/paginate';
-import { siteConfig } from '@/site.config';
+import { getNavTitle, siteConfig } from '@/site.config';
 
 export const metadata: Metadata = {
-  title: '文章',
+  title: getNavTitle('/posts'),
   description: '技术笔记与生活随笔',
 };
 
@@ -31,7 +31,7 @@ export default async function Posts({
   return (
     <div className="py-8">
       <PageHero
-        title="文章"
+        title={getNavTitle('/posts')}
         action={
           <div className="flex items-center gap-2">
             <Link

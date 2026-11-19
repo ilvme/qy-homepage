@@ -42,6 +42,21 @@ const navLinks: NavLink[] = [
   { href: '/categories', label: '分类', surfaces: [] },
 ];
 
+/**
+ * 导航文案查询：页面 metadata.title 与顶栏/首页标签的唯一来源。
+ * 找不到直接抛错 —— 新增路由忘了配 navLinks 时在构建期就暴露，
+ * 而不是静默产出 `undefined - 和光同尘` 这种线上才发现的标题。
+ */
+export function getNavTitle(href: string): string {
+  const link = navLinks.find((l) => l.href === href);
+  if (!link) {
+    throw new Error(
+      `navLinks 缺少 ${href} 的配置，请先在 site.config.ts 补齐该路由`,
+    );
+  }
+  return link.label;
+}
+
 /** 作者署名：config 内部多处复用，改笔名只改这一处 */
 const AUTHOR_DISPLAY_NAME = '林深时觉寒';
 
