@@ -45,7 +45,7 @@ const navLinks: NavLink[] = [
 /**
  * 导航文案查询：页面 metadata.title 与顶栏/首页标签的唯一来源。
  * 找不到直接抛错 —— 新增路由忘了配 navLinks 时在构建期就暴露，
- * 而不是静默产出 `undefined - 和光同尘` 这种线上才发现的标题。
+ * 而不是静默产出 `undefined - 林深时觉寒` 这种线上才发现的标题。
  */
 export function getNavTitle(href: string): string {
   const link = navLinks.find((l) => l.href === href);
@@ -63,7 +63,7 @@ const AUTHOR_DISPLAY_NAME = '林深时觉寒';
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ikangjia.cn',
 
-  title: '和光同尘',
+  title: '林深时觉寒',
   description: '个人主页 — 记录生活与技术，分享思考与创造。',
 
   /** 语言标识唯一来源：html lang 与 RSS language 用 language，OG locale 用下划线写法 */
