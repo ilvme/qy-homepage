@@ -27,9 +27,7 @@ export default async function AwakenPage() {
 
   // 随机选取一条，并加载正文
   const randomMeta = items[Math.floor(Math.random() * items.length)];
-  const randomItem = randomMeta
-    ? await getAwakenBySlug(randomMeta.slug)
-    : null;
+  const randomItem = randomMeta ? await getAwakenBySlug(randomMeta.slug) : null;
 
   const plainText = randomItem ? stripMarkdown(randomItem.content) : '';
 
@@ -51,7 +49,7 @@ export default async function AwakenPage() {
           <div className="text-center mb-4">
             <Link
               href="/awaken"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm border border-border/40 rounded-full hover:border-border hover:bg-muted/50 text-secondary hover:text-foreground transition-all duration-200"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm border border-border-subtle rounded-full hover:border-border hover:bg-muted/50 text-secondary hover:text-foreground transition-all duration-200"
             >
               <Refresh size={15} />
               随机一条
@@ -81,7 +79,7 @@ export default async function AwakenPage() {
             </ExpandableContent>
 
             {/* 出处 + 复制 */}
-            <div className="mt-6 pt-4 border-t border-border/30 flex items-end justify-between">
+            <div className="mt-6 pt-4 border-t border-border-subtle flex items-end justify-between">
               <div>
                 <Link
                   href={`/awaken/${randomItem.slug}`}
@@ -98,10 +96,7 @@ export default async function AwakenPage() {
                 {randomItem.tags && randomItem.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mt-1.5">
                     {randomItem.tags.map((tag: string) => (
-                      <span
-                        key={tag}
-                        className="text-xs text-secondary/40"
-                      >
+                      <span key={tag} className="text-xs text-secondary/40">
                         #{tag}
                       </span>
                     ))}

@@ -96,7 +96,9 @@ function Highlight({ text, query }: { text: string; query: string }) {
         // biome-ignore lint/suspicious/noArrayIndexKey: 纯展示的分片静态列表，无重排风险
         <span key={i}>
           {i > 0 && (
-            <mark className="bg-transparent text-foreground font-medium">{q}</mark>
+            <mark className="bg-transparent text-foreground font-medium">
+              {q}
+            </mark>
           )}
           {part}
         </span>
@@ -222,7 +224,7 @@ export default function SearchPalette({
 
       <div className="relative mx-4 mt-[12vh] flex w-full max-w-lg flex-col overflow-hidden rounded-xl border border-border bg-card shadow-lg max-h-[70vh]">
         {/* 输入行 */}
-        <div className="flex shrink-0 items-center gap-2.5 border-b border-border px-4">
+        <div className="flex shrink-0 items-center gap-2.5 border-b border-border-subtle px-4">
           <SearchIcon size={18} className="shrink-0 text-secondary" />
           <input
             ref={inputRef}
@@ -286,7 +288,7 @@ export default function SearchPalette({
         </div>
 
         {/* 底部提示 */}
-        <div className="flex shrink-0 items-center justify-between border-t border-border px-4 py-2 text-xs text-secondary">
+        <div className="flex shrink-0 items-center justify-between border-t border-border-subtle px-4 py-2 text-xs text-secondary">
           <span>↑↓ 选择 · Enter 打开 · Esc 关闭</span>
           <span>共 {total} 篇</span>
         </div>

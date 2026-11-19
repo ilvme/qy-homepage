@@ -11,7 +11,10 @@
   --secondary: #78716c;
   --placeholder: #a8a29e;
   --muted: #f5f5f4;
-  --border: #e7e5e4;
+  /* 边框两档：结构（卡片/表格/浮层/Header 分割）与弱分割（hr/卡片内部分割线）。
+     刻意做轻：对比度（vs 背景）1.16 / 1.08，属暗示性分割而非结构性框线 */
+  --border: #ece9e6;
+  --border-subtle: #f2f1ef;
   --card: #ffffff;
   --card-foreground: #1c1917;
   --accent: #d6d3d1;
@@ -23,7 +26,9 @@
   --secondary: #a8a29e;
   --placeholder: #6b6b6b;
   --muted: #232120;
-  --border: #322e2b;
+  /* 与亮色保持同等「轻」的观感：1.21 / 1.12 */
+  --border: #272423;
+  --border-subtle: #211e1c;
   --card: #1c1917;
   --card-foreground: #e7e5e4;
   --accent: #44403c;
@@ -41,6 +46,7 @@
   --color-placeholder: var(--placeholder);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
