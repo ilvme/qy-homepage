@@ -6,126 +6,102 @@ import {
   getAllTags,
 } from '@/libs/content-loader';
 import { getAllCooking } from '@/libs/cooking-loader';
+import { getAllWordTags, getWordsGroupedByMonth } from '@/libs/words-loader';
 import { siteConfig } from '@/site.config';
+
+/** 静态页面清单：新增静态路由时同步补这里，动态页由各自的 loader 派生 */
+const STATIC_PATHS = [
+  '/',
+  '/posts',
+  '/archives',
+  '/tags',
+  '/categories',
+  '/words',
+  '/words/tags',
+  '/words/monthly',
+  '/cooking',
+  '/taste',
+  '/awaken',
+  '/awaken/all',
+  '/about',
+  '/friends',
+  '/resume',
+  '/sponsor',
+];
+
+/**
+ * 内容页 lastModified 取 Notion 的最后编辑时间。
+ * date 只是发布日：一篇 2021 年发布、2026 年改过的文章若报 2021，爬虫会当成陈旧内容不再重抓。
+ */
+function lastModified(meta: {
+  date: string | null;
+  last_edited_time: string;
+}): Date | undefined {
+  const raw = meta.last_edited_time || meta.date;
+  return raw ? new Date(raw) : undefined;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
 
-  // 静态页面
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/`, changeFrequency: 'daily' as const, priority: 1.0 },
-    {
-      url: `${baseUrl}/posts`,
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/archives`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/tags`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/categories`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/words`,
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/cooking`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/about`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/friends`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/resume`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/sponsor`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/awaken`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/awaken/all`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/taste`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    },
-  ];
+  const [
+    posts,
+    cookingItems,
+    awakenItems,
+    tags,
+    categories,
+    wordTags,
+    wordMonths,
+  ] = await Promise.all([
+    getAllPosts(),
+    getAllCooking(),
+    getAllAwaken(),
+    getAllTags(),
+    getAllCategories(),
+    getAllWordTags(),
+    getWordsGroupedByMonth(),
+  ]);
 
-  // 文章详情页
-  const posts = await getAllPosts();
+  // 只给 URL，不写 priority / changeFrequency —— Google 已明确忽略这两个字段，
+  // 手写一份没人读的权重表，只会让真正该维护的 URL 清单漏项。
+  const staticPages: MetadataRoute.Sitemap = STATIC_PATHS.map((path) => ({
+    url: `${baseUrl}${path}`,
+  }));
+
   const postEntries: MetadataRoute.Sitemap = posts
     .filter((post) => post.status === 'published')
     .map((post) => ({
       url: `${baseUrl}/posts/${post.slug}`,
-      lastModified: post.date ? new Date(post.date) : undefined,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      lastModified: lastModified(post),
     }));
 
-  // 下厨详情页
-  const cookingItems = await getAllCooking();
   const cookingEntries: MetadataRoute.Sitemap = cookingItems
     .filter((item) => !item.status || item.status === 'published')
     .map((item) => ({
       url: `${baseUrl}/cooking/${item.slug}`,
-      lastModified: item.date ? new Date(item.date) : undefined,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      lastModified: lastModified(item),
     }));
 
-  // 分享详情页
-  const awakenItems = await getAllAwaken();
   const awakenEntries: MetadataRoute.Sitemap = awakenItems.map((item) => ({
     url: `${baseUrl}/awaken/${item.slug}`,
-    lastModified: item.date ? new Date(item.date) : undefined,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
+    lastModified: lastModified(item),
   }));
 
-  // 标签页
-  const tags = await getAllTags();
   const tagEntries: MetadataRoute.Sitemap = tags.map((tag) => ({
     url: `${baseUrl}/tags/${encodeURIComponent(tag.label)}`,
-    changeFrequency: 'weekly' as const,
-    priority: 0.4,
   }));
 
-  // 分类页
-  const categories = await getAllCategories();
   const categoryEntries: MetadataRoute.Sitemap = categories.map((cat) => ({
     url: `${baseUrl}/categories/${encodeURIComponent(cat)}`,
-    changeFrequency: 'weekly' as const,
-    priority: 0.4,
+  }));
+
+  // 说说没有详情页，内容散在 /words 的分页里；标签页与月刊是唯一可按主题直达的独立 URL
+  const wordTagEntries: MetadataRoute.Sitemap = wordTags.map((tag) => ({
+    url: `${baseUrl}/words/tags/${encodeURIComponent(tag.label)}`,
+  }));
+
+  const wordMonthEntries: MetadataRoute.Sitemap = wordMonths.map((group) => ({
+    url: `${baseUrl}/words/monthly/${encodeURIComponent(group.key)}`,
   }));
 
   return [
@@ -135,5 +111,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...awakenEntries,
     ...tagEntries,
     ...categoryEntries,
+    ...wordTagEntries,
+    ...wordMonthEntries,
   ];
 }
