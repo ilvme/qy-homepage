@@ -32,7 +32,6 @@
 | `/taste` | 书影音画廊 |
 | `/cooking`、`/cooking/[slug]` | 下厨画廊 + 详情 |
 | `/about`、`/friends`、`/resume`、`/sponsor` | 静态页面 |
-| `/publish-words` | Web 端说说发布（支持 PWA，需密钥） |
 | `/caidan`、`/caidan/daily-words` | 彩蛋 + 旧版说说 |
 
 `/tags`、`/categories` 目前没有站内入口（导航里 `surfaces: []`），页面保留、靠外链直达。
@@ -78,11 +77,10 @@ src/
 │   ├── (blogs)/            文章、归档、分类、标签、RSS
 │   ├── (shares)/           分享、书影音
 │   ├── (pages)/            关于、友链、简历、赞赏
-│   ├── (admin)/            说说发布
 │   ├── words/              说说流、标签、月刊、RSS
 │   ├── cooking/            下厨
 │   ├── caidan/             彩蛋
-│   └── api/words/publish   发布接口
+│   └── api/words/publish   发布接口（快捷指令用，无 Web 页面）
 ├── components/
 │   ├── ui/                 渲染与交互组件（MarkdownRenderer、ImageViewer、SearchPalette 等）
 │   ├── layout/             SiteShell、Header、Footer、宽窄路由
