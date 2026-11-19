@@ -8,6 +8,7 @@ export {
   Calendar,
   Check,
   Copy,
+  Copyright,
   FileText,
   Film,
   Folder,
