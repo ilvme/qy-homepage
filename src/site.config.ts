@@ -29,7 +29,7 @@ const navLinks: NavLink[] = [
     surfaces: ['header', 'home'],
   },
   { href: '/taste', label: '书影音', desc: '书影音收藏', surfaces: ['home'] },
-  { href: '/awaken', label: '分享', desc: '语录与感悟', surfaces: ['home'] },
+  { href: '/awaken', label: '分享', desc: '收录与分享', surfaces: ['home'] },
 
   { href: '/about', label: '关于', desc: '我与小站', surfaces: ['home'] },
   { href: '/friends', label: '友链', desc: '一些朋友', surfaces: ['home'] },

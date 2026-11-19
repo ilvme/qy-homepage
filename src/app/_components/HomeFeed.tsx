@@ -67,20 +67,23 @@ export default async function HomeFeed() {
     <ul className="">
       {items.map((item) => (
         <li key={item.key}>
-          <Link href={item.href} className="group flex items-center gap-2 py-2">
+          <p className="group flex items-center justify-between gap-2 py-2">
             <span className="shrink-0 text-xs text-secondary">
               {item.kind === 'post' ? '文章' : '说说'}
             </span>
-            <span className="min-w-0 flex-1 truncate text-sm text-foreground group-hover:underline underline-offset-4 transition-colors">
+            <Link
+              href={item.href}
+              className="min-w-0 flex-1 truncate text-sm hover:underline underline-offset-4 pb-0.5"
+            >
               {item.title}
-            </span>
+            </Link>
             <time
               dateTime={item.date}
               className="shrink-0 text-xs text-secondary tabular-nums font-mono"
             >
               {item.date.slice(5, 10)}
             </time>
-          </Link>
+          </p>
         </li>
       ))}
     </ul>
