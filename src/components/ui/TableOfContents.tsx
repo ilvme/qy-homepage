@@ -58,8 +58,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <>
-      {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，紧贴 gap 排列 */}
-      <div className="hidden xl:block xl:sticky xl:top-20 w-72 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      {/* 桌面端：文档流内 sticky，由父级 grid 放在正文右侧，紧贴 gap 排列。
+          宽度 208 而非更宽：全站标题中位仅 4 字、p90 约 13 字，208 能单行放下 90%；
+          父级轨道留 240，多出的 32px 让目录不贴 header 右缘。 */}
+      <div className="hidden xl:block xl:sticky xl:top-20 w-52 max-h-[calc(100vh-8rem)] overflow-y-auto">
         <nav className="max-h-[calc(100vh-8rem)] overflow-y-auto">
           <div className="text-sm font-semibold text-secondary uppercase mb-2 px-2">
             目录
@@ -72,7 +74,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 e.preventDefault();
                 scrollToHeading(heading.id);
               }}
-              className={`block text-sm 2xl:text-base px-2 py-1 transition-colors underline-offset-4 hover:underline ${
+              className={`block text-sm px-2 py-1 transition-colors underline-offset-4 hover:underline ${
                 heading.level === 3 ? 'pl-6' : ''
               } ${
                 activeId === heading.id

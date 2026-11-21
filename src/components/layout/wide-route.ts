@@ -1,6 +1,6 @@
 /**
  * 宽页面路由：taste、cooking 列表页 + 博客/awaken 详情页
- * 使用最大 1072px 容器，其余页面保持 736px
+ * 使用最大 1024px 容器，其余页面保持 736px
  */
 export const isWideRoute = (pathname: string) =>
   pathname === '/taste' ||
@@ -14,16 +14,16 @@ export const isWideRoute = (pathname: string) =>
  * 收在一处，新增宽版页面时不必再同时维护两个组件的宽度声明。
  *
  * 注意：必须是完整独立的类名字面量。Tailwind v4 靠文本扫描生成工具类，
- * 写成 `max-w-184${cond ? ' xl:max-w-268' : ''}` 时扫描器会把
+ * 写成 `max-w-184${cond ? ' xl:max-w-256' : ''}` 时扫描器会把
  * `max-w-184$` 当成一个无效候选整体丢弃，导致窄版宽度规则根本不生成（页面变全宽）。
  *
- * 尺寸取 736 / 1072：内边距 24px 后正文净宽 688 与 1024。
+ * 尺寸取 736 / 1024：内边距 24px 后正文净宽 688 与 976。
  * 688 在 16px 字号下约 43 字一行，落在中文正文舒适区的中位；
- * 1024 恰好拆成 688 正文 + 48 间距 + 288 目录，1fr 轨道正好等于目录的 w-72，
- * 右侧不再留出 48px 空档（1152 时代 1104 - 720 - 48 = 336，比目录宽 48）。
+ * 976 = 688 正文 + 48 间距 + 240 目录列。目录本体 208（w-52，全站标题中位仅 4 字），
+ * 靠列首排布，右侧余 32px——不贴 header 右缘，但也不像 288 时代那样空。
  */
 const NARROW_WIDTH = 'mx-auto w-full px-4 sm:px-6 max-w-184';
-const WIDE_WIDTH = 'mx-auto w-full px-4 sm:px-6 max-w-184 xl:max-w-268';
+const WIDE_WIDTH = 'mx-auto w-full px-4 sm:px-6 max-w-184 xl:max-w-256';
 
 export const pageWidthClass = (wide: boolean) =>
   wide ? WIDE_WIDTH : NARROW_WIDTH;
