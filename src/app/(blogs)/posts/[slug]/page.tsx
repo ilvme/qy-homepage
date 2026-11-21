@@ -96,7 +96,7 @@ export default async function Post({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* 文章内容 - 720px 上限（16px 字号约 45 字一行）；无目录时（含 xl 以下单列）整体居中 */}
+      {/* 文章内容 - 688px 上限（16px 字号约 43 字一行）；无目录时（含 xl 以下单列）整体居中 */}
       <article className={DETAIL_ARTICLE}>
         <header className="mb-10">
           {/* 标题 */}
