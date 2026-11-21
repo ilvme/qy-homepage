@@ -29,9 +29,6 @@ export default async function ResumePage() {
 
   return (
     <div className="py-8 space-y-8">
-      {/*<header>*/}
-      {/*  <h1 className="text-3xl font-bold tracking-tight">友情链接</h1>*/}
-      {/*</header>*/}
       <MarkdownRenderer
         content={fileContent.content}
         className="text-base 2xl:text-lg"

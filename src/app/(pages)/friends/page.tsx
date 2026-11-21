@@ -42,8 +42,6 @@ export default async function FriendsPage() {
 
       <BlogBadges className="mt-4" label="" />
 
-      {/* 互换友链、留言咨询：Giscus 按 pathname 建独立讨论区。标题由组件渲染，
-          不再写在 Notion 内容里——原先的 md h2 与评论组件只靠位置相邻凑成一节 */}
       {siteConfig.giscus.enabled && <Comment title="留言板" />}
     </div>
   );
