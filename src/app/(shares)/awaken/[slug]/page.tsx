@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from '@/components/icons';
+import {
+  DETAIL_ARTICLE,
+  detailGridClass,
+} from '@/components/layout/wide-route';
 import { notFound } from 'next/navigation';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
@@ -37,10 +41,11 @@ export default async function AwakenDetailPage({
   if (!post) notFound();
 
   const headings = extractHeadings(post.content);
+  const hasToc = headings.length > 0;
 
   return (
-    <div className="relative py-8 xl:grid xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)] xl:gap-16 xl:items-start">
-      <article className="max-w-[768px]">
+    <div className={detailGridClass(hasToc)}>
+      <article className={DETAIL_ARTICLE}>
         <header className="mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-normal leading-tight mb-4">
             {post.title}

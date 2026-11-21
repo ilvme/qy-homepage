@@ -3,6 +3,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PostMeta from '@/app/(blogs)/_components/PostMeta';
 import { ArrowLeft } from '@/components/icons';
+import {
+  DETAIL_ARTICLE,
+  detailGridClass,
+} from '@/components/layout/wide-route';
 import Comment from '@/components/ui/Comment';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import TableOfContents from '@/components/ui/TableOfContents';
@@ -87,19 +91,13 @@ export default async function Post({
   };
 
   return (
-    <div
-      className={`relative py-8 xl:grid xl:gap-12 xl:items-start ${
-        hasToc
-          ? 'xl:grid-cols-[minmax(0,768px)_minmax(0,1fr)]'
-          : 'xl:grid-cols-1'
-      }`}
-    >
+    <div className={detailGridClass(hasToc)}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* 文章内容 - 768px 上限；无目录时（含 xl 以下单列）整体居中 */}
-      <article className="mx-auto w-full max-w-3xl">
+      {/* 文章内容 - 720px 上限（16px 字号约 45 字一行）；无目录时（含 xl 以下单列）整体居中 */}
+      <article className={DETAIL_ARTICLE}>
         <header className="mb-10">
           {/* 标题 */}
           <h1 className="text-3xl sm:text-4xl font-bold tracking-normal leading-tight mb-4">
